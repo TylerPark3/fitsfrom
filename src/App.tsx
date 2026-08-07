@@ -251,7 +251,7 @@ function Nav({
   return (
     <header className="nav">
       <div className="wrap nav__inner">
-        <button className="logo" onClick={() => go(profile.onboarded ? 'discover' : 'home')}>
+        <button className="logo" onClick={() => go('home')}>
           <span className="logo__mark serif">FF</span>
           <span className="logo__word">
             FITS<em className="serif">From</em>
@@ -259,8 +259,11 @@ function Nav({
         </button>
 
         <div className="nav__links">
+          <button className="nav__link" aria-current={view === 'home'} onClick={() => go('home')}>
+            Home
+          </button>
           <button className="nav__link" aria-current={view === 'discover'} onClick={() => go('discover')}>
-            Discover
+            Explore
           </button>
           <button className="nav__link" aria-current={view === 'fits'} onClick={() => go('fits')}>
             Fits
