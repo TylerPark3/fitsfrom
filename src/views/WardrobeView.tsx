@@ -34,6 +34,7 @@ export function WardrobeView({
   go: (v: View) => void
 }) {
   const { wardrobe, profile } = useStore()
+  const [recPage, setRecPage] = useState(0)
 
   const items = wardrobe
     .map((w) => ({ w, p: CATALOG.find((c) => c.id === w.productId)! }))
@@ -64,8 +65,8 @@ export function WardrobeView({
         (1 - b.pct) * (ESSENTIAL[b.category] ?? 1) - (1 - a.pct) * (ESSENTIAL[a.category] ?? 1),
     )[0]
 
-  // Diverse picks: never two from the same brand, never near-identical names.
-  const suggestions: typeof CATALOG = []
+  // Diverse pool: never two from the same brand back-to-back, never near-identical names.
+  const pool: typeof CATALOG = []
   for (const r of rank(
     CATALOG.filter(
       (p) =>
@@ -76,11 +77,21 @@ export function WardrobeView({
     profile,
   )) {
     const pr = r.product
-    if (suggestions.some((x) => x.brand === pr.brand)) continue
-    if (suggestions.some((x) => x.name.slice(0, 18) === pr.name.slice(0, 18))) continue
-    suggestions.push(pr)
-    if (suggestions.length === 4) break
+    if (pool.some((x) => x.name.slice(0, 18) === pr.name.slice(0, 18))) continue
+    pool.push(pr)
   }
+  // One per brand within each window of four, so every refresh stays varied.
+  const windowed: typeof CATALOG = []
+  const brandSeen = new Set<string>()
+  for (const pr of pool) {
+    if (windowed.length % 4 === 0) brandSeen.clear()
+    if (brandSeen.has(pr.brand)) continue
+    brandSeen.add(pr.brand)
+    windowed.push(pr)
+  }
+  const pages = Math.max(1, Math.ceil(windowed.length / 4))
+  const page = recPage % pages
+  const suggestions = windowed.slice(page * 4, page * 4 + 4)
 
   const totalRetail = items.reduce((n, i) => n + i.p.price, 0)
   const totalValue = items.reduce((n, i) => n + itemValue(i.p.price, i.w.condition, i.w.years), 0)
@@ -141,13 +152,24 @@ export function WardrobeView({
         ))}
       </div>
 
+      <Closet onOpen={onOpen} />
+
+      <OwnCloset />
+
       {suggestions.length > 0 && worstGap && (
         <div className="section">
           <div className="section__head">
-            <h3>
-              Your biggest hole is {worstGap.label}
-            </h3>
-            <span className="tiny">Ranked against your taste and budget</span>
+            <h3>Your biggest hole is {worstGap.label}</h3>
+            <div className="row" style={{ gap: 12 }}>
+              <span className="tiny">Ranked against your taste and budget</span>
+              <button
+                className="btn btn--ghost btn--sm"
+                onClick={() => setRecPage((n) => n + 1)}
+                aria-label="Show different recommendations"
+              >
+                ↻ Refresh
+              </button>
+            </div>
           </div>
           <div className="grid">
             {suggestions.map((p) => (
@@ -156,10 +178,6 @@ export function WardrobeView({
           </div>
         </div>
       )}
-
-      <Closet onOpen={onOpen} />
-
-      <OwnCloset />
 
       <MoreLikeYours onOpen={onOpen} />
 
