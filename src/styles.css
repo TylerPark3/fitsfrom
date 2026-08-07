@@ -2996,20 +2996,6 @@ input.seg__control::placeholder {
   border-bottom: 1px solid #ddd5c6;
 }
 
-/* leaning framed print — base exactly at the wall/floor line */
-.room2__lean {
-  position: absolute;
-  bottom: 34%;
-  left: 40%;
-  width: 118px;
-  padding: 7px;
-  background: #fff;
-  border: 3px solid #b98a4e;
-  box-shadow: 12px 16px 22px rgba(60, 34, 8, 0.28);
-  transform: rotate(1.5deg) skewY(-1deg);
-  z-index: 1;
-}
-
 .room2__lean img {
   width: 100%;
   display: block;
@@ -3024,31 +3010,20 @@ input.seg__control::placeholder {
   z-index: 2;
 }
 
-/* hung art (unlocked by interests) */
-.room2__hangart {
-  position: absolute;
-  top: 24px;
-  left: 46%;
-  width: 92px;
-  padding: 5px;
-  background: #fff;
-  box-shadow: 0 8px 18px rgba(60, 34, 8, 0.22);
-  transform: rotate(-1.2deg);
-  z-index: 2;
-}
-
-.room2__hangart img {
-  width: 100%;
-  display: block;
-}
-
-.room2__posters {
+.room2__wall {
   position: absolute;
   top: 26px;
   right: 26px;
+  left: 44%;
+  bottom: 38%;
   display: flex;
-  gap: 14px;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: flex-end;
+  align-content: flex-start;
   z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
 }
 
 .room2__poster {
@@ -3294,11 +3269,6 @@ input.seg__control::placeholder {
 }
 
 @media (max-width: 760px) {
-  .room2__posters {
-    top: 14px;
-    right: 14px;
-  }
-
   .room2__poster {
     width: 64px;
   }

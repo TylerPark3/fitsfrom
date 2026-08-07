@@ -44,30 +44,14 @@ export function Room() {
 
   return (
     <div className="room2" ref={roomRef}>
-      {/* leaning framed print — only if you rep NY */}
-      {profile.tags.includes('Yankees') && (
-        <div className="room2__lean">
-          <img src="/room/art-ny.jpg" alt="" loading="lazy" />
-        </div>
-      )}
-
       {/* the dog lives here */}
       <img className="room2__dog" src="/room/dog.png" alt="" loading="lazy" />
 
-      {[
-        ['Yankees', '/room/art-yankees.jpg', '44%'],
-        ['Dodgers', '/room/art-dodgers.jpg', '57%'],
-      ]
-        .filter(([tag]) => profile.tags.includes(tag as string))
-        .map(([tag, img, left]) => (
-          <div className="room2__hangart" key={tag as string} style={{ left: left as string }}>
-            <img src={img as string} alt={`${tag} art`} loading="lazy" />
-          </div>
-        ))}
-
-      {/* wall posters from your teams */}
-      <div className="room2__posters">
-        {posters.length === 0 && <div className="room2__poster room2__poster--empty">FF</div>}
+      {/* the wall — everything flows in rows, top first, never overlapping */}
+      <div className="room2__wall">
+        {posters.length === 0 && !profile.tags.includes('Yankees') && !profile.tags.includes('Dodgers') && (
+          <div className="room2__poster room2__poster--empty">FF</div>
+        )}
         {posters.map((t) =>
           TEAM_POSTERS[t] ? (
             <div className="room2__poster" key={t}>
@@ -84,6 +68,16 @@ export function Room() {
               {t.toUpperCase()}
             </div>
           ),
+        )}
+        {profile.tags.includes('Yankees') && (
+          <div className="room2__poster" style={{ transform: 'rotate(-1.4deg)' }}>
+            <img src="/room/art-yankees.jpg" alt="Yankees caps painting" loading="lazy" />
+          </div>
+        )}
+        {profile.tags.includes('Dodgers') && (
+          <div className="room2__poster" style={{ transform: 'rotate(1.8deg)' }}>
+            <img src="/room/art-dodgers.jpg" alt="Dodgers art" loading="lazy" />
+          </div>
         )}
       </div>
 
