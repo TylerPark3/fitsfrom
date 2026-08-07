@@ -280,7 +280,7 @@ export function AvatarView({ go }: { go: (v: View) => void }) {
       <div className="into into--wide">
         <div className="spread" style={{ marginBottom: 12 }}>
           <span className="eyebrow">Into</span>
-          <span className="tiny">Pick a lane — ✦ hangs art in your room</span>
+          <span className="tiny">✦ = hanging in your room</span>
         </div>
         <div className="chips">
           {INTO.map((cat) => (
@@ -318,7 +318,7 @@ export function AvatarView({ go }: { go: (v: View) => void }) {
                     </span>
                   )}
                   <span className="inttile__label">
-                    {HAS_ART.has(opt.id) ? '✦ ' : ''}
+                    {on && HAS_ART.has(opt.id) ? '✦ ' : ''}
                     {opt.id}
                   </span>
                 </button>
