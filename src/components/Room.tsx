@@ -15,6 +15,7 @@ const TEAM_POSTERS: Record<string, string> = {
   Magic: '/room/poster-magic.jpg',
   Hornets: '/room/poster-hornets.jpg',
   Jazz: '/room/poster-jazz.jpg',
+  Bulls: '/room/poster-bulls.jpg',
 }
 
 /** The dorm — your closet as a place. Head follows the mouse, 2K-style. */

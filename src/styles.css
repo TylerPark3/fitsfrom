@@ -972,10 +972,17 @@ input[type='range']:active::-webkit-slider-thumb {
   height: 100%;
   object-fit: cover;
   transition: transform 480ms var(--ease), opacity 300ms var(--ease);
-  background:
-    linear-gradient(100deg, var(--mist-2) 40%, #fff 50%, var(--mist-2) 60%);
+  background: linear-gradient(100deg, var(--mist-2) 40%, #fff 50%, var(--mist-2) 60%);
   background-size: 200% 100%;
   animation: shimmer 1.2s linear infinite;
+  opacity: 0;
+}
+
+/* the shimmer is a loading state — it stops the moment the photo lands */
+.card__img.is-loaded {
+  background: none;
+  animation: none;
+  opacity: 1;
 }
 
 @keyframes shimmer {
@@ -1436,6 +1443,63 @@ input.seg__control::placeholder {
   justify-content: flex-start;
 }
 
+/* dropdown: visible focus for keyboard users */
+.drop__row:focus-visible {
+  outline: none;
+  background: var(--mist);
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+
+/* mobile: dropdowns become a bottom sheet */
+@media (max-width: 720px) {
+  .drop__scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(11, 11, 12, 0.3);
+    z-index: 95;
+    animation: fade var(--med) both;
+  }
+
+  .drop__panel {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    min-width: 0;
+    max-height: 68vh;
+    border-radius: 20px 20px 0 0;
+    border: 0;
+    border-top: 1px solid var(--line);
+    padding: 10px 12px calc(18px + env(safe-area-inset-bottom));
+    z-index: 96;
+    animation: sheetup 260ms var(--ease) both;
+  }
+
+  @keyframes sheetup {
+    from {
+      transform: translateY(100%);
+    }
+  }
+
+  .drop__sheettitle {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    padding: 8px 13px 10px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 6px;
+  }
+
+  .drop__row {
+    padding: 14px 13px;
+  }
+}
+
 /* Soar-grade dropdowns */
 .drop {
   position: relative;
@@ -1480,6 +1544,14 @@ input.seg__control::placeholder {
 
 .drop__value svg {
   color: var(--ink-4);
+}
+
+.drop__scrim {
+  display: none;
+}
+
+.drop__sheettitle {
+  display: none;
 }
 
 .drop__panel {
@@ -3737,6 +3809,57 @@ input.seg__control::placeholder {
   }
 }
 
+/* 90%+ matches earn a diamond shine — rare on purpose */
+.card--elite .card__frame {
+  position: relative;
+  overflow: hidden;
+}
+
+.card__shine {
+  position: absolute;
+  inset: -40%;
+  pointer-events: none;
+  background: linear-gradient(
+    104deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.9) 47%,
+    rgba(210, 240, 255, 0.75) 50%,
+    rgba(255, 255, 255, 0.9) 53%,
+    transparent 58%
+  );
+  transform: translateX(-120%) rotate(6deg);
+  animation: diamond 5.5s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes diamond {
+  0%,
+  62% {
+    transform: translateX(-120%) rotate(6deg);
+  }
+  78%,
+  100% {
+    transform: translateX(120%) rotate(6deg);
+  }
+}
+
+/* the badge upgrades too, so the number explains the shine */
+.card--elite .card__badge {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.card--elite .card__badge i {
+  background: #7fe3c2;
+  box-shadow: 0 0 6px 1px rgba(127, 227, 194, 0.9);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card__shine {
+    display: none;
+  }
+}
+
 /* top fits */
 .topfits {
   display: grid;
@@ -5851,7 +5974,15 @@ input.seg__control::placeholder {
   .catalog__search { margin-bottom: 22px; }
   .catalog__filters { gap: 0 22px; }
   .catalog__filters .drop__value { font-size: 12.5px; }
-  .catalog__filters .drop__panel { position: fixed; left: 16px; right: 16px; top: auto; bottom: 74px; max-height: 55vh; }
+  .catalog__filters .drop__scrim {
+  display: none;
+}
+
+.drop__sheettitle {
+  display: none;
+}
+
+.drop__panel { position: fixed; left: 16px; right: 16px; top: auto; bottom: 74px; max-height: 55vh; }
 }
 
 .tabbar {

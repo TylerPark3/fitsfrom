@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import type { Product } from '../data/catalog'
 import { useStore } from '../lib/store'
 import { matchScore } from '../lib/match'
@@ -20,16 +20,27 @@ export function ProductCard({
   const { score } = matchScore(product, profile)
   const rec = recommendSize(product, profile)
   const worn = cosigns(product.id)
+  const [loaded, setLoaded] = useState(false)
+  // 90+ is rare by design — it earns the shine.
+  const elite = score >= 90
 
   return (
-    <div className="card">
+    <div className={`card${elite ? ' card--elite' : ''}`}>
       <button
         className="card__frame"
         onClick={() => onOpen(product.id)}
         aria-label={`${product.brand} ${product.name}, $${product.price}`}
         style={{ width: '100%', border: 0, padding: 0 }}
       >
-        <img className="card__img" src={product.image} alt="" loading="lazy" />
+        <img
+          className={`card__img${loaded ? ' is-loaded' : ''}`}
+          src={product.image}
+          alt=""
+          loading="lazy"
+          onLoad={() => setLoaded(true)}
+          onError={() => setLoaded(true)}
+        />
+        {elite && <span className="card__shine" aria-hidden="true" />}
         {profile.onboarded && score >= 85 && (
           <span className="card__badge card__badge--good">
             <i />

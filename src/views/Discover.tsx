@@ -10,7 +10,7 @@ import { ScentShelf } from '../components/ScentShelf'
 import { SCENTS } from '../data/scents'
 import { Arrow, Search } from '../components/Icons'
 
-type Sort = 'match' | 'low' | 'high'
+type Sort = 'featured' | 'match' | 'low' | 'high'
 
 const PRODUCT_TYPES = [
   { id: 'all', title: 'All types' },
@@ -59,7 +59,9 @@ function Drop({
   seg?: boolean
 }) {
   const [open, setOpen] = useState(false)
+  const [active, setActive] = useState(0)
   const ref = useRef<HTMLDivElement>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!open) return
@@ -70,15 +72,55 @@ function Drop({
     return () => window.removeEventListener('mousedown', close)
   }, [open])
 
+  // Roving focus: arrows move, Enter picks, Escape closes back to the trigger.
+  useEffect(() => {
+    if (!open) return
+    setActive(Math.max(0, options.findIndex((o) => o.id === value)))
+  }, [open, options, value])
+
+  useEffect(() => {
+    if (!open) return
+    const rows = panelRef.current?.querySelectorAll<HTMLButtonElement>('.drop__row')
+    rows?.[active]?.focus()
+  }, [open, active])
+
+  const onKey = (e: React.KeyboardEvent) => {
+    if (!open) {
+      if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        setOpen(true)
+      }
+      return
+    }
+    if (e.key === 'Escape') {
+      e.preventDefault()
+      setOpen(false)
+      ref.current?.querySelector('button')?.focus()
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault()
+      setActive((i) => Math.min(options.length - 1, i + 1))
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault()
+      setActive((i) => Math.max(0, i - 1))
+    } else if (e.key === 'Home') {
+      e.preventDefault()
+      setActive(0)
+    } else if (e.key === 'End') {
+      e.preventDefault()
+      setActive(options.length - 1)
+    }
+  }
+
   const current = options.find((o) => o.id === value)
 
   return (
-    <div className={`drop${seg ? ' drop--seg' : ''}`} ref={ref}>
+    <div className={`drop${seg ? ' drop--seg' : ''}`} ref={ref} onKeyDown={onKey}>
       <button
         type="button"
         className={seg ? 'seg' : 'drop__pill'}
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
+        aria-haspopup="listbox"
       >
         <span className="seg__label">{label}</span>
         <span className="drop__value">
@@ -88,8 +130,10 @@ function Drop({
           </svg>
         </span>
       </button>
+      {open && <span className="drop__scrim" onClick={() => setOpen(false)} aria-hidden="true" />}
       {open && (
-        <div className="drop__panel" role="listbox">
+        <div className="drop__panel" role="listbox" ref={panelRef} aria-label={label}>
+          <span className="drop__sheettitle">{label}</span>
           {options.map((o) => (
             <button
               key={o.id}
@@ -141,7 +185,7 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
   const [q, setQ] = useState('')
   const [sizeF, setSizeF] = useState('all')
   const [icon, setIcon] = useState('')
-  const [sort, setSort] = useState<Sort>('match')
+  const [sort, setSort] = useState<Sort>('featured')
   const [brand, setBrand] = useState('all')
   const [gender, setGender] = useState('all')
   const [productType, setProductType] = useState('all')
@@ -207,7 +251,15 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
 
     if (sort === 'low') out = [...out].sort((a, b) => a.price - b.price)
     else if (sort === 'high') out = [...out].sort((a, b) => b.price - a.price)
-    else out = rank(out, profile).map((r) => r.product)
+    else if (sort === 'match') out = rank(out, profile).map((r) => r.product)
+    else {
+      // Featured: cosigned pieces lead, then taste rank — the editorial default.
+      const ranked = rank(out, profile).map((r) => r.product)
+      out = [
+        ...ranked.filter((p) => cosigns(p.id).length > 0),
+        ...ranked.filter((p) => cosigns(p.id).length === 0),
+      ]
+    }
 
     if (icon) {
       const overlap = (p: Product) => p.styles.filter((st) => iconStyles.has(st)).length
@@ -282,14 +334,14 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
         <Drop label="Badge" value={badge} onPick={setBadge} options={[{ id: 'all', title: 'All pieces' }, { id: 'cosigned', title: 'Worn by' }, { id: 'grail', title: 'Grail tier' }]} />
         <Drop label="Inspired by" value={icon} onPick={setIcon} options={[{ id: '', title: 'Anyone' }, ...iconChoices.map((who) => ({ id: who, title: who }))]} />
         <div className="catalog__sort">
-          <Drop label="Sort" value={sort} onPick={(v) => setSort(v as Sort)} options={[{ id: 'match', title: 'Featured' }, { id: 'low', title: 'Price: low to high' }, { id: 'high', title: 'Price: high to low' }]} />
+          <Drop label="Sort" value={sort} onPick={(v) => setSort(v as Sort)} options={[{ id: 'featured', title: 'Featured', sub: 'Cosigned pieces first' }, { id: 'match', title: 'Best match', sub: 'Ranked to your taste' }, { id: 'low', title: 'Price: low to high' }, { id: 'high', title: 'Price: high to low' }]} />
         </div>
       </div>
 
       <div className="catalog__resultline">
         <span><b>{results.length}</b> pieces{icon ? ` inspired by ${icon}` : ''}</span>
         {(brand !== 'all' || gender !== 'all' || productType !== 'all' || color !== 'all' || badge !== 'all' || sizeF !== 'all' || icon || q) && (
-          <button onClick={() => { setBrand('all'); setGender('all'); setProductType('all'); setColor('all'); setBadge('all'); setSizeF('all'); setIcon(''); setQ(''); setAsk('any') }}>Clear all</button>
+          <button onClick={() => { setBrand('all'); setGender('all'); setProductType('all'); setColor('all'); setBadge('all'); setSizeF('all'); setIcon(''); setQ(''); setAsk('any'); setSort('featured') }}>Clear all</button>
         )}
       </div>
 
