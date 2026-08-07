@@ -122,4 +122,5 @@ export const CORE_SLOTS: { category: Category; label: string; per: number }[] = 
   { category: 'outer', label: 'outerwear', per: 2 },
   { category: 'pants', label: 'pants', per: 3 },
   { category: 'shoes', label: 'shoes', per: 2 },
+  { category: 'accessory', label: 'accessories', per: 2 },
 ]

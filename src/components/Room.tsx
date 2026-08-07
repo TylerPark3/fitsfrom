@@ -38,6 +38,7 @@ export function Room() {
     { key: 'long', label: 'Long sleeve', shelf: 'Tops', img: firstOf((c) => ['top', 'shirt', 'knit', 'outer'].includes(c)) },
     { key: 'shorts', label: 'Shorts', shelf: 'Shorts', img: firstOf((c, s2) => c === 'pants' && s2 === 'short') },
     { key: 'pants', label: 'Pants', shelf: 'Pants', img: firstOf((c, s2) => c === 'pants' && s2 !== 'short') },
+    { key: 'acc', label: 'Accessories', shelf: 'Accessories', img: firstOf((c) => c === 'accessory') },
   ]
   const shoeImg = firstOf((c) => c === 'shoes')
 

@@ -57,6 +57,7 @@ export function WardrobeView({
     outer: 1.6,
     knit: 1.2,
     shirt: 1,
+    accessory: 0.8,
   }
   const worstGap = [...gaps]
     .filter((g) => g.pct < 1)
