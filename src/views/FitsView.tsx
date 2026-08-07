@@ -85,13 +85,13 @@ export function FitsView({ go }: { go: (v: View) => void }) {
     <div className="wrap" style={{ paddingBottom: 100 }}>
       <div className="pagehead">
         <span className="eyebrow">
-          <Type text="TRANSMISSION 001 — THE CULTURE FILE" />
+          Transmission 001 — the culture file
         </span>
         <h2 className="fitcheck">
           <Type text="FIT CHECK" speed={70} />
         </h2>
         <p className="mono-line">
-          <Type text="EVERY PIECE IDENTIFIED. EVERY LINK LIVE. YOUR SIZE COMPUTED." speed={14} />
+          EVERY PIECE IDENTIFIED. EVERY LINK LIVE. YOUR SIZE COMPUTED.
         </p>
       </div>
 
@@ -266,7 +266,7 @@ function FitDrawer({ fit, onClose, go }: { fit: Fit; onClose: () => void; go: (v
             {fit.context}
           </p>
           <p className="eyebrow" style={{ margin: '18px 0 4px' }}>
-            <Type text="TOP TO BOTTOM — PIECE BY PIECE" speed={16} />
+            Top to bottom — piece by piece
           </p>
 
           {(canView ? resolved : resolved.slice(0, 2)).map(({ piece, p }) =>

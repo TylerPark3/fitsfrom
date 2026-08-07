@@ -9,7 +9,6 @@ import { ProductCard } from '../components/ProductCard'
 import { ScentShelf } from '../components/ScentShelf'
 import { SCENTS } from '../data/scents'
 import { Arrow, Search } from '../components/Icons'
-import { Type } from '../components/Type'
 
 type Sort = 'match' | 'low' | 'high'
 
@@ -204,7 +203,7 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
       <div className="wrap" style={{ paddingBottom: 110 }}>
         <div className="pagehead" style={{ textAlign: 'center', paddingTop: 64 }}>
           <span className="eyebrow" style={{ color: 'var(--red)' }}>
-            <Type text="RESTRICTED — MEMBERS ONLY" speed={20} />
+            Restricted — members only
           </span>
           <h2 className="fitcheck" style={{ margin: '10px 0 6px' }}>
             The Vault
@@ -243,10 +242,10 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
         {!executed && (
           <>
             <span className="eyebrow">
-              <Type text={`${BRANDS.length} BRANDS · ${CATALOG.length} LIVE PIECES · SIZED TO YOU`} speed={14} />
+              {BRANDS.length} brands · {CATALOG.length} live pieces · sized to you
             </span>
             <h2 className="deck__head">
-              <Type text="FIND YOUR" speed={60} /> <em className="serif">fit.</em>
+              FIND YOUR <em className="serif">fit.</em>
             </h2>
           </>
         )}

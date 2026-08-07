@@ -8,7 +8,6 @@ import { recommendSize } from '../lib/sizing'
 import { fileToDataUrl } from '../lib/img'
 import { ProductCard } from '../components/ProductCard'
 import { Arrow, Plus, Trash, Upload, CheckInk } from '../components/Icons'
-import { Type } from '../components/Type'
 import { Room } from '../components/Room'
 
 export const CONDITIONS: [string, number][] = [
@@ -69,7 +68,7 @@ export function WardrobeView({
     return (
       <div className="wrap">
         <div className="pagehead">
-          <span className="eyebrow"><Type text="THE CLOSET — CATALOGUED" speed={18} /></span>
+          <span className="eyebrow">THE CLOSET — CATALOGUED</span>
           <h2>Everything you own, in one place.</h2>
           <p>Add what you have. Fits From fills the holes instead of the feed.</p>
         </div>
@@ -91,7 +90,7 @@ export function WardrobeView({
   return (
     <div className="wrap" style={{ paddingBottom: 100 }}>
       <div className="pagehead">
-        <span className="eyebrow"><Type text="THE CLOSET — CATALOGUED" speed={18} /></span>
+        <span className="eyebrow">THE CLOSET — CATALOGUED</span>
         <h2>
           {items.length} {items.length === 1 ? 'piece' : 'pieces'} · ${Math.round(totalValue)}{' '}
           <span className="muted" style={{ fontSize: '0.55em', fontWeight: 400 }}>

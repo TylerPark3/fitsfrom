@@ -9,7 +9,6 @@ import { iconScores } from '../lib/twin'
 import { AvatarRig } from '../components/AvatarRig'
 import { InterestPicker } from '../components/InterestPicker'
 import { Slider } from './Onboarding'
-import { Type } from '../components/Type'
 import { Arrow, Upload, Trash } from '../components/Icons'
 
 const RANKS: [number, string][] = [
@@ -79,7 +78,7 @@ export function AvatarView({ go }: { go: (v: View) => void }) {
   return (
     <div className="wrap">
       <div className="pagehead">
-        <span className="eyebrow"><Type text="MY PLAYER — BUILD YOUR AVATAR" speed={18} /></span>
+        <span className="eyebrow">MY PLAYER — BUILD YOUR AVATAR</span>
         <h2>Your build</h2>
       </div>
 
