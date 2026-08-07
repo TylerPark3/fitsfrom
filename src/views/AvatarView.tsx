@@ -8,14 +8,60 @@ import { fileToDataUrl } from '../lib/img'
 import { iconScores } from '../lib/twin'
 import { AvatarRig } from '../components/AvatarRig'
 import { Slider } from './Onboarding'
-import { Arrow, Upload, Trash } from '../components/Icons'
+import { Arrow, CheckInk, Upload, Trash } from '../components/Icons'
 
-const INTO: { id: string; label: string; kind: 'team' | 'tag'; options: string[] }[] = [
-  { id: 'nba', label: 'NBA', kind: 'team', options: ['Lakers', 'Thunder', 'Mavs', 'Wizards', 'Suns', 'Rockets', 'Warriors', 'Knicks', 'Celtics', 'Bulls'] },
-  { id: 'mlb', label: 'MLB', kind: 'tag', options: ['Yankees', 'Dodgers', 'Mets', 'Red Sox', 'Braves', 'Giants'] },
-  { id: 'fc', label: 'Football', kind: 'tag', options: ['Barcelona', 'Real Madrid', 'Arsenal', 'Inter Miami', 'PSG'] },
-  { id: 'music', label: 'Music', kind: 'tag', options: ['Hip-hop', 'Pop & R&B', 'K-culture'] },
-  { id: 'culture', label: 'Culture', kind: 'tag', options: ['Sneakers', 'Thrifting', 'Gaming', 'Film & TV', 'Fragrance', 'Outdoors', 'Tokyo street'] },
+interface IntoOpt {
+  id: string
+  img: string
+  logo?: boolean
+}
+
+const NBA_TEAMS = ['Lakers', 'Thunder', 'Mavs', 'Wizards', 'Suns', 'Rockets', 'Warriors', 'Knicks', 'Celtics', 'Bulls', 'Heat', 'Nets', 'Sixers', 'Bucks', 'Nuggets', 'Grizzlies']
+
+const INTO: { id: string; label: string; kind: 'team' | 'tag'; options: IntoOpt[] }[] = [
+  { id: 'nba', label: 'NBA', kind: 'team', options: NBA_TEAMS.map((t) => ({ id: t, img: `/teams/${t.toLowerCase()}.jpg`, logo: true })) },
+  {
+    id: 'mlb',
+    label: 'MLB',
+    kind: 'tag',
+    options: [
+      { id: 'Yankees', img: '/room/art-yankees.jpg' },
+      { id: 'Dodgers', img: '/room/art-dodgers.jpg' },
+    ],
+  },
+  {
+    id: 'fc',
+    label: 'Football',
+    kind: 'tag',
+    options: [
+      { id: 'Barcelona', img: '/fits/lamine-touchline.jpg' },
+      { id: 'Inter Miami', img: '/fits/messi-notears.jpg' },
+    ],
+  },
+  {
+    id: 'music',
+    label: 'Music',
+    kind: 'tag',
+    options: [
+      { id: 'Hip-hop', img: '/fits/flacko-money.jpg' },
+      { id: 'Pop & R&B', img: '/fits/bieber-night.jpg' },
+      { id: 'K-culture', img: '/fits/v-airport.jpg' },
+    ],
+  },
+  {
+    id: 'culture',
+    label: 'Culture',
+    kind: 'tag',
+    options: [
+      { id: 'Sneakers', img: '/fits/poole-arrival.jpg' },
+      { id: 'Thrifting', img: '/fits/clarkson-tunnel.jpg' },
+      { id: 'Gaming', img: '/fits/lebron-quiet.jpg' },
+      { id: 'Film & TV', img: '/fits/rpattz-paris.jpg' },
+      { id: 'Fragrance', img: '/scents/versace-eros.png' },
+      { id: 'Outdoors', img: '/styles/gorp.jpg' },
+      { id: 'Tokyo street', img: '/styles/japanese.jpg' },
+    ],
+  },
 ]
 
 /** Posters exist for these — picking them decorates the room. */
@@ -162,65 +208,9 @@ export function AvatarView({ go }: { go: (v: View) => void }) {
           </div>
         </div>
 
-        {/* CENTER — the build + the Into module underneath */}
+        {/* CENTER — the build */}
         <div className="stage2k">
           <AvatarRig />
-          <div className="into">
-            <div className="spread" style={{ marginBottom: 10 }}>
-              <span className="eyebrow">Into</span>
-              <span className="tiny">Pick a lane — teams with a ✦ hang art in your room</span>
-            </div>
-            <div className="chips">
-              {INTO.map((cat) => (
-                <button
-                  key={cat.id}
-                  className="chip"
-                  aria-pressed={intoOpen === cat.id}
-                  onClick={() => setIntoOpen(intoOpen === cat.id ? null : cat.id)}
-                >
-                  {cat.label}
-                </button>
-              ))}
-            </div>
-            {intoOpen && (
-              <div className="chips into__options">
-                {INTO.find((c) => c.id === intoOpen)!.options.map((opt) => {
-                  const cat = INTO.find((c) => c.id === intoOpen)!
-                  const list = cat.kind === 'team' ? profile.teams : profile.tags
-                  const on = list.includes(opt)
-                  return (
-                    <button
-                      key={opt}
-                      className="chip chip--sm"
-                      aria-pressed={on}
-                      onClick={() => {
-                        const next = on ? list.filter((x) => x !== opt) : [...list, opt]
-                        setProfile(cat.kind === 'team' ? { teams: next } : { tags: next })
-                        if (!on && HAS_ART.has(opt)) toast(`${opt} — poster hung in your room`)
-                      }}
-                    >
-                      {HAS_ART.has(opt) && '✦ '}
-                      {opt}
-                    </button>
-                  )
-                })}
-              </div>
-            )}
-            <div className="room__input" style={{ marginTop: 12, maxWidth: 380 }}>
-              <input
-                className="text-input"
-                placeholder="Add your own — “Larry June”, “F1”…"
-                value={tagDraft}
-                onChange={(e) => setTagDraft(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' && tagDraft.trim()) {
-                    setProfile({ tags: [...profile.tags, tagDraft.trim()] })
-                    setTagDraft('')
-                  }
-                }}
-              />
-            </div>
-          </div>
         </div>
 
         {/* RIGHT — ratings */}
@@ -283,6 +273,72 @@ export function AvatarView({ go }: { go: (v: View) => void }) {
               Clear all
             </button>
           </div>
+        </div>
+      </div>
+
+      {/* INTO — full-width, pictures not words */}
+      <div className="into into--wide">
+        <div className="spread" style={{ marginBottom: 12 }}>
+          <span className="eyebrow">Into</span>
+          <span className="tiny">Pick a lane — ✦ hangs art in your room</span>
+        </div>
+        <div className="chips">
+          {INTO.map((cat) => (
+            <button
+              key={cat.id}
+              className="chip"
+              aria-pressed={intoOpen === cat.id}
+              onClick={() => setIntoOpen(intoOpen === cat.id ? null : cat.id)}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+        {intoOpen && (
+          <div className="intgrid into__grid">
+            {INTO.find((c) => c.id === intoOpen)!.options.map((opt) => {
+              const cat = INTO.find((c) => c.id === intoOpen)!
+              const list = cat.kind === 'team' ? profile.teams : profile.tags
+              const on = list.includes(opt.id)
+              return (
+                <button
+                  key={opt.id}
+                  className={`inttile${opt.logo ? ' inttile--logo' : ''}`}
+                  aria-pressed={on}
+                  onClick={() => {
+                    const next = on ? list.filter((x) => x !== opt.id) : [...list, opt.id]
+                    setProfile(cat.kind === 'team' ? { teams: next } : { tags: next })
+                    if (!on && HAS_ART.has(opt.id)) toast(`${opt.id} — poster hung in your room`)
+                  }}
+                >
+                  <img src={opt.img} alt="" loading="lazy" />
+                  {on && (
+                    <span className="inttile__tick">
+                      <CheckInk size={13} />
+                    </span>
+                  )}
+                  <span className="inttile__label">
+                    {HAS_ART.has(opt.id) ? '✦ ' : ''}
+                    {opt.id}
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+        )}
+        <div className="room__input" style={{ marginTop: 14, maxWidth: 400 }}>
+          <input
+            className="text-input"
+            placeholder="Add your own — “Larry June”, “F1”…"
+            value={tagDraft}
+            onChange={(e) => setTagDraft(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && tagDraft.trim()) {
+                setProfile({ tags: [...profile.tags, tagDraft.trim()] })
+                setTagDraft('')
+              }
+            }}
+          />
         </div>
       </div>
     </div>

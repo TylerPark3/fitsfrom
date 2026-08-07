@@ -3412,17 +3412,33 @@ input.seg__control::placeholder {
   width: 100%;
   max-width: 560px;
   margin-top: 22px;
+}
+
+.into--wide {
+  max-width: none;
+  margin: 8px 0 90px;
+  padding: 24px;
   border: 1px solid var(--line);
   border-radius: 18px;
   background: var(--tile);
   padding: 18px;
 }
 
-.into__options {
-  margin-top: 12px;
-  padding-top: 12px;
+.into__grid {
+  margin-top: 14px;
+  padding-top: 14px;
   border-top: 1px solid var(--line);
   animation: qfade 220ms var(--ease) both;
+  grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+}
+
+.inttile--logo {
+  background: #fff;
+}
+
+.inttile--logo img {
+  object-fit: contain;
+  padding: 12%;
 }
 
 .facewrap {
