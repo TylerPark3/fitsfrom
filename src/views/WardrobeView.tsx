@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import type { View } from '../App'
 import { CATALOG, type Product } from '../data/catalog'
-import { CATEGORIES, CORE_SLOTS, STYLES } from '../data/taxonomy'
+import { CATEGORIES, CORE_SLOTS } from '../data/taxonomy'
 import { useStore, type CustomPiece } from '../lib/store'
 import { rank } from '../lib/match'
 import { recommendSize } from '../lib/sizing'
@@ -47,7 +47,21 @@ export function WardrobeView({
     pct: Math.min(1, countIn(slot.category) / slot.per),
   }))
 
-  const worstGap = [...gaps].sort((a, b) => a.pct - b.pct)[0]
+  // Essentials first: you can't wear a fit without pants, then shoes.
+  const ESSENTIAL: Record<string, number> = {
+    pants: 3,
+    shoes: 2.6,
+    top: 2,
+    outer: 1.6,
+    knit: 1.2,
+    shirt: 1,
+  }
+  const worstGap = [...gaps]
+    .filter((g) => g.pct < 1)
+    .sort(
+      (a, b) =>
+        (1 - b.pct) * (ESSENTIAL[b.category] ?? 1) - (1 - a.pct) * (ESSENTIAL[a.category] ?? 1),
+    )[0]
 
   const suggestions = rank(
     CATALOG.filter(
@@ -146,7 +160,6 @@ export function WardrobeView({
 
       <SavedShelf onOpen={onOpen} />
 
-      <OutfitBuilder onOpen={onOpen} />
     </div>
   )
 }
@@ -746,68 +759,3 @@ function FitPlanner() {
   )
 }
 
-/** Pulls one piece per slot out of the wardrobe to show a workable head-to-toe fit. */
-function OutfitBuilder({ onOpen }: { onOpen: (id: string) => void }) {
-  const { wardrobe, profile } = useStore()
-  const owned = wardrobe.map((w) => CATALOG.find((c) => c.id === w.productId)!).filter(Boolean)
-
-  const pick = (cat: string) => {
-    const pool = owned.filter((p) => p.category === cat)
-    if (pool.length === 0) return null
-    // Prefer the piece closest to the styles the user actually picked.
-    return rank(pool, profile)[0]?.product ?? pool[0]
-  }
-
-  const slots = ['top', 'shirt', 'pants', 'shoes', 'outer'].map((c) => ({ c, p: pick(c) }))
-  const filled = slots.filter((s) => s.p)
-
-  if (filled.length < 2) return null
-
-  const styleNames = Array.from(new Set(filled.flatMap((s) => s.p!.styles)))
-    .map((s) => STYLES.find((x) => x.id === s)?.label)
-    .filter(Boolean)
-    .slice(0, 2)
-    .join(' × ')
-
-  return (
-    <div className="section">
-      <div className="section__head">
-        <h3>A fit you can wear tomorrow</h3>
-        <span className="tiny">{styleNames}</span>
-      </div>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: `repeat(${filled.length}, minmax(0,1fr))`,
-          gap: 1,
-          background: 'var(--line)',
-          border: '1px solid var(--line)',
-          borderRadius: 'var(--r-lg)',
-          overflow: 'hidden',
-        }}
-      >
-        {filled.map(({ c, p }) => (
-          <button
-            key={c}
-            onClick={() => onOpen(p!.id)}
-            style={{
-              background: 'var(--paper)',
-              padding: '20px 16px 18px',
-              textAlign: 'center',
-            }}
-          >
-            <div style={{ height: 110, display: 'grid', placeItems: 'center', overflow: 'hidden', borderRadius: 8 }}>
-              <img src={p!.image} alt="" style={{ height: '100%', width: '100%', objectFit: 'cover' }} loading="lazy" />
-            </div>
-            <div className="card__brand" style={{ marginTop: 10 }}>
-              {p!.brand}
-            </div>
-            <div className="tiny" style={{ marginTop: 3 }}>
-              {p!.name}
-            </div>
-          </button>
-        ))}
-      </div>
-    </div>
-  )
-}
