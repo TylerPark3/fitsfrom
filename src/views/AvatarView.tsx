@@ -9,9 +9,33 @@ import { Slider } from './Onboarding'
 import { Arrow } from '../components/Icons'
 import { Type } from '../components/Type'
 
+const RANKS: [number, string][] = [
+  [0, 'ROOKIE'],
+  [25, 'STARTER'],
+  [45, 'SIXTH MAN'],
+  [65, 'ALL-STAR'],
+  [85, 'MVP'],
+]
+
 export function AvatarView({ go }: { go: (v: View) => void }) {
-  const { profile, setProfile, reset, wardrobe, customs } = useStore()
+  const { profile, setProfile, reset, wardrobe, customs, saved, outfits } = useStore()
   const [tagDraft, setTagDraft] = useState('')
+
+  // Style DNA completeness — every add moves the meter.
+  const checks: [string, boolean, number][] = [
+    ['Photo scanned', !!profile.photo, 15],
+    ['Styles picked', profile.styles.length > 0, 12],
+    ['Icons followed', profile.icons.length > 0, 12],
+    ['Brands picked', profile.brands.length > 0, 10],
+    ['Teams followed', profile.teams.length > 0, 8],
+    ['3+ closet pieces', wardrobe.length + customs.length >= 3, 15],
+    ['A planned fit', outfits.length > 0, 10],
+    ['5+ saves', saved.length >= 5, 8],
+    ['3+ tags', profile.tags.length >= 3, 10],
+  ]
+  const dna = checks.reduce((n, [, ok, w]) => n + (ok ? w : 0), 0)
+  const rank = [...RANKS].reverse().find(([min]) => dna >= min)?.[1] ?? 'ROOKIE'
+  const next = checks.find(([, ok]) => !ok)
 
   const onHeightWeight = (patch: { height?: number; weight?: number }) => {
     const height = patch.height ?? profile.height
@@ -41,6 +65,20 @@ export function AvatarView({ go }: { go: (v: View) => void }) {
         <PhotoStage />
 
         <div>
+          <div className="panel dna">
+            <div className="spread">
+              <h3>Style DNA</h3>
+              <span className="dna__rank">{rank}</span>
+            </div>
+            <div className="meter" style={{ margin: '14px 0 8px' }}>
+              <i style={{ width: `${dna}%` }} />
+            </div>
+            <div className="spread">
+              <span className="tiny">{dna}% built</span>
+              {next && <span className="tiny" style={{ color: 'var(--red)' }}>next: {next[0].toLowerCase()} +{next[2]}%</span>}
+            </div>
+          </div>
+
           <div className="panel">
             <h3>Your sizes right now</h3>
             <div className="sizes" style={{ marginTop: 12 }}>

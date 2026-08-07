@@ -23,6 +23,9 @@ import { ProductDrawer } from './components/ProductDrawer'
 
 export type View = 'home' | 'auth' | 'onboarding' | 'discover' | 'fits' | 'avatar' | 'wardrobe' | 'saved' | 'faq'
 
+const TRIAL_DAYS = 15
+const GATED: View[] = ['discover', 'fits', 'wardrobe', 'saved', 'avatar']
+
 export function App() {
   const [state, setState] = useState<AppState>(() => loadState())
   const [view, setView] = useState<View>(() => (loadState().profile.onboarded ? 'discover' : 'home'))
@@ -164,6 +167,11 @@ export function App() {
 
   const go = (v: View) => setView(v)
 
+  const daysLeft = state.account
+    ? TRIAL_DAYS - Math.floor((Date.now() - state.account.createdAt) / 86_400_000)
+    : TRIAL_DAYS
+  const trialOver = !!state.account && daysLeft <= 0
+
   return (
     <StoreContext.Provider value={store}>
       <div className="app">
@@ -173,9 +181,43 @@ export function App() {
           savedCount={state.saved.length}
           profile={state.profile}
           signedIn={state.signedIn && !!state.account}
+          daysLeft={state.account ? daysLeft : null}
         />
 
         <main>
+          {trialOver && GATED.includes(view) ? (
+            <div className="wrap" style={{ paddingBottom: 110 }}>
+              <div className="pagehead" style={{ textAlign: 'center', paddingTop: 80 }}>
+                <span className="eyebrow" style={{ color: 'var(--red)' }}>
+                  Day {TRIAL_DAYS} of {TRIAL_DAYS} — trial complete
+                </span>
+                <h2 className="fitcheck" style={{ margin: '12px 0 8px' }}>
+                  The vault is sealed
+                </h2>
+                <p className="mono-line" style={{ margin: '0 auto', maxWidth: '54ch' }}>
+                  YOUR CLOSET, SAVES AND FILES ARE KEPT SAFE. PRO OPENS EVERYTHING — $5/MO,
+                  LAUNCHING SOON.
+                </p>
+                <div className="row" style={{ justifyContent: 'center', marginTop: 28, gap: 10 }}>
+                  <button
+                    className="btn btn--primary btn--lg"
+                    onClick={() => {
+                      try {
+                        localStorage.setItem('lapel.pro.waitlist', '1')
+                      } catch {}
+                      toast('You’re on the Pro list — first to know')
+                    }}
+                  >
+                    Get Pro first
+                  </button>
+                  <button className="btn btn--ghost btn--lg" onClick={() => go('faq')}>
+                    Why a trial?
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <>
           {view === 'home' && <Home go={go} />}
           {view === 'auth' && (
             <AuthView onDone={() => go(state.profile.onboarded ? 'discover' : 'onboarding')} />
@@ -187,6 +229,8 @@ export function App() {
           {view === 'avatar' && <AvatarView go={go} />}
           {view === 'wardrobe' && <WardrobeView onOpen={setOpenProduct} go={go} />}
           {view === 'saved' && <SavedView onOpen={setOpenProduct} go={go} />}
+            </>
+          )}
         </main>
 
         <footer className="foot">
@@ -241,12 +285,14 @@ function Nav({
   savedCount,
   profile,
   signedIn,
+  daysLeft,
 }: {
   view: View
   go: (v: View) => void
   savedCount: number
   profile: Profile
   signedIn: boolean
+  daysLeft: number | null
 }) {
   return (
     <header className="nav">
@@ -288,6 +334,10 @@ function Nav({
         </div>
 
         <div className="nav__spacer" />
+
+        {daysLeft !== null && daysLeft > 0 && (
+          <span className="trialpill">{daysLeft}D TRIAL</span>
+        )}
 
         <button
           className="nav__me"
