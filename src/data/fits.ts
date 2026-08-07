@@ -381,6 +381,23 @@ export const FITS: Fit[] = [
     ],
   },
   {
+    id: 'dame-tunnel',
+    styles: ['street', 'ivy'],
+    who: 'Dame Time',
+    where: 'Bucks tunnel',
+    when: 'Game-day arrival',
+    context:
+      'Distressed mustard cardigan over a white tee, chocolate cargos breaking on cream sneakers, black shoulder bag. Earth tones, zero effort, all intent.',
+    vibe: 'Mustard cardigan, chocolate cargos, cream lows',
+    pieces: [
+      { slot: 'Cardigan', worn: 'Distressed mustard cardigan', match: { category: 'knit', kw: 'cardigan|sweater' } },
+      { slot: 'Tee', worn: 'White tee underneath', match: { category: 'top', kw: 'tee|t-shirt' } },
+      { slot: 'Bag', worn: 'Black shoulder bag', match: { category: 'accessory', sil: 'bag', kw: 'bag|tote|cross' } },
+      { slot: 'Cargos', worn: 'Chocolate cargo pants', match: { category: 'pants', kw: 'cargo|brown|work' } },
+      { slot: 'Sneakers', worn: 'Cream low-tops', match: { category: 'shoes', kw: 'sneaker|trainer|court' } },
+    ],
+  },
+  {
     id: 'booker-black',
     styles: ['street', 'minimal'],
     who: 'Book',
