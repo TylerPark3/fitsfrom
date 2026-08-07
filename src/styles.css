@@ -3403,6 +3403,7 @@ input[type='range']:active::-webkit-slider-thumb {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: grayscale(1) contrast(1.08);
 }
 
 /* scanning line sweeping the photo */
