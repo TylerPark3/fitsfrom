@@ -1845,6 +1845,16 @@ input[type='range']:active::-webkit-slider-thumb {
   background: #fff;
 }
 
+.own__mono {
+  aspect-ratio: 4 / 5;
+  display: grid;
+  place-items: center;
+  font-family: 'Instrument Serif', serif;
+  font-size: 52px;
+  color: var(--ink-4);
+  background: var(--mist);
+}
+
 .own__meta {
   display: flex;
   align-items: center;
@@ -1975,6 +1985,31 @@ input[type='range']:active::-webkit-slider-thumb {
 
 .pick__tick svg {
   stroke: #fff;
+}
+
+/* locked breakdown rows */
+.lockrow {
+  filter: blur(6px) grayscale(1);
+  pointer-events: none;
+  user-select: none;
+}
+
+.lockcta {
+  border: 1px dashed var(--line-2);
+  border-radius: var(--r-lg);
+  padding: 22px;
+  text-align: center;
+  margin-top: 16px;
+  background: var(--mist);
+}
+
+.lockcta p {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-bottom: 14px;
 }
 
 /* ---------------------------------------------------------------- fit room */
@@ -2805,10 +2840,10 @@ input[type='range']:active::-webkit-slider-thumb {
 }
 
 .demo__head {
-  font-size: clamp(34px, 4.4vw, 58px);
-  letter-spacing: -0.035em;
+  font-size: clamp(32px, 4.2vw, 56px);
+  letter-spacing: -0.045em;
   font-weight: 750;
-  line-height: 1.02;
+  line-height: 0.94;
 }
 
 .demo__head em {

@@ -21,6 +21,8 @@ export interface Fit {
   styles: StyleId[]
   /** Instagram post permalink — renders the real post when set. */
   ig?: string
+  /** Keep the data but hide from the grid (e.g. second fit from same person). */
+  hidden?: boolean
   /** Photo lives at public/fits/<id>.jpg. */
   pieces: FitPiece[]
 }
@@ -46,6 +48,7 @@ export const FITS: Fit[] = [
   },
   {
     id: 'poole-arrival',
+    hidden: true,
     styles: ['street', 'minimal'],
     who: 'Jordan Poole',
     where: 'Wizards tunnel',

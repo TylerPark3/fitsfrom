@@ -8,8 +8,9 @@ import { Arrow } from '../components/Icons'
 
 /** Same fit for everyone all day; a new one tomorrow. The reason to come back. */
 export function fitOfTheDay() {
+  const pool = FITS.filter((f) => !f.hidden)
   const day = Math.floor(Date.now() / 86_400_000)
-  return FITS[day % FITS.length]
+  return pool[day % pool.length]
 }
 
 /**
@@ -196,11 +197,11 @@ function PhoneDemo({ go }: { go: (v: View) => void }) {
     <div className="demo">
       <div>
         <h2 className="demo__head">
-          The best of Pinterest.
+          THE BEST OF PINTEREST.
           <br />
-          The best of your closet.
+          THE BEST OF YOUR CLOSET.
           <br />
-          <em>None of the dead ends.</em>
+          <em>none of the dead ends.</em>
         </h2>
         <div className="demo__steps">
           {DEMO_STEPS.map((st, k) => (
@@ -284,7 +285,7 @@ function PhoneDemo({ go }: { go: (v: View) => void }) {
           {i === 3 && (
             <div className="phone__mock">
               <div className="phone__grid">
-                <img src="/fits/poole-arrival.jpg" alt="" />
+                <img src="/fits/clarkson-tunnel.jpg" alt="" />
                 <img src="/fits/sga-arrival.jpg" alt="" />
                 <img src="/fits/tyler-prep.jpg" alt="" />
                 <img src="/fits/v-airport.jpg" alt="" />

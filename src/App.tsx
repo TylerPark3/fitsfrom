@@ -174,7 +174,7 @@ export function App() {
           )}
           {view === 'onboarding' && <Onboarding onDone={() => go('discover')} />}
           {view === 'discover' && <Discover onOpen={setOpenProduct} go={go} />}
-          {view === 'fits' && <FitsView />}
+          {view === 'fits' && <FitsView go={go} />}
           {view === 'faq' && <FaqView />}
           {view === 'avatar' && <AvatarView go={go} />}
           {view === 'wardrobe' && <WardrobeView onOpen={setOpenProduct} go={go} />}

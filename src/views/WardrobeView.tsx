@@ -165,9 +165,37 @@ export function WardrobeView({
   )
 }
 
+const CAT_KW: [string, RegExp][] = [
+  ['shoes', /sneaker|shoe|boot|loafer|runner|chuck|force|dunk|jordan\b/i],
+  ['outer', /jacket|coat|parka|vest|puffer|windbreaker/i],
+  ['knit', /sweater|cardigan|knit|merino|cashmere/i],
+  ['pants', /jean|denim|pant|trouser|cargo|chino|sweat|short|cord/i],
+  ['shirt', /shirt|oxford|flannel|polo|button/i],
+  ['accessory', /cap|hat|beanie|bag|belt|sock|chain|watch|scarf/i],
+  ['top', /tee|t-shirt|hoodie|crewneck|sweatshirt|longsleeve|thermal/i],
+]
+
+/** "carhartt jeans, 32" → a catalogued piece. No photo needed. */
+function parseQuickAdd(input: string) {
+  const size = input.match(/\b(\d{2}(?:\s*[x×]\s*\d{2})?|xs|s|m|l|xl|xxl|\d{1,2}\.5)\b/i)?.[0] ?? ''
+  const name = input.replace(/,?\s*(size\s*)?\b(\d{2}(?:\s*[x×]\s*\d{2})?|xs|s|m|l|xl|xxl|\d{1,2}\.5)\b\s*$/i, '').trim()
+  const category = CAT_KW.find(([, re]) => re.test(input))?.[0] ?? 'top'
+  return { name: name || input.trim(), category, size: size.toUpperCase() }
+}
+
 /** Alta-style closet snap: photograph your own piece, it lives on this device. */
 function OwnCloset() {
   const { customs, addCustom, removeCustom, toast } = useStore()
+  const [quick, setQuick] = useState('')
+
+  const quickAdd = () => {
+    const q = quick.trim()
+    if (!q) return
+    const { name, category, size } = parseQuickAdd(q)
+    addCustom({ id: `c${Date.now().toString(36)}`, name: size ? `${name} · ${size}` : name, category, photo: '' })
+    setQuick('')
+    toast(`Catalogued — ${name}`)
+  }
   const input = useRef<HTMLInputElement>(null)
   const [busy, setBusy] = useState(false)
 
@@ -194,6 +222,18 @@ function OwnCloset() {
         <h3>Your own pieces</h3>
         <span className="tiny">Snapped by you · stays on this device</span>
       </div>
+      <div className="room__input" style={{ marginBottom: 14 }}>
+        <input
+          className="text-input"
+          placeholder="Type what you own — “carhartt jeans, 32”"
+          value={quick}
+          onChange={(e) => setQuick(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && quickAdd()}
+        />
+        <button className="btn btn--primary" onClick={quickAdd} aria-label="Add">
+          <Plus />
+        </button>
+      </div>
       <div className="grid">
         <button className="own own--add" onClick={() => input.current?.click()}>
           <Upload />
@@ -209,7 +249,13 @@ function OwnCloset() {
         </button>
         {customs.map((c) => (
           <div className="own" key={c.id}>
-            <img src={c.photo} alt={c.name} />
+            {c.photo ? (
+              <img src={c.photo} alt={c.name} />
+            ) : (
+              <div className="own__mono" aria-hidden="true">
+                {c.name[0]?.toUpperCase()}
+              </div>
+            )}
             <div className="own__meta">
               <span>{c.name}</span>
               <button

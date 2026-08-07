@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import type { View } from '../App'
 import { FITS, type Fit } from '../data/fits'
 import { resolve } from '../lib/fitmatch'
 import { useStore } from '../lib/store'
@@ -73,7 +74,7 @@ function Type({ text, className, speed = 26 }: { text: string; className?: strin
   )
 }
 
-export function FitsView() {
+export function FitsView({ go }: { go: (v: View) => void }) {
   const [open, setOpen] = useState<Fit | null>(null)
 
   return (
@@ -91,7 +92,7 @@ export function FitsView() {
       </div>
 
       <div className="fitgrid">
-        {FITS.map((f) => (
+        {FITS.filter((f) => !f.hidden).map((f) => (
           <button key={f.id} className="fitcard" onClick={() => setOpen(f)}>
             <div className="fitcard__frame">
               <div className="fitcard__type" aria-hidden="true">
@@ -118,16 +119,32 @@ export function FitsView() {
         ))}
       </div>
 
-      {open && <FitDrawer fit={open} onClose={() => setOpen(null)} />}
+      {open && <FitDrawer fit={open} onClose={() => setOpen(null)} go={go} />}
     </div>
   )
 }
 
-function FitDrawer({ fit, onClose }: { fit: Fit; onClose: () => void }) {
+function FitDrawer({ fit, onClose, go }: { fit: Fit; onClose: () => void; go: (v: View) => void }) {
   const store = useStore()
-  const { profile, saved } = store
+  const { profile, saved, signedIn, account } = store
   const resolved = fit.pieces.map((piece) => ({ piece, p: resolve(piece) }))
   const total = resolved.reduce((n, r) => n + (r.p?.price ?? 0), 0)
+
+  // 3 free breakdowns with an account, +1 every day after.
+  const [unlocks, setUnlocks] = useState<string[]>(() => loadJson('lapel.unlocks', []))
+  const quota = account ? 3 + Math.floor((Date.now() - account.createdAt) / 86_400_000) : 0
+  const unlocked = unlocks.includes(fit.id)
+  const remaining = Math.max(0, quota - unlocks.length)
+  const canView = !!signedIn && (unlocked || remaining > 0)
+
+  useEffect(() => {
+    if (signedIn && !unlocked && remaining > 0) {
+      const next = [...unlocks, fit.id]
+      setUnlocks(next)
+      saveJson('lapel.unlocks', next)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fit.id])
 
   return (
     <>
@@ -151,9 +168,9 @@ function FitDrawer({ fit, onClose }: { fit: Fit; onClose: () => void }) {
             <Type text="TOP TO BOTTOM — PIECE BY PIECE" speed={16} />
           </p>
 
-          {resolved.map(({ piece, p }) =>
+          {(canView ? resolved : resolved.slice(0, 2)).map(({ piece, p }) =>
             p ? (
-              <div className="bagline" key={piece.slot}>
+              <div className={`bagline${canView ? '' : ' lockrow'}`} key={piece.slot}>
                 <div className="bagline__thumb">
                   <img
                     src={p.image}
@@ -199,10 +216,37 @@ function FitDrawer({ fit, onClose }: { fit: Fit; onClose: () => void }) {
             ) : null,
           )}
 
-          <div className="total">
-            <span>The whole look</span>
-            <b>${total.toFixed(0)}</b>
-          </div>
+          {canView ? (
+            <div className="total">
+              <span>The whole look</span>
+              <b>${total.toFixed(0)}</b>
+            </div>
+          ) : (
+            <div className="lockcta">
+              <p>
+                {signedIn
+                  ? '0 unlocks left — one more tomorrow'
+                  : 'Classified — 3 free breakdowns with an account'}
+              </p>
+              {!signedIn && (
+                <button
+                  className="btn btn--primary"
+                  onClick={() => {
+                    onClose()
+                    go('auth')
+                  }}
+                >
+                  Create account <Arrow />
+                </button>
+              )}
+            </div>
+          )}
+
+          {canView && (
+            <p className="tiny" style={{ marginTop: 8 }}>
+              {remaining} unlock{remaining === 1 ? '' : 's'} left · +1 tomorrow
+            </p>
+          )}
 
           <FitRoom fitId={fit.id} />
         </div>
