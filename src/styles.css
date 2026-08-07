@@ -1551,10 +1551,9 @@ input.seg__control::placeholder {
 }
 
 .sketch--walk {
-  height: clamp(210px, 30vh, 320px);
+  height: clamp(280px, 40vh, 420px);
   aspect-ratio: 720 / 888;
-  transform: translateY(-4%);
-  opacity: 0.45;
+  opacity: 0.5;
 }
 
 .sketch--side {
