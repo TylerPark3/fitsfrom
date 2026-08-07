@@ -65,6 +65,23 @@ export const FITS: Fit[] = [
     ],
   },
   {
+    id: 'clarkson-mavs',
+    styles: ['street', 'skate'],
+    who: 'Jordan Clarkson',
+    where: 'Mavs tunnel',
+    when: 'Game-day arrival, iced drink in hand',
+    context:
+      'Washed-orchid zip hoodie with contrast stitching over a white tee, gold chains, light-wash carpenter jeans puddling over white Forces. One loud color, everything else calm.',
+    vibe: 'Washed purple zip hoodie, baggy wash, white Forces',
+    pieces: [
+      { slot: 'Hoodie', worn: 'Washed-orchid zip hoodie', match: { category: 'top', kw: 'hoodie|zip|sweatshirt' } },
+      { slot: 'Tee', worn: 'White tee underneath', match: { category: 'top', kw: 'tee|t-shirt' } },
+      { slot: 'Chains', worn: 'Layered gold chains', match: { category: 'accessory', kw: 'chain|necklace|jewel' } },
+      { slot: 'Jeans', worn: 'Light-wash baggy carpenter jeans', match: { category: 'pants', sil: 'jean', kw: 'jean(?!s? short)|denim(?! short)' } },
+      { slot: 'Sneakers', worn: 'White Forces', match: { category: 'shoes', kw: 'sneaker|leather|court' } },
+    ],
+  },
+  {
     id: 'sga-arrival',
     styles: ['minimal', 'street'],
     who: 'Shai Gilgeous-Alexander',
