@@ -3134,6 +3134,11 @@ input.seg__control::placeholder {
   transition: transform 300ms var(--ease);
 }
 
+.me2k,
+.me2k__head {
+  will-change: transform;
+}
+
 .me2k__head {
   width: 54px;
   height: 54px;
@@ -3148,7 +3153,6 @@ input.seg__control::placeholder {
   font-family: 'Instrument Serif', serif;
   font-size: 22px;
   color: var(--ink-4);
-  transition: transform 180ms var(--ease);
 }
 
 .me2k__body {

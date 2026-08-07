@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { CATALOG } from '../data/catalog'
 import { useStore } from '../lib/store'
 
@@ -22,7 +22,47 @@ const TEAM_COLORS: Record<string, [string, string]> = {
 export function Room() {
   const { wardrobe, customs, profile } = useStore()
   const roomRef = useRef<HTMLDivElement>(null)
-  const [look, setLook] = useState({ x: 0, y: 0 })
+  const headRef = useRef<HTMLDivElement>(null)
+  const bodyRef = useRef<HTMLDivElement>(null)
+
+  // dahbiahmed-style tracking: window-wide, spring-eased, direct DOM writes (no re-renders).
+  useEffect(() => {
+    const target = { x: 0, y: 0 }
+    const pos = { x: 0, y: 0 }
+    let lastMove = 0
+    let raf = 0
+
+    const onMove = (e: MouseEvent) => {
+      const r = roomRef.current?.getBoundingClientRect()
+      if (!r) return
+      const hx = r.left + r.width * 0.66
+      const hy = r.top + r.height * 0.5
+      target.x = Math.max(-1, Math.min(1, (e.clientX - hx) / (window.innerWidth / 2)))
+      target.y = Math.max(-1, Math.min(1, (e.clientY - hy) / (window.innerHeight / 2)))
+      lastMove = performance.now()
+    }
+
+    const tick = (t: number) => {
+      // idle: soft breathing when the cursor rests
+      const idle = t - lastMove > 2600
+      const tx = idle ? Math.sin(t / 900) * 0.08 : target.x
+      const ty = idle ? Math.cos(t / 1100) * 0.05 : target.y
+      pos.x += (tx - pos.x) * 0.09
+      pos.y += (ty - pos.y) * 0.09
+      if (headRef.current)
+        headRef.current.style.transform = `rotate(${pos.x * 12}deg) translate(${pos.x * 6}px, ${pos.y * 4}px)`
+      if (bodyRef.current)
+        bodyRef.current.style.transform = `translateX(${pos.x * 5}px) rotate(${pos.x * 1.4}deg)`
+      raf = requestAnimationFrame(tick)
+    }
+
+    window.addEventListener('mousemove', onMove)
+    raf = requestAnimationFrame(tick)
+    return () => {
+      window.removeEventListener('mousemove', onMove)
+      cancelAnimationFrame(raf)
+    }
+  }, [])
 
   const items = wardrobe
     .map((w) => CATALOG.find((p) => p.id === w.productId))
@@ -43,20 +83,8 @@ export function Room() {
   const scrollTo = (label: string) =>
     document.getElementById(`shelf-${label}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
 
-  const onMove = (e: React.MouseEvent) => {
-    const r = roomRef.current?.getBoundingClientRect()
-    if (!r) return
-    // head anchor sits around 68% x, 52% y of the room
-    const hx = r.left + r.width * 0.66
-    const hy = r.top + r.height * 0.52
-    setLook({
-      x: Math.max(-1, Math.min(1, (e.clientX - hx) / (r.width / 2))),
-      y: Math.max(-1, Math.min(1, (e.clientY - hy) / (r.height / 2))),
-    })
-  }
-
   return (
-    <div className="room2" ref={roomRef} onMouseMove={onMove}>
+    <div className="room2" ref={roomRef}>
       {/* wall posters from your teams */}
       <div className="room2__posters">
         {posters.length === 0 && <div className="room2__poster room2__poster--empty">FF</div>}
@@ -109,11 +137,11 @@ export function Room() {
       </button>
 
       {/* you, 2K-style — head from your scan, eyes on the cursor */}
-      <div className="me2k" style={{ transform: `translateX(${look.x * 4}px)` }}>
+      <div className="me2k" ref={bodyRef}>
         <div
           className="me2k__head"
+          ref={headRef}
           style={{
-            transform: `rotate(${look.x * 10}deg) translate(${look.x * 5}px, ${look.y * 3}px)`,
             backgroundImage: profile.photo ? `url(${profile.photo})` : undefined,
             backgroundPosition: `${(profile.pose?.cx ?? 0.5) * 100}% 4%`,
           }}
