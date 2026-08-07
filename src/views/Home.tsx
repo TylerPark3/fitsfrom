@@ -185,6 +185,10 @@ const DEMO_STEPS = [
 /** Slide-through wireframe of the whole product inside a phone. */
 function PhoneDemo({ go }: { go: (v: View) => void }) {
   const [i, setI] = useState(0)
+  // One real product per category for the mini-closet mock.
+  const closetPicks = ['pants', 'top', 'shoes', 'shirt', 'accessory', 'knit']
+    .map((c) => CATALOG.find((p) => p.category === c))
+    .filter((p): p is (typeof CATALOG)[number] => !!p)
   const next = () => setI((x) => (x + 1) % DEMO_STEPS.length)
   const d = DEMO_STEPS[i]
 
@@ -292,15 +296,19 @@ function PhoneDemo({ go }: { go: (v: View) => void }) {
             <div className="phone__mock">
               <div className="phone__row" style={{ borderStyle: 'dashed' }}>
                 <span>carhartt jeans, 32…</span>
-                <b>⏎</b>
+                <b className="ok">✓ ADDED</b>
+              </div>
+              <div className="phone__closet">
+                {closetPicks.map((p, k) => (
+                  <div className="phone__item" key={p.id}>
+                    <img src={p.image} alt="" loading="lazy" />
+                    <span>{['32×32', 'M', 'US 10.5', 'M', 'OS', 'S'][k]}</span>
+                  </div>
+                ))}
               </div>
               <div className="phone__row">
-                <span>ADDED TO WARDROBE</span>
-                <b className="ok">✓</b>
-              </div>
-              <div className="phone__row">
-                <span>SGA MATCH</span>
-                <b className="ok">+3% → 90%</b>
+                <span>23 PIECES CATALOGUED</span>
+                <b className="ok">SGA MATCH 90%</b>
               </div>
             </div>
           )}

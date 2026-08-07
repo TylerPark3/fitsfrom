@@ -2952,6 +2952,39 @@ input[type='range']:active::-webkit-slider-thumb {
   filter: grayscale(1);
 }
 
+.phone__closet {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 6px;
+}
+
+.phone__item {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.phone__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.phone__item span {
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
 .phone__dots {
   position: absolute;
   bottom: 18px;
