@@ -32,6 +32,7 @@ const TEAM_TILE: Record<string, string> = {
   Hornets: '/room/poster-hornets.jpg',
   Jazz: '/room/poster-jazz.jpg',
   Bulls: '/room/poster-bulls.jpg',
+  Timberwolves: '/room/poster-timberwolves.jpg',
 }
 
 const INTO: { id: string; label: string; kind: 'team' | 'tag'; options: IntoOpt[] }[] = [
@@ -83,7 +84,7 @@ const INTO: { id: string; label: string; kind: 'team' | 'tag'; options: IntoOpt[
 ]
 
 /** Posters exist for these — picking them decorates the room. */
-const HAS_ART = new Set(['Yankees', 'Dodgers', 'Lakers', 'Rockets', 'Suns', 'Blazers', 'Bucks', 'Mavs', 'Clippers', 'Sixers', 'Magic', 'Hornets', 'Jazz', 'Bulls', 'Angels', 'Brewers'])
+const HAS_ART = new Set(['Yankees', 'Dodgers', 'Lakers', 'Rockets', 'Suns', 'Blazers', 'Bucks', 'Mavs', 'Clippers', 'Sixers', 'Magic', 'Hornets', 'Jazz', 'Bulls', 'Timberwolves', 'Angels', 'Brewers'])
 
 const RANKS: [number, string][] = [
   [0, 'ROOKIE'],

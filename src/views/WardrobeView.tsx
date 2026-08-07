@@ -6,6 +6,7 @@ import { useStore, type CustomPiece } from '../lib/store'
 import { rank } from '../lib/match'
 import { complete, hydrate, profileToStyle, rankFits, type BuiltFit } from '../lib/wardrobe/builder'
 import { FitScore } from '../components/FitScore'
+import { OutfitBuilder } from '../components/OutfitBuilder'
 import { recommendSize } from '../lib/sizing'
 import { fileToDataUrl } from '../lib/img'
 import { ProductCard } from '../components/ProductCard'
@@ -115,7 +116,9 @@ export function WardrobeView({
         </div>
         <div style={{ marginTop: 40 }}>
           <OwnCloset />
-          <FitPlanner />
+          <OutfitBuilder />
+
+      <FitPlanner />
         </div>
       </div>
     )
@@ -188,6 +191,8 @@ export function WardrobeView({
       )}
 
       <MoreLikeYours onOpen={onOpen} />
+
+      <OutfitBuilder />
 
       <FitPlanner />
 

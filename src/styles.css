@@ -3860,6 +3860,133 @@ input.seg__control::placeholder {
   }
 }
 
+/* outfit builder */
+.builder__ctx {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.builder__ctxrow {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.builder {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 360px);
+  gap: 22px;
+  align-items: start;
+}
+
+.builder__canvas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: 10px;
+}
+
+.bslot {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.bslot__frame {
+  aspect-ratio: 4 / 5;
+  border: 1.5px dashed var(--line-2);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  transition: border-color var(--fast), transform var(--med);
+}
+
+.bslot__frame:hover {
+  border-color: var(--ink-4);
+  transform: translateY(-2px);
+}
+
+.bslot.is-locked .bslot__frame {
+  border-style: solid;
+  border-color: var(--ink);
+}
+
+.bslot__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bslot__mono {
+  font-family: 'Instrument Serif', serif;
+  font-size: 30px;
+  color: var(--ink-4);
+}
+
+.bslot__empty {
+  color: var(--ink-4);
+}
+
+.bslot__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.bslot__label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.bslot__lock {
+  font-size: 11px;
+  line-height: 1;
+  opacity: 0.55;
+  transition: opacity var(--fast);
+}
+
+.bslot__lock[aria-pressed='true'] {
+  opacity: 1;
+}
+
+.bslot__name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.builder__alts {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  animation: qfade 220ms var(--ease) both;
+}
+
+.pick__score {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  font-family: var(--mono);
+  font-size: 9px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 999px;
+  padding: 2px 6px;
+}
+
+@media (max-width: 900px) {
+  .builder {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* top fits */
 .topfits {
   display: grid;
