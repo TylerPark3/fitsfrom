@@ -68,6 +68,8 @@ const INTO: { id: string; label: string; kind: 'team' | 'tag'; options: IntoOpt[
       { id: 'Bieber', img: '/fits/bieber-night.jpg' },
       { id: 'V (BTS)', img: '/fits/v-airport.jpg' },
       { id: 'Ye', img: '/fits/ye-red.jpg' },
+      { id: 'Cole World', img: '/fits/jcole-dreamer.jpg' },
+      { id: 'Carti', img: '/fits/carti-studio.jpg' },
       { id: 'Hip-hop', img: '/fits/flacko-money.jpg' },
       { id: 'Pop & R&B', img: '/fits/bieber-drew.jpg' },
       { id: 'K-culture', img: '/fits/v-funk.jpg' },
@@ -90,7 +92,7 @@ const INTO: { id: string; label: string; kind: 'team' | 'tag'; options: IntoOpt[
 ]
 
 /** Posters exist for these — picking them decorates the room. */
-const HAS_ART = new Set(['Yankees', 'Dodgers', 'Lakers', 'Rockets', 'Suns', 'Blazers', 'Bucks', 'Mavs', 'Clippers', 'Sixers', 'Magic', 'Hornets', 'Jazz', 'Bulls', 'Timberwolves', 'Angels', 'Brewers', 'Pretty Flacko', 'Tyler, the Creator', 'Iceman', 'Bieber', 'V (BTS)', 'Ye'])
+const HAS_ART = new Set(['Yankees', 'Dodgers', 'Lakers', 'Rockets', 'Suns', 'Blazers', 'Bucks', 'Mavs', 'Clippers', 'Sixers', 'Magic', 'Hornets', 'Jazz', 'Bulls', 'Timberwolves', 'Angels', 'Brewers', 'Pretty Flacko', 'Tyler, the Creator', 'Iceman', 'Bieber', 'V (BTS)', 'Ye', 'Cole World', 'Carti'])
 
 const RANKS: [number, string][] = [
   [0, 'ROOKIE'],

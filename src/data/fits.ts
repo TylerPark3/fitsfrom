@@ -414,6 +414,39 @@ export const FITS: Fit[] = [
     ],
   },
   {
+    id: 'jcole-dreamer',
+    styles: ['athletic', 'street'],
+    who: 'Cole World',
+    where: 'Arena stage',
+    when: 'Dreamville tour',
+    context:
+      'Black-and-gold Dreamer hockey jersey over a tee, matching side-snap track pants, buttercream runners. Team colours as a whole outfit, not an accent.',
+    vibe: 'Hockey jersey, snap track pants, cream runners',
+    pieces: [
+      { slot: 'Jersey', worn: 'Black-and-gold Dreamer hockey jersey', match: { category: 'top', kw: 'jersey|hockey|graphic' } },
+      { slot: 'Tee', worn: 'Tee underneath', match: { category: 'top', kw: 'tee|t-shirt' } },
+      { slot: 'Pants', worn: 'Side-snap track pants', match: { category: 'pants', kw: 'track|snap|nylon|jogger' } },
+      { slot: 'Sneakers', worn: 'Buttercream runners', match: { category: 'shoes', kw: 'runner|trainer|sneaker' } },
+    ],
+  },
+  {
+    id: 'carti-studio',
+    styles: ['street', 'skate'],
+    who: 'Carti',
+    where: 'The studio',
+    when: 'Late session, film flash',
+    context:
+      'Snapback flipped back, plain white tee, iced chain and cuff, faded straight denim with a wallet chain. Two plain pieces carrying a lot of jewellery.',
+    vibe: 'Snapback, white tee, faded denim, chains',
+    pieces: [
+      { slot: 'Cap', worn: 'Black snapback', match: { category: 'accessory', kw: 'cap|hat|snapback' } },
+      { slot: 'Tee', worn: 'Plain white tee', match: { category: 'top', kw: 'tee|t-shirt' } },
+      { slot: 'Chain', worn: 'Iced chain and cuff', match: { category: 'accessory', kw: 'chain|necklace|jewel|bracelet' } },
+      { slot: 'Belt', worn: 'Black leather belt', match: { category: 'accessory', kw: 'belt' } },
+      { slot: 'Denim', worn: 'Faded straight denim', match: { category: 'pants', sil: 'jean', kw: 'jean(?!s? short)|denim(?! short)' } },
+    ],
+  },
+  {
     id: 'booker-black',
     styles: ['street', 'minimal'],
     who: 'Book',

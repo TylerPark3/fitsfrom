@@ -11,6 +11,8 @@ const ARTIST_POSTERS: Record<string, string> = {
   Bieber: '/fits/bieber-night.jpg',
   'V (BTS)': '/fits/v-airport.jpg',
   Ye: '/fits/ye-red.jpg',
+  'Cole World': '/fits/jcole-dreamer.jpg',
+  Carti: '/fits/carti-studio.jpg',
 }
 
 const TEAM_POSTERS: Record<string, string> = {
