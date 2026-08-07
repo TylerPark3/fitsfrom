@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { CATALOG } from '../data/catalog'
 import { useStore } from '../lib/store'
 
@@ -22,47 +22,6 @@ const TEAM_COLORS: Record<string, [string, string]> = {
 export function Room() {
   const { wardrobe, customs, profile } = useStore()
   const roomRef = useRef<HTMLDivElement>(null)
-  const headRef = useRef<HTMLDivElement>(null)
-  const bodyRef = useRef<HTMLDivElement>(null)
-
-  // dahbiahmed-style tracking: window-wide, spring-eased, direct DOM writes (no re-renders).
-  useEffect(() => {
-    const target = { x: 0, y: 0 }
-    const pos = { x: 0, y: 0 }
-    let lastMove = 0
-    let raf = 0
-
-    const onMove = (e: MouseEvent) => {
-      const r = roomRef.current?.getBoundingClientRect()
-      if (!r) return
-      const hx = r.left + r.width * 0.66
-      const hy = r.top + r.height * 0.5
-      target.x = Math.max(-1, Math.min(1, (e.clientX - hx) / (window.innerWidth / 2)))
-      target.y = Math.max(-1, Math.min(1, (e.clientY - hy) / (window.innerHeight / 2)))
-      lastMove = performance.now()
-    }
-
-    const tick = (t: number) => {
-      // idle: soft breathing when the cursor rests
-      const idle = t - lastMove > 2600
-      const tx = idle ? Math.sin(t / 900) * 0.08 : target.x
-      const ty = idle ? Math.cos(t / 1100) * 0.05 : target.y
-      pos.x += (tx - pos.x) * 0.09
-      pos.y += (ty - pos.y) * 0.09
-      if (headRef.current)
-        headRef.current.style.transform = `rotate(${pos.x * 12}deg) translate(${pos.x * 6}px, ${pos.y * 4}px)`
-      if (bodyRef.current)
-        bodyRef.current.style.transform = `translateX(${pos.x * 5}px) rotate(${pos.x * 1.4}deg)`
-      raf = requestAnimationFrame(tick)
-    }
-
-    window.addEventListener('mousemove', onMove)
-    raf = requestAnimationFrame(tick)
-    return () => {
-      window.removeEventListener('mousemove', onMove)
-      cancelAnimationFrame(raf)
-    }
-  }, [])
 
   const items = wardrobe
     .map((w) => CATALOG.find((p) => p.id === w.productId))
@@ -151,27 +110,6 @@ export function Room() {
           <img key={i} src={img} alt="" loading="lazy" />
         ))}
       </button>
-
-      {/* you, 2K-style — head from your scan, eyes on the cursor */}
-      <div className="me2k" ref={bodyRef}>
-        <div
-          className="me2k__head"
-          ref={headRef}
-          style={{
-            backgroundImage: profile.photo ? `url(${profile.photo})` : undefined,
-            backgroundSize: `${profile.faceZoom * 100}%`,
-            backgroundPosition: `${profile.faceX}% ${profile.faceY}%`,
-          }}
-        >
-          {!profile.photo && '?'}
-        </div>
-        <svg viewBox="0 0 120 210" className="me2k__body" aria-hidden="true">
-          <path d="M38 28q22-10 44 0l14 6 8 44-12 4-4-20v50H36v-50l-4 20-12-4 8-44Z" fill="#1c2a20" />
-          <path d="M40 110h40l6 60-4 34H68l-6-58-4 58H46l-4-34Z" fill="#3a4a3e" />
-          <path d="M40 200h20v8H38Zm26 0h20v8H64Z" fill="#121915" />
-        </svg>
-        <span className="me2k__tag">{profile.name || 'you'}</span>
-      </div>
 
       <i className="room2__floor" />
     </div>
