@@ -57,15 +57,51 @@ function resolve(piece: FitPiece): Product | null {
   )
 }
 
+/** Types itself out when scrolled into view — mission-console style. */
+function Type({ text, className, speed = 26 }: { text: string; className?: string; speed?: number }) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const [go, setGo] = useState(false)
+  const [n, setN] = useState(0)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const io = new IntersectionObserver(([e]) => e.isIntersecting && setGo(true), {
+      threshold: 0.3,
+    })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!go || n >= text.length) return
+    const t = window.setTimeout(() => setN((x) => x + 1), speed)
+    return () => window.clearTimeout(t)
+  }, [go, n, text, speed])
+
+  return (
+    <span ref={ref} className={className}>
+      {text.slice(0, n)}
+      {n < text.length && <i className="type__caret" />}
+    </span>
+  )
+}
+
 export function FitsView() {
   const [open, setOpen] = useState<Fit | null>(null)
 
   return (
     <div className="wrap" style={{ paddingBottom: 100 }}>
       <div className="pagehead">
-        <span className="eyebrow">Fits</span>
-        <h2>Steal the whole look.</h2>
-        <p>Iconic fits, broken down top to bottom — with a buyable version of every piece.</p>
+        <span className="eyebrow">
+          <Type text="TRANSMISSION 001 — THE CULTURE FILE" />
+        </span>
+        <h2 className="fitcheck">
+          <Type text="FIT CHECK" speed={70} />
+        </h2>
+        <p className="mono-line">
+          <Type text="EVERY PIECE IDENTIFIED. EVERY LINK LIVE. YOUR SIZE COMPUTED." speed={14} />
+        </p>
       </div>
 
       <div className="fitgrid">
@@ -125,7 +161,9 @@ function FitDrawer({ fit, onClose }: { fit: Fit; onClose: () => void }) {
           <p className="muted" style={{ margin: '8px 0 4px', fontSize: 14.5, lineHeight: 1.55 }}>
             {fit.context}
           </p>
-          <p className="eyebrow" style={{ margin: '18px 0 4px' }}>Top to bottom</p>
+          <p className="eyebrow" style={{ margin: '18px 0 4px' }}>
+            <Type text="TOP TO BOTTOM — PIECE BY PIECE" speed={16} />
+          </p>
 
           {resolved.map(({ piece, p }) =>
             p ? (
