@@ -279,6 +279,39 @@ export const FITS: Fit[] = [
     ],
   },
   {
+    id: 'ye-detroit',
+    styles: ['workwear', 'minimal'],
+    who: 'Ye',
+    where: 'Calabasas',
+    when: 'Sunday Service era',
+    context:
+      'Washed-teal Carhartt Detroit with the brown corduroy collar, black jeans breaking over sand military boots. The jacket that sent Detroit prices to the moon.',
+    vibe: 'Teal Detroit jacket, black jeans, sand boots',
+    pieces: [
+      { slot: 'Jacket', worn: 'Washed-teal Detroit jacket', match: { category: 'outer', kw: 'detroit|chore|work|canvas|jacket' } },
+      { slot: 'Tee', worn: 'White tee underneath', match: { category: 'top', kw: 'tee|t-shirt' } },
+      { slot: 'Jeans', worn: 'Black straight jeans', match: { category: 'pants', sil: 'jean', kw: 'jean(?!s? short)|denim(?! short)' } },
+      { slot: 'Boots', worn: 'Sand military boots', match: { category: 'shoes', sil: 'boot', kw: 'boot' } },
+    ],
+  },
+  {
+    id: 'ye-red',
+    styles: ['workwear', 'street'],
+    who: 'Ye',
+    where: 'Hotel exit',
+    when: 'Pink-hair era',
+    context:
+      'Red Detroit jacket with the black collar, greige tee, chocolate Dickies, neutral Air Maxes. One loud jacket, everything else earth tones.',
+    vibe: 'Red Detroit jacket, brown work pants, Air Max',
+    pieces: [
+      { slot: 'Jacket', worn: 'Red Detroit work jacket', match: { category: 'outer', kw: 'detroit|chore|work|canvas|jacket' } },
+      { slot: 'Tee', worn: 'Greige tee underneath', match: { category: 'top', kw: 'tee|t-shirt' } },
+      { slot: 'Chain', worn: 'Thin gold chain', match: { category: 'accessory', kw: 'chain|necklace|jewel' } },
+      { slot: 'Pants', worn: 'Chocolate work pants', match: { category: 'pants', kw: 'work|pant|dickies|874|twill' } },
+      { slot: 'Sneakers', worn: 'Neutral runners', match: { category: 'shoes', kw: 'runner|trainer|sneaker' } },
+    ],
+  },
+  {
     id: 'rpattz-paris',
     styles: ['workwear', 'minimal'],
     who: 'Rob Pattinson',

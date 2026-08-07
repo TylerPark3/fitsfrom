@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useStore } from '../lib/store'
 import { BRANDS } from '../data/catalog'
 import { fileToDataUrl } from '../lib/img'
+import { analyzeBody } from '../lib/pose'
 import { Upload, Trash } from './Icons'
 
 const GEN_STAGES = [
@@ -40,8 +41,13 @@ export function PhotoStage({ compact = false }: { compact?: boolean }) {
     }
     setBusy(true)
     try {
-      setProfile({ photo: await fileToDataUrl(file) })
+      const raw = await fileToDataUrl(file, 1400)
+      setProfile({ photo: raw, pose: null, photoScale: 1, photoY: 50 })
       setGen(0)
+      // Real analysis runs while the scan plays — auto-center + place the pins.
+      void analyzeBody(raw).then((r) => {
+        if (r) setProfile({ photo: r.photo, pose: r.pose, photoScale: 1, photoY: 50 })
+      })
     } catch {
       toast('Couldn’t read that image')
     } finally {
@@ -78,10 +84,21 @@ export function PhotoStage({ compact = false }: { compact?: boolean }) {
         {/* Measurements exist only once there's a body to measure — hover reveals them. */}
         {profile.photo && (
           <>
-            <Pin top="27%" width={pinWidth(profile.chest, 30, 56)} label={`Chest ${profile.chest}″`} />
-            <Pin top="42%" width={pinWidth(profile.waist, 26, 48)} label={`Waist ${profile.waist}″`} />
             <Pin
-              top="72%"
+              top={profile.pose ? `${(profile.pose.chest * 100).toFixed(1)}%` : '27%'}
+              left={profile.pose ? `${(profile.pose.cx * 100).toFixed(1)}%` : '50%'}
+              width={pinWidth(profile.chest, 30, 56)}
+              label={`Chest ${profile.chest}″`}
+            />
+            <Pin
+              top={profile.pose ? `${(profile.pose.waist * 100).toFixed(1)}%` : '42%'}
+              left={profile.pose ? `${(profile.pose.cx * 100).toFixed(1)}%` : '50%'}
+              width={pinWidth(profile.waist, 26, 48)}
+              label={`Waist ${profile.waist}″`}
+            />
+            <Pin
+              top={profile.pose ? `${(profile.pose.inseam * 100).toFixed(1)}%` : '72%'}
+              left={profile.pose ? `${(profile.pose.cx * 100).toFixed(1)}%` : '50%'}
               width={pinWidth(profile.inseam, 26, 38, 0.5)}
               label={`Inseam ${profile.inseam}″`}
             />
@@ -193,9 +210,9 @@ function pinWidth(value: number, min: number, max: number, cap = 1) {
   return `${(52 + t * 62) * cap}px`
 }
 
-function Pin({ top, width, label }: { top: string; width: string; label: string }) {
+function Pin({ top, left = '50%', width, label }: { top: string; left?: string; width: string; label: string }) {
   return (
-    <div className="pin" style={{ top }}>
+    <div className="pin" style={{ top, left }}>
       <div className="pin__rule" style={{ width }}>
         <span className="pin__tag">{label}</span>
       </div>

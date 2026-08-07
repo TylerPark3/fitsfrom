@@ -9,6 +9,8 @@ export interface Profile {
   /** Normalised crop offsets for the photo inside the avatar frame. */
   photoScale: number
   photoY: number
+  /** Detected body-pin positions (fractions of the cropped photo). */
+  pose: { chest: number; waist: number; inseam: number; cx: number } | null
   height: number
   weight: number
   chest: number
@@ -88,6 +90,7 @@ export const DEFAULT_STATE: AppState = {
     photo: null,
     photoScale: 1,
     photoY: 50,
+    pose: null,
     height: 70,
     weight: 160,
     chest: est.chest,
