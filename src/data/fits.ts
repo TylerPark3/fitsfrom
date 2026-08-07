@@ -430,6 +430,40 @@ export const FITS: Fit[] = [
     ],
   },
   {
+    id: 'sga-leather',
+    styles: ['minimal', 'japanese'],
+    who: 'SGA',
+    where: 'New York, leaving the hotel',
+    when: 'Fashion week',
+    context:
+      'Head-to-toe black leather — cropped moto shirt-jacket, double-buckle belt over a wrap panel, wide leather trousers, square-toe boots. No logo anywhere.',
+    vibe: 'All-leather, double belt, square-toe boots',
+    pieces: [
+      { slot: 'Jacket', worn: 'Cropped leather shirt-jacket', match: { category: 'outer', kw: 'leather|jacket|moto' } },
+      { slot: 'Belt', worn: 'Double-buckle leather belt', match: { category: 'accessory', kw: 'belt' } },
+      { slot: 'Trousers', worn: 'Wide leather trousers', match: { category: 'pants', kw: 'leather|wide|trouser' } },
+      { slot: 'Boots', worn: 'Black square-toe boots', match: { category: 'shoes', sil: 'boot', kw: 'boot|leather' } },
+    ],
+  },
+  {
+    id: 'ye-college',
+    styles: ['ivy', 'street'],
+    who: 'Ye',
+    where: 'Paris, 2000s',
+    when: 'College Dropout era',
+    context:
+      'Seersucker blazer, varsity-striped scarf, white tee, tan belt on raw dark denim, white high-tops. The blueprint for prep-meets-rap.',
+    vibe: 'Seersucker blazer, striped scarf, raw denim',
+    pieces: [
+      { slot: 'Blazer', worn: 'Striped seersucker blazer', match: { category: 'outer', kw: 'blazer|jacket|seersucker' } },
+      { slot: 'Scarf', worn: 'Varsity-striped scarf', match: { category: 'accessory', kw: 'scarf' } },
+      { slot: 'Tee', worn: 'White tee', match: { category: 'top', kw: 'tee|t-shirt' } },
+      { slot: 'Belt', worn: 'Tan leather belt', match: { category: 'accessory', kw: 'belt' } },
+      { slot: 'Denim', worn: 'Raw dark denim', match: { category: 'pants', sil: 'jean', kw: 'jean(?!s? short)|denim(?! short)' } },
+      { slot: 'Sneakers', worn: 'White high-tops', match: { category: 'shoes', kw: 'sneaker|leather|court' } },
+    ],
+  },
+  {
     id: 'carti-studio',
     styles: ['street', 'skate'],
     who: 'Carti',

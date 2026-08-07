@@ -2900,9 +2900,10 @@ input.seg__control::placeholder {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top center;
+  object-position: center 22%;
   filter: grayscale(1) contrast(1.08);
   transition: filter 460ms var(--ease), transform 700ms var(--ease);
+  transform: scale(1.02);
 }
 
 .fitcard:hover .fitcard__photo {
