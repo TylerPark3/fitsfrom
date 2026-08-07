@@ -63,7 +63,9 @@ export function WardrobeView({
         (1 - b.pct) * (ESSENTIAL[b.category] ?? 1) - (1 - a.pct) * (ESSENTIAL[a.category] ?? 1),
     )[0]
 
-  const suggestions = rank(
+  // Diverse picks: never two from the same brand, never near-identical names.
+  const suggestions: typeof CATALOG = []
+  for (const r of rank(
     CATALOG.filter(
       (p) =>
         p.category === worstGap?.category &&
@@ -71,9 +73,13 @@ export function WardrobeView({
         p.price <= profile.budgetMax,
     ),
     profile,
-  )
-    .slice(0, 4)
-    .map((r) => r.product)
+  )) {
+    const pr = r.product
+    if (suggestions.some((x) => x.brand === pr.brand)) continue
+    if (suggestions.some((x) => x.name.slice(0, 18) === pr.name.slice(0, 18))) continue
+    suggestions.push(pr)
+    if (suggestions.length === 4) break
+  }
 
   const totalRetail = items.reduce((n, i) => n + i.p.price, 0)
   const totalValue = items.reduce((n, i) => n + itemValue(i.p.price, i.w.condition, i.w.years), 0)

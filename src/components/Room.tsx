@@ -16,17 +16,6 @@ const TEAM_POSTERS: Record<string, string> = {
   Jazz: '/room/poster-jazz.jpg',
 }
 
-const TEAM_COLORS: Record<string, [string, string]> = {
-  Thunder: ['#007AC1', '#EF3B24'],
-  Mavs: ['#00538C', '#002B5E'],
-  Wizards: ['#002B5C', '#E31837'],
-  Suns: ['#1D1160', '#E56020'],
-  Warriors: ['#1D428A', '#FFC72C'],
-  Knicks: ['#006BB6', '#F58426'],
-  Heat: ['#98002E', '#F9A01B'],
-  Celtics: ['#007A33', '#BA9653'],
-}
-
 /** The dorm — your closet as a place. Head follows the mouse, 2K-style. */
 export function Room() {
   const { wardrobe, customs, profile } = useStore()
@@ -61,23 +50,13 @@ export function Room() {
         {posters.length === 0 && !profile.tags.includes('Yankees') && !profile.tags.includes('Dodgers') && (
           <div className="room2__poster room2__poster--empty">FF</div>
         )}
-        {posters.map((t) =>
-          TEAM_POSTERS[t] ? (
+        {posters
+          .filter((t) => TEAM_POSTERS[t])
+          .map((t) => (
             <div className="room2__poster" key={t}>
               <img src={TEAM_POSTERS[t]} alt={`${t} poster`} />
             </div>
-          ) : (
-            <div
-              className="room2__poster room2__poster--team"
-              key={t}
-              style={{
-                background: `linear-gradient(135deg, ${(TEAM_COLORS[t] ?? ['#1c2a20', '#52604f'])[0]}, ${(TEAM_COLORS[t] ?? ['#1c2a20', '#52604f'])[1]})`,
-              }}
-            >
-              {t.toUpperCase()}
-            </div>
-          ),
-        )}
+          ))}
         {[
           ['Yankees', '/room/art-yankees.jpg', -1.4],
           ['Dodgers', '/room/art-dodgers.jpg', 1.8],
@@ -95,11 +74,17 @@ export function Room() {
       {/* the rail */}
       <button className="room2__rail" onClick={() => scrollTo('Tops')} aria-label="Open tops & shirts">
         <i className="room2__bar" />
-        {hanging.length === 0 && <span className="room2__hint">closet’s empty — add pieces</span>}
-        {hanging.map((img, i) => (
+                {hanging.map((img, i) => (
           <span className="hanger" key={i} style={{ transform: `rotate(${i % 2 ? 1.4 : -1.1}deg)` }}>
             <i className="hanger__hook" />
             <img src={img} alt="" loading="lazy" />
+          </span>
+        ))}
+        {Array.from({ length: Math.max(0, 5 - hanging.length) }, (_, i) => (
+          <span className="hanger hanger--ghost" key={`g${i}`} style={{ transform: `rotate(${i % 2 ? -1.6 : 1.2}deg)` }}>
+            <svg viewBox="0 0 60 40" aria-hidden="true">
+              <path d="M30 2 q6 0 6 6 q0 4 -5 6 L8 32 q-3 2 0 4 l44 0 q3 -2 0 -4 L31 14" fill="none" stroke="#8a7a5e" strokeWidth="2.4" strokeLinecap="round" />
+            </svg>
           </span>
         ))}
       </button>

@@ -16,10 +16,25 @@ interface IntoOpt {
   logo?: boolean
 }
 
-const NBA_TEAMS = ['Lakers', 'Thunder', 'Mavs', 'Wizards', 'Suns', 'Rockets', 'Blazers', 'Clippers', 'Sixers', 'Magic', 'Hornets', 'Warriors', 'Knicks', 'Celtics', 'Bulls', 'Heat', 'Nets', 'Bucks', 'Nuggets', 'Grizzlies', 'Jazz']
+const NBA_TEAMS = ['Lakers', 'Thunder', 'Mavs', 'Wizards', 'Suns', 'Rockets', 'Blazers', 'Clippers', 'Sixers', 'Magic', 'Hornets', 'Jazz', 'Warriors', 'Knicks', 'Celtics', 'Bulls', 'Heat', 'Nets', 'Bucks', 'Nuggets', 'Grizzlies']
+
+/** The tile shows the icon photo when we have one — logos are the fallback. */
+const TEAM_TILE: Record<string, string> = {
+  Lakers: '/room/poster-lakers.jpg',
+  Rockets: '/room/poster-rockets.jpg',
+  Suns: '/room/poster-suns.jpg',
+  Blazers: '/room/poster-blazers.jpg',
+  Bucks: '/room/poster-bucks.jpg',
+  Mavs: '/room/poster-mavs.jpg',
+  Clippers: '/room/poster-clippers.jpg',
+  Sixers: '/room/poster-sixers.jpg',
+  Magic: '/room/poster-magic.jpg',
+  Hornets: '/room/poster-hornets.jpg',
+  Jazz: '/room/poster-jazz.jpg',
+}
 
 const INTO: { id: string; label: string; kind: 'team' | 'tag'; options: IntoOpt[] }[] = [
-  { id: 'nba', label: 'NBA', kind: 'team', options: NBA_TEAMS.map((t) => ({ id: t, img: `/teams/${t.toLowerCase()}.jpg`, logo: true })) },
+  { id: 'nba', label: 'NBA', kind: 'team', options: NBA_TEAMS.map((t) => ({ id: t, img: TEAM_TILE[t] ?? `/teams/${t.toLowerCase()}.jpg`, logo: !TEAM_TILE[t] })) },
   {
     id: 'mlb',
     label: 'MLB',
