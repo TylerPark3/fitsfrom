@@ -20,9 +20,10 @@ import { SavedView } from './views/SavedView'
 import { FitsView } from './views/FitsView'
 import { AuthView } from './views/AuthView'
 import { FaqView } from './views/FaqView'
+import { LegalView } from './views/LegalView'
 import { ProductDrawer } from './components/ProductDrawer'
 
-export type View = 'home' | 'auth' | 'onboarding' | 'discover' | 'fits' | 'avatar' | 'wardrobe' | 'saved' | 'faq'
+export type View = 'home' | 'auth' | 'onboarding' | 'discover' | 'fits' | 'avatar' | 'wardrobe' | 'saved' | 'faq' | 'legal'
 
 const TRIAL_DAYS = 15
 const GATED: View[] = ['discover', 'fits', 'wardrobe', 'saved', 'avatar']
@@ -259,6 +260,7 @@ export function App() {
           {view === 'discover' && <Discover onOpen={setOpenProduct} go={go} />}
           {view === 'fits' && <FitsView go={go} />}
           {view === 'faq' && <FaqView />}
+          {view === 'legal' && <LegalView />}
           {view === 'avatar' && <AvatarView go={go} />}
           {view === 'wardrobe' && <WardrobeView onOpen={setOpenProduct} go={go} />}
           {view === 'saved' && <SavedView onOpen={setOpenProduct} go={go} />}
@@ -277,6 +279,7 @@ export function App() {
               Live products and prices from each brand’s own store. Your photo and measurements stay
               in this browser.
             </p>
+            <button className="foot__legal" onClick={() => go('legal')}>Privacy · Terms · Editorial · Affiliate disclosure</button>
           </div>
         </footer>
 

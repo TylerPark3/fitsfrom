@@ -30,7 +30,7 @@ const SECTIONS: { id: string; title: string; sub: string; qa: [string, string][]
     qa: [
       [
         'Where do the fit photos come from?',
-        'Curated by moderators from public appearances, credited to their source. Player-owned Instagram embeds are coming so every photo links back to the person who posted it.',
+        'Curated from documented public appearances. We aim to use owned, licensed, permissioned, officially embedded, or authorized media; credit alone is not treated as permission. Rights holders can request a review or takedown from our policy page.',
       ],
       [
         'What is the fit of the day?',
@@ -76,7 +76,7 @@ const SECTIONS: { id: string; title: string; sub: string; qa: [string, string][]
       ],
       [
         'What data do you collect?',
-        'None. No analytics, no tracking pixels, no server. When synced accounts launch, this answer will update honestly.',
+        'Your profile, measurements, photo, wardrobe and saves stay in this browser. When you intentionally press Buy, our server processes the product, placement and standard request information needed to send you to the retailer and attribute the click. We do not send your measurements, photo or wardrobe to the retailer.',
       ],
       [
         'Can I start over?',
