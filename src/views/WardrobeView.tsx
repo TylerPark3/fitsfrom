@@ -4,6 +4,7 @@ import { CATALOG, type Product } from '../data/catalog'
 import { CATEGORIES, CORE_SLOTS } from '../data/taxonomy'
 import { useStore, type CustomPiece } from '../lib/store'
 import { rank } from '../lib/match'
+import { FITS } from '../data/fits'
 import { recommendSize } from '../lib/sizing'
 import { fileToDataUrl } from '../lib/img'
 import { ProductCard } from '../components/ProductCard'
@@ -627,29 +628,80 @@ function FitPlanner() {
     toast('Tap pieces below to add them')
   }
 
-  // Whering-style: unlock what you already own — auto-assemble one piece per slot.
+  // Match against proven formulas: celebrity fit templates + brand lanes + color scheme.
+  const NEUTRALS = /black|white|cream|ecru|ivory|grey|gray|charcoal|navy|tan|khaki|beige|natural|stone|sand|off-white/i
+  const ACCENTS: [string, RegExp][] = [
+    ['red', /red|burgundy|maroon|crimson|wine/i],
+    ['green', /green|olive|forest|sage/i],
+    ['blue', /blue|cobalt|royal/i],
+    ['purple', /purple|lavender|lilac|orchid/i],
+    ['yellow', /yellow|mustard|gold/i],
+    ['orange', /orange|rust|clay/i],
+    ['pink', /pink|rose|salmon/i],
+    ['brown', /brown|chocolate|mocha|coffee/i],
+  ]
+  const accentOf = (name: string) => ACCENTS.find(([, re]) => re.test(name))?.[0] ?? null
+
   const autoMatch = () => {
     const owned = wardrobe
       .map((w) => CATALOG.find((x) => x.id === w.productId))
       .filter((x): x is (typeof CATALOG)[number] => !!x)
-    const slots = ['top', 'shirt', 'knit', 'outer', 'pants', 'shoes']
+    if (owned.length < 2) {
+      toast('Add a few more pieces first')
+      return
+    }
+    const ownedCats = new Set(owned.map((p) => p.category))
+
+    // Pick the celebrity formula your closet can best recreate.
+    const template = [...FITS]
+      .map((f) => ({
+        f,
+        cover: f.pieces.filter((pc) => ownedCats.has(pc.match.category)).length / f.pieces.length,
+        taste: f.styles.filter((st) => profile.styles.includes(st)).length,
+      }))
+      .sort((a, b) => b.cover - a.cover || b.taste - a.taste)[0]
+
     const refs: string[] = []
-    for (const slot of slots) {
-      const pool = owned.filter((p) => p.category === slot)
-      const pick = pool.length ? rank(pool, profile)[0]?.product : undefined
-      if (pick) refs.push(pick.id)
-      else {
-        const custom = customs.find((c) => c.category === slot && !refs.includes(c.id))
-        if (custom) refs.push(custom.id)
+    const accents = new Set<string>()
+    const lanes = new Set<string>()
+    const usedCats = new Set<string>()
+
+    for (const piece of template.f.pieces) {
+      const cat = piece.match.category
+      if (usedCats.has(cat) && cat !== 'top') continue
+      const pool = owned.filter((p) => p.category === cat && !refs.includes(p.id))
+      if (!pool.length) continue
+      let best: (typeof pool)[number] | null = null
+      let bestScore = -Infinity
+      for (const p of pool) {
+        let sc = p.styles.filter((st) => template.f.styles.includes(st)).length * 2
+        sc += p.styles.some((st) => lanes.has(st)) ? 1.2 : 0
+        const acc = accentOf(p.name)
+        if (!acc || NEUTRALS.test(p.name)) sc += 1.6
+        else if (accents.size === 0) sc += 1
+        else if (accents.has(acc)) sc += 0.8
+        else sc -= 2.2
+        if (sc > bestScore) {
+          bestScore = sc
+          best = p
+        }
+      }
+      if (best) {
+        refs.push(best.id)
+        usedCats.add(cat)
+        best.styles.forEach((st) => lanes.add(st))
+        const acc = accentOf(best.name)
+        if (acc && !NEUTRALS.test(best.name)) accents.add(acc)
       }
     }
+
     if (refs.length < 2) {
       toast('Add a few more pieces first')
       return
     }
-    const id = createOutfit(`Matched fit ${outfits.length + 1}`)
+    const id = createOutfit(`The ${template.f.who} formula`)
     refs.forEach((r) => toggleOutfitRef(id, r))
-    toast('Matched from your closet')
+    toast(`Matched via the ${template.f.who} formula`)
   }
 
   const pool: { ref: string; img: string; label: string }[] = [
