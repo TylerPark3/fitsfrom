@@ -3,6 +3,23 @@ import { useStore } from '../lib/store'
 import { STYLES, TIERS, SEASONS, type Gender, type Season, type StyleId, type Tier } from '../data/taxonomy'
 import { estimateFromBody } from '../lib/sizing'
 import { FITS } from '../data/fits'
+import { CATALOG } from '../data/catalog'
+
+/** Example image per style: a real fit photo where we have one, else a catalog piece. */
+const STYLE_IMG: Record<string, string> = {
+  ivy: '/fits/tyler-prep.jpg',
+  street: '/fits/clarkson-mavs.jpg',
+  minimal: '/fits/sga-arrival.jpg',
+  skate: '/fits/bieber-drew.jpg',
+  athletic: '/fits/lebron-quiet.jpg',
+}
+
+function styleImg(id: string): string {
+  if (STYLE_IMG[id]) return STYLE_IMG[id]
+  const p = CATALOG.find((x) => x.styles.includes(id as never) && x.category === 'outer')
+    ?? CATALOG.find((x) => x.styles.includes(id as never))
+  return p?.image ?? ''
+}
 import { topTwin } from '../lib/twin'
 import { Arrow, CheckInk } from '../components/Icons'
 import { PhotoStage } from '../components/PhotoStage'
@@ -49,7 +66,7 @@ export function Onboarding({ onDone }: { onDone: () => void }) {
               {STYLES.map((s) => (
                 <button
                   key={s.id}
-                  className="tile"
+                  className="tile stile"
                   aria-pressed={profile.styles.includes(s.id)}
                   onClick={() => setProfile({ styles: toggle<StyleId>(profile.styles, s.id) })}
                 >
@@ -57,8 +74,11 @@ export function Onboarding({ onDone }: { onDone: () => void }) {
                     <CheckInk size={15} />
                   </span>
                   <h4>{s.label}</h4>
-                  <p>{s.blurb}</p>
-                  <small>{s.anchors}</small>
+                  <div className="stile__row">
+                    <img src={styleImg(s.id)} alt="" loading="lazy" />
+                    <p>{s.blurb}</p>
+                  </div>
+                  <small className="stile__celebs">{s.celebs}</small>
                 </button>
               ))}
             </div>

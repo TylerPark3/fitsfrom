@@ -31,54 +31,62 @@ export type Silhouette =
   | 'cap'
   | 'bag'
 
-export const STYLES: { id: StyleId; label: string; blurb: string; anchors: string }[] = [
+export const STYLES: { id: StyleId; label: string; blurb: string; anchors: string; celebs: string }[] = [
   {
     id: 'ivy',
     label: 'Ivy & Prep',
-    blurb: 'Oxfords, chinos, loafers. Looks like you have a plan.',
-    anchors: 'J.Press · Kamakura · Beams Plus · Drake’s',
+    blurb: 'Oxfords, chinos, loafers.',
+    anchors: 'J.Press · Kamakura · Beams Plus',
+    celebs: 'Tyler, the Creator · Jacob Elordi',
   },
   {
     id: 'workwear',
     label: 'Workwear',
-    blurb: 'Duck canvas, selvedge, chore coats. Ages instead of dying.',
-    anchors: 'Carhartt WIP · 3sixteen · Stan Ray · Rogue Territory',
+    blurb: 'Canvas, denim, boots.',
+    anchors: 'Carhartt WIP · 3sixteen · Stan Ray',
+    celebs: 'A$AP Rocky · Jerry Lorenzo',
   },
   {
     id: 'minimal',
     label: 'Quiet Minimal',
-    blurb: 'No logos, good fabric, boring on purpose. Never wrong.',
-    anchors: 'Asket · COS · Norse Projects · Uniqlo U',
+    blurb: 'No logos. Good fabric.',
+    anchors: 'Asket · Norse Projects · Uniqlo U',
+    celebs: 'SGA · LeBron James',
   },
   {
     id: 'gorp',
     label: 'Gorpcore',
-    blurb: 'Technical shells and trail shoes worn to the library.',
-    anchors: 'Arc’teryx · Salomon · Snow Peak · and wander',
+    blurb: 'Trail gear in the city.',
+    anchors: 'Arc’teryx · Salomon · Snow Peak',
+    celebs: 'Devin Booker · Frank Ocean',
   },
   {
     id: 'street',
     label: 'Streetwear',
-    blurb: 'Heavyweight graphics, real fits, no reseller tax.',
-    anchors: 'Stüssy · Noah · Awake NY · Brain Dead',
+    blurb: 'Graphics, layers, attitude.',
+    anchors: 'Stüssy · Noah · Brain Dead',
+    celebs: 'Jordan Poole · Jordan Clarkson',
   },
   {
     id: 'japanese',
     label: 'Japanese & Archive',
-    blurb: 'Weird proportions, insane fabric. The deep end.',
-    anchors: 'Kapital · Needles · Auralee · orSlow',
+    blurb: 'Weird proportions, insane fabric.',
+    anchors: 'Kapital · Needles · orSlow',
+    celebs: 'John Mayer · Kendrick Lamar',
   },
   {
     id: 'skate',
     label: 'Skate',
-    blurb: 'Baggy, durable, cheap enough to actually wreck.',
-    anchors: 'Polar · Dickies · Vans · Last Resort',
+    blurb: 'Baggy and durable.',
+    anchors: 'Polar · Dickies · Last Resort',
+    celebs: 'Justin Bieber · Tyshawn Jones',
   },
   {
     id: 'athletic',
     label: 'Sport & Vintage Athletic',
-    blurb: 'Warmups, mesh, retro runners. Effortless without trying.',
-    anchors: 'New Balance · adidas · Nike ACG · Sporty & Rich',
+    blurb: 'Retro runners, warmups.',
+    anchors: 'New Balance · adidas · Sporty & Rich',
+    celebs: 'Rookie LeBron · Central Cee',
   },
 ]
 

@@ -1446,6 +1446,65 @@ input[type='range']:active::-webkit-slider-thumb {
   color: rgba(255, 255, 255, 0.5);
 }
 
+.stile {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stile h4 {
+  font-size: 16px;
+  letter-spacing: -0.02em;
+}
+
+.stile__row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  flex: 1;
+}
+
+.stile__row img {
+  width: 78px;
+  height: 96px;
+  flex: none;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 10px;
+  background: var(--mist-2);
+  filter: grayscale(1) contrast(1.05);
+  transition: filter 380ms var(--ease);
+}
+
+.stile:hover .stile__row img,
+.stile[aria-pressed='true'] .stile__row img {
+  filter: grayscale(0) saturate(1.15);
+}
+
+.stile__row p {
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.45;
+  margin: 0 0 4px;
+}
+
+.stile[aria-pressed='true'] .stile__row p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.stile__celebs {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--red) !important;
+  margin-top: 0 !important;
+}
+
+.stile[aria-pressed='true'] .stile__celebs {
+  color: #ff8a6d !important;
+}
+
 .tile__tick {
   position: absolute;
   top: 14px;
@@ -1463,7 +1522,66 @@ input[type='range']:active::-webkit-slider-thumb {
     transform 260ms var(--ease);
 }
 
-.tile[aria-pressed='true'] .tile__tick {
+.tile[aria-pressed='true'] .stile {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stile h4 {
+  font-size: 16px;
+  letter-spacing: -0.02em;
+}
+
+.stile__row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  flex: 1;
+}
+
+.stile__row img {
+  width: 78px;
+  height: 96px;
+  flex: none;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 10px;
+  background: var(--mist-2);
+  filter: grayscale(1) contrast(1.05);
+  transition: filter 380ms var(--ease);
+}
+
+.stile:hover .stile__row img,
+.stile[aria-pressed='true'] .stile__row img {
+  filter: grayscale(0) saturate(1.15);
+}
+
+.stile__row p {
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.45;
+  margin: 0 0 4px;
+}
+
+.stile[aria-pressed='true'] .stile__row p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.stile__celebs {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--red) !important;
+  margin-top: 0 !important;
+}
+
+.stile[aria-pressed='true'] .stile__celebs {
+  color: #ff8a6d !important;
+}
+
+.tile__tick {
   opacity: 1;
   transform: scale(1);
 }
@@ -1741,6 +1859,44 @@ input[type='range']:active::-webkit-slider-thumb {
 
 .fitcard__frame:has(.fitcard__photo:not([style*='display: none'])) {
   background: #101512;
+}
+
+.fitcard--locked .fitcard__photo {
+  filter: blur(22px) grayscale(1) brightness(0.82) !important;
+  transform: scale(1.2);
+}
+
+.fitcard--locked:hover .fitcard__photo {
+  filter: blur(18px) grayscale(0.6) brightness(0.85) !important;
+}
+
+.fitcard__lockover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #fff;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.5);
+}
+
+.fitcard__lockover span {
+  font-size: 76px;
+  line-height: 1;
+}
+
+.fitcard__lockover i {
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  padding: 4px 11px;
+  backdrop-filter: blur(4px);
 }
 
 .personfit {

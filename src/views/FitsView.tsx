@@ -79,7 +79,11 @@ interface Person {
   fits: Fit[]
 }
 
+const FREE_FILES = ['Shai Gilgeous-Alexander', 'A$AP Rocky', 'Rookie LeBron']
+
 export function FitsView({ go }: { go: (v: View) => void }) {
+  const { signedIn, account } = useStore()
+  const member = !!signedIn && !!account
   const [open, setOpen] = useState<Fit | null>(null)
   const [person, setPerson] = useState<Person | null>(null)
 
@@ -89,6 +93,12 @@ export function FitsView({ go }: { go: (v: View) => void }) {
     if (ex) ex.fits.push(f)
     else people.push({ who: f.who, fits: [f] })
   }
+  // Free files walk first; the rest stay classified until membership.
+  people.sort((a, b) => {
+    const ia = FREE_FILES.indexOf(a.who)
+    const ib = FREE_FILES.indexOf(b.who)
+    return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib)
+  })
 
   return (
     <div className="wrap" style={{ paddingBottom: 100 }}>
@@ -107,6 +117,33 @@ export function FitsView({ go }: { go: (v: View) => void }) {
       <div className="fitgrid">
         {people.map((pr) => {
           const f = pr.fits[0]
+          const locked = !member && !FREE_FILES.includes(pr.who)
+          if (locked) {
+            return (
+              <button key={pr.who} className="fitcard fitcard--locked" onClick={() => go('auth')}>
+                <div className="fitcard__frame">
+                  <img
+                    className="fitcard__photo"
+                    src={`/fits/${f.id}.jpg`}
+                    alt=""
+                    loading="lazy"
+                    onError={(e) => ((e.target as HTMLImageElement).style.display = 'none')}
+                  />
+                  <div className="fitcard__lockover">
+                    <span className="serif">?</span>
+                    <i>Classified</i>
+                  </div>
+                </div>
+                <div className="fitcard__meta">
+                  <div className="card__brand">Member file · {f.pieces.length} pieces</div>
+                  <div className="card__name">Create an account to open</div>
+                  <div className="tiny" style={{ marginTop: 6 }}>
+                    Unlock →
+                  </div>
+                </div>
+              </button>
+            )
+          }
           return (
             <button
               key={pr.who}
