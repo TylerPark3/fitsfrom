@@ -1,7 +1,17 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { CutoutImg } from './CutoutImg'
 import { CATALOG } from '../data/catalog'
 import { useStore } from '../lib/store'
+
+/** Artists you follow hang on the wall the same way teams do. */
+const ARTIST_POSTERS: Record<string, string> = {
+  'Pretty Flacko': '/fits/flacko-money.jpg',
+  'Tyler, the Creator': '/fits/tyler-prep.jpg',
+  Iceman: '/fits/drake-night.jpg',
+  Bieber: '/fits/bieber-night.jpg',
+  'V (BTS)': '/fits/v-airport.jpg',
+  Ye: '/fits/ye-red.jpg',
+}
 
 const TEAM_POSTERS: Record<string, string> = {
   Rockets: '/room/poster-rockets.jpg',
@@ -23,6 +33,7 @@ const TEAM_POSTERS: Record<string, string> = {
 export function Room() {
   const { wardrobe, customs, profile } = useStore()
   const roomRef = useRef<HTMLDivElement>(null)
+  const [full, setFull] = useState(false)
 
   const items = wardrobe
     .map((w) => CATALOG.find((p) => p.id === w.productId))
@@ -49,7 +60,14 @@ export function Room() {
     document.getElementById(`shelf-${label}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
 
   return (
-    <div className="room2" ref={roomRef}>
+    <div className={`room2${full ? ' room2--full' : ''}`} ref={roomRef}>
+      <button
+        className="room2__expand"
+        onClick={() => setFull((v) => !v)}
+        aria-label={full ? 'Exit full screen' : 'Full screen closet'}
+      >
+        {full ? '✕' : '⤢'}
+      </button>
       {/* the dog lives here */}
       <img className="room2__dog" src="/room/dog.png" alt="" loading="lazy" />
 
@@ -63,6 +81,13 @@ export function Room() {
           .map((t) => (
             <div className="room2__poster" key={t}>
               <img src={TEAM_POSTERS[t]} alt={`${t} poster`} />
+            </div>
+          ))}
+        {profile.tags
+          .filter((t) => ARTIST_POSTERS[t])
+          .map((t, i) => (
+            <div className="room2__poster" key={t} style={{ transform: `rotate(${i % 2 ? 1.5 : -1.3}deg)` }}>
+              <img src={ARTIST_POSTERS[t]} alt={`${t} poster`} loading="lazy" />
             </div>
           ))}
         {[

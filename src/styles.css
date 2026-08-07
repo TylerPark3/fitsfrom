@@ -3860,6 +3860,59 @@ input.seg__control::placeholder {
   }
 }
 
+/* closet: expand + scroll into a wider room */
+.room2 {
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.room2__expand {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 6;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  color: var(--ink-2);
+  transition: background var(--fast), transform var(--fast);
+}
+
+.room2__expand:hover {
+  background: #fff;
+  transform: scale(1.06);
+}
+
+.room2--full {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  min-height: 100vh;
+}
+
+.room2--full .room2__wall {
+  left: 30%;
+  bottom: 42%;
+}
+
+.room2--full .room2__floor {
+  height: 38%;
+}
+
+/* the wall keeps flowing right as you collect more */
+.room2__wall {
+  flex-wrap: wrap;
+  overflow: visible;
+}
+
 /* new arrivals section under the ask */
 .arrivals {
   margin-top: 56px;
