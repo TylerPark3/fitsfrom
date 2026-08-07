@@ -2,6 +2,7 @@ import type { View } from '../App'
 import { CATALOG, BRANDS } from '../data/catalog'
 import { FITS } from '../data/fits'
 import { useStore } from '../lib/store'
+import { resolve } from '../lib/fitmatch'
 import { Arrow } from '../components/Icons'
 
 /** Same fit for everyone all day; a new one tomorrow. The reason to come back. */
@@ -73,18 +74,54 @@ export function Home({ go }: { go: (v: View) => void }) {
         </div>
       </section>
 
-      {/* fit of the day banner */}
-      <section className="wrap">
-        <button className="fotd" onClick={() => go('fits')}>
-          <span className="fotd__tag">Fit of the day</span>
-          <span className="fotd__who serif">{today.who}</span>
-          <span className="fotd__what">
-            {today.where} — {today.vibe}
-          </span>
-          <span className="fotd__cta">
-            {today.pieces.length} pieces, all linked <Arrow size={13} />
-          </span>
-        </button>
+      {/* fit of the day — editorial split */}
+      <section className="wrap" style={{ paddingTop: 56 }}>
+        <div className="fotd2">
+          <button className="fotd2__media" onClick={() => go('fits')} aria-label={`Open ${today.who}`}>
+            {today.ig ? (
+              <iframe
+                src={`${today.ig.replace(/\/?$/, '/')}embed/captioned/`}
+                title={`${today.who} on Instagram`}
+                loading="lazy"
+                allowTransparency
+              />
+            ) : (
+              <>
+                <img src={`/fits/${today.id}.jpg`} alt={today.who} onError={(e) => ((e.target as HTMLImageElement).style.opacity = '0')} />
+                <span className="fotd2__stamp">{today.where}</span>
+              </>
+            )}
+          </button>
+
+          <div className="fotd2__body">
+            <span className="eyebrow" style={{ color: 'var(--red)' }}>
+              Fit of the day — {date}
+            </span>
+            <h2 className="fotd2__who serif">{today.who}</h2>
+            <p className="mono-line" style={{ marginTop: 4 }}>
+              {today.when.toUpperCase()}
+            </p>
+            <p className="fotd2__context">{today.context}</p>
+
+            <div className="fotd2__pieces">
+              {today.pieces.slice(0, 5).map((piece) => {
+                const p = resolve(piece)
+                return p ? (
+                  <div className="fotd2__piece" key={piece.slot} title={`${piece.slot} — ${p.brand}`}>
+                    <img src={p.image} alt={piece.slot} loading="lazy" />
+                    <span>{piece.slot}</span>
+                  </div>
+                ) : null
+              })}
+            </div>
+
+            <div className="row" style={{ gap: 10, marginTop: 26 }}>
+              <button className="btn btn--primary btn--lg" onClick={() => go('fits')}>
+                Open the breakdown <Arrow />
+              </button>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section className="wrap">

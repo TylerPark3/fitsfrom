@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { CATALOG, type Product } from '../data/catalog'
-import { FITS, type Fit, type FitPiece } from '../data/fits'
+import { FITS, type Fit } from '../data/fits'
+import { resolve } from '../lib/fitmatch'
 import { useStore } from '../lib/store'
 import { recommendSize } from '../lib/sizing'
 import { buyUrl } from '../lib/affiliate'
@@ -41,20 +41,6 @@ function saveJson(key: string, value: unknown) {
   } catch {
     /* full storage is survivable */
   }
-}
-
-/** Best buyable stand-in for a worn piece. */
-function resolve(piece: FitPiece): Product | null {
-  const { category, brand, kw, sil } = piece.match
-  const re = kw ? new RegExp(kw, 'i') : null
-  const pool = CATALOG.filter((p) => p.category === category)
-  return (
-    pool.find((p) => (!brand || p.brand === brand) && (!re || re.test(p.name))) ??
-    pool.find((p) => !re || re.test(p.name)) ??
-    (sil ? pool.find((p) => p.silhouette === sil) : null) ??
-    pool[0] ??
-    null
-  )
 }
 
 /** Types itself out when scrolled into view — mission-console style. */

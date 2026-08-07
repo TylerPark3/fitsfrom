@@ -2348,7 +2348,7 @@ input[type='range']:active::-webkit-slider-thumb {
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
-  min-height: clamp(520px, 76vh, 760px);
+  min-height: calc(100dvh - var(--nav-h) - 35px);
   display: grid;
 }
 
@@ -2534,7 +2534,127 @@ input[type='range']:active::-webkit-slider-thumb {
     0 32px 64px -16px rgba(18, 25, 21, 0.45);
 }
 
-/* fit of the day banner */
+/* fit of the day — editorial split */
+.fotd2 {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.85fr) 1.15fr;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--tile);
+}
+
+.fotd2__media {
+  position: relative;
+  min-height: 480px;
+  background: var(--mist-2);
+  overflow: hidden;
+}
+
+.fotd2__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(1) contrast(1.08);
+  transition: filter 460ms var(--ease), transform 700ms var(--ease);
+}
+
+.fotd2__media:hover img {
+  filter: grayscale(0) saturate(1.25) contrast(1.04);
+  transform: scale(1.02);
+}
+
+.fotd2__media iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+}
+
+.fotd2__stamp {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(12, 15, 13, 0.72);
+  backdrop-filter: blur(6px);
+  padding: 6px 11px;
+  border-radius: 999px;
+}
+
+.fotd2__body {
+  padding: clamp(26px, 4vw, 48px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fotd2__who {
+  font-size: clamp(40px, 5vw, 68px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-top: 10px;
+}
+
+.fotd2__context {
+  color: var(--ink-2);
+  font-size: 15.5px;
+  line-height: 1.6;
+  max-width: 52ch;
+  margin-top: 16px;
+}
+
+.fotd2__pieces {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.fotd2__piece {
+  width: 76px;
+  text-align: center;
+}
+
+.fotd2__piece img {
+  width: 76px;
+  height: 84px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.fotd2__piece span {
+  display: block;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 5px;
+}
+
+@media (max-width: 940px) {
+  .fotd2 {
+    grid-template-columns: 1fr;
+  }
+
+  .fotd2__media {
+    min-height: 420px;
+  }
+}
+
+/* fit of the day banner (legacy) */
 .fotd {
   width: 100%;
   display: grid;
