@@ -1373,11 +1373,24 @@ input.seg__control::placeholder {
 /* floating watermark under the Ask */
 .deckstage {
   position: relative;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(4px, 4vw, 56px);
   margin-top: clamp(30px, 6vh, 64px);
-  padding-bottom: 30px;
+  padding: 34px 0 44px;
   isolation: isolate;
+}
+
+/* soft paper wash so the stage never reads flat white */
+.deckstage::before {
+  content: '';
+  position: absolute;
+  inset: -8% -30% -4%;
+  background:
+    radial-gradient(58% 68% at 50% 88%, rgba(228, 221, 201, 0.5), transparent 74%),
+    linear-gradient(180deg, transparent 4%, rgba(239, 237, 231, 0.85) 58%, rgba(228, 221, 201, 0.35) 100%);
+  z-index: -2;
 }
 
 .deckstage__glow {
@@ -1407,6 +1420,19 @@ input.seg__control::placeholder {
   height: clamp(300px, 46vh, 480px);
   aspect-ratio: 474 / 698;
   mix-blend-mode: multiply;
+  opacity: 0.62; /* watermark, not poster */
+}
+
+.sketch--walk {
+  height: clamp(250px, 38vh, 400px);
+  aspect-ratio: 720 / 888;
+  transform: translateY(-4%);
+  opacity: 0.5;
+}
+
+.sketch--walk .sketch__hatch {
+  -webkit-mask-image: url('/styles/watermark2-mask.png');
+  mask-image: url('/styles/watermark2-mask.png');
 }
 
 .sketch__base {
