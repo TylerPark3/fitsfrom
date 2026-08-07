@@ -4,19 +4,40 @@ import { useStore } from '../lib/store'
 const SRC = '/styles/watermark-cut.png'
 const W = 340
 const H = 520
+const N = 52 // slices — thin enough that the outline reads as one continuous curve
 
-// body bands as fractions of the sketch: [start, end]
-const BANDS = {
-  head: [0, 0.115] as const,
-  chest: [0.115, 0.4] as const,
-  waist: [0.4, 0.575] as const,
-  legs: [0.575, 1] as const,
+const smooth = (t: number) => (1 - Math.cos(Math.min(1, Math.max(0, t)) * Math.PI)) / 2
+
+/** Piecewise-smooth width profile down the body — never a hard jump. */
+function widthAt(y: number, chestX: number, waistX: number, legX: number): number {
+  const pts: [number, number][] = [
+    [0, 1],
+    [0.1, 1],
+    [0.18, 1 + (chestX - 1) * 0.85],
+    [0.3, chestX],
+    [0.44, (chestX + waistX) / 2],
+    [0.52, waistX],
+    [0.6, (waistX + legX) / 2],
+    [0.72, legX],
+    [1, legX * 0.97],
+  ]
+  for (let i = 0; i < pts.length - 1; i++) {
+    const [y0, v0] = pts[i]
+    const [y1, v1] = pts[i + 1]
+    if (y >= y0 && y <= y1) return v0 + (v1 - v0) * smooth((y - y0) / (y1 - y0))
+  }
+  return legX
+}
+
+function heightAt(y: number, legY: number): number {
+  if (y < 0.55) return 1
+  if (y < 0.68) return 1 + (legY - 1) * smooth((y - 0.55) / 0.13)
+  return legY
 }
 
 /**
- * Purposeful morphs: each slider hits its own region of the body.
- * Height scales everything at ratio; weight bulks legs/torso; chest widens
- * the chest; waist widens the waist; inseam lengthens only the legs.
+ * Continuous morph: the sketch is resampled through a smooth width/height
+ * profile, so the silhouette always stays one connected line.
  */
 export function AvatarRig() {
   const { profile } = useStore()
@@ -24,42 +45,30 @@ export function AvatarRig() {
 
   const overall = 0.82 + ((profile.height - 58) / 24) * 0.32
   const heft = (profile.weight - 95) / 205
-  const chestX = (0.86 + ((profile.chest - 30) / 26) * 0.34) * (1 + heft * 0.2)
-  const waistX = (0.8 + ((profile.waist - 26) / 22) * 0.46) * (1 + heft * 0.32)
-  const legX = 0.88 + heft * 0.5
-  const legY = 0.86 + ((profile.inseam - 26) / 12) * 0.32
-
-  const scales: Record<keyof typeof BANDS, [number, number]> = {
-    head: [1, 1],
-    chest: [chestX, 1],
-    waist: [waistX, 1],
-    legs: [legX, legY],
-  }
+  const chestX = (0.88 + ((profile.chest - 30) / 26) * 0.3) * (1 + heft * 0.18)
+  const waistX = (0.84 + ((profile.waist - 26) / 22) * 0.4) * (1 + heft * 0.28)
+  const legX = (0.9 + heft * 0.42) * (1 + ((profile.waist - 26) / 22) * 0.08)
+  const legY = 0.88 + ((profile.inseam - 26) / 12) * 0.28
 
   let cum = 0
-  const bands = (Object.keys(BANDS) as (keyof typeof BANDS)[]).map((k) => {
-    const [a, b] = BANDS[k]
-    const [sx, sy] = scales[k]
-    const bh = (b - a) * H * sy
-    const band = { k, top: cum, h: bh, sx, imgTop: -a * H * sy, imgH: H * sy }
-    cum += bh
-    return band
+  const slices = Array.from({ length: N }, (_, i) => {
+    const a = i / N
+    const mid = (i + 0.5) / N
+    const sx = widthAt(mid, chestX, waistX, legX)
+    const sy = heightAt(mid, legY)
+    const h = (H / N) * sy
+    const slice = { key: i, top: cum, h, sx, imgTop: -a * H * sy, imgH: H * sy }
+    cum += h
+    return slice
   })
   const totalH = cum
 
   return (
     <div className="rig">
       <div className="rig__turn" style={{ transform: `perspective(900px) rotateY(${yaw}deg)` }}>
-        <div
-          className="rig__body2"
-          style={{ width: W, height: totalH + 26, transform: `scale(${overall})` }}
-        >
-          {bands.map((b) => (
-            <div
-              key={b.k}
-              className="rigband"
-              style={{ top: b.top - 3, height: b.h + 6, width: W }}
-            >
+        <div className="rig__body2" style={{ width: W, height: totalH + 26, transform: `scale(${overall})` }}>
+          {slices.map((b) => (
+            <div key={b.key} className="rigslice" style={{ top: b.top, height: b.h + 1.2, width: W }}>
               <img
                 src={SRC}
                 alt=""
@@ -67,7 +76,7 @@ export function AvatarRig() {
                 style={{
                   position: 'absolute',
                   left: '50%',
-                  top: b.imgTop - 3,
+                  top: b.imgTop,
                   width: W,
                   height: b.imgH,
                   transform: `translateX(-50%) scaleX(${b.sx})`,
@@ -75,10 +84,7 @@ export function AvatarRig() {
               />
             </div>
           ))}
-          <span
-            className="rig__shadow"
-            style={{ top: totalH + 2, width: W * 0.62 * Math.max(legX, 0.9) }}
-          />
+          <span className="rig__shadow" style={{ top: totalH + 4, width: W * 0.6 * Math.max(legX, 0.9) }} />
         </div>
       </div>
 

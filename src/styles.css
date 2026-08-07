@@ -3264,16 +3264,14 @@ input.seg__control::placeholder {
   filter: grayscale(1) contrast(1.04);
 }
 
-.rigband {
+.rigslice {
   position: absolute;
   left: 0;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 5px, #000 calc(100% - 5px), transparent 100%);
-  mask-image: linear-gradient(180deg, transparent 0, #000 5px, #000 calc(100% - 5px), transparent 100%);
 }
 
-.rigband img {
-  transition: transform 240ms var(--ease), height 240ms var(--ease);
+.rigslice img {
+  transition: transform 220ms var(--ease), height 220ms var(--ease), top 220ms var(--ease);
   user-select: none;
 }
 
