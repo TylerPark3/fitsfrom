@@ -323,9 +323,6 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
             <span className="sketch__hatch" />
             <span className="sketch__hatch sketch__hatch--cross" />
           </div>
-          <p className="mono-line deckstage__cap">
-            <Type text="THE SILHOUETTE IS THE STATEMENT." speed={24} />
-          </p>
         </div>
       )}
 
