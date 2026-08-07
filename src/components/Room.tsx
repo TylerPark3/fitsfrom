@@ -9,6 +9,10 @@ const TEAM_POSTERS: Record<string, string> = {
   Blazers: '/room/poster-blazers.jpg',
   Bucks: '/room/poster-bucks.jpg',
   Mavs: '/room/poster-mavs.jpg',
+  Clippers: '/room/poster-clippers.jpg',
+  Sixers: '/room/poster-sixers.jpg',
+  Magic: '/room/poster-magic.jpg',
+  Hornets: '/room/poster-hornets.jpg',
 }
 
 const TEAM_COLORS: Record<string, [string, string]> = {
