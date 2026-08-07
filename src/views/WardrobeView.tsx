@@ -130,7 +130,13 @@ export function WardrobeView({
             est. value · ${Math.round(totalRetail)} retail
           </span>
         </h2>
-        <p>Fill the short bars before buying another of what you own.</p>
+        <p>
+          Goals set from what you’re into
+          {profile.teams.length + profile.tags.length > 0
+            ? ` — ${[...profile.teams, ...profile.tags].slice(0, 3).join(' · ')}`
+            : ''}
+          .
+        </p>
       </div>
 
       <Room />

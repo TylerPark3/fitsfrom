@@ -62,6 +62,29 @@ export function matchScore(product: Product, p: Profile): MatchResult {
     score -= 6
   }
 
+  // What you're into — teams and tags nudge the lanes they imply.
+  const INTEREST_LANES: Record<string, string[]> = {
+    Sneakers: ['street', 'athletic'],
+    Thrifting: ['workwear', 'skate'],
+    Gaming: ['street'],
+    'Film & TV': ['minimal', 'ivy'],
+    Outdoors: ['gorp'],
+    'Tokyo street': ['japanese'],
+    'Hip-hop': ['street'],
+    'Pop & R&B': ['street', 'minimal'],
+    'K-culture': ['minimal', 'japanese'],
+  }
+  const interests = [...(p.tags ?? []), ...(p.teams ?? [])]
+  const teamLane = (p.teams ?? []).length > 0 ? ['athletic', 'street'] : []
+  const lanes = new Set([
+    ...interests.flatMap((t) => INTEREST_LANES[t] ?? []),
+    ...teamLane,
+  ])
+  if (lanes.size && product.styles.some((st) => lanes.has(st))) {
+    score += 5
+    reasons.push('Matches your interests')
+  }
+
   // Brands you rock with.
   if (p.brands?.includes(product.brand)) {
     score += 7
