@@ -151,30 +151,35 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
         )}
 
         <div className="deck__bar">
-          <select
-            className="select deck__ask"
-            value={ask}
-            onChange={(e) => setAsk(e.target.value)}
-            aria-label="Category"
-          >
-            {ASKS.map((a) => (
-              <option key={a.id} value={a.id}>
-                {a.label}
-              </option>
-            ))}
-          </select>
-          <div className="search deck__q">
-            <Search />
+          <label className="seg">
+            <span className="seg__label">Looking for</span>
+            <select
+              className="seg__control"
+              value={ask}
+              onChange={(e) => setAsk(e.target.value)}
+              aria-label="Category"
+            >
+              {ASKS.map((a) => (
+                <option key={a.id} value={a.id}>
+                  {a.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <i className="seg__div" />
+          <label className="seg seg--grow">
+            <span className="seg__label">Details</span>
             <input
+              className="seg__control"
               value={q}
               onChange={(e) => setQ(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && setExecuted(true)}
-              placeholder="A brand, a piece, a fabric — or nothing at all"
+              placeholder="Brand, piece, fabric — anything"
               aria-label="Search"
             />
-          </div>
-          <button className="btn btn--primary" onClick={() => setExecuted(true)}>
-            Search <Arrow />
+          </label>
+          <button className="deck__go" onClick={() => setExecuted(true)}>
+            <Search size={16} /> Search
           </button>
         </div>
 
