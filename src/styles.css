@@ -1681,6 +1681,10 @@ input[type='range']:active::-webkit-slider-thumb {
   overflow: hidden;
 }
 
+.fitcard__frame:has(.fitcard__photo:not([style*='display: none'])) {
+  background: #101512;
+}
+
 /* FIT CHECK header + console type */
 .fitcheck {
   font-size: clamp(46px, 7vw, 92px) !important;
@@ -2728,6 +2732,195 @@ input[type='range']:active::-webkit-slider-thumb {
 
   .fotd__what {
     white-space: normal;
+  }
+}
+
+/* ---------------------------------------------------------------- phone walkthrough */
+
+.demo {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 340px);
+  gap: clamp(28px, 6vw, 90px);
+  align-items: center;
+  padding: clamp(56px, 8vw, 110px) 0;
+  border-top: 1px solid var(--line);
+  margin-top: 64px;
+}
+
+.demo__head {
+  font-size: clamp(34px, 4.4vw, 58px);
+  letter-spacing: -0.035em;
+  font-weight: 750;
+  line-height: 1.02;
+}
+
+.demo__head em {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--red);
+}
+
+.demo__steps {
+  margin-top: 26px;
+  display: grid;
+  gap: 2px;
+}
+
+.demo__step {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 13px 16px;
+  border-radius: 12px;
+  text-align: left;
+  font-size: 14.5px;
+  color: var(--ink-2);
+  transition: background var(--fast), color var(--fast);
+}
+
+.demo__step b {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--ink-4);
+}
+
+.demo__step[aria-current='true'] {
+  background: var(--mist);
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.demo__step[aria-current='true'] b {
+  color: var(--red);
+}
+
+.phone {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 9 / 19;
+  border: 3px solid var(--ink);
+  border-radius: 42px;
+  background: var(--tile);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.phone::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 84px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--ink);
+  z-index: 2;
+}
+
+.phone__screen {
+  position: absolute;
+  inset: 0;
+  padding: 52px 20px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: qfade 340ms var(--ease) both;
+}
+
+.phone__kicker {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.phone__title {
+  font-size: 21px;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.phone__mock {
+  flex: 1;
+  border: 1px dashed var(--line-2);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  overflow: hidden;
+}
+
+.phone__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  padding: 9px 12px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.03em;
+}
+
+.phone__row b {
+  font-weight: 600;
+}
+
+.phone__row .ok {
+  color: var(--good);
+}
+
+.phone__grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.phone__grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  filter: grayscale(1);
+}
+
+.phone__dots {
+  position: absolute;
+  bottom: 18px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.phone__dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--line-2);
+  transition: background var(--fast), transform var(--fast);
+}
+
+.phone__dots i.on {
+  background: var(--ink);
+  transform: scale(1.25);
+}
+
+@media (max-width: 860px) {
+  .demo {
+    grid-template-columns: 1fr;
   }
 }
 

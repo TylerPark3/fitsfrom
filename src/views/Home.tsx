@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { View } from '../App'
 import { CATALOG, BRANDS } from '../data/catalog'
 import { FITS } from '../data/fits'
@@ -125,6 +126,10 @@ export function Home({ go }: { go: (v: View) => void }) {
       </section>
 
       <section className="wrap">
+        <PhoneDemo go={go} />
+      </section>
+
+      <section className="wrap">
         <div className="strip">
           <div className="strip__cell">
             <div className="strip__n serif">01</div>
@@ -146,5 +151,167 @@ export function Home({ go }: { go: (v: View) => void }) {
         </div>
       </section>
     </>
+  )
+}
+
+const DEMO_STEPS = [
+  {
+    kicker: 'STEP 01 — SNAP',
+    title: 'Take a photo of yourself in a fit',
+    step: 'Snap yourself. It never leaves your phone.',
+  },
+  {
+    kicker: 'STEP 02 — ICONS',
+    title: 'Pick who inspires you',
+    step: 'Choose your fashion icons — Poole, SGA, Tyler, V.',
+  },
+  {
+    kicker: 'STEP 03 — SIZES',
+    title: 'Your sizes, computed per brand',
+    step: 'Every brand’s cut mapped to your body.',
+  },
+  {
+    kicker: 'STEP 04 — PORTFOLIO',
+    title: 'A portfolio of fits built for you',
+    step: 'Tailored fits, every piece linked.',
+  },
+  {
+    kicker: 'STEP 05 — WARDROBE',
+    title: '“carhartt jeans, 32” → added',
+    step: 'Type what you own. Get your icon match score.',
+  },
+]
+
+/** Slide-through wireframe of the whole product inside a phone. */
+function PhoneDemo({ go }: { go: (v: View) => void }) {
+  const [i, setI] = useState(0)
+  const next = () => setI((x) => (x + 1) % DEMO_STEPS.length)
+  const d = DEMO_STEPS[i]
+
+  return (
+    <div className="demo">
+      <div>
+        <h2 className="demo__head">
+          The best of Pinterest.
+          <br />
+          The best of your closet.
+          <br />
+          <em>None of the dead ends.</em>
+        </h2>
+        <div className="demo__steps">
+          {DEMO_STEPS.map((st, k) => (
+            <button key={st.kicker} className="demo__step" aria-current={k === i} onClick={() => setI(k)}>
+              <b>{String(k + 1).padStart(2, '0')}</b>
+              {st.step}
+            </button>
+          ))}
+        </div>
+        <div className="row" style={{ gap: 10, marginTop: 24 }}>
+          <button className="btn btn--primary" onClick={() => go('onboarding')}>
+            Try it for real <Arrow />
+          </button>
+          <button className="btn btn--quiet" onClick={next}>
+            Next step
+          </button>
+        </div>
+      </div>
+
+      <button className="phone" onClick={next} aria-label="Next step">
+        <div className="phone__screen" key={i}>
+          <span className="phone__kicker">{d.kicker}</span>
+          <span className="phone__title">{d.title}</span>
+
+          {i === 0 && (
+            <div className="phone__mock" style={{ alignItems: 'center', justifyContent: 'center' }}>
+              <div
+                style={{
+                  width: 90,
+                  height: 150,
+                  border: '1.5px dashed var(--ink-4)',
+                  borderRadius: 14,
+                }}
+              />
+              <span className="tiny">full body · fitted clothes</span>
+              <span
+                style={{
+                  width: 44,
+                  height: 44,
+                  borderRadius: '50%',
+                  border: '2.5px solid var(--ink)',
+                  marginTop: 6,
+                }}
+              />
+            </div>
+          )}
+
+          {i === 1 && (
+            <div className="phone__mock">
+              {[
+                ['Jordan Poole', '92%'],
+                ['Shai Gilgeous-Alexander', '87%'],
+                ['Tyler, the Creator', '74%'],
+                ['V (BTS)', '61%'],
+              ].map(([who, pct]) => (
+                <div className="phone__row" key={who}>
+                  <span>{who}</span>
+                  <b className="ok">{pct}</b>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {i === 2 && (
+            <div className="phone__mock">
+              {[
+                ['TOPS', 'M'],
+                ['SHIRTS', 'M / 15.5'],
+                ['PANTS', '32 × 32'],
+                ['SHOES', 'US 10.5'],
+                ['STÜSSY RUNS BOXY', 'SIZE S'],
+              ].map(([k, v]) => (
+                <div className="phone__row" key={k}>
+                  <span>{k}</span>
+                  <b>{v}</b>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {i === 3 && (
+            <div className="phone__mock">
+              <div className="phone__grid">
+                <img src="/fits/poole-arrival.jpg" alt="" />
+                <img src="/fits/sga-arrival.jpg" alt="" />
+                <img src="/fits/tyler-prep.jpg" alt="" />
+                <img src="/fits/v-airport.jpg" alt="" />
+              </div>
+            </div>
+          )}
+
+          {i === 4 && (
+            <div className="phone__mock">
+              <div className="phone__row" style={{ borderStyle: 'dashed' }}>
+                <span>carhartt jeans, 32…</span>
+                <b>⏎</b>
+              </div>
+              <div className="phone__row">
+                <span>ADDED TO WARDROBE</span>
+                <b className="ok">✓</b>
+              </div>
+              <div className="phone__row">
+                <span>SGA MATCH</span>
+                <b className="ok">+3% → 90%</b>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="phone__dots">
+          {DEMO_STEPS.map((_, k) => (
+            <i key={k} className={k === i ? 'on' : ''} />
+          ))}
+        </div>
+      </button>
+    </div>
   )
 }
