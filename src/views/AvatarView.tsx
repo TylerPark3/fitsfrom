@@ -3,6 +3,7 @@ import { CATALOG } from '../data/catalog'
 import { useStore } from '../lib/store'
 import { estimateFromBody, recommendSize } from '../lib/sizing'
 import { PhotoStage } from '../components/PhotoStage'
+import { styleTwins } from '../lib/twin'
 import { Slider } from './Onboarding'
 import { Arrow } from '../components/Icons'
 
@@ -127,6 +128,29 @@ export function AvatarView({ go }: { go: (v: View) => void }) {
               </div>
             </div>
           </div>
+
+          {profile.styles.length > 0 && (
+            <div className="panel">
+              <h3>Icon match</h3>
+              <p>How your taste scores against the people you picked.</p>
+              <div className="speclist" style={{ marginTop: 0 }}>
+                {styleTwins(profile.styles)
+                  .filter((t) => profile.icons.length === 0 || profile.icons.includes(t.fit.who))
+                  .filter((t, i, a) => a.findIndex((x) => x.fit.who === t.fit.who) === i)
+                  .slice(0, 5)
+                  .map((t) => (
+                    <div className="spec" key={t.fit.who}>
+                      <dt style={{ color: 'var(--ink)' }}>{t.fit.who}</dt>
+                      <dd>
+                        <b style={{ fontWeight: 600, color: t.pct >= 80 ? 'var(--good)' : 'var(--ink)' }}>
+                          {t.pct}%
+                        </b>
+                      </dd>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )}
 
           <div className="row" style={{ gap: 10, flexWrap: 'wrap' }}>
             <button className="btn btn--primary" onClick={() => go('discover')}>

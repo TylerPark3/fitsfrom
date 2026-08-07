@@ -2042,6 +2042,66 @@ input[type='range']:active::-webkit-slider-thumb {
   margin-bottom: 14px;
 }
 
+/* scents */
+.scentgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+}
+
+.scent {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--tile);
+  padding: 18px 18px 16px;
+  transition: border-color var(--fast), transform var(--med), box-shadow var(--med);
+}
+
+.scent:hover {
+  border-color: var(--ink-4);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.scent__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.scent__fav {
+  font-size: 17px;
+  color: var(--ink-4);
+  transition: color var(--fast), transform var(--fast);
+}
+
+.scent__fav:hover {
+  color: var(--red);
+}
+
+.scent__fav[aria-pressed='true'] {
+  color: var(--red);
+}
+
+.scent__fav:active {
+  transform: scale(1.3);
+}
+
+.scent__name {
+  font-size: 24px;
+  letter-spacing: -0.01em;
+  margin-top: 8px;
+}
+
+.scent__worn {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-top: 8px;
+}
+
 /* ---------------------------------------------------------------- fit room */
 
 .room {

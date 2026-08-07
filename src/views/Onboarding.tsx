@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useStore } from '../lib/store'
 import { STYLES, TIERS, SEASONS, type Gender, type Season, type StyleId, type Tier } from '../data/taxonomy'
 import { estimateFromBody } from '../lib/sizing'
+import { FITS } from '../data/fits'
 import { topTwin } from '../lib/twin'
 import { Arrow, CheckInk } from '../components/Icons'
 import { PhotoStage } from '../components/PhotoStage'
@@ -60,6 +61,28 @@ export function Onboarding({ onDone }: { onDone: () => void }) {
                   <small>{s.anchors}</small>
                 </button>
               ))}
+            </div>
+            <div className="panel" style={{ marginTop: 22 }}>
+              <h3>Who do you want to dress like?</h3>
+              <p>Pick your icons — your wardrobe gets scored against them.</p>
+              <div className="chips">
+                {Array.from(new Set(FITS.map((f) => f.who))).map((who) => (
+                  <button
+                    key={who}
+                    className="chip"
+                    aria-pressed={profile.icons.includes(who)}
+                    onClick={() =>
+                      setProfile({
+                        icons: profile.icons.includes(who)
+                          ? profile.icons.filter((x) => x !== who)
+                          : [...profile.icons, who],
+                      })
+                    }
+                  >
+                    {who}
+                  </button>
+                ))}
+              </div>
             </div>
             {twin && (
               <p className="twinline serif">

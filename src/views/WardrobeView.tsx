@@ -5,6 +5,7 @@ import { CATEGORIES, CORE_SLOTS, STYLES } from '../data/taxonomy'
 import { useStore, type CustomPiece } from '../lib/store'
 import { rank } from '../lib/match'
 import { fileToDataUrl } from '../lib/img'
+import { SCENTS } from '../data/scents'
 import { ProductCard } from '../components/ProductCard'
 import { Arrow, Plus, Trash, Upload, CheckInk } from '../components/Icons'
 
@@ -63,6 +64,7 @@ export function WardrobeView({
         </div>
         <div style={{ marginTop: 40 }}>
           <OwnCloset />
+          <ScentShelf />
           <FitPlanner />
         </div>
       </div>
@@ -157,6 +159,10 @@ export function WardrobeView({
       })}
 
       <OwnCloset />
+
+      <MoreLikeYours onOpen={onOpen} />
+
+      <ScentShelf />
 
       <FitPlanner />
 
@@ -265,6 +271,92 @@ function OwnCloset() {
               >
                 <Trash size={13} />
               </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/** "More like what you own" — same category as your deepest stack, ranked to taste. */
+function MoreLikeYours({ onOpen }: { onOpen: (id: string) => void }) {
+  const { wardrobe, customs, profile } = useStore()
+  const counts: Record<string, number> = {}
+  for (const w of wardrobe) {
+    const p = CATALOG.find((x) => x.id === w.productId)
+    if (p) counts[p.category] = (counts[p.category] ?? 0) + 1
+  }
+  for (const c of customs) counts[c.category] = (counts[c.category] ?? 0) + 1
+  const top = Object.entries(counts).sort((a, b) => b[1] - a[1])[0]
+  if (!top || top[1] < 2) return null
+
+  const picks = rank(
+    CATALOG.filter(
+      (p) => p.category === top[0] && !wardrobe.some((w) => w.productId === p.id),
+    ),
+    profile,
+  )
+    .slice(0, 4)
+    .map((r) => r.product)
+  if (picks.length === 0) return null
+
+  const label = CATEGORIES.find((c) => c.id === top[0])?.plural ?? top[0]
+
+  return (
+    <div className="section">
+      <div className="section__head">
+        <h3>More like your closet</h3>
+        <span className="tiny">You stack {label.toLowerCase()} — ranked to your taste</span>
+      </div>
+      <div className="grid">
+        {picks.map((p) => (
+          <ProductCard key={p.id} product={p} onOpen={onOpen} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/** The scent shelf — favorite what you'd wear; wearer tags are community-reported. */
+function ScentShelf() {
+  const { scentFavs, toggleScentFav, toast } = useStore()
+  return (
+    <div className="section">
+      <div className="section__head">
+        <h3>Scents</h3>
+        <span className="tiny">Community-reported wearers — not endorsements</span>
+      </div>
+      <div className="scentgrid">
+        {SCENTS.map((sc) => (
+          <div className="scent" key={sc.id}>
+            <div className="scent__top">
+              <span className="card__brand">{sc.house}</span>
+              <button
+                className="scent__fav"
+                aria-pressed={scentFavs.includes(sc.id)}
+                aria-label={`Favorite ${sc.name}`}
+                onClick={() => {
+                  toggleScentFav(sc.id)
+                  toast(scentFavs.includes(sc.id) ? 'Removed' : `Saved — ${sc.name}`)
+                }}
+              >
+                {scentFavs.includes(sc.id) ? '♥' : '♡'}
+              </button>
+            </div>
+            <div className="scent__name serif">{sc.name}</div>
+            <div className="tiny" style={{ marginTop: 4 }}>{sc.notes}</div>
+            <div className="scent__worn">{sc.wornBy}</div>
+            <div className="spread" style={{ marginTop: 12 }}>
+              <b style={{ fontVariantNumeric: 'tabular-nums' }}>${sc.price}</b>
+              <a
+                className="btn btn--ghost btn--sm"
+                href={sc.url}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                View
+              </a>
             </div>
           </div>
         ))}

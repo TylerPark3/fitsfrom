@@ -17,6 +17,8 @@ export interface Profile {
   shoe: number
   fitPreference: 'slim' | 'true' | 'relaxed'
   styles: StyleId[]
+  /** People they want to dress like — picked at signup, drives similarity scores. */
+  icons: string[]
   budgetMin: number
   budgetMax: number
   tiers: Tier[]
@@ -71,6 +73,7 @@ export interface AppState {
   signedIn: boolean
   customs: CustomPiece[]
   outfits: Outfit[]
+  scentFavs: string[]
 }
 
 const est = estimateFromBody(70, 160)
@@ -89,6 +92,7 @@ export const DEFAULT_STATE: AppState = {
     shoe: 10,
     fitPreference: 'true',
     styles: [],
+    icons: [],
     budgetMin: 0,
     budgetMax: 200,
     tiers: ['entry', 'solid'],
@@ -103,6 +107,7 @@ export const DEFAULT_STATE: AppState = {
   signedIn: false,
   customs: [],
   outfits: [],
+  scentFavs: [],
 }
 
 const KEY = 'lapel.state.v2'
@@ -145,6 +150,7 @@ export interface Store extends AppState {
   signOut: () => void
   addCustom: (piece: CustomPiece) => void
   removeCustom: (id: string) => void
+  toggleScentFav: (id: string) => void
   createOutfit: (name: string) => string
   deleteOutfit: (id: string) => void
   toggleOutfitRef: (outfitId: string, ref: string) => void

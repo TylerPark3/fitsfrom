@@ -102,6 +102,14 @@ export function App() {
 
       addCustom: (piece) => setState((s) => ({ ...s, customs: [piece, ...s.customs] })),
 
+      toggleScentFav: (id) =>
+        setState((s) => ({
+          ...s,
+          scentFavs: s.scentFavs.includes(id)
+            ? s.scentFavs.filter((x) => x !== id)
+            : [id, ...s.scentFavs],
+        })),
+
       removeCustom: (id) =>
         setState((s) => ({
           ...s,
