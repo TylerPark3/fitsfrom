@@ -64,7 +64,7 @@ export function PhotoStage({ compact = false }: { compact?: boolean }) {
           void accept(e.dataTransfer.files[0])
         }}
       >
-        {profile.photo ? (
+        {profile.photo && (
           <img
             src={profile.photo}
             alt="Your full-body reference"
@@ -73,21 +73,24 @@ export function PhotoStage({ compact = false }: { compact?: boolean }) {
               objectPosition: `50% ${profile.photoY}%`,
             }}
           />
-        ) : (
-          <Figure />
         )}
 
-        {/* Measurement pins read straight off the sliders. */}
-        <Pin top="27%" width={pinWidth(profile.chest, 30, 56)} label={`Chest ${profile.chest}″`} />
-        <Pin top="42%" width={pinWidth(profile.waist, 26, 48)} label={`Waist ${profile.waist}″`} />
-        <Pin
-          top="72%"
-          width={pinWidth(profile.inseam, 26, 38, 0.5)}
-          label={`Inseam ${profile.inseam}″`}
-        />
+        {/* Measurements exist only once there's a body to measure — hover reveals them. */}
+        {profile.photo && (
+          <>
+            <Pin top="27%" width={pinWidth(profile.chest, 30, 56)} label={`Chest ${profile.chest}″`} />
+            <Pin top="42%" width={pinWidth(profile.waist, 26, 48)} label={`Waist ${profile.waist}″`} />
+            <Pin
+              top="72%"
+              width={pinWidth(profile.inseam, 26, 38, 0.5)}
+              label={`Inseam ${profile.inseam}″`}
+            />
+          </>
+        )}
 
         {gen !== null && (
           <div className="gen" role="status">
+            <span className="gen__scan" />
             <div className="gen__pulse" />
             <p className="gen__line" key={gen}>
               {GEN_STAGES[gen]}
@@ -200,31 +203,3 @@ function Pin({ top, width, label }: { top: string; width: string; label: string 
   )
 }
 
-/** Placeholder mannequin so the frame reads as a fitting room, not a broken image. */
-function Figure() {
-  return (
-    <svg
-      viewBox="0 0 120 200"
-      style={{ width: '58%', height: '86%', opacity: 0.16 }}
-      aria-hidden="true"
-      fill="none"
-      stroke="#1c2a20"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      {/* head + neck */}
-      <ellipse cx="60" cy="20" rx="11" ry="13" />
-      <path d="M56 32c0 4-1 6-4 8m12-8c0 4 1 6 4 8" />
-      {/* torso */}
-      <path d="M52 40h16c10 0 17 6 19 15l3 14c1 5-1 8-5 9l-6 1-1-7v34c0 5-8 8-18 8s-18-3-18-8V72l-1 7-6-1c-4-1-6-4-5-9l3-14c2-9 9-15 19-15Z" />
-      {/* arms */}
-      <path d="M31 62l-4 26c-1 5 0 8 2 12l4 8m56-46 4 26c1 5 0 8-2 12l-4 8" />
-      {/* hips + legs */}
-      <path d="M42 112v14c0 4 1 8 2 12l6 44c0 3 3 5 7 5h6c4 0 7-2 7-5l6-44c1-4 2-8 2-12v-14" />
-      <path d="M60 118v66" opacity=".5" />
-      {/* ground shadow */}
-      <ellipse cx="60" cy="192" rx="26" ry="4" opacity=".4" />
-    </svg>
-  )
-}

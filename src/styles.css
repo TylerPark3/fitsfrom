@@ -1423,6 +1423,17 @@ input[type='range']:active::-webkit-slider-thumb {
   -webkit-backdrop-filter: blur(10px);
 }
 
+.gen__scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: var(--red);
+  box-shadow: 0 0 16px 3px rgba(168, 59, 40, 0.5);
+  animation: scanline 1.8s var(--ease) infinite;
+}
+
 .gen__pulse {
   width: 44px;
   height: 44px;
