@@ -381,6 +381,22 @@ export const FITS: Fit[] = [
     ],
   },
   {
+    id: 'mj-golf',
+    styles: ['athletic', 'ivy'],
+    who: 'Air Jordan',
+    where: 'Tahoe tee box',
+    when: 'Cigar lit, club on the shoulders',
+    context:
+      'Backwards white cap, maroon mock-neck, seersucker pleated shorts, golf glove. The most confident outfit in sports history, mid-round.',
+    vibe: 'Backwards cap, maroon mock-neck, pleated shorts',
+    pieces: [
+      { slot: 'Cap', worn: 'Backwards white cap', match: { category: 'accessory', kw: 'cap|hat' } },
+      { slot: 'Mock-neck', worn: 'Maroon mock-neck tee', match: { category: 'top', kw: 'mock|l/s|long sleeve|tee' } },
+      { slot: 'Shorts', worn: 'Seersucker pleated shorts', match: { category: 'pants', kw: 'short' } },
+      { slot: 'Shoes', worn: 'Golf-day sneakers', match: { category: 'shoes', kw: 'sneaker|trainer|court' } },
+    ],
+  },
+  {
     id: 'dame-tunnel',
     styles: ['street', 'ivy'],
     who: 'Dame Time',

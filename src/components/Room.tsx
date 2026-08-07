@@ -7,6 +7,8 @@ const TEAM_POSTERS: Record<string, string> = {
   Lakers: '/room/poster-lakers.jpg',
   Suns: '/room/poster-suns.jpg',
   Blazers: '/room/poster-blazers.jpg',
+  Bucks: '/room/poster-bucks.jpg',
+  Mavs: '/room/poster-mavs.jpg',
 }
 
 const TEAM_COLORS: Record<string, [string, string]> = {
