@@ -8,9 +8,8 @@ import { Arrow } from '../components/Icons'
 
 /** Same fit for everyone all day; a new one tomorrow. The reason to come back. */
 export function fitOfTheDay() {
-  const pool = FITS.filter((f) => !f.hidden)
   const day = Math.floor(Date.now() / 86_400_000)
-  return pool[day % pool.length]
+  return FITS[day % FITS.length]
 }
 
 /**
@@ -197,11 +196,9 @@ function PhoneDemo({ go }: { go: (v: View) => void }) {
     <div className="demo">
       <div>
         <h2 className="demo__head">
-          THE BEST OF PINTEREST.
+          A NEW WAY
           <br />
-          THE BEST OF YOUR CLOSET.
-          <br />
-          <em>none of the dead ends.</em>
+          TO <em>dress.</em>
         </h2>
         <div className="demo__steps">
           {DEMO_STEPS.map((st, k) => (

@@ -74,8 +74,21 @@ function Type({ text, className, speed = 26 }: { text: string; className?: strin
   )
 }
 
+interface Person {
+  who: string
+  fits: Fit[]
+}
+
 export function FitsView({ go }: { go: (v: View) => void }) {
   const [open, setOpen] = useState<Fit | null>(null)
+  const [person, setPerson] = useState<Person | null>(null)
+
+  const people: Person[] = []
+  for (const f of FITS) {
+    const ex = people.find((p) => p.who === f.who)
+    if (ex) ex.fits.push(f)
+    else people.push({ who: f.who, fits: [f] })
+  }
 
   return (
     <div className="wrap" style={{ paddingBottom: 100 }}>
@@ -92,34 +105,93 @@ export function FitsView({ go }: { go: (v: View) => void }) {
       </div>
 
       <div className="fitgrid">
-        {FITS.filter((f) => !f.hidden).map((f) => (
-          <button key={f.id} className="fitcard" onClick={() => setOpen(f)}>
-            <div className="fitcard__frame">
-              <div className="fitcard__type" aria-hidden="true">
-                <span className="serif">{f.who}</span>
-                <i>{f.vibe}</i>
+        {people.map((pr) => {
+          const f = pr.fits[0]
+          return (
+            <button
+              key={pr.who}
+              className="fitcard"
+              onClick={() => (pr.fits.length === 1 ? setOpen(f) : setPerson(pr))}
+            >
+              <div className="fitcard__frame">
+                <div className="fitcard__type" aria-hidden="true">
+                  <span className="serif">{pr.who}</span>
+                  <i>{f.vibe}</i>
+                </div>
+                <img
+                  className="fitcard__photo"
+                  src={`/fits/${f.id}.jpg`}
+                  alt=""
+                  loading="lazy"
+                  onError={(e) => ((e.target as HTMLImageElement).style.display = 'none')}
+                />
+                <span className="fitcard__who serif">{pr.who}</span>
               </div>
-              <img
-                className="fitcard__photo"
-                src={`/fits/${f.id}.jpg`}
-                alt=""
-                loading="lazy"
-                onError={(e) => ((e.target as HTMLImageElement).style.display = 'none')}
-              />
-              <span className="fitcard__who serif">{f.who}</span>
-            </div>
-            <div className="fitcard__meta">
-              <div className="card__brand">{f.where} · {f.when}</div>
-              <div className="card__name">{f.vibe}</div>
-              <div className="tiny" style={{ marginTop: 6 }}>
-                {f.pieces.length} pieces →
+              <div className="fitcard__meta">
+                <div className="card__brand">
+                  {pr.fits.length > 1 ? `${pr.fits.length} fits on file` : `${f.where} · ${f.when}`}
+                </div>
+                <div className="card__name">{f.vibe}</div>
+                <div className="tiny" style={{ marginTop: 6 }}>
+                  {pr.fits.length > 1 ? 'Choose a fit →' : `${f.pieces.length} pieces →`}
+                </div>
               </div>
-            </div>
-          </button>
-        ))}
+            </button>
+          )
+        })}
       </div>
 
-      {open && <FitDrawer fit={open} onClose={() => setOpen(null)} go={go} />}
+      {person && !open && (
+        <>
+          <div className="scrim" onClick={() => setPerson(null)} />
+          <aside className="drawer" role="dialog" aria-modal="true" aria-label={person.who}>
+            <div className="drawer__bar">
+              <span className="eyebrow">{person.who} — the file</span>
+              <button className="iconbtn" onClick={() => setPerson(null)} aria-label="Close">
+                <Close />
+              </button>
+            </div>
+            <div className="drawer__body">
+              <p className="mono-line" style={{ marginTop: 16 }}>
+                {person.fits.length} FITS DOCUMENTED. PICK ONE.
+              </p>
+              {person.fits.map((f) => (
+                <button
+                  key={f.id}
+                  className="personfit"
+                  onClick={() => setOpen(f)}
+                >
+                  <div className="personfit__thumb">
+                    <img
+                      src={`/fits/${f.id}.jpg`}
+                      alt=""
+                      loading="lazy"
+                      onError={(e) => ((e.target as HTMLImageElement).style.display = 'none')}
+                    />
+                  </div>
+                  <div style={{ flex: 1, textAlign: 'left' }}>
+                    <div className="card__brand">
+                      {f.where} · {f.when}
+                    </div>
+                    <div className="card__name">{f.vibe}</div>
+                    <div className="tiny" style={{ marginTop: 4 }}>
+                      {f.pieces.length} pieces →
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </aside>
+        </>
+      )}
+
+      {open && (
+        <FitDrawer
+          fit={open}
+          onClose={() => setOpen(null)}
+          go={go}
+        />
+      )}
     </div>
   )
 }

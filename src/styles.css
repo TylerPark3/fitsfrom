@@ -1734,12 +1734,42 @@ input[type='range']:active::-webkit-slider-thumb {
 .fitcard__frame {
   position: relative;
   aspect-ratio: 3 / 4.2;
-  background: linear-gradient(160deg, var(--mist) 0%, var(--mist-2) 100%);
+  background: var(--mist-2);
   overflow: hidden;
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
 }
 
 .fitcard__frame:has(.fitcard__photo:not([style*='display: none'])) {
   background: #101512;
+}
+
+.personfit {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  width: 100%;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.personfit:hover .card__name {
+  color: var(--ink-2);
+}
+
+.personfit__thumb {
+  width: 72px;
+  height: 92px;
+  flex: none;
+  border-radius: var(--r);
+  overflow: hidden;
+  background: #101512;
+}
+
+.personfit__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
 }
 
 /* FIT CHECK header + console type */

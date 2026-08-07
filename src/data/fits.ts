@@ -48,7 +48,6 @@ export const FITS: Fit[] = [
   },
   {
     id: 'poole-arrival',
-    hidden: true,
     styles: ['street', 'minimal'],
     who: 'Jordan Poole',
     where: 'Wizards tunnel',
