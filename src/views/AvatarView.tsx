@@ -16,7 +16,7 @@ interface IntoOpt {
   logo?: boolean
 }
 
-const NBA_TEAMS = ['Lakers', 'Thunder', 'Mavs', 'Wizards', 'Suns', 'Rockets', 'Warriors', 'Knicks', 'Celtics', 'Bulls', 'Heat', 'Nets', 'Sixers', 'Bucks', 'Nuggets', 'Grizzlies']
+const NBA_TEAMS = ['Lakers', 'Thunder', 'Mavs', 'Wizards', 'Suns', 'Rockets', 'Blazers', 'Warriors', 'Knicks', 'Celtics', 'Bulls', 'Heat', 'Nets', 'Sixers', 'Bucks', 'Nuggets', 'Grizzlies']
 
 const INTO: { id: string; label: string; kind: 'team' | 'tag'; options: IntoOpt[] }[] = [
   { id: 'nba', label: 'NBA', kind: 'team', options: NBA_TEAMS.map((t) => ({ id: t, img: `/teams/${t.toLowerCase()}.jpg`, logo: true })) },
@@ -65,7 +65,7 @@ const INTO: { id: string; label: string; kind: 'team' | 'tag'; options: IntoOpt[
 ]
 
 /** Posters exist for these — picking them decorates the room. */
-const HAS_ART = new Set(['Yankees', 'Dodgers', 'Lakers', 'Rockets', 'Suns'])
+const HAS_ART = new Set(['Yankees', 'Dodgers', 'Lakers', 'Rockets', 'Suns', 'Blazers'])
 
 const RANKS: [number, string][] = [
   [0, 'ROOKIE'],
