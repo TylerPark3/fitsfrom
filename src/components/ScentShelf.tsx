@@ -33,7 +33,7 @@ export function ScentShelf() {
               <Bottle color={sc.color} initial={sc.house[0]} />
               <img
                 className="scent__photo"
-                src={`/scents/${sc.id}.jpg`}
+                src={`/scents/${sc.id}.png`}
                 alt=""
                 loading="lazy"
                 onError={(e) => ((e.target as HTMLImageElement).style.display = 'none')}
