@@ -3,6 +3,7 @@ import type { Product } from '../data/catalog'
 import { useStore } from '../lib/store'
 import { matchScore } from '../lib/match'
 import { recommendSize } from '../lib/sizing'
+import { cosigns } from '../lib/fitmatch'
 import { Bookmark } from './Icons'
 
 export function ProductCard({
@@ -18,6 +19,7 @@ export function ProductCard({
   const isSaved = saved.includes(product.id)
   const { score } = matchScore(product, profile)
   const rec = recommendSize(product, profile)
+  const worn = cosigns(product.id)
 
   return (
     <div className="card">
@@ -55,6 +57,9 @@ export function ProductCard({
       >
         <div className="card__brand">{product.brand}</div>
         <div className="card__name">{product.name}</div>
+        {worn.length > 0 && (
+          <div className="card__cosign">✦ in the {worn[0]} file{worn.length > 1 ? ` +${worn.length - 1}` : ''}</div>
+        )}
         <div className="card__line">
           <span>${product.price.toFixed(product.price % 1 ? 2 : 0)}</span>
           {product.sizeSystem !== 'one' && <span className="card__size">{rec.label}</span>}

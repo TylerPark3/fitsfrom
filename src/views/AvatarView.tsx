@@ -3,13 +3,13 @@ import { CATALOG } from '../data/catalog'
 import { useStore } from '../lib/store'
 import { estimateFromBody, recommendSize } from '../lib/sizing'
 import { PhotoStage } from '../components/PhotoStage'
-import { styleTwins } from '../lib/twin'
+import { iconScores } from '../lib/twin'
 import { Slider } from './Onboarding'
 import { Arrow } from '../components/Icons'
 import { Type } from '../components/Type'
 
 export function AvatarView({ go }: { go: (v: View) => void }) {
-  const { profile, setProfile, reset } = useStore()
+  const { profile, setProfile, reset, wardrobe, customs } = useStore()
 
   const onHeightWeight = (patch: { height?: number; weight?: number }) => {
     const height = patch.height ?? profile.height
@@ -133,15 +133,17 @@ export function AvatarView({ go }: { go: (v: View) => void }) {
           {profile.styles.length > 0 && (
             <div className="panel">
               <h3>Icon match</h3>
-              <p>How your taste scores against the people you picked.</p>
+              <p>Style DNA, budget, shared brands, closet overlap — receipts included.</p>
               <div className="speclist" style={{ marginTop: 0 }}>
-                {styleTwins(profile.styles)
-                  .filter((t) => profile.icons.length === 0 || profile.icons.includes(t.fit.who))
-                  .filter((t, i, a) => a.findIndex((x) => x.fit.who === t.fit.who) === i)
-                  .slice(0, 5)
+                {iconScores(profile, wardrobe, customs)
+                  .filter((t) => profile.icons.length === 0 || profile.icons.includes(t.who))
+                  .slice(0, 6)
                   .map((t) => (
-                    <div className="spec" key={t.fit.who}>
-                      <dt style={{ color: 'var(--ink)' }}>{t.fit.who}</dt>
+                    <div className="spec" key={t.who} style={{ alignItems: 'baseline' }}>
+                      <dt style={{ color: 'var(--ink)' }}>
+                        {t.who}
+                        <span className="iconmatch__bits">{t.bits}</span>
+                      </dt>
                       <dd>
                         <b style={{ fontWeight: 600, color: t.pct >= 80 ? 'var(--good)' : 'var(--ink)' }}>
                           {t.pct}%

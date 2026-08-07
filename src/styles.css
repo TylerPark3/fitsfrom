@@ -1041,6 +1041,25 @@ input[type='range']:active::-webkit-slider-thumb {
   line-height: 1.32;
 }
 
+.card__cosign {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-top: 6px;
+}
+
+.iconmatch__bits {
+  display: block;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 3px;
+}
+
 .card__line {
   display: flex;
   align-items: center;
