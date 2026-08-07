@@ -23,10 +23,33 @@ export async function onRequestGet({ env, params, request }) {
 
   const source = new URL(request.url)
   const placement = safePlacement(source.searchParams.get('placement'))
+  const clickId = crypto.randomUUID().replaceAll('-', '').slice(0, 16)
   const key = env.SOVRN_KEY
   const target = key
-    ? `https://redirect.viglink.com?key=${encodeURIComponent(key)}&u=${encodeURIComponent(destination.href)}&cuid=${encodeURIComponent(`${product.id}:${placement}`)}`
+    ? `https://redirect.viglink.com?key=${encodeURIComponent(key)}&u=${encodeURIComponent(destination.href)}&cuid=${encodeURIComponent(`${product.id}:${placement}:${clickId}`)}`
     : destination.href
+
+  const event = {
+    type: 'commerce_click',
+    clickId,
+    productId: product.id,
+    merchant: destination.hostname.replace(/^www\./, ''),
+    brand: product.brand,
+    category: product.category,
+    placement,
+    monetized: Boolean(key),
+    at: new Date().toISOString(),
+  }
+
+  // Contains no profile, measurement, wardrobe, email, or avatar information.
+  console.log(JSON.stringify(event))
+  if (env.AFFILIATE_ANALYTICS?.writeDataPoint) {
+    env.AFFILIATE_ANALYTICS.writeDataPoint({
+      blobs: [event.productId, event.merchant, event.brand, event.category, event.placement],
+      doubles: [event.monetized ? 1 : 0],
+      indexes: [event.clickId],
+    })
+  }
 
   return new Response(null, {
     status: 302,

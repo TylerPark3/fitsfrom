@@ -8,6 +8,7 @@ import { buyUrl } from '../lib/affiliate'
 import { playClick } from '../lib/click'
 import { Arrow, Bookmark, Close, External } from '../components/Icons'
 import { Type } from '../components/Type'
+import { AffiliateDisclosure } from '../components/AffiliateDisclosure'
 
 const REACTIONS = ['🔥', '💯', '🥶', '👀'] as const
 
@@ -306,7 +307,7 @@ function FitDrawer({ fit, onClose, go }: { fit: Fit; onClose: () => void; go: (v
                   </button>
                   <a
                     className="iconbtn"
-                    href={buyUrl(p.url)}
+                    href={buyUrl(p.url, 'fit_breakdown')}
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label={`Buy at ${p.brand}`}
@@ -317,6 +318,8 @@ function FitDrawer({ fit, onClose, go }: { fit: Fit; onClose: () => void; go: (v
               </div>
             ) : null,
           )}
+
+          {canView && <AffiliateDisclosure compact />}
 
           {canView ? (
             <div className="total">

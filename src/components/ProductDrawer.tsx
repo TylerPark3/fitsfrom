@@ -9,6 +9,7 @@ import { recommendSize, sizeOptions } from '../lib/sizing'
 import { buyUrl } from '../lib/affiliate'
 import { Bookmark, Close, External, Plus, CheckInk } from './Icons'
 import { CONDITIONS, YEAR_STEPS } from '../views/WardrobeView'
+import { AffiliateDisclosure } from './AffiliateDisclosure'
 
 export function ProductDrawer({
   productId,
@@ -231,13 +232,14 @@ export function ProductDrawer({
             <a
               className="btn btn--primary"
               style={{ flex: 1.2 }}
-              href={buyUrl(product.url)}
+              href={buyUrl(product.url, 'product_drawer')}
               target="_blank"
               rel="noreferrer noopener"
             >
               Buy at {product.brand.split(' ')[0]} <External />
             </a>
           </div>
+          <AffiliateDisclosure compact />
         </div>
       </aside>
     </>

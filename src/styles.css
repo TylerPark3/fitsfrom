@@ -6616,6 +6616,10 @@ input.seg__control::placeholder {
   text-underline-offset: 3px;
 }
 
+.affiliate-note { margin: 10px 0 0; max-width: 62ch; color: var(--ink-3); font-size: 11px; line-height: 1.45; }
+.affiliate-note strong { color: var(--ink-2); font-weight: 650; }
+.affiliate-note--compact { font-size: 10px; }
+
 .legal { max-width: 1040px; }
 .legal__mast { padding: clamp(58px, 9vw, 120px) 0 clamp(42px, 6vw, 76px); max-width: 780px; }
 .legal__mast h1 { margin: 12px 0 18px; font-family: var(--disp); font-size: clamp(48px, 7vw, 94px); line-height: .92; letter-spacing: -.055em; }

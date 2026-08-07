@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "affiliate:merchants": "node scripts/merchant-report.mjs"
   },
   "dependencies": {
     "@tensorflow-models/pose-detection": "^2.1.3",

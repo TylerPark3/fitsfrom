@@ -718,7 +718,7 @@ function SavedBrands() {
                   {url && (
                     <a
                       className="btn btn--ghost btn--sm"
-                      href={buyUrl(url)}
+                      href={buyUrl(url, 'saved_brand')}
                       target="_blank"
                       rel="noreferrer noopener"
                     >
