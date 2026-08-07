@@ -1378,18 +1378,20 @@ input.seg__control::placeholder {
   justify-content: center;
   gap: clamp(4px, 4vw, 56px);
   margin-top: clamp(30px, 6vh, 64px);
-  padding: 34px 0 44px;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 48px 0 72px;
   isolation: isolate;
 }
 
-/* soft paper wash so the stage never reads flat white */
+/* the actual paper — full-bleed, fading in from the page above */
 .deckstage::before {
   content: '';
   position: absolute;
-  inset: -8% -30% -4%;
-  background:
-    radial-gradient(58% 68% at 50% 88%, rgba(228, 221, 201, 0.5), transparent 74%),
-    linear-gradient(180deg, transparent 4%, rgba(239, 237, 231, 0.85) 58%, rgba(228, 221, 201, 0.35) 100%);
+  inset: 0;
+  background: url('/styles/paper.jpg') center / cover no-repeat;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 22%);
   z-index: -2;
 }
 
@@ -1400,7 +1402,7 @@ input.seg__control::placeholder {
   border-radius: 50%;
   background: radial-gradient(circle, var(--mist-2) 0%, rgba(239, 237, 231, 0.5) 45%, transparent 70%);
   animation: glowpulse 9s var(--ease) infinite alternate;
-  opacity: 0.55;
+  opacity: 0.3;
   z-index: -1;
 }
 
