@@ -1568,9 +1568,9 @@ input.seg__control::placeholder {
 }
 
 .sketch--center {
-  height: clamp(320px, 48vh, 500px);
+  height: clamp(210px, 30vh, 320px);
   aspect-ratio: 474 / 698;
-  opacity: 0.42;
+  opacity: 0.45;
 }
 
 .sketch--walk .sketch__hatch {

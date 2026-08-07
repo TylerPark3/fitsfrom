@@ -319,12 +319,12 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
         <div className="deckstage" aria-hidden="true">
           <span className="deckstage__glow" />
           <div className="sketch sketch--walk">
-            <img className="sketch__base" src="/styles/watermark2.jpg" alt="" />
+            <img className="sketch__base" src="/styles/watermark2-cut.png" alt="" />
             <span className="sketch__hatch" />
             <span className="sketch__hatch sketch__hatch--cross" />
           </div>
           <div className="sketch sketch--center">
-            <img className="sketch__base" src="/styles/watermark.jpg" alt="" />
+            <img className="sketch__base" src="/styles/watermark-cut.png" alt="" />
             <span className="sketch__hatch" />
             <span className="sketch__hatch sketch__hatch--cross" />
           </div>
