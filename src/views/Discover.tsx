@@ -7,6 +7,7 @@ import { useStore } from '../lib/store'
 import { rank } from '../lib/match'
 import { ProductCard } from '../components/ProductCard'
 import { ScentShelf } from '../components/ScentShelf'
+import { SCENTS } from '../data/scents'
 import { Arrow, Search } from '../components/Icons'
 import { Type } from '../components/Type'
 
@@ -27,6 +28,7 @@ const ASKS: { id: string; label: string; test: (p: Product) => boolean }[] = [
   { id: 'shorts', label: 'Shorts', test: (p) => p.category === 'pants' && p.silhouette === 'short' },
   { id: 'shoes', label: 'Shoes', test: (p) => p.category === 'shoes' },
   { id: 'acc', label: 'Accessories', test: (p) => p.category === 'accessory' },
+  { id: 'scents', label: 'Scents', test: () => false },
 ]
 
 export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v: View) => void }) {
@@ -41,8 +43,31 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
     ? profile.icons
     : Array.from(new Set(FITS.map((f) => f.who)))
 
-  const results = useMemo(() => {
+  // Scents surface only when asked for — never by default.
+  const scentHits = useMemo(() => {
     if (!executed) return []
+    const needle = q.trim().toLowerCase()
+    const scentQuery =
+      ask === 'scents' || /scent|cologne|fragrance|perfume|parfum|smell/.test(needle)
+    if (!scentQuery && needle) {
+      const named = SCENTS.filter((sc) =>
+        `${sc.house} ${sc.name} ${sc.notes} ${sc.wornBy}`.toLowerCase().includes(needle),
+      )
+      return named.map((sc) => sc.id)
+    }
+    if (!scentQuery) return []
+    const pool = needle
+      ? SCENTS.filter((sc) =>
+          `${sc.house} ${sc.name} ${sc.notes} ${sc.wornBy}`
+            .toLowerCase()
+            .includes(needle.replace(/scents?|cologne|fragrance|perfume|parfum|smell/g, '').trim()),
+        )
+      : SCENTS
+    return (pool.length ? pool : SCENTS).map((sc) => sc.id)
+  }, [executed, ask, q])
+
+  const results = useMemo(() => {
+    if (!executed || ask === 'scents') return []
     const test = ASKS.find((a) => a.id === ask)?.test ?? (() => true)
     const needle = q.trim().toLowerCase()
 
@@ -213,24 +238,26 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
             </button>
           </div>
 
-          {results.length === 0 ? (
+          {scentHits.length > 0 && (
+            <div style={{ marginBottom: 34 }}>
+              <ScentShelf ids={scentHits} />
+            </div>
+          )}
+
+          {results.length === 0 && scentHits.length === 0 ? (
             <div className="empty">
               <h3>Nothing in the vault for that.</h3>
               <p>Loosen the ask or drop the icon filter.</p>
             </div>
-          ) : (
+          ) : results.length > 0 ? (
             <div className="grid">
               {results.map((p) => (
                 <ProductCard key={p.id} product={p} onOpen={onOpen} />
               ))}
             </div>
-          )}
+          ) : null}
         </>
-      ) : (
-        <div style={{ marginTop: 72 }}>
-          <ScentShelf />
-        </div>
-      )}
+      ) : null}
     </div>
   )
 }

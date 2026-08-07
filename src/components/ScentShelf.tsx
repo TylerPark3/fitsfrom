@@ -18,8 +18,9 @@ export function Bottle({ color, initial }: { color: string; initial: string }) {
 }
 
 /** The scent shelf — favorite what you'd wear; wearer tags are community-reported. */
-export function ScentShelf() {
+export function ScentShelf({ ids }: { ids?: string[] }) {
   const { scentFavs, toggleScentFav, toast } = useStore()
+  const list = ids ? SCENTS.filter((sc) => ids.includes(sc.id)) : SCENTS
   return (
     <div className="section">
       <div className="section__head">
@@ -27,7 +28,7 @@ export function ScentShelf() {
         <span className="tiny">Community-reported wearers — not endorsements</span>
       </div>
       <div className="scentgrid">
-        {SCENTS.map((sc) => (
+        {list.map((sc) => (
           <div className="scent" key={sc.id}>
             <div className="scent__bottle">
               <Bottle color={sc.color} initial={sc.house[0]} />
