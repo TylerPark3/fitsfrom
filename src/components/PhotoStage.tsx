@@ -46,7 +46,14 @@ export function PhotoStage({ compact = false }: { compact?: boolean }) {
       setGen(0)
       // Real analysis runs while the scan plays — auto-center + place the pins.
       void analyzeBody(raw).then((r) => {
-        if (r) setProfile({ photo: r.photo, pose: r.pose, photoScale: 1, photoY: 50 })
+        if (r)
+          setProfile({
+            photo: r.photo,
+            pose: r.pose,
+            photoScale: 1,
+            photoY: 50,
+            ...(r.face ? { faceX: r.face.x, faceY: r.face.y, faceZoom: Number(r.face.zoom.toFixed(1)) } : {}),
+          })
       })
     } catch {
       toast('Couldn’t read that image')

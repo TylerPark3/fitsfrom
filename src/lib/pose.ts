@@ -10,6 +10,12 @@ export interface BodyPose {
   cx: number
 }
 
+export interface FaceCrop {
+  x: number
+  y: number
+  zoom: number
+}
+
 function loadImage(src: string): Promise<HTMLImageElement> {
   return new Promise((res, rej) => {
     const img = new Image()
@@ -21,7 +27,7 @@ function loadImage(src: string): Promise<HTMLImageElement> {
 
 export async function analyzeBody(
   dataUrl: string,
-): Promise<{ photo: string; pose: BodyPose } | null> {
+): Promise<{ photo: string; pose: BodyPose; face: FaceCrop | null } | null> {
   try {
     const [tf, pd] = await Promise.all([
       import('@tensorflow/tfjs'),
@@ -84,7 +90,22 @@ export async function analyzeBody(
       inseam: fy((hipY + ankleY) / 2),
       cx: Math.min(0.88, Math.max(0.12, (cxAbs - cx0) / cw)),
     }
-    return { photo, pose }
+
+    // Auto face crop: center on the nose, zoom from eye distance.
+    let face: FaceCrop | null = null
+    const nose = kp.find((k) => k.name === 'nose')
+    const le = kp.find((k) => k.name === 'left_eye')
+    const re2 = kp.find((k) => k.name === 'right_eye')
+    if (nose) {
+      const eyeDist = le && re2 ? Math.hypot(le.x - re2.x, le.y - re2.y) : cw * 0.05
+      const headW = Math.max(cw * 0.06, eyeDist * 2.6)
+      face = {
+        x: Math.round(Math.min(96, Math.max(4, ((nose.x - cx0) / cw) * 100))),
+        y: Math.round(Math.min(96, Math.max(2, ((nose.y - cy0) / ch) * 100))),
+        zoom: Math.min(5, Math.max(1.4, cw / (headW * 2.1))),
+      }
+    }
+    return { photo, pose, face }
   } catch {
     return null
   }

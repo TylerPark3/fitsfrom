@@ -39,9 +39,14 @@ export function AvatarView({ go }: { go: (v: View) => void }) {
       const raw = await fileToDataUrl(file, 1400)
       setProfile({ photo: raw, pose: null })
       void analyzeBody(raw).then((r) => {
-        if (r) setProfile({ photo: r.photo, pose: r.pose })
+        if (r)
+          setProfile({
+            photo: r.photo,
+            pose: r.pose,
+            ...(r.face ? { faceX: r.face.x, faceY: r.face.y, faceZoom: Number(r.face.zoom.toFixed(1)) } : {}),
+          })
       })
-      toast('Scan read — set your face crop')
+      toast('Scan read — face auto-centered')
     } finally {
       setBusy(false)
     }
