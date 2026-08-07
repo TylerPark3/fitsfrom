@@ -1,0 +1,67 @@
+import type { ReactNode } from 'react'
+import type { Product } from '../data/catalog'
+import { useStore } from '../lib/store'
+import { matchScore } from '../lib/match'
+import { recommendSize } from '../lib/sizing'
+import { Bookmark } from './Icons'
+
+export function ProductCard({
+  product,
+  onOpen,
+  footer,
+}: {
+  product: Product
+  onOpen: (id: string) => void
+  footer?: ReactNode
+}) {
+  const { profile, saved, toggleSaved, toast } = useStore()
+  const isSaved = saved.includes(product.id)
+  const { score } = matchScore(product, profile)
+  const rec = recommendSize(product, profile)
+
+  return (
+    <div className="card">
+      <button
+        className="card__frame"
+        onClick={() => onOpen(product.id)}
+        aria-label={`${product.brand} ${product.name}, $${product.price}`}
+        style={{ width: '100%', border: 0, padding: 0 }}
+      >
+        <img className="card__img" src={product.image} alt="" loading="lazy" />
+        {profile.onboarded && score >= 85 && (
+          <span className="card__badge card__badge--good">
+            <i />
+            {score}%
+          </span>
+        )}
+      </button>
+
+      <button
+        className="card__save"
+        aria-pressed={isSaved}
+        aria-label={isSaved ? 'Remove from saved' : 'Save'}
+        onClick={() => {
+          toggleSaved(product.id)
+          toast(isSaved ? 'Removed' : 'Saved')
+        }}
+      >
+        <Bookmark filled={isSaved} />
+      </button>
+
+      <button
+        className="card__meta"
+        onClick={() => onOpen(product.id)}
+        style={{ textAlign: 'left', width: '100%' }}
+      >
+        <div className="card__brand">{product.brand}</div>
+        <div className="card__name">{product.name}</div>
+        <div className="card__line">
+          <span>${product.price.toFixed(product.price % 1 ? 2 : 0)}</span>
+          {product.sizeSystem !== 'one' && <span className="card__size">{rec.label}</span>}
+        </div>
+      </button>
+
+      {footer}
+    </div>
+  )
+}
