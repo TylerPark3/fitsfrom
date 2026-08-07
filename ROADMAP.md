@@ -36,6 +36,8 @@ Everything is localStorage today. Supabase (free tier) turns on, in order of val
 ## 3 · Product features (ranked by effort-to-impact)
 
 - [ ] **Scan your fit (AI)** — photo of today's outfit → Claude vision API identifies pieces → matches catalog + icon similarity score. This is the "best of technology" differentiator vs Pinterest; needs a tiny serverless function to hold the API key (Cloudflare Worker, ~50 lines).
+- [ ] **AI try-on (THE paid feature)** — tap a piece in a fit file → render it onto your own snap (image-edit model). Free tier: browse + 3 unlocks/day. Pro ($5/mo via Stripe Payment Link): try-on, unlimited unlocks, unlimited wardrobe/saves. Do NOT charge before the backend exists — a client-side paywall is bypassable in DevTools.
+- [ ] **Face scan profile** — Face-ID-style scan animation for the profile avatar; real value only once try-on exists (face consistency in renders).
 - [ ] **Quick-add parser v2** — brand autocomplete from the catalog's 24 brands, size validation, category confirm chip instead of silent guess.
 - [ ] **Per-fit share pages** — `/fit/poole-arrival` URLs with prerendered OG images so each breakdown is shareable/rankable. Needs prerendering (vite-plugin or migrate to Astro later). Big SEO unlock: "jordan poole outfit" searches land on you.
 - [ ] **Style twin v2** — show the twin reveal as a shareable card at end of onboarding (the Spotify-Wrapped moment; screenshot-bait for IG stories).
@@ -47,7 +49,8 @@ Everything is localStorage today. Supabase (free tier) turns on, in order of val
 
 1. **Affiliate links** — wired, dormant until Sovrn key. Track outbound clicks once analytics exist.
 2. **Brand placement** — once fits get traffic: a niche brand pays to be the "worn" match in a file (clearly labeled). $500–2k/mo per slot is standard for this audience size class.
-3. **Pro tier ($4/mo) later** — unlimited breakdown unlocks, price-drop alerts, back-in-stock pings. Never paywall the culture content itself.
+3. **Pro tier ($5/mo) later** — AI try-on, unlimited unlocks, unlimited wardrobe. Stripe Payment Link (no code needed) once the backend can enforce it. Free-first: get them enthralled, charge for the magic, never paywall the culture content.
+4. **Attribution, answered** — you never have to "prove" a sale to a brand: the affiliate network (Sovrn) wraps your links, the click sets a cookie at the brand's checkout, the network reports and pays automatically (~30-day window, 5–15%). Once volume exists, go direct to small brands with a code ("FITSFROM10") — codes are self-proving and usually pay better (15–20%).
 
 ## 5 · Tech debt / hygiene
 

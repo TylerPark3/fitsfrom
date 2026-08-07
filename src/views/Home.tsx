@@ -158,27 +158,27 @@ const DEMO_STEPS = [
   {
     kicker: 'STEP 01 — SNAP',
     title: 'Take a photo of yourself in a fit',
-    step: 'Snap yourself. It never leaves your phone.',
+    step: 'Photo of yourself',
   },
   {
     kicker: 'STEP 02 — ICONS',
     title: 'Pick who inspires you',
-    step: 'Choose your fashion icons — Poole, SGA, Tyler, V.',
+    step: 'Choose your style',
   },
   {
     kicker: 'STEP 03 — SIZES',
     title: 'Your sizes, computed per brand',
-    step: 'Every brand’s cut mapped to your body.',
+    step: 'Sizes',
   },
   {
     kicker: 'STEP 04 — PORTFOLIO',
     title: 'A portfolio of fits built for you',
-    step: 'Tailored fits, every piece linked.',
+    step: 'Your fits',
   },
   {
     kicker: 'STEP 05 — WARDROBE',
     title: '“carhartt jeans, 32” → added',
-    step: 'Type what you own. Get your icon match score.',
+    step: 'Your wardrobe',
   },
 ]
 
