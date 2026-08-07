@@ -10,7 +10,7 @@ import {
   type Store,
 } from './lib/store'
 import { Grid, Hanger, Person, CheckInk } from './components/Icons'
-import { getPreset, installClickSounds, isMuted, setMuted, setPreset, type Preset } from './lib/click'
+import { installClickSounds, isMuted, setMuted } from './lib/click'
 import { Home } from './views/Home'
 import { Onboarding } from './views/Onboarding'
 import { AvatarView } from './views/AvatarView'
@@ -318,8 +318,7 @@ function Nav({
   signedIn: boolean
   daysLeft: number | null
 }) {
-  // Cycles: 808 → snap → muted → 808
-  const [mode, setMode] = useState<Preset | 'muted'>(isMuted() ? 'muted' : getPreset())
+  const [sound, setSound] = useState(!isMuted())
   return (
     <header className="nav">
       <div className="wrap nav__inner">
@@ -360,21 +359,16 @@ function Nav({
 
         <button
           className="iconbtn"
-          aria-label={`Sound: ${mode}. Click to change.`}
-          title={mode === 'muted' ? 'Muted' : `${mode} click`}
+          aria-label={sound ? 'Mute clicks' : 'Unmute clicks'}
+          aria-pressed={!sound}
           onClick={() => {
-            const next: Preset | 'muted' =
-              mode === '808' ? 'snap' : mode === 'snap' ? 'muted' : '808'
-            setMode(next)
-            if (next === 'muted') setMuted(true)
-            else {
-              setMuted(false)
-              setPreset(next)
-            }
+            const next = !sound
+            setMuted(!next)
+            setSound(next)
           }}
-          style={{ fontSize: 11, fontFamily: 'var(--mono)', letterSpacing: '0.06em' }}
+          style={{ fontSize: 13 }}
         >
-          {mode === 'muted' ? '🔇' : mode === '808' ? '808' : 'SNP'}
+          {sound ? '🔊' : '🔇'}
         </button>
 
         {daysLeft !== null && daysLeft > 0 && (

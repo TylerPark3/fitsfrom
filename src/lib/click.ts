@@ -57,26 +57,11 @@ const PRESETS: Record<Preset, Record<Variant, Tone>> = {
   },
 }
 
-let preset: Preset = '808'
-try {
-  const saved = localStorage.getItem('fitsfrom.sound')
-  if (saved === '808' || saved === 'snap') preset = saved
-} catch {
-  /* storage blocked — keep the default */
-}
+// Shipped sound. The '808' set stays in PRESETS as a documented alternative.
+const preset: Preset = 'snap'
 
 export function getPreset() {
   return preset
-}
-
-export function setPreset(p: Preset) {
-  preset = p
-  try {
-    localStorage.setItem('fitsfrom.sound', p)
-  } catch {
-    /* ignore */
-  }
-  playClick('select')
 }
 
 export function playClick(variant: Variant = 'tap') {

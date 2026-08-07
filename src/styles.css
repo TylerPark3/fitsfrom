@@ -3914,6 +3914,30 @@ input.seg__control::placeholder {
   overflow: visible;
 }
 
+/* the avatar build, carried into Explore */
+.buildbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--tile);
+}
+
+.buildbar__vals {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-2);
+}
+
+.buildbar .btn {
+  margin-left: auto;
+}
+
 /* new arrivals section under the ask */
 .arrivals {
   margin-top: 56px;
