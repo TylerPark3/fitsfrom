@@ -44,6 +44,18 @@ const BRANDS = [
 
 const UA = { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)' }
 
+const MATERIALS = ['cotton','wool','merino','cashmere','linen','nylon','polyester','suede','leather','denim','corduroy','fleece','canvas','ripstop','mohair','alpaca','silk','tencel','hemp','moleskin','twill','jersey','terry']
+
+function extractFabric(html) {
+  if (!html) return ''
+  const text = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ')
+  const pct = text.match(/\d{2,3}%\s*[A-Za-z]+(?:\s*[,/]\s*\d{1,3}%\s*[A-Za-z]+)?/)
+  if (pct) return pct[0].slice(0, 60)
+  const lower = text.toLowerCase()
+  const hit = MATERIALS.find((m) => lower.includes(m))
+  return hit ? hit[0].toUpperCase() + hit.slice(1) : ''
+}
+
 async function feed(domain) {
   const out = []
   for (let page = 1; page <= 3; page++) {
@@ -77,6 +89,8 @@ for (const [brand, domain] of BRANDS) {
         available: p.variants.some((v) => v.available),
         sizes: p.variants.map((v) => v.title).slice(0, 14),
         image: p.images[0].src.split('?')[0],
+        images: p.images.slice(0, 4).map((im) => im.src.split('?')[0]),
+        fabric: extractFabric(p.body_html),
         url: `https://${domain}/products/${p.handle}`,
       }))
     console.error(`ok   ${brand.padEnd(20)} ${all[brand].length}`)

@@ -17,6 +17,7 @@ export interface Product {
   /** How the garment runs vs. true size. -1 slim / 0 true / +1 roomy */
   fitBias: -1 | 0 | 1
   image: string
+  fabric?: string
   silhouette: Silhouette
   url: string
 }

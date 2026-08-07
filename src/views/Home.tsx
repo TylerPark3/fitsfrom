@@ -138,14 +138,14 @@ export function Home({ go }: { go: (v: View) => void }) {
           </div>
           <div className="strip__cell">
             <div className="strip__n serif">02</div>
-            <h3>Every piece identified</h3>
-            <p>Top to bottom, with the exact size to buy for your body.</p>
+            <h3>Catalogue everything you own</h3>
+            <p>Snap it or type it — your whole closet, on shelves, sized.</p>
           </div>
           <div className="strip__cell">
             <div className="strip__n serif">03</div>
-            <h3>Straight from the source</h3>
+            <h3>New pieces from your favorite artists</h3>
             <p>
-              {BRANDS.length} brands, {CATALOG.length} live pieces. No middleman.
+              Proven fits, not algorithm slop — {BRANDS.length} brands, {CATALOG.length} live pieces, straight from the source.
             </p>
           </div>
         </div>

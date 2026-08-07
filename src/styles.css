@@ -643,8 +643,8 @@ img {
 
 .split {
   display: grid;
-  grid-template-columns: 244px 1fr;
-  gap: 44px;
+  grid-template-columns: 204px 1fr;
+  gap: 30px;
   align-items: start;
   padding-bottom: 100px;
 }

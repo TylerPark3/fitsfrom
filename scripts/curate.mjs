@@ -95,8 +95,11 @@ const sizeSystemFor = (cat, sizes) => {
   return 'alpha'
 }
 
+const BRAND_SKIP = new Set(['Gitman Vintage', 'Rowing Blazers', 'Taylor Stitch'])
+
 const out = []
 for (const [brand, products] of Object.entries(feeds)) {
+  if (BRAND_SKIP.has(brand)) continue
   const styles = BRAND_STYLES[brand] ?? ['minimal']
   const seen = new Set()
   const perCat = {}
@@ -105,6 +108,10 @@ for (const [brand, products] of Object.entries(feeds)) {
   for (const p of products) {
     if (!p.available || p.price < 20) continue
     if (EXCLUDE.test(p.title) || EXCLUDE.test(p.type)) continue
+    const meta = `${p.type} ${p.title} ${(p.tags || []).join(' ')}`
+    if (/\bwomen'?s?\b|\bwmns\b|\bwomans?\b|female|\bdress\b|skirt|blouse|bralette|\bher\b/i.test(meta)) continue
+    // Boring blanks don't make the edit.
+    if (/^\s*(classic |basic |essential )?(black |white |grey |gray |navy )?(t-?shirt|tee)\s*$/i.test(p.title)) continue
     const hay = `${p.type} ${p.title}`
     const cat = CAT.find(([, re]) => re.test(hay))?.[0]
     if (!cat) continue
@@ -128,6 +135,8 @@ for (const [brand, products] of Object.entries(feeds)) {
       sizeSystem: sizeSystemFor(cat, p.sizes),
       fitBias: 0,
       image: `${p.image}?width=900`,
+      fabric: p.fabric || '',
+      _candidates: (p.images || [p.image]).slice(0, 4),
       silhouette,
       url: p.url,
     })

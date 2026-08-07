@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { CATALOG } from '../data/catalog'
+import { FITS } from '../data/fits'
+import { resolve } from '../lib/fitmatch'
 import { STYLES, TIERS } from '../data/taxonomy'
 import { useStore } from '../lib/store'
 import { matchScore, scoreLabel } from '../lib/match'
@@ -30,6 +32,9 @@ export function ProductDrawer({
   const isSaved = saved.includes(product.id)
   const tier = TIERS.find((t) => t.id === product.tier)!
 
+  // Proven in the culture: which fit files this exact piece backs.
+  const seenIn = FITS.filter((f) => f.pieces.some((pc) => resolve(pc)?.id === product.id)).slice(0, 3)
+
   return (
     <>
       <div className="scrim" onClick={onClose} />
@@ -48,6 +53,16 @@ export function ProductDrawer({
 
           <h2>{product.name}</h2>
           <div className="pdp__price">${product.price.toFixed(product.price % 1 ? 2 : 0)}</div>
+
+          {seenIn.length > 0 && (
+            <div className="reasons" style={{ marginTop: 14 }}>
+              {seenIn.map((f) => (
+                <span className="reason" key={f.id} style={{ background: 'var(--ink)', color: 'var(--paper)' }}>
+                  As matched in the {f.who} file
+                </span>
+              ))}
+            </div>
+          )}
 
           {profile.onboarded && (
             <div className="reasons">
@@ -84,6 +99,12 @@ export function ProductDrawer({
           )}
 
           <dl className="speclist">
+            {product.fabric && (
+              <div className="spec">
+                <dt>Fabric</dt>
+                <dd>{product.fabric}</dd>
+              </div>
+            )}
             <div className="spec">
               <dt>Quality</dt>
               <dd>
