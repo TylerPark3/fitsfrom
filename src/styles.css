@@ -2920,6 +2920,268 @@ input.seg__control::placeholder {
   margin-bottom: 14px;
 }
 
+/* the dorm room */
+.room2 {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, #f6f3ec 0%, #efeade 72%, transparent 72%),
+    linear-gradient(180deg, transparent 72%, #e0d6c2 72%, #d6c9b0 100%);
+  min-height: 380px;
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+
+.room2__floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 28%;
+  background: repeating-linear-gradient(90deg, transparent 0 88px, rgba(18, 25, 21, 0.05) 88px 90px);
+}
+
+.room2__posters {
+  position: absolute;
+  top: 26px;
+  right: 26px;
+  display: flex;
+  gap: 14px;
+  z-index: 2;
+}
+
+.room2__poster {
+  width: 96px;
+  aspect-ratio: 3 / 4;
+  border: 5px solid #fff;
+  box-shadow: 0 6px 16px rgba(18, 25, 21, 0.22);
+  transform: rotate(1.6deg);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 750;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+}
+
+.room2__poster:first-child {
+  transform: rotate(-2deg);
+}
+
+.room2__poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.room2__poster--empty {
+  background: var(--ink);
+  font-family: 'Instrument Serif', serif;
+  font-size: 26px;
+}
+
+.room2__rail {
+  position: absolute;
+  top: 34px;
+  left: 26px;
+  width: min(46%, 380px);
+  height: 190px;
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  padding-top: 14px;
+}
+
+.room2__bar {
+  position: absolute;
+  top: 8px;
+  left: -6px;
+  right: -6px;
+  height: 5px;
+  border-radius: 999px;
+  background: #8a7a5e;
+  box-shadow: 0 2px 4px rgba(18, 25, 21, 0.25);
+}
+
+.room2__hint {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 60px auto 0;
+}
+
+.hanger {
+  position: relative;
+  width: 58px;
+  flex: none;
+  transform-origin: top center;
+  animation: sway 4s ease-in-out infinite alternate;
+}
+
+@keyframes sway {
+  from {
+    transform: rotate(-1.6deg);
+  }
+  to {
+    transform: rotate(1.8deg);
+  }
+}
+
+.hanger__hook {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #6f614a;
+  border-bottom: 0;
+  border-radius: 50% 50% 0 0;
+  transform: translateX(-50%);
+}
+
+.hanger img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 6px 6px 10px 10px;
+  box-shadow: 0 5px 10px rgba(18, 25, 21, 0.16);
+  background: #fff;
+}
+
+.room2__rail:hover .hanger img {
+  outline: 2px solid var(--red);
+}
+
+.room2__dresser {
+  position: absolute;
+  left: 26px;
+  bottom: 24px;
+  width: 170px;
+  height: 120px;
+  background: #b59a6d;
+  border-radius: 10px 10px 6px 6px;
+  box-shadow: inset 0 -34px 0 rgba(18, 25, 21, 0.12), 0 8px 14px rgba(18, 25, 21, 0.2);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 5px;
+  padding-top: 0;
+}
+
+.room2__dressertop {
+  position: absolute;
+  top: -8px;
+  left: -6px;
+  right: -6px;
+  height: 10px;
+  background: #9c8258;
+  border-radius: 4px;
+}
+
+.fold {
+  width: 34px;
+  height: 26px;
+  margin-top: -14px;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 3px 6px rgba(18, 25, 21, 0.25);
+}
+
+.fold img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.room2__dresser:hover {
+  filter: brightness(1.05);
+}
+
+.room2__shoes {
+  position: absolute;
+  left: 230px;
+  bottom: 18px;
+  display: flex;
+  gap: 8px;
+}
+
+.room2__shoes img {
+  width: 46px;
+  height: 34px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(18, 25, 21, 0.2);
+  background: #fff;
+}
+
+.room2__shoes:hover img {
+  outline: 2px solid var(--red);
+}
+
+/* you, rendered 2K-style */
+.me2k {
+  position: absolute;
+  right: 24%;
+  bottom: 12px;
+  width: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 300ms var(--ease);
+}
+
+.me2k__head {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--mist-2) center / 300% auto no-repeat;
+  border: 2.5px solid #fff;
+  box-shadow: 0 4px 10px rgba(18, 25, 21, 0.25);
+  margin-bottom: -10px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  font-family: 'Instrument Serif', serif;
+  font-size: 22px;
+  color: var(--ink-4);
+  transition: transform 180ms var(--ease);
+}
+
+.me2k__body {
+  width: 84px;
+}
+
+.me2k__tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 999px;
+  padding: 3px 9px;
+  margin-top: 6px;
+}
+
+@media (max-width: 760px) {
+  .room2__posters {
+    top: 14px;
+    right: 14px;
+  }
+
+  .room2__poster {
+    width: 64px;
+  }
+
+  .me2k {
+    right: 6%;
+  }
+}
+
 /* closet shelves */
 .shelf {
   margin-bottom: 22px;

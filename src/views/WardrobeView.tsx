@@ -9,6 +9,7 @@ import { fileToDataUrl } from '../lib/img'
 import { ProductCard } from '../components/ProductCard'
 import { Arrow, Plus, Trash, Upload, CheckInk } from '../components/Icons'
 import { Type } from '../components/Type'
+import { Room } from '../components/Room'
 
 export function WardrobeView({
   onOpen,
@@ -83,6 +84,8 @@ export function WardrobeView({
         </h2>
         <p>Fill the short bars before buying another of what you own.</p>
       </div>
+
+      <Room />
 
       <div className="gaps">
         {gaps.map((g) => (
@@ -186,7 +189,7 @@ function Closet({ onOpen }: { onOpen: (id: string) => void }) {
         </span>
       </div>
       {filled.map((sh) => (
-        <div className="shelf" key={sh.label}>
+        <div className="shelf" key={sh.label} id={`shelf-${sh.label}`}>
           <div className="shelf__head">
             <span>{sh.label}</span>
             <b>{sh.items.length}</b>
