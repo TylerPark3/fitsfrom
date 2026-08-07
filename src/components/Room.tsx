@@ -30,6 +30,7 @@ const TEAM_POSTERS: Record<string, string> = {
   Bulls: '/room/poster-bulls.jpg',
   Timberwolves: '/room/poster-timberwolves.jpg',
   Celtics: '/room/poster-celtics.jpg',
+  Heat: '/room/poster-heat.jpg',
 }
 
 /** The dorm — your closet as a place. Head follows the mouse, 2K-style. */
