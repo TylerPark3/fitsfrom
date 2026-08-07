@@ -4,8 +4,8 @@ import { CATALOG, type Product } from '../data/catalog'
 import { CATEGORIES, CORE_SLOTS, STYLES } from '../data/taxonomy'
 import { useStore, type CustomPiece } from '../lib/store'
 import { rank } from '../lib/match'
+import { recommendSize } from '../lib/sizing'
 import { fileToDataUrl } from '../lib/img'
-import { SCENTS } from '../data/scents'
 import { ProductCard } from '../components/ProductCard'
 import { Arrow, Plus, Trash, Upload, CheckInk } from '../components/Icons'
 
@@ -64,7 +64,6 @@ export function WardrobeView({
         </div>
         <div style={{ marginTop: 40 }}>
           <OwnCloset />
-          <ScentShelf />
           <FitPlanner />
         </div>
       </div>
@@ -123,8 +122,6 @@ export function WardrobeView({
       <OwnCloset />
 
       <MoreLikeYours onOpen={onOpen} />
-
-      <ScentShelf />
 
       <FitPlanner />
 
@@ -231,21 +228,6 @@ function Closet({ onOpen }: { onOpen: (id: string) => void }) {
   )
 }
 
-/** Stylised bottle so the shelf reads visual, not textual. */
-function Bottle({ color, initial }: { color: string; initial: string }) {
-  return (
-    <svg viewBox="0 0 60 84" className="bottle" aria-hidden="true">
-      <rect x="24" y="2" width="12" height="10" rx="2" fill="#1a1f1c" />
-      <rect x="26" y="12" width="8" height="6" fill="#8b8f8a" />
-      <rect x="10" y="18" width="40" height="62" rx="7" fill="#eef0ee" stroke="#d5d8d3" />
-      <rect x="14" y="30" width="32" height="46" rx="4" fill={color} opacity="0.85" />
-      <rect x="17" y="22" width="5" height="52" rx="2.5" fill="#fff" opacity="0.45" />
-      <text x="30" y="58" textAnchor="middle" fontFamily="Instrument Serif, serif" fontSize="17" fill="#fff">
-        {initial}
-      </text>
-    </svg>
-  )
-}
 
 const CAT_KW: [string, RegExp][] = [
   ['shoes', /sneaker|shoe|boot|loafer|runner|chuck|force|dunk|jordan\b/i],
@@ -265,10 +247,20 @@ function parseQuickAdd(input: string) {
   return { name: name || input.trim(), category, size: size.toUpperCase() }
 }
 
-/** Alta-style closet snap: photograph your own piece, it lives on this device. */
+/** Add to closet: search the vault, type it, or snap it — no popups. */
 function OwnCloset() {
-  const { customs, addCustom, removeCustom, toast } = useStore()
+  const { addCustom, addToWardrobe, profile, toast } = useStore()
+  const input = useRef<HTMLInputElement>(null)
+  const [busy, setBusy] = useState(false)
   const [quick, setQuick] = useState('')
+  const [vaultQ, setVaultQ] = useState('')
+  const [pending, setPending] = useState<{ photo: string; name: string; category: string } | null>(null)
+
+  const vaultHits = vaultQ.trim()
+    ? CATALOG.filter((p) =>
+        `${p.brand} ${p.name}`.toLowerCase().includes(vaultQ.trim().toLowerCase()),
+      ).slice(0, 4)
+    : []
 
   const quickAdd = () => {
     const q = quick.trim()
@@ -278,21 +270,13 @@ function OwnCloset() {
     setQuick('')
     toast(`Catalogued — ${name}`)
   }
-  const input = useRef<HTMLInputElement>(null)
-  const [busy, setBusy] = useState(false)
 
   const accept = async (file: File | undefined) => {
     if (!file?.type.startsWith('image/')) return
     setBusy(true)
     try {
       const photo = await fileToDataUrl(file, 700)
-      const name = prompt('What is it? (e.g. “thrifted Carhartt hoodie”)')?.trim() || 'My piece'
-      const category =
-        prompt('Category — top / shirt / knit / outer / pants / shoes / accessory')
-          ?.trim()
-          .toLowerCase() || 'top'
-      addCustom({ id: `c${Date.now().toString(36)}`, name, category, photo })
-      toast('Added to your closet')
+      setPending({ photo, name: '', category: 'top' })
     } finally {
       setBusy(false)
     }
@@ -301,13 +285,49 @@ function OwnCloset() {
   return (
     <div className="section">
       <div className="section__head">
-        <h3>Your own pieces</h3>
-        <span className="tiny">Snapped by you · stays on this device</span>
+        <h3>Add to your closet</h3>
+        <span className="tiny">Search it · type it · snap it — stays on this device</span>
       </div>
-      <div className="room__input" style={{ marginBottom: 14 }}>
+
+      <div className="room__input" style={{ marginBottom: 10 }}>
         <input
           className="text-input"
-          placeholder="Type what you own — “carhartt jeans, 32”"
+          placeholder="Search the vault to add — “stussy tee”, “3sixteen”…"
+          value={vaultQ}
+          onChange={(e) => setVaultQ(e.target.value)}
+        />
+        <button className="btn btn--ghost" onClick={() => input.current?.click()} aria-label="Snap a photo">
+          <Upload size={16} />
+        </button>
+        <input ref={input} type="file" accept="image/*" hidden onChange={(e) => void accept(e.target.files?.[0])} />
+      </div>
+
+      {vaultHits.length > 0 && (
+        <div className="vaulthits">
+          {vaultHits.map((p) => (
+            <button
+              key={p.id}
+              className="vaulthit"
+              onClick={() => {
+                addToWardrobe(p.id, recommendSize(p, profile).label, true)
+                setVaultQ('')
+                toast(`In your closet — ${p.name}`)
+              }}
+            >
+              <img src={p.image} alt="" loading="lazy" />
+              <span>
+                <b>{p.brand}</b> {p.name}
+              </span>
+              <i>+ add</i>
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div className="room__input">
+        <input
+          className="text-input"
+          placeholder="Or type what you own — “carhartt jeans, 32”"
           value={quick}
           onChange={(e) => setQuick(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && quickAdd()}
@@ -316,41 +336,54 @@ function OwnCloset() {
           <Plus />
         </button>
       </div>
-      <div className="grid">
-        <button className="own own--add" onClick={() => input.current?.click()}>
-          <Upload />
-          <span>{busy ? 'Reading…' : 'Snap a piece you own'}</span>
-          <input
-            ref={input}
-            type="file"
-            accept="image/*"
-            capture="environment"
-            hidden
-            onChange={(e) => void accept(e.target.files?.[0])}
-          />
-        </button>
-        {customs.map((c) => (
-          <div className="own" key={c.id}>
-            {c.photo ? (
-              <img src={c.photo} alt={c.name} />
-            ) : (
-              <div className="own__mono" aria-hidden="true">
-                {c.name[0]?.toUpperCase()}
-              </div>
-            )}
-            <div className="own__meta">
-              <span>{c.name}</span>
+      {busy && <p className="tiny" style={{ marginTop: 8 }}>Reading photo…</p>}
+
+      {pending && (
+        <div className="snapform">
+          <img src={pending.photo} alt="" />
+          <div className="snapform__body">
+            <input
+              className="text-input"
+              placeholder="What is it? “thrifted hoodie”"
+              value={pending.name}
+              onChange={(e) => setPending({ ...pending, name: e.target.value })}
+              autoFocus
+            />
+            <div className="chips" style={{ margin: '10px 0 14px' }}>
+              {CATEGORIES.map((c) => (
+                <button
+                  key={c.id}
+                  className="chip chip--sm"
+                  aria-pressed={pending.category === c.id}
+                  onClick={() => setPending({ ...pending, category: c.id })}
+                >
+                  {c.label}
+                </button>
+              ))}
+            </div>
+            <div className="row" style={{ gap: 8 }}>
               <button
-                className="iconbtn"
-                aria-label={`Remove ${c.name}`}
-                onClick={() => removeCustom(c.id)}
+                className="btn btn--primary btn--sm"
+                onClick={() => {
+                  addCustom({
+                    id: `c${Date.now().toString(36)}`,
+                    name: pending.name.trim() || 'My piece',
+                    category: pending.category,
+                    photo: pending.photo,
+                  })
+                  setPending(null)
+                  toast('In your closet')
+                }}
               >
-                <Trash size={13} />
+                Add to closet
+              </button>
+              <button className="btn btn--quiet btn--sm" onClick={() => setPending(null)}>
+                Cancel
               </button>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      )}
     </div>
   )
 }
@@ -394,55 +427,6 @@ function MoreLikeYours({ onOpen }: { onOpen: (id: string) => void }) {
   )
 }
 
-/** The scent shelf — favorite what you'd wear; wearer tags are community-reported. */
-function ScentShelf() {
-  const { scentFavs, toggleScentFav, toast } = useStore()
-  return (
-    <div className="section">
-      <div className="section__head">
-        <h3>Scents</h3>
-        <span className="tiny">Community-reported wearers — not endorsements</span>
-      </div>
-      <div className="scentgrid">
-        {SCENTS.map((sc) => (
-          <div className="scent" key={sc.id}>
-            <div className="scent__bottle">
-              <Bottle color={sc.color} initial={sc.house[0]} />
-            </div>
-            <div className="scent__top">
-              <span className="card__brand">{sc.house}</span>
-              <button
-                className="scent__fav"
-                aria-pressed={scentFavs.includes(sc.id)}
-                aria-label={`Favorite ${sc.name}`}
-                onClick={() => {
-                  toggleScentFav(sc.id)
-                  toast(scentFavs.includes(sc.id) ? 'Removed' : `Saved — ${sc.name}`)
-                }}
-              >
-                {scentFavs.includes(sc.id) ? '♥' : '♡'}
-              </button>
-            </div>
-            <div className="scent__name serif">{sc.name}</div>
-            <div className="tiny" style={{ marginTop: 4 }}>{sc.notes}</div>
-            <div className="scent__worn">{sc.wornBy}</div>
-            <div className="spread" style={{ marginTop: 12 }}>
-              <b style={{ fontVariantNumeric: 'tabular-nums' }}>${sc.price}</b>
-              <a
-                className="btn btn--ghost btn--sm"
-                href={sc.url}
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                View
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
 
 /** Resolve an outfit ref to something drawable. */
 function refImage(ref: string, customs: CustomPiece[]): { img: string; label: string } | null {

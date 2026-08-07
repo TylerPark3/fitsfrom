@@ -1042,6 +1042,165 @@ input[type='range']:active::-webkit-slider-thumb {
   color: var(--ink-3);
 }
 
+/* ---------------------------------------------------------------- the ask (discover deck) */
+
+.deck {
+  max-width: 860px;
+  margin: 0 auto;
+  padding-top: clamp(48px, 9vh, 110px);
+  text-align: center;
+}
+
+.deck--docked {
+  padding-top: 28px;
+  max-width: none;
+  text-align: left;
+}
+
+.deck__head {
+  font-size: clamp(44px, 6.4vw, 84px);
+  letter-spacing: -0.045em;
+  font-weight: 750;
+  line-height: 0.94;
+  margin: 14px 0 30px;
+}
+
+.deck__head em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--red);
+}
+
+.deck__bar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  padding: 8px;
+  background: var(--tile);
+  box-shadow: var(--shadow);
+}
+
+.deck__bar .select {
+  border: 0;
+  background-color: transparent;
+  font-weight: 550;
+}
+
+.deck__ask {
+  flex: none;
+}
+
+.deck__q {
+  flex: 1;
+  max-width: none;
+}
+
+.deck__q input {
+  border: 0;
+  background: transparent;
+  font-size: 15px;
+}
+
+.deck__subs {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.deck--docked .deck__subs {
+  justify-content: flex-start;
+}
+
+@media (max-width: 720px) {
+  .deck__bar {
+    flex-wrap: wrap;
+    border-radius: 22px;
+  }
+
+  .deck__q {
+    min-width: 100%;
+    order: -1;
+  }
+}
+
+/* snap form + vault hits */
+.snapform {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--tile);
+  padding: 14px;
+  margin-top: 12px;
+}
+
+.snapform img {
+  width: 110px;
+  height: 138px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.vaulthits {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.vaulthit {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--tile);
+  padding: 8px 12px;
+  text-align: left;
+  font-size: 13.5px;
+  transition: border-color var(--fast);
+}
+
+.vaulthit:hover {
+  border-color: var(--ink);
+}
+
+.vaulthit img {
+  width: 40px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 7px;
+  background: #fff;
+}
+
+.vaulthit span {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.vaulthit b {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  margin-right: 6px;
+}
+
+.vaulthit i {
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--red);
+  flex: none;
+}
+
 /* ---------------------------------------------------------------- vault (locked discover) */
 
 .vaultcard {
@@ -2345,10 +2504,20 @@ input[type='range']:active::-webkit-slider-thumb {
 
 /* scents */
 .scent__bottle {
-  height: 108px;
+  position: relative;
+  height: 128px;
   display: grid;
   place-items: center;
   margin-bottom: 10px;
+}
+
+.scent__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: var(--tile);
 }
 
 .bottle {

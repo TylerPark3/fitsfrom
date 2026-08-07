@@ -213,6 +213,72 @@ export const FITS: Fit[] = [
     ],
   },
   {
+    id: 'bieber-night',
+    styles: ['minimal', 'street'],
+    who: 'Bieber',
+    where: 'Hollywood, night out',
+    when: 'Backwards cap, chains out',
+    context:
+      'Crisp white boxy camp shirt over ripped light-wash baggies into tan suede boots. Three pieces, zero effort, all proportion.',
+    vibe: 'White boxy shirt, ripped baggies, suede boots',
+    pieces: [
+      { slot: 'Cap', worn: 'Backwards black cap', match: { category: 'accessory', kw: 'cap|hat' } },
+      { slot: 'Shirt', worn: 'White boxy short-sleeve shirt', match: { category: 'shirt', kw: 'camp|short sleeve|boxy|white' } },
+      { slot: 'Chain', worn: 'Layered silver chains', match: { category: 'accessory', kw: 'chain|necklace|jewel' } },
+      { slot: 'Jeans', worn: 'Ripped light-wash baggy jeans', match: { category: 'pants', sil: 'jean', kw: 'jean(?!s? short)|denim(?! short)' } },
+      { slot: 'Boots', worn: 'Tan suede boots', match: { category: 'shoes', sil: 'boot', kw: 'boot|suede|mule' } },
+    ],
+  },
+  {
+    id: 'messi-notears',
+    styles: ['street', 'minimal'],
+    who: 'Messi',
+    where: 'Store exit, flashbulbs',
+    when: 'Shopping run',
+    context:
+      'The GOAT in a No Tears graphic tee, zebra-faded baggy denim and pool-blue slip-ons. Proof the fit formula is universal: one graphic, one silhouette, one color pop.',
+    vibe: 'Graphic tee, baggy wash, blue slip-ons',
+    pieces: [
+      { slot: 'Tee', worn: 'No Tears oversized graphic tee', match: { category: 'top', kw: 'graphic|print|tee' } },
+      { slot: 'Belt', worn: 'Black leather belt', match: { category: 'accessory', kw: 'belt' } },
+      { slot: 'Denim', worn: 'Faded baggy jeans', match: { category: 'pants', sil: 'jean', kw: 'jean(?!s? short)|denim(?! short)' } },
+      { slot: 'Shoes', worn: 'Pool-blue slip-ons', match: { category: 'shoes', kw: 'slip|canvas|sneaker' } },
+    ],
+  },
+  {
+    id: 'lamine-touchline',
+    styles: ['street', 'workwear'],
+    who: 'Lamine Yamal',
+    where: 'Touchline, suspended',
+    when: 'Watching from the sideline',
+    context:
+      'Seventeen, in a shearling-collar leather jacket, raw-dark baggy denim and Vans. Dressed better injured than the league does healthy.',
+    vibe: 'Shearling leather jacket, dark baggies, Vans',
+    pieces: [
+      { slot: 'Jacket', worn: 'Brown shearling-collar leather jacket', match: { category: 'outer', kw: 'leather|shearling|jacket' } },
+      { slot: 'Tee', worn: 'Black tee underneath', match: { category: 'top', kw: 'tee|t-shirt' } },
+      { slot: 'Denim', worn: 'Raw dark baggy denim', match: { category: 'pants', sil: 'jean', kw: 'jean(?!s? short)|denim(?! short)' } },
+      { slot: 'Shoes', worn: 'Two-tone Vans', match: { category: 'shoes', kw: 'canvas|vans|sneaker|skate' } },
+    ],
+  },
+  {
+    id: 'flacko-money',
+    styles: ['street', 'skate'],
+    who: 'Pretty Flacko',
+    where: 'SoHo crosswalk',
+    when: 'Winter, walking like a runway',
+    context:
+      'Money-print puffer over a cash-print hoodie, Supreme denim jorts, tube socks, wheat Timbs. Nobody else survives this outfit. He owns it.',
+    vibe: 'Money-print puffer, denim jorts, wheat Timbs',
+    pieces: [
+      { slot: 'Puffer', worn: 'Money-print puffer jacket', match: { category: 'outer', kw: 'puffer|down|print' } },
+      { slot: 'Hoodie', worn: 'Cash-print zip hoodie', match: { category: 'top', kw: 'hoodie|zip|print' } },
+      { slot: 'Jorts', worn: 'Supreme denim jorts', match: { category: 'pants', kw: 'short' } },
+      { slot: 'Socks', worn: 'Striped tube socks', match: { category: 'accessory', kw: 'sock' } },
+      { slot: 'Boots', worn: 'Wheat work boots', match: { category: 'shoes', sil: 'boot', kw: 'boot' } },
+    ],
+  },
+  {
     id: 'booker-black',
     styles: ['street', 'minimal'],
     who: 'Book',
