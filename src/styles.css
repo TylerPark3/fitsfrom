@@ -277,6 +277,11 @@ img {
   background: var(--ink);
   border-color: var(--ink);
   color: var(--paper);
+  box-shadow: var(--shadow-sm);
+}
+
+.chip:active {
+  transform: scale(0.96);
 }
 
 .chip--sm {
@@ -1245,28 +1250,47 @@ input[type='range']:active::-webkit-slider-thumb {
 .tile {
   position: relative;
   text-align: left;
-  padding: 16px 16px 17px;
+  padding: 18px 18px 19px;
   border: 1px solid var(--line-2);
-  border-radius: var(--r);
+  border-radius: 14px;
   background: var(--tile);
+  overflow: hidden;
   transition:
     border-color var(--fast),
-    background var(--fast),
-    transform var(--fast);
+    background var(--med),
+    transform var(--med),
+    box-shadow var(--med);
+}
+
+.tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 100% 0%, rgba(255, 255, 255, 0.14), transparent 55%);
+  opacity: 0;
+  transition: opacity var(--med);
+  pointer-events: none;
 }
 
 .tile:hover {
   border-color: var(--ink-4);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
 }
 
 .tile:active {
-  transform: scale(0.99);
+  transform: scale(0.985);
 }
 
 .tile[aria-pressed='true'] {
   border-color: var(--ink);
   background: var(--ink);
   color: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.tile[aria-pressed='true']::after {
+  opacity: 1;
 }
 
 .tile h4 {
@@ -1302,12 +1326,22 @@ input[type='range']:active::-webkit-slider-thumb {
   position: absolute;
   top: 14px;
   right: 14px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.16);
   opacity: 0;
-  transition: opacity var(--fast);
+  transform: scale(0.6);
+  transition:
+    opacity var(--fast),
+    transform 260ms var(--ease);
 }
 
 .tile[aria-pressed='true'] .tile__tick {
   opacity: 1;
+  transform: scale(1);
 }
 
 /* ---------------------------------------------------------------- drawer */
@@ -1564,7 +1598,25 @@ input[type='range']:active::-webkit-slider-thumb {
   overflow: hidden;
 }
 
-.fitcard__frame img {
+.fitcollage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+}
+
+.fitcollage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #fff;
+}
+
+/* a real photo of the fit, when present, sits on top of the collage */
+.fitcard__photo {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1759,6 +1811,209 @@ input[type='range']:active::-webkit-slider-thumb {
   margin-top: 34px;
   padding-top: 24px;
   border-top: 1px solid var(--line);
+}
+
+/* ---------------------------------------------------------------- auth */
+
+.auth {
+  min-height: calc(100vh - var(--nav-h) - 120px);
+  display: grid;
+  place-items: center;
+  padding: 48px var(--gut);
+}
+
+.auth__card {
+  width: min(520px, 100%);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--tile);
+  padding: 40px 40px 28px;
+  box-shadow: var(--shadow);
+}
+
+.auth__title {
+  font-size: 28px;
+  font-weight: 550;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+.auth__sub {
+  text-align: center;
+  color: var(--ink-3);
+  font-size: 13.5px;
+  margin-top: 8px;
+}
+
+.auth__oauth {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.ordiv {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 20px 0;
+  color: var(--ink-4);
+  font-size: 12.5px;
+}
+
+.ordiv::before,
+.ordiv::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.auth__names {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.pwwrap {
+  position: relative;
+}
+
+.pweye {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: var(--ink-4);
+  font-size: 13px;
+}
+
+.pweye:hover {
+  color: var(--ink);
+  background: var(--mist-2);
+}
+
+.auth__foot {
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--ink-2);
+  border-top: 1px solid var(--line);
+  margin: 24px -40px 0;
+  padding: 18px 40px 0;
+}
+
+.auth__foot button {
+  font-weight: 550;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.auth__secure {
+  text-align: center;
+  font-size: 11.5px;
+  color: var(--ink-4);
+  margin-top: 12px;
+}
+
+/* ---------------------------------------------------------------- lead editorial */
+
+.lead {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.lead__main,
+.lead__story {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  text-align: left;
+  background: var(--mist-2);
+  isolation: isolate;
+}
+
+.lead__main {
+  aspect-ratio: 4 / 4.6;
+}
+
+.lead__side {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 14px;
+}
+
+.lead__main img,
+.lead__story img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 700ms var(--ease);
+}
+
+.lead__main:hover img,
+.lead__story:hover img {
+  transform: scale(1.03);
+}
+
+.lead__text {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 84px 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: linear-gradient(180deg, transparent, rgba(10, 14, 11, 0.82));
+  color: #fff;
+}
+
+.lead__kicker {
+  font-size: 11px;
+  font-weight: 550;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.lead__head {
+  font-size: clamp(22px, 2.6vw, 34px);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  max-width: 22ch;
+}
+
+.lead__head--sm {
+  font-size: clamp(20px, 2vw, 27px);
+}
+
+.lead__cta {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.82);
+  margin-top: 2px;
+}
+
+@media (max-width: 860px) {
+  .lead {
+    grid-template-columns: 1fr;
+  }
+
+  .lead__side {
+    grid-template-rows: none;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .lead__story {
+    aspect-ratio: 3 / 4;
+  }
 }
 
 /* ---------------------------------------------------------------- footer */

@@ -13,6 +13,9 @@ export interface Fit {
   id: string
   who: string
   where: string
+  /** When it happened + why it mattered — the context line under the fit. */
+  when: string
+  context: string
   vibe: string
   /** Looks for /fits/<id>.jpg in public — drop a photo in and it appears. */
   pieces: FitPiece[]
@@ -27,6 +30,8 @@ export const FITS: Fit[] = [
     id: 'clarkson-tunnel',
     who: 'Jordan Clarkson',
     where: 'Jazz tunnel',
+    when: '2023–24 season, pregame arrival',
+    context: 'Walked in wearing a thrifted ’93 Final Four tee layered over a thermal — the fit that put tunnel-walk vintage on every mood board.',
     vibe: 'Vintage tee over thermal, baggy wash, suede boot',
     pieces: [
       { slot: 'Beanie', worn: 'Oatmeal fisherman beanie', match: { category: 'accessory', kw: 'beanie' } },
@@ -37,9 +42,27 @@ export const FITS: Fit[] = [
     ],
   },
   {
+    id: 'poole-arrival',
+    who: 'Jordan Poole',
+    where: 'Wizards tunnel',
+    when: 'Game-day arrival, headphones on',
+    context: 'All-black everything with an Arc’teryx beanie and white runners — proof a whole fit can be three colors and still walk like money.',
+    vibe: 'Oversized hoodie, wide cords, white runners',
+    pieces: [
+      { slot: 'Beanie', worn: 'Arc’teryx camo beanie', match: { category: 'accessory', kw: 'beanie' } },
+      { slot: 'Hoodie', worn: 'Oversized washed-black hoodie', match: { category: 'top', kw: 'hoodie|sweatshirt' } },
+      { slot: 'Layer', worn: 'Grey tee underneath', match: { category: 'top', kw: 'tee|t-shirt' } },
+      { slot: 'Pants', worn: 'Wide charcoal cords', match: { category: 'pants', kw: 'cord|wide|carpenter|baggy' } },
+      { slot: 'Shoes', worn: 'White runners', match: { category: 'shoes', kw: 'runner|trainer|sneaker' } },
+      { slot: 'Bag', worn: 'Crossbody duffel', match: { category: 'accessory', sil: 'bag', kw: 'bag|tote|duffel' } },
+    ],
+  },
+  {
     id: 'sga-leather',
     who: 'Shai Gilgeous-Alexander',
     where: 'Thunder tunnel',
+    when: '2024 playoffs arrival',
+    context: 'Mid-playoff run, GQ’s most stylish player showed up in head-to-toe quiet leather — no logos, all silhouette.',
     vibe: 'Best-dressed-in-the-league minimalism',
     pieces: [
       { slot: 'Jacket', worn: 'Boxy leather blouson', match: { category: 'outer', kw: 'jacket' } },
@@ -52,6 +75,8 @@ export const FITS: Fit[] = [
     id: 'tyler-prep',
     who: 'Tyler, the Creator',
     where: 'Courtside',
+    when: 'Lakers game, courtside seats',
+    context: 'Cameras cut to him more than the game — cardigan, knit polo and loafers while everyone else wore hoodies.',
     vibe: 'Le Fleur prep — pastels, cardigans, loafers',
     pieces: [
       { slot: 'Cap', worn: 'Le Fleur logo cap', match: { category: 'accessory', kw: 'cap|hat' } },
@@ -65,6 +90,8 @@ export const FITS: Fit[] = [
     id: 'rocky-work',
     who: 'A$AP Rocky',
     where: 'NYC street',
+    when: 'SoHo, paparazzi walk',
+    context: 'Shot leaving a studio in beat-up workwear that looked inherited, not bought — the reference photo for half of menswear TikTok.',
     vibe: 'Workwear layers, carpenter fit',
     pieces: [
       { slot: 'Jacket', worn: 'Faded chore coat', match: { category: 'outer', kw: 'chore|shop|work|canvas' } },
@@ -77,6 +104,8 @@ export const FITS: Fit[] = [
     id: 'lebron-quiet',
     who: 'LeBron James',
     where: 'Lakers tunnel',
+    when: 'Season opener arrival',
+    context: 'Opening night, no jewelry, no logos — just tailoring. The whole tunnel read as a statement about being past flexing.',
     vibe: 'Quiet luxury — nothing shouts, everything fits',
     pieces: [
       { slot: 'Overshirt', worn: 'Suede overshirt', match: { category: 'shirt', kw: 'overshirt|suede|corduroy|flannel' } },
@@ -89,6 +118,8 @@ export const FITS: Fit[] = [
     id: 'booker-gorp',
     who: 'Devin Booker',
     where: 'Suns tunnel',
+    when: 'Road game arrival',
+    context: 'Showed up dressed for a trailhead at 7pm in an arena garage — and made technical shells a tunnel staple.',
     vibe: 'Gorp on the way to work',
     pieces: [
       { slot: 'Shell', worn: 'Technical wind shell', match: { category: 'outer', kw: 'anorak|wind|shell|nylon' } },

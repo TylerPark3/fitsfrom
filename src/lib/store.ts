@@ -38,11 +38,22 @@ export interface Collection {
   productIds: string[]
 }
 
+export interface Account {
+  firstName: string
+  lastName: string
+  email: string
+  /** SHA-256 hex of the password. Local-only — never sent anywhere. */
+  passwordHash: string
+  createdAt: number
+}
+
 export interface AppState {
   profile: Profile
   wardrobe: WardrobeItem[]
   saved: string[]
   collections: Collection[]
+  account: Account | null
+  signedIn: boolean
 }
 
 const est = estimateFromBody(70, 160)
@@ -71,6 +82,8 @@ export const DEFAULT_STATE: AppState = {
   wardrobe: [],
   saved: [],
   collections: [{ id: 'wishlist', name: 'Wishlist', productIds: [] }],
+  account: null,
+  signedIn: false,
 }
 
 const KEY = 'lapel.state.v2'
@@ -108,6 +121,9 @@ export function saveState(state: AppState) {
 
 export interface Store extends AppState {
   setProfile: (patch: Partial<Profile>) => void
+  createAccount: (a: Account) => void
+  signIn: () => void
+  signOut: () => void
   toggleSaved: (productId: string) => void
   addToWardrobe: (productId: string, size: string, owned: boolean) => void
   removeFromWardrobe: (productId: string) => void

@@ -1,85 +1,68 @@
-import { useEffect, useState } from 'react'
 import type { View } from '../App'
 import { CATALOG, BRANDS } from '../data/catalog'
+import { FITS } from '../data/fits'
 import { useStore } from '../lib/store'
-import { Arrow, Search } from '../components/Icons'
+import { Arrow } from '../components/Icons'
 
-const QUERIES = [
-  'best jeans for guys 5′10″',
-  'niche clothing brands like carhartt',
-  'jackets that aren’t north face',
-  'best minimal sneakers under $150',
-  'what to wear to look put together',
-  'flannels that don’t look cheap',
-]
-
+/**
+ * Editorial front page — sells the culture, not the SKU.
+ * Lead story + fit covers, The Ringer style: the headline is the design.
+ */
 export function Home({ go }: { go: (v: View) => void }) {
   const { profile } = useStore()
-  const [qi, setQi] = useState(0)
-
-  useEffect(() => {
-    const t = setInterval(() => setQi((i) => (i + 1) % QUERIES.length), 2200)
-    return () => clearInterval(t)
-  }, [])
-
-  // One strong image per brand.
-  const preview: typeof CATALOG = []
-  for (const p of CATALOG) {
-    if (preview.length === 6) break
-    if (preview.some((x) => x.brand === p.brand)) continue
-    if (p.category === 'accessory') continue
-    preview.push(p)
-  }
+  const covers = FITS.filter((f) =>
+    ['clarkson-tunnel', 'poole-arrival'].includes(f.id),
+  )
 
   return (
     <>
-      <section className="wrap hero">
+      <section className="wrap hero" style={{ paddingBottom: 24 }}>
         <h1>
-          Tired of <em>searching</em> this?
+          Dress like you <em>mean it.</em>
         </h1>
-
-        <div className="querybox" aria-hidden="true">
-          <Search size={16} />
-          <span key={qi} className="querybox__q">
-            {QUERIES[qi]}
-          </span>
-          <i className="querybox__caret" />
-        </div>
-
         <p className="hero__sub">
-          Set your size, budget and taste once. Get the niche brands that actually fit — straight
-          from their own stores.
+          The fits, the brands, the culture — matched to your size and budget, linked straight to
+          the source.
         </p>
-
         <div className="hero__cta">
           <button className="btn btn--primary btn--lg" onClick={() => go('onboarding')}>
             {profile.onboarded ? 'Redo my profile' : 'Start'} <Arrow />
           </button>
-          <button className="btn btn--ghost btn--lg" onClick={() => go('discover')}>
-            Browse
+          <button className="btn btn--ghost btn--lg" onClick={() => go('fits')}>
+            See the fits
           </button>
         </div>
-
-        <p className="hero__proof">
-          {BRANDS.length} brands · {CATALOG.length} live pieces · nothing leaves your browser
-        </p>
       </section>
 
-      <section className="wrap" aria-label="Preview">
-        <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))' }}>
-          {preview.map((p) => (
-            <button key={p.id} className="card" onClick={() => go('discover')}>
-              <div className="card__frame">
-                <img className="card__img" src={p.image} alt="" loading="lazy" />
-              </div>
-              <div className="card__meta">
-                <div className="card__brand">{p.brand}</div>
-                <div className="card__line">
-                  <span>${p.price.toFixed(0)}</span>
+      {/* lead editorial — the culture, full bleed */}
+      <section className="wrap">
+        <div className="lead">
+          <button className="lead__main" onClick={() => go('fits')}>
+            <img src="/editorial/iverson-crowd.jpg" alt="Allen Iverson, courtside, 2002" />
+            <div className="lead__text">
+              <span className="lead__kicker">The Answer, 2002</span>
+              <span className="lead__head serif">
+                Style was never about the clothes. It was about walking in like you own the
+                building.
+              </span>
+              <span className="lead__cta">The fits, broken down →</span>
+            </div>
+          </button>
+
+          <div className="lead__side">
+            {covers.map((f) => (
+              <button key={f.id} className="lead__story" onClick={() => go('fits')}>
+                <img src={`/fits/${f.id}.jpg`} alt={f.who} />
+                <div className="lead__text">
+                  <span className="lead__kicker">{f.where}</span>
+                  <span className="lead__head lead__head--sm serif">{f.who}</span>
+                  <span className="lead__cta">
+                    {f.pieces.length} pieces, all linked →
+                  </span>
                 </div>
-              </div>
-            </button>
-          ))}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -87,18 +70,20 @@ export function Home({ go }: { go: (v: View) => void }) {
         <div className="strip">
           <div className="strip__cell">
             <div className="strip__n serif">01</div>
-            <h3>Your body</h3>
-            <p>A photo and six sliders. Every piece shows the size to buy.</p>
+            <h3>The fits</h3>
+            <p>Tunnel walks broken down top to bottom. Every piece linked.</p>
           </div>
           <div className="strip__cell">
             <div className="strip__n serif">02</div>
-            <h3>Your taste</h3>
-            <p>Style, budget, season. No quiz personalities.</p>
+            <h3>Your fit</h3>
+            <p>Size, budget, taste — set once. Every piece shows your size.</p>
           </div>
           <div className="strip__cell">
             <div className="strip__n serif">03</div>
-            <h3>Steal fits</h3>
-            <p>Tunnel fits broken down top to bottom — every piece linked.</p>
+            <h3>The source</h3>
+            <p>
+              {BRANDS.length} brands, {CATALOG.length} live pieces. Buy direct, no middleman.
+            </p>
           </div>
         </div>
       </section>

@@ -34,7 +34,14 @@ export function FitsView() {
         {FITS.map((f) => (
           <button key={f.id} className="fitcard" onClick={() => setOpen(f)}>
             <div className="fitcard__frame">
+              <div className="fitcollage">
+                {f.pieces.slice(0, 4).map((piece) => {
+                  const p = resolve(piece)
+                  return p ? <img key={piece.slot} src={p.image} alt="" loading="lazy" /> : null
+                })}
+              </div>
               <img
+                className="fitcard__photo"
                 src={`/fits/${f.id}.jpg`}
                 alt=""
                 loading="lazy"
@@ -43,7 +50,7 @@ export function FitsView() {
               <span className="fitcard__who serif">{f.who}</span>
             </div>
             <div className="fitcard__meta">
-              <div className="card__brand">{f.where}</div>
+              <div className="card__brand">{f.where} · {f.when}</div>
               <div className="card__name">{f.vibe}</div>
               <div className="tiny" style={{ marginTop: 6 }}>
                 {f.pieces.length} pieces →
@@ -78,9 +85,11 @@ function FitDrawer({ fit, onClose }: { fit: Fit; onClose: () => void }) {
         </div>
 
         <div className="drawer__body">
-          <p className="muted" style={{ margin: '18px 0 4px', fontSize: 14.5 }}>
-            {fit.vibe}. Top to bottom:
+          <p className="tiny" style={{ marginTop: 18 }}>{fit.when}</p>
+          <p className="muted" style={{ margin: '8px 0 4px', fontSize: 14.5, lineHeight: 1.55 }}>
+            {fit.context}
           </p>
+          <p className="eyebrow" style={{ margin: '18px 0 4px' }}>Top to bottom</p>
 
           {resolved.map(({ piece, p }) =>
             p ? (

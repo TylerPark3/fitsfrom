@@ -4,6 +4,7 @@ import {
   StoreContext,
   loadState,
   saveState,
+  type Account,
   type AppState,
   type Profile,
   type Store,
@@ -16,9 +17,10 @@ import { Discover } from './views/Discover'
 import { WardrobeView } from './views/WardrobeView'
 import { SavedView } from './views/SavedView'
 import { FitsView } from './views/FitsView'
+import { AuthView } from './views/AuthView'
 import { ProductDrawer } from './components/ProductDrawer'
 
-export type View = 'home' | 'onboarding' | 'discover' | 'fits' | 'avatar' | 'wardrobe' | 'saved'
+export type View = 'home' | 'auth' | 'onboarding' | 'discover' | 'fits' | 'avatar' | 'wardrobe' | 'saved'
 
 export function App() {
   const [state, setState] = useState<AppState>(() => loadState())
@@ -94,6 +96,13 @@ export function App() {
           ),
         })),
 
+      createAccount: (a: Account) =>
+        setState((s) => ({ ...s, account: a, signedIn: true })),
+
+      signIn: () => setState((s) => ({ ...s, signedIn: true })),
+
+      signOut: () => setState((s) => ({ ...s, signedIn: false })),
+
       reset: () => setState(DEFAULT_STATE),
     }),
     [state, toast],
@@ -116,10 +125,19 @@ export function App() {
   return (
     <StoreContext.Provider value={store}>
       <div className="app">
-        <Nav view={view} go={go} savedCount={state.saved.length} profile={state.profile} />
+        <Nav
+          view={view}
+          go={go}
+          savedCount={state.saved.length}
+          profile={state.profile}
+          signedIn={state.signedIn && !!state.account}
+        />
 
         <main>
           {view === 'home' && <Home go={go} />}
+          {view === 'auth' && (
+            <AuthView onDone={() => go(state.profile.onboarded ? 'discover' : 'onboarding')} />
+          )}
           {view === 'onboarding' && <Onboarding onDone={() => go('discover')} />}
           {view === 'discover' && <Discover onOpen={setOpenProduct} go={go} />}
           {view === 'fits' && <FitsView />}
@@ -176,11 +194,13 @@ function Nav({
   go,
   savedCount,
   profile,
+  signedIn,
 }: {
   view: View
   go: (v: View) => void
   savedCount: number
   profile: Profile
+  signedIn: boolean
 }) {
   return (
     <header className="nav">
@@ -214,14 +234,17 @@ function Nav({
 
         <div className="nav__spacer" />
 
-        <button className="nav__me" onClick={() => go(profile.onboarded ? 'avatar' : 'onboarding')}>
+        <button
+          className="nav__me"
+          onClick={() => go(signedIn ? 'avatar' : 'auth')}
+        >
           <span
             className="nav__avatar"
             style={profile.photo ? { backgroundImage: `url(${profile.photo})` } : undefined}
           >
             {!profile.photo && <Person size={13} />}
           </span>
-          {profile.onboarded ? (profile.name.split(' ')[0] || 'You') : 'Set up'}
+          {signedIn ? (profile.name.split(' ')[0] || 'You') : 'Create account'}
         </button>
       </div>
     </header>
