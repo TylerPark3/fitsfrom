@@ -30,6 +30,13 @@ export function ScentShelf({ ids }: { ids?: string[] }) {
       <div className="scentgrid">
         {list.map((sc) => (
           <div className="scent" key={sc.id}>
+            <a
+              className="scent__hit"
+              href={sc.url}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label={`${sc.house} ${sc.name} — view`}
+            />
             <div className="scent__bottle">
               <Bottle color={sc.color} initial={sc.house[0]} />
               <img
@@ -46,7 +53,8 @@ export function ScentShelf({ ids }: { ids?: string[] }) {
                 className="scent__fav"
                 aria-pressed={scentFavs.includes(sc.id)}
                 aria-label={`Favorite ${sc.name}`}
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation()
                   toggleScentFav(sc.id)
                   toast(scentFavs.includes(sc.id) ? 'Removed' : `Saved — ${sc.name}`)
                 }}

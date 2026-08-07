@@ -4412,6 +4412,51 @@ input.seg__control::placeholder {
   color: var(--ink);
 }
 
+/* the old sections, demoted to chips inside the two shelves */
+.shelf__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0 12px;
+}
+
+.shelfchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  background: var(--tile);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 11px;
+  transition: color var(--fast), border-color var(--fast), background var(--fast);
+}
+
+.shelfchip i {
+  font-style: normal;
+  font-size: 9px;
+  color: var(--ink-4);
+}
+
+.shelfchip:hover {
+  color: var(--ink);
+  border-color: var(--ink-4);
+}
+
+.shelfchip.is-on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+.shelfchip.is-on i {
+  color: rgba(255, 255, 255, 0.6);
+}
+
 .shelf__row {
   display: flex;
   gap: 10px;
@@ -4589,6 +4634,7 @@ input.seg__control::placeholder {
 }
 
 .scent {
+  position: relative;
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
   background: var(--tile);
@@ -4600,6 +4646,20 @@ input.seg__control::placeholder {
   border-color: var(--ink-4);
   transform: translateY(-2px);
   box-shadow: var(--shadow);
+}
+
+/* the whole card is the target — the heart and View sit above it */
+.scent__hit {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.scent__fav,
+.scent .btn {
+  position: relative;
+  z-index: 2;
 }
 
 .scent__top {

@@ -317,7 +317,7 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
               value={q}
               onChange={(e) => setQ(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && setExecuted(true)}
-              placeholder="Brand, piece, fabric — anything"
+              placeholder="Brand, piece, fabric..."
               aria-label="Search"
             />
           </label>

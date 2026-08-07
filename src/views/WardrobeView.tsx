@@ -214,7 +214,7 @@ export function WardrobeView({
   )
 }
 
-/** The closet — every piece on its own shelf, shorts split from pants. */
+/** The closet — two shelves, tops and bottoms. Filter inside each instead of stacking rows. */
 function Closet({ onOpen }: { onOpen: (id: string) => void }) {
   const { wardrobe, customs, removeFromWardrobe, removeCustom, updateWardrobe, toast } = useStore()
 
@@ -222,6 +222,7 @@ function Closet({ onOpen }: { onOpen: (id: string) => void }) {
     key: string
     img: string
     name: string
+    kind: string
     size?: string
     productId?: string
     customId?: string
@@ -230,64 +231,90 @@ function Closet({ onOpen }: { onOpen: (id: string) => void }) {
     price?: number
   }
 
-  const shelves: { label: string; items: Hang[] }[] = [
-    { label: 'Tops', items: [] },
-    { label: 'Shirts', items: [] },
-    { label: 'Knits', items: [] },
-    { label: 'Outerwear', items: [] },
-    { label: 'Pants', items: [] },
-    { label: 'Shorts', items: [] },
-    { label: 'Shoes', items: [] },
-    { label: 'Accessories', items: [] },
+  // Two shelves. The chips inside each one are the old sections, demoted to a filter.
+  const SHELVES: { label: string; kinds: string[] }[] = [
+    { label: 'Tops', kinds: ['Tees & hoodies', 'Shirts', 'Knits', 'Outerwear', 'Accessories'] },
+    { label: 'Bottoms', kinds: ['Pants', 'Shorts', 'Shoes'] },
   ]
-  const shelfFor = (cat: string, sil?: string) => {
-    if (cat === 'pants' && sil === 'short') return 'Shorts'
+  const kindFor = (cat: string, sil?: string) => {
+    if (cat === 'pants') return sil === 'short' ? 'Shorts' : 'Pants'
     return (
-      { top: 'Tops', shirt: 'Shirts', knit: 'Knits', outer: 'Outerwear', pants: 'Pants', shoes: 'Shoes', accessory: 'Accessories' }[cat] ?? 'Tops'
+      {
+        top: 'Tees & hoodies',
+        shirt: 'Shirts',
+        knit: 'Knits',
+        outer: 'Outerwear',
+        shoes: 'Shoes',
+        accessory: 'Accessories',
+      }[cat] ?? 'Tees & hoodies'
     )
   }
 
+  const hangs: Hang[] = []
   for (const w of wardrobe) {
     const p = CATALOG.find((x) => x.id === w.productId)
     if (!p) continue
-    shelves
-      .find((sh) => sh.label === shelfFor(p.category, p.silhouette))!
-      .items.push({
-        key: p.id,
-        img: p.image,
-        name: p.name,
-        size: w.size,
-        productId: p.id,
-        condition: w.condition,
-        years: w.years,
-        price: p.price,
-      })
+    hangs.push({
+      key: p.id,
+      img: p.image,
+      name: p.name,
+      kind: kindFor(p.category, p.silhouette),
+      size: w.size,
+      productId: p.id,
+      condition: w.condition,
+      years: w.years,
+      price: p.price,
+    })
   }
   for (const c of customs) {
-    shelves
-      .find((sh) => sh.label === shelfFor(c.category))!
-      .items.push({ key: c.id, img: c.photo, name: c.name, customId: c.id })
+    hangs.push({ key: c.id, img: c.photo, name: c.name, kind: kindFor(c.category), customId: c.id })
   }
 
-  const filled = shelves.filter((sh) => sh.items.length > 0)
+  const [kind, setKind] = useState<Record<string, string>>({})
+  const filled = SHELVES.map((sh) => ({
+    ...sh,
+    items: hangs.filter((h) => sh.kinds.includes(h.kind)),
+  })).filter((sh) => sh.items.length > 0)
   if (filled.length === 0) return null
 
   return (
     <div className="section">
       <div className="section__head">
         <h3>The closet</h3>
-        <span className="tiny">
-          {filled.reduce((n, sh) => n + sh.items.length, 0)} pieces · every shelf its own section
-        </span>
+        <span className="tiny">{hangs.length} pieces · tops and bottoms</span>
       </div>
-      {filled.map((sh) => (
+      {filled.map((sh) => {
+        const present = sh.kinds.filter((k) => sh.items.some((it) => it.kind === k))
+        const active = kind[sh.label] && present.includes(kind[sh.label]) ? kind[sh.label] : ''
+        const items = active ? sh.items.filter((it) => it.kind === active) : sh.items
+        return (
         <div className="shelf" key={sh.label} id={`shelf-${sh.label}`}>
           <div className="shelf__head">
             <span>{sh.label}</span>
-            <b>{sh.items.length}</b>
+            <b>{items.length}</b>
           </div>
+          {present.length > 1 && (
+            <div className="shelf__filters">
+              <button
+                className={`shelfchip${active === '' ? ' is-on' : ''}`}
+                onClick={() => setKind((s) => ({ ...s, [sh.label]: '' }))}
+              >
+                All
+              </button>
+              {present.map((k) => (
+                <button
+                  key={k}
+                  className={`shelfchip${active === k ? ' is-on' : ''}`}
+                  onClick={() => setKind((s) => ({ ...s, [sh.label]: active === k ? '' : k }))}
+                >
+                  {k}
+                  <i>{sh.items.filter((it) => it.kind === k).length}</i>
+                </button>
+              ))}
+            </div>
+          )}
           <div className="shelf__row">
-            {sh.items.map((it) => (
+            {items.map((it) => (
               <div className="ctile" key={it.key}>
                 <button
                   className="ctile__img"
@@ -356,7 +383,8 @@ function Closet({ onOpen }: { onOpen: (id: string) => void }) {
             ))}
           </div>
         </div>
-      ))}
+        )
+      })}
     </div>
   )
 }
