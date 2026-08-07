@@ -102,7 +102,7 @@ export function FaqView() {
       {SECTIONS.map((s) => (
         <section key={s.id} id={`faq-${s.id}`} className="faq__section">
           <div className="faq__left">
-            <h3 className="serif">{s.title}</h3>
+            <h3 className="faqhead">{s.title}</h3>
             <p className="muted">{s.sub}</p>
           </div>
           <div className="faq__right">
