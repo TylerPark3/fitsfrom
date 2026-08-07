@@ -32,7 +32,7 @@ export const FITS: Fit[] = [
   {
     id: 'clarkson-tunnel',
     styles: ['street', 'skate'],
-    who: 'Jordan Poole',
+    who: 'Poole Party',
     where: 'Tunnel walk',
     when: 'Game-day arrival',
     context:
@@ -49,7 +49,7 @@ export const FITS: Fit[] = [
   {
     id: 'poole-arrival',
     styles: ['street', 'minimal'],
-    who: 'Jordan Poole',
+    who: 'Poole Party',
     where: 'Wizards tunnel',
     when: 'Game-day arrival, headphones on',
     context:
@@ -67,7 +67,7 @@ export const FITS: Fit[] = [
   {
     id: 'clarkson-mavs',
     styles: ['street', 'skate'],
-    who: 'Jordan Clarkson',
+    who: 'JC',
     where: 'Mavs tunnel',
     when: 'Game-day arrival, iced drink in hand',
     context:
@@ -84,7 +84,7 @@ export const FITS: Fit[] = [
   {
     id: 'sga-arrival',
     styles: ['minimal', 'street'],
-    who: 'Shai Gilgeous-Alexander',
+    who: 'SGA',
     where: 'Thunder tunnel',
     when: 'Home opener, puppy in hand',
     context:
@@ -118,7 +118,7 @@ export const FITS: Fit[] = [
   {
     id: 'rocky-work',
     styles: ['street', 'skate'],
-    who: 'A$AP Rocky',
+    who: 'Pretty Flacko',
     where: 'Studio backdrop',
     when: 'Tie-dye wall, film flash',
     context:
@@ -150,7 +150,7 @@ export const FITS: Fit[] = [
   {
     id: 'lebron-tunnel',
     styles: ['minimal', 'street'],
-    who: 'LeBron James',
+    who: 'Bron',
     where: 'Lakers tunnel',
     when: 'Playoff game-day arrival',
     context:
@@ -167,7 +167,7 @@ export const FITS: Fit[] = [
   {
     id: 'drake-night',
     styles: ['street', 'athletic'],
-    who: 'Drake',
+    who: 'Drizzy',
     where: 'NYC, leaving dinner',
     when: 'Night out, security in tow',
     context:
@@ -182,7 +182,7 @@ export const FITS: Fit[] = [
   {
     id: 'bieber-lounge',
     styles: ['athletic', 'street'],
-    who: 'Justin Bieber',
+    who: 'Bieber',
     where: 'At home',
     when: 'Beanbag, gold chains out',
     context:
@@ -198,7 +198,7 @@ export const FITS: Fit[] = [
   {
     id: 'bieber-drew',
     styles: ['street', 'skate'],
-    who: 'Justin Bieber',
+    who: 'Bieber',
     where: 'West Hollywood',
     when: 'Dinner run, hood over beanie',
     context:
@@ -215,7 +215,7 @@ export const FITS: Fit[] = [
   {
     id: 'booker-black',
     styles: ['street', 'minimal'],
-    who: 'Devin Booker',
+    who: 'Book',
     where: 'Suns tunnel',
     when: 'Playoff arrival, shades indoors',
     context:

@@ -237,8 +237,8 @@ function PhoneDemo({ go }: { go: (v: View) => void }) {
           {i === 1 && (
             <div className="phone__mock">
               {[
-                ['Jordan Poole', '92%'],
-                ['Shai Gilgeous-Alexander', '87%'],
+                ['Poole Party', '92%'],
+                ['SGA', '87%'],
                 ['Tyler, the Creator', '74%'],
                 ['V (BTS)', '61%'],
               ].map(([who, pct]) => (

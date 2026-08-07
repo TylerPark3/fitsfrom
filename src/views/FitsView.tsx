@@ -79,7 +79,7 @@ interface Person {
   fits: Fit[]
 }
 
-const FREE_FILES = ['Shai Gilgeous-Alexander', 'A$AP Rocky', 'Rookie LeBron']
+const FREE_FILES = ['SGA', 'Pretty Flacko', 'Rookie LeBron']
 
 export function FitsView({ go }: { go: (v: View) => void }) {
   const { signedIn, account } = useStore()

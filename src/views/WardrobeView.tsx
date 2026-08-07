@@ -16,7 +16,7 @@ export function WardrobeView({
   onOpen: (id: string) => void
   go: (v: View) => void
 }) {
-  const { wardrobe, profile, removeFromWardrobe, toast } = useStore()
+  const { wardrobe, profile } = useStore()
 
   const items = wardrobe
     .map((w) => ({ w, p: CATALOG.find((c) => c.id === w.productId)! }))
@@ -118,45 +118,7 @@ export function WardrobeView({
         </div>
       )}
 
-      {CATEGORIES.map((cat) => {
-        const inCat = items.filter((i) => i.p.category === cat.id)
-        if (inCat.length === 0) return null
-        return (
-          <div className="section" key={cat.id}>
-            <div className="section__head">
-              <h3>{cat.plural}</h3>
-              <span className="tiny">{inCat.length}</span>
-            </div>
-            <div className="grid">
-              {inCat.map(({ w, p }) => (
-                <ProductCard
-                  key={p.id}
-                  product={p}
-                  onOpen={onOpen}
-                  footer={
-                    <div
-                      className="row"
-                      style={{ padding: '10px 3px 0', justifyContent: 'space-between' }}
-                    >
-                      <span className="tiny">Size {w.size}</span>
-                      <button
-                        className="btn btn--quiet btn--sm"
-                        onClick={() => {
-                          removeFromWardrobe(p.id)
-                          toast('Removed from wardrobe')
-                        }}
-                        aria-label={`Remove ${p.name}`}
-                      >
-                        <Trash />
-                      </button>
-                    </div>
-                  }
-                />
-              ))}
-            </div>
-          </div>
-        )
-      })}
+      <Closet onOpen={onOpen} />
 
       <OwnCloset />
 
@@ -168,6 +130,120 @@ export function WardrobeView({
 
       <OutfitBuilder onOpen={onOpen} />
     </div>
+  )
+}
+
+/** The closet — every piece on its own shelf, shorts split from pants. */
+function Closet({ onOpen }: { onOpen: (id: string) => void }) {
+  const { wardrobe, customs, removeFromWardrobe, removeCustom, toast } = useStore()
+
+  interface Hang {
+    key: string
+    img: string
+    name: string
+    size?: string
+    productId?: string
+    customId?: string
+  }
+
+  const shelves: { label: string; items: Hang[] }[] = [
+    { label: 'Tops', items: [] },
+    { label: 'Shirts', items: [] },
+    { label: 'Knits', items: [] },
+    { label: 'Outerwear', items: [] },
+    { label: 'Pants', items: [] },
+    { label: 'Shorts', items: [] },
+    { label: 'Shoes', items: [] },
+    { label: 'Accessories', items: [] },
+  ]
+  const shelfFor = (cat: string, sil?: string) => {
+    if (cat === 'pants' && sil === 'short') return 'Shorts'
+    return (
+      { top: 'Tops', shirt: 'Shirts', knit: 'Knits', outer: 'Outerwear', pants: 'Pants', shoes: 'Shoes', accessory: 'Accessories' }[cat] ?? 'Tops'
+    )
+  }
+
+  for (const w of wardrobe) {
+    const p = CATALOG.find((x) => x.id === w.productId)
+    if (!p) continue
+    shelves
+      .find((sh) => sh.label === shelfFor(p.category, p.silhouette))!
+      .items.push({ key: p.id, img: p.image, name: p.name, size: w.size, productId: p.id })
+  }
+  for (const c of customs) {
+    shelves
+      .find((sh) => sh.label === shelfFor(c.category))!
+      .items.push({ key: c.id, img: c.photo, name: c.name, customId: c.id })
+  }
+
+  const filled = shelves.filter((sh) => sh.items.length > 0)
+  if (filled.length === 0) return null
+
+  return (
+    <div className="section">
+      <div className="section__head">
+        <h3>The closet</h3>
+        <span className="tiny">
+          {filled.reduce((n, sh) => n + sh.items.length, 0)} pieces · every shelf its own section
+        </span>
+      </div>
+      {filled.map((sh) => (
+        <div className="shelf" key={sh.label}>
+          <div className="shelf__head">
+            <span>{sh.label}</span>
+            <b>{sh.items.length}</b>
+          </div>
+          <div className="shelf__row">
+            {sh.items.map((it) => (
+              <div className="ctile" key={it.key}>
+                <button
+                  className="ctile__img"
+                  onClick={() => it.productId && onOpen(it.productId)}
+                  aria-label={it.name}
+                >
+                  {it.img ? (
+                    <img src={it.img} alt="" loading="lazy" />
+                  ) : (
+                    <span className="ctile__mono serif">{it.name[0]?.toUpperCase()}</span>
+                  )}
+                </button>
+                <div className="ctile__meta">
+                  <span title={it.name}>{it.name}</span>
+                  {it.size && <b>{it.size}</b>}
+                </div>
+                <button
+                  className="ctile__x"
+                  aria-label={`Remove ${it.name}`}
+                  onClick={() => {
+                    if (it.productId) removeFromWardrobe(it.productId)
+                    if (it.customId) removeCustom(it.customId)
+                    toast('Removed')
+                  }}
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/** Stylised bottle so the shelf reads visual, not textual. */
+function Bottle({ color, initial }: { color: string; initial: string }) {
+  return (
+    <svg viewBox="0 0 60 84" className="bottle" aria-hidden="true">
+      <rect x="24" y="2" width="12" height="10" rx="2" fill="#1a1f1c" />
+      <rect x="26" y="12" width="8" height="6" fill="#8b8f8a" />
+      <rect x="10" y="18" width="40" height="62" rx="7" fill="#eef0ee" stroke="#d5d8d3" />
+      <rect x="14" y="30" width="32" height="46" rx="4" fill={color} opacity="0.85" />
+      <rect x="17" y="22" width="5" height="52" rx="2.5" fill="#fff" opacity="0.45" />
+      <text x="30" y="58" textAnchor="middle" fontFamily="Instrument Serif, serif" fontSize="17" fill="#fff">
+        {initial}
+      </text>
+    </svg>
   )
 }
 
@@ -330,6 +406,9 @@ function ScentShelf() {
       <div className="scentgrid">
         {SCENTS.map((sc) => (
           <div className="scent" key={sc.id}>
+            <div className="scent__bottle">
+              <Bottle color={sc.color} initial={sc.house[0]} />
+            </div>
             <div className="scent__top">
               <span className="card__brand">{sc.house}</span>
               <button

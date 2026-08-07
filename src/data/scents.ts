@@ -2,6 +2,8 @@ export interface Scent {
   id: string
   house: string
   name: string
+  /** Juice colour for the bottle illustration. */
+  color: string
   /** Community-reported wearer — phrased as reported, not verified endorsement. */
   wornBy: string
   notes: string
@@ -17,6 +19,7 @@ export interface Scent {
 export const SCENTS: Scent[] = [
   {
     id: 'pdm-layton',
+    color: '#c9a24b',
     house: 'Parfums de Marly',
     name: 'Layton',
     wornBy: 'Duke Dennis',
@@ -27,6 +30,7 @@ export const SCENTS: Scent[] = [
   },
   {
     id: 'jpg-elixir',
+    color: '#7a1f2b',
     house: 'Jean Paul Gaultier',
     name: 'Le Male Elixir',
     wornBy: 'Kai Cenat (community pick)',
@@ -37,6 +41,7 @@ export const SCENTS: Scent[] = [
   },
   {
     id: 'dior-sauvage-elixir',
+    color: '#1c2733',
     house: 'Dior',
     name: 'Sauvage Elixir',
     wornBy: 'Half the league, honestly',
@@ -47,6 +52,7 @@ export const SCENTS: Scent[] = [
   },
   {
     id: 'ysl-lanuit',
+    color: '#4a3550',
     house: 'Yves Saint Laurent',
     name: 'La Nuit de L’Homme',
     wornBy: 'Date-night canon',
@@ -57,6 +63,7 @@ export const SCENTS: Scent[] = [
   },
   {
     id: 'versace-eros',
+    color: '#2e7fa3',
     house: 'Versace',
     name: 'Eros',
     wornBy: 'The starter kit',
@@ -67,6 +74,7 @@ export const SCENTS: Scent[] = [
   },
   {
     id: 'valentino-bir',
+    color: '#b8433a',
     house: 'Valentino',
     name: 'Uomo Born in Roma',
     wornBy: 'Campus favorite',
@@ -77,6 +85,7 @@ export const SCENTS: Scent[] = [
   },
   {
     id: 'lelabo-santal',
+    color: '#b7986a',
     house: 'Le Labo',
     name: 'Santal 33',
     wornBy: 'The quiet-luxury uniform',
@@ -87,6 +96,7 @@ export const SCENTS: Scent[] = [
   },
   {
     id: 'prada-lhomme',
+    color: '#9aa7b0',
     house: 'Prada',
     name: 'L’Homme',
     wornBy: 'Minimalist pick',

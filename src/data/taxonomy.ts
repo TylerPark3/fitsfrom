@@ -44,14 +44,14 @@ export const STYLES: { id: StyleId; label: string; blurb: string; anchors: strin
     label: 'Workwear',
     blurb: 'Canvas, denim, boots.',
     anchors: 'Carhartt WIP · 3sixteen · Stan Ray',
-    celebs: 'A$AP Rocky · Jerry Lorenzo',
+    celebs: 'Pretty Flacko · Jerry Lorenzo',
   },
   {
     id: 'minimal',
     label: 'Quiet Minimal',
     blurb: 'No logos. Good fabric.',
     anchors: 'Asket · Norse Projects · Uniqlo U',
-    celebs: 'SGA · LeBron James',
+    celebs: 'SGA · Bron',
   },
   {
     id: 'gorp',
@@ -65,7 +65,7 @@ export const STYLES: { id: StyleId; label: string; blurb: string; anchors: strin
     label: 'Streetwear',
     blurb: 'Graphics, layers, attitude.',
     anchors: 'Stüssy · Noah · Brain Dead',
-    celebs: 'Jordan Poole · Jordan Clarkson',
+    celebs: 'Poole Party · JC',
   },
   {
     id: 'japanese',
@@ -79,7 +79,7 @@ export const STYLES: { id: StyleId; label: string; blurb: string; anchors: strin
     label: 'Skate',
     blurb: 'Baggy and durable.',
     anchors: 'Polar · Dickies · Last Resort',
-    celebs: 'Justin Bieber · Tyshawn Jones',
+    celebs: 'Bieber · Tyshawn Jones',
   },
   {
     id: 'athletic',

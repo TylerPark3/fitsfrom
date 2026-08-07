@@ -321,11 +321,38 @@ img {
 
 .logo {
   display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 18px;
+  letter-spacing: -0.035em;
+  font-weight: 800;
+}
+
+.logo__mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--paper);
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+.logo__word {
+  display: inline-flex;
   align-items: baseline;
-  gap: 8px;
-  font-size: 20px;
-  letter-spacing: -0.03em;
-  font-weight: 500;
+  gap: 1px;
+}
+
+.logo__word em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--red);
+  letter-spacing: -0.01em;
+  font-size: 1.06em;
 }
 
 .logo__dot {
@@ -2198,7 +2225,123 @@ input[type='range']:active::-webkit-slider-thumb {
   margin-bottom: 14px;
 }
 
+/* closet shelves */
+.shelf {
+  margin-bottom: 22px;
+}
+
+.shelf__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 7px;
+  margin-bottom: 12px;
+}
+
+.shelf__head b {
+  color: var(--ink);
+}
+
+.shelf__row {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+}
+
+.ctile {
+  position: relative;
+  width: 132px;
+  flex: none;
+}
+
+.ctile__img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  display: block;
+  transition: border-color var(--fast), transform var(--med);
+}
+
+.ctile__img:hover {
+  border-color: var(--ink-4);
+  transform: translateY(-2px);
+}
+
+.ctile__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ctile__mono {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-size: 42px;
+  color: var(--ink-4);
+  background: var(--mist);
+}
+
+.ctile__meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px;
+  margin-top: 7px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  color: var(--ink-2);
+}
+
+.ctile__meta span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ctile__x {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 10px;
+  color: var(--ink-2);
+  opacity: 0;
+  transition: opacity var(--fast);
+}
+
+.ctile:hover .ctile__x {
+  opacity: 1;
+}
+
 /* scents */
+.scent__bottle {
+  height: 108px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 10px;
+}
+
+.bottle {
+  height: 100%;
+}
+
 .scentgrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));

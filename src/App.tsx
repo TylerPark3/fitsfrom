@@ -192,7 +192,10 @@ export function App() {
         <footer className="foot">
           <div className="wrap foot__in">
             <div className="logo" style={{ fontSize: 17 }}>
-              Fits From<i className="logo__dot" />
+              <span className="logo__mark serif">FF</span>
+          <span className="logo__word">
+            FITS<em className="serif">From</em>
+          </span>
             </div>
             <p>
               Live products and prices from each brand’s own store. Your photo and measurements stay
@@ -249,7 +252,10 @@ function Nav({
     <header className="nav">
       <div className="wrap nav__inner">
         <button className="logo" onClick={() => go(profile.onboarded ? 'discover' : 'home')}>
-          Fits From<i className="logo__dot" />
+          <span className="logo__mark serif">FF</span>
+          <span className="logo__word">
+            FITS<em className="serif">From</em>
+          </span>
         </button>
 
         <div className="nav__links">
