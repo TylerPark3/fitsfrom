@@ -4,19 +4,38 @@ import { FITS } from '../data/fits'
 import { InterestPicker } from '../components/InterestPicker'
 import { Arrow, CheckInk } from '../components/Icons'
 
-const TEAMS: [string, string][] = [
-  ['Thunder', 'SGA · J-Dub'],
-  ['Lakers', 'Bron'],
-  ['Mavs', 'JC'],
-  ['Wizards', 'Poole Party'],
-  ['Suns', 'Book'],
-  ['Rockets', 'Jalen Green'],
-  ['Warriors', ''],
-  ['Knicks', ''],
-  ['Heat', ''],
-  ['Celtics', ''],
-  ['Cavs', ''],
-  ['Bulls', ''],
+// [team, star on file, primary, secondary]
+const TEAMS: [string, string, string, string][] = [
+  ['Thunder', 'SGA · J-Dub', '#007AC1', '#EF3B24'],
+  ['Lakers', 'Bron', '#552583', '#FDB927'],
+  ['Mavs', 'JC', '#00538C', '#002B5E'],
+  ['Wizards', 'Poole Party', '#002B5C', '#E31837'],
+  ['Suns', 'Book', '#1D1160', '#E56020'],
+  ['Rockets', 'Jalen Green', '#CE1141', '#000000'],
+  ['Warriors', '', '#1D428A', '#FFC72C'],
+  ['Knicks', '', '#006BB6', '#F58426'],
+  ['Heat', '', '#98002E', '#F9A01B'],
+  ['Celtics', '', '#007A33', '#BA9653'],
+  ['Cavs', '', '#860038', '#FDBB30'],
+  ['Bulls', '', '#CE1141', '#000000'],
+  ['Nets', '', '#000000', '#444444'],
+  ['Sixers', '', '#006BB6', '#ED174C'],
+  ['Bucks', '', '#00471B', '#EEE1C6'],
+  ['Nuggets', '', '#0E2240', '#FEC524'],
+  ['Grizzlies', '', '#5D76A9', '#12173F'],
+  ['Timberwolves', '', '#0C2340', '#78BE20'],
+  ['Pelicans', '', '#0C2340', '#C8102E'],
+  ['Hawks', '', '#E03A3E', '#C1D32F'],
+  ['Hornets', '', '#1D1160', '#00788C'],
+  ['Pistons', '', '#C8102E', '#1D42BA'],
+  ['Pacers', '', '#002D62', '#FDBB30'],
+  ['Clippers', '', '#C8102E', '#1D428A'],
+  ['Magic', '', '#0077C0', '#000000'],
+  ['Blazers', '', '#E03A3E', '#000000'],
+  ['Kings', '', '#5A2D81', '#63727A'],
+  ['Spurs', '', '#000000', '#C4CED4'],
+  ['Raptors', '', '#CE1141', '#000000'],
+  ['Jazz', '', '#002B5C', '#F9A01B'],
 ]
 
 const BRAND_PICKS = [
@@ -104,17 +123,22 @@ export function AuthView({ onDone }: { onDone: () => void }) {
           </div>
 
           <p className="eyebrow" style={{ margin: '22px 0 10px' }}>Teams</p>
-          <div className="chips">
-            {TEAMS.map(([t, players]) => (
+          <div className="teamgrid">
+            {TEAMS.map(([t, players, c1, c2]) => (
               <button
                 key={t}
-                className="chip"
+                className="teamtile"
                 aria-pressed={profile.teams.includes(t)}
+                style={{ background: `linear-gradient(135deg, ${c1} 0 52%, ${c2} 52% 100%)` }}
                 onClick={() => setProfile({ teams: flip(profile.teams, t) })}
               >
-                {profile.teams.includes(t) && <CheckInk size={12} />}
-                {t}
-                {players && <i className="chip__tag">{players}</i>}
+                {profile.teams.includes(t) && (
+                  <span className="inttile__tick">
+                    <CheckInk size={13} />
+                  </span>
+                )}
+                <span className="teamtile__name">{t}</span>
+                {players && <span className="teamtile__star">{players}</span>}
               </button>
             ))}
           </div>

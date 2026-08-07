@@ -1340,6 +1340,56 @@ input.seg__control::placeholder {
   text-overflow: ellipsis;
 }
 
+/* team color tiles */
+.teamgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 8px;
+}
+
+.teamtile {
+  position: relative;
+  aspect-ratio: 1 / 0.82;
+  border-radius: 13px;
+  border: 2px solid transparent;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 10px 11px;
+  filter: saturate(0.35) brightness(1.06);
+  transition: filter 320ms var(--ease), transform var(--med), border-color var(--fast), box-shadow var(--med);
+}
+
+.teamtile:hover {
+  filter: saturate(0.9);
+  transform: translateY(-2px);
+}
+
+.teamtile[aria-pressed='true'] {
+  filter: saturate(1.05);
+  border-color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.teamtile__name {
+  font-size: 13.5px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+}
+
+.teamtile__star {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
 /* Soar-grade dropdowns */
 .drop {
   position: relative;
