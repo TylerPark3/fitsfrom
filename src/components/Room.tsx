@@ -85,6 +85,17 @@ export function Room() {
 
   return (
     <div className="room2" ref={roomRef}>
+      {/* leaning framed print — always part of the room */}
+      <div className="room2__lean">
+        <img src="/room/art-ny.jpg" alt="" loading="lazy" />
+      </div>
+
+      {profile.tags.includes('Yankees') && (
+        <div className="room2__hangart">
+          <img src="/room/art-yankees.jpg" alt="Yankees caps painting" loading="lazy" />
+        </div>
+      )}
+
       {/* wall posters from your teams */}
       <div className="room2__posters">
         {posters.length === 0 && <div className="room2__poster room2__poster--empty">FF</div>}

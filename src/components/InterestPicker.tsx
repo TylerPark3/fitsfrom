@@ -18,6 +18,7 @@ const INTERESTS: { id: string; label: string; img: string }[] = [
   { id: 'Tokyo street', label: 'Tokyo street', img: '/styles/japanese.jpg' },
   { id: 'Fragrance', label: 'Fragrance', img: '/scents/versace-eros.png' },
   { id: 'Sneakers', label: 'Sneakers', img: skate },
+  { id: 'Yankees', label: 'Yankees', img: '/room/art-yankees.jpg' },
 ]
 
 /** ESPN-style visual interest grid — tap tiles, they colorize. */
