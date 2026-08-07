@@ -51692,5 +51692,3323 @@
   ],
   "silhouette": "sneaker",
   "url": "https://sp5derworldwide.com/products/diablo-pink-slide-001"
+ },
+ {
+  "id": "icecream-logo-with-evisu-emb-hat-mid-tone-indigo",
+  "brand": "ICECREAM",
+  "name": "Evisu x Icecream Emb. Hat - Mid Tone Indigo",
+  "category": "accessory",
+  "price": 34,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/FA25_F2_HT7029-NAVY_DETAIL_1_1.png?width=900",
+  "fabric": "100% cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/FA25_F2_HT7029-NAVY_DETAIL_1_1.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/FA25_F2_HT7029-NAVY_FRONT_1.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/FA25_F2_HT7029-NAVY_BACK_1.png"
+  ],
+  "silhouette": "cap",
+  "url": "https://bbcicecream.eu/products/logo-with-evisu-emb-hat-mid-tone-indigo"
+ },
+ {
+  "id": "icecream-arch-logo-trucker-cap-blackpf25",
+  "brand": "ICECREAM",
+  "name": "Arch Logo Trucker Cap - Black",
+  "category": "accessory",
+  "price": 30,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/ARCHLOGOTRUCKERCAP_BLACK_01.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ARCHLOGOTRUCKERCAP_BLACK_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ARCHLOGOTRUCKERCAP_BLACK_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ARCHLOGOTRUCKERCAP_BLACK_03.png"
+  ],
+  "silhouette": "cap",
+  "url": "https://bbcicecream.eu/products/arch-logo-trucker-cap-blackpf25"
+ },
+ {
+  "id": "icecream-bbastro-crewneck-black-pink-logo",
+  "brand": "ICECREAM",
+  "name": "Bb Astro Crewneck - Black/Pink Logo",
+  "category": "top",
+  "price": 48,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BJD23423_BLACKPINK_01_1.png?width=900",
+  "fabric": "100% cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BJD23423_BLACKPINK_01_1.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BJD23423_BLACKPINK_01_2.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BJD23423_BLACKPINK_01_3.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BJD23423_BLACKPINK_01_4.png"
+  ],
+  "silhouette": "sweater",
+  "url": "https://bbcicecream.eu/products/bbastro-crewneck-black-pink-logo"
+ },
+ {
+  "id": "icecream-astro-sweatpants-blue",
+  "brand": "ICECREAM",
+  "name": "Astro Sweatpants - Blue",
+  "category": "pants",
+  "price": 48,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BJD23211_BLUE_01.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BJD23211_BLUE_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BJD23211_BLUE_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BJD23211_BLUE_03.png"
+  ],
+  "silhouette": "trouser",
+  "url": "https://bbcicecream.eu/products/astro-sweatpants-blue"
+ },
+ {
+  "id": "icecream-oil-stained-trucker-jacket-white",
+  "brand": "ICECREAM",
+  "name": "Oil Stained Trucker Jacket - White",
+  "category": "outer",
+  "price": 78,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/ICW008_WHITE_01.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICW008_WHITE_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICW008_WHITE_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICW008_WHITE_03.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICW008_WHITE_04.png"
+  ],
+  "silhouette": "jacket",
+  "url": "https://bbcicecream.eu/products/oil-stained-trucker-jacket-white"
+ },
+ {
+  "id": "icecream-multi-graphic-ls-t-shirt-white",
+  "brand": "ICECREAM",
+  "name": "Multi Graphic L/S T-Shirt - White",
+  "category": "top",
+  "price": 28,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/IC25355_WHITE_01.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/IC25355_WHITE_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/IC25355_WHITE_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/IC25355_WHITE_03.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/IC25355_WHITE_04.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://bbcicecream.eu/products/multi-graphic-ls-t-shirt-white"
+ },
+ {
+  "id": "icecream-football-shirt-whitejpsp26",
+  "brand": "ICECREAM",
+  "name": "Football Shirt - White",
+  "category": "shirt",
+  "price": 80,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP261C008_WHITE_001.png?width=900",
+  "fabric": "100% Polyester",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP261C008_WHITE_001.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP261C008_WHITE_002.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP261C008_WHITE_003.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://bbcicecream.eu/products/football-shirt-whitejpsp26"
+ },
+ {
+  "id": "icecream-overdsized-embroidery-logo-crazy-rugby-shirt-crazy-2",
+  "brand": "ICECREAM",
+  "name": "Oversized Crazy Rugby Shirt - Crazy Colours",
+  "category": "shirt",
+  "price": 85,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP261C007_CRAZY_2_001.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP261C007_CRAZY_2_001.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP261C007_CRAZY_2_002.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP261C007_CRAZY_2_003.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP261C007_CRAZY_2_004.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://bbcicecream.eu/products/overdsized-embroidery-logo-crazy-rugby-shirt-crazy-2"
+ },
+ {
+  "id": "icecream-d-d-football-shirt-navy",
+  "brand": "ICECREAM",
+  "name": "Diamonds & Dollars Football Shirt - Navy",
+  "category": "shirt",
+  "price": 125,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261C008_NAVY_001.png?width=900",
+  "fabric": "100% Polyester",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261C008_NAVY_001.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261C008_NAVY_002.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261C008_NAVY_003.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261C008_NAVY_004.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://bbcicecream.eu/products/d-d-football-shirt-navy"
+ },
+ {
+  "id": "icecream-small-arch-logo-sweatpants-oat",
+  "brand": "ICECREAM",
+  "name": "Small Arch Logo Sweatpants - Oat",
+  "category": "pants",
+  "price": 44,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/products/BC001_OAT_01.png?width=900",
+  "fabric": "Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/products/BC001_OAT_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/products/BC001_OAT_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/products/BC001_OAT_03.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/products/BC001_OAT_05.png"
+  ],
+  "silhouette": "trouser",
+  "url": "https://bbcicecream.eu/products/small-arch-logo-sweatpants-oat"
+ },
+ {
+  "id": "icecream-football-ss-shirt-sax",
+  "brand": "ICECREAM",
+  "name": "Football Ss Shirt - Blue",
+  "category": "shirt",
+  "price": 85,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP1251K006_SAX_001.png?width=900",
+  "fabric": "100% Polyester",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP1251K006_SAX_001.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP1251K006_SAX_002.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP1251K006_SAX_003.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP1251K006_SAX_004.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://bbcicecream.eu/products/football-ss-shirt-sax"
+ },
+ {
+  "id": "icecream-football-l-s-shirt-black",
+  "brand": "ICECREAM",
+  "name": "Football L/S Shirt - Black",
+  "category": "shirt",
+  "price": 77,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP251K005_BLACK_001.png?width=900",
+  "fabric": "100% Polyester",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP251K005_BLACK_001.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP251K005_BLACK_002.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP251K005_BLACK_003.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP251K005_BLACK_004.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://bbcicecream.eu/products/football-l-s-shirt-black"
+ },
+ {
+  "id": "icecream-football-scarf-blue-pink",
+  "brand": "ICECREAM",
+  "name": "Football Scarf - Blue/Pink",
+  "category": "accessory",
+  "price": 55,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/ICECREAMFOOTBALLSCARF_BLUE_01.png?width=900",
+  "fabric": "100% Acrylic",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICECREAMFOOTBALLSCARF_BLUE_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICECREAMFOOTBALLSCARF_BLUE_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICECREAMFOOTBALLSCARF_BLUE_03.png"
+  ],
+  "silhouette": "tee",
+  "url": "https://bbcicecream.eu/products/football-scarf-blue-pink"
+ },
+ {
+  "id": "icecream-woven-patch-arch-logo-curved-visor-cap-black",
+  "brand": "ICECREAM",
+  "name": "Woven Patch Arch Logo Curved Visor Cap - Black",
+  "category": "accessory",
+  "price": 35,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BC116_BLACK_01_1.png?width=900",
+  "fabric": "100% cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BC116_BLACK_01_1.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BC116_BLACK_01_2.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BC116_BLACK_01_3.png"
+  ],
+  "silhouette": "cap",
+  "url": "https://bbcicecream.eu/products/woven-patch-arch-logo-curved-visor-cap-black"
+ },
+ {
+  "id": "icecream-arch-logo-curved-visor-cap-olive",
+  "brand": "ICECREAM",
+  "name": "Arch Logo Cap - Olive",
+  "category": "accessory",
+  "price": 50,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/products/BBC_ARCHLOGOCAP_OLIVE_01.png?width=900",
+  "fabric": "100% cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/products/BBC_ARCHLOGOCAP_OLIVE_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBC_ARCHLOGOCAP_OLIVE_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBC_ARCHLOGOCAP_OLIVE_03.png"
+  ],
+  "silhouette": "cap",
+  "url": "https://bbcicecream.eu/products/arch-logo-curved-visor-cap-olive"
+ },
+ {
+  "id": "icecream-garment-dye-cotton-t-shirt-scrap-whiteicjpsp26",
+  "brand": "ICECREAM",
+  "name": "Garment Dye Scrap T-Shirt - White",
+  "category": "top",
+  "price": 50,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP261C012_WHITE_001.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP261C012_WHITE_001.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP261C012_WHITE_002.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://bbcicecream.eu/products/garment-dye-cotton-t-shirt-scrap-whiteicjpsp26"
+ },
+ {
+  "id": "icecream-overdyed-pocket-t-shirt-cone-and-bone-white",
+  "brand": "ICECREAM",
+  "name": "Overdyed Pocket Cones & Bones T-Shirt - White",
+  "category": "top",
+  "price": 50,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP261C011_WHITE_001.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP261C011_WHITE_001.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP261C011_WHITE_002.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP261C011_WHITE_003.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICEJP261C011_WHITE_004.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://bbcicecream.eu/products/overdyed-pocket-t-shirt-cone-and-bone-white"
+ },
+ {
+  "id": "icecream-cotton-t-shirt-billionaire-boys-club-white-2",
+  "brand": "ICECREAM",
+  "name": "Billionaire Boys Club T-Shirt - White",
+  "category": "top",
+  "price": 75,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261T006_WHITE_001.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261T006_WHITE_001.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261T006_WHITE_002.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261T006_WHITE_003.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261T006_WHITE_004.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://bbcicecream.eu/products/cotton-t-shirt-billionaire-boys-club-white-2"
+ },
+ {
+  "id": "icecream-warm-up-shirt-navy",
+  "brand": "ICECREAM",
+  "name": "Warm Up Shirt - Navy",
+  "category": "shirt",
+  "price": 90,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261W002_NAVY_001.png?width=900",
+  "fabric": "100% Nylon",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261W002_NAVY_001.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261W002_NAVY_002.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261W002_NAVY_003.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261W002_NAVY_004.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://bbcicecream.eu/products/warm-up-shirt-navy"
+ },
+ {
+  "id": "icecream-mesh-ls-shirt-c-s-navy",
+  "brand": "ICECREAM",
+  "name": "Arch Logo Mesh L/S Top - Navy",
+  "category": "shirt",
+  "price": 115,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261C009_NAVY_001.png?width=900",
+  "fabric": "98% Polyester",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261C009_NAVY_001.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261C009_NAVY_002.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261C009_NAVY_003.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBC_01439_1.jpg"
+  ],
+  "silhouette": "shirt",
+  "url": "https://bbcicecream.eu/products/mesh-ls-shirt-c-s-navy"
+ },
+ {
+  "id": "icecream-cotton-t-shirt-heart-and-mind-white",
+  "brand": "ICECREAM",
+  "name": "Heart and Mind T-Shirt - White",
+  "category": "top",
+  "price": 75,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261T004_WHITE_001.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261T004_WHITE_001.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261T004_WHITE_002.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261T004_WHITE_003.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCJP261T004_WHITE_004.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://bbcicecream.eu/products/cotton-t-shirt-heart-and-mind-white"
+ },
+ {
+  "id": "icecream-diamonds-dollars-backpack-tan",
+  "brand": "ICECREAM",
+  "name": "Diamonds & Dollars Backpack - Tan",
+  "category": "accessory",
+  "price": 225,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCBACKPACK_YELLOWPINK_01.png?width=900",
+  "fabric": "Nylon",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCBACKPACK_YELLOWPINK_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCBACKPACK_YELLOWPINK_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCBACKPACK_YELLOWPINK_03.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBCBACKPACK_YELLOWPINK_04.png"
+  ],
+  "silhouette": "bag",
+  "url": "https://bbcicecream.eu/products/diamonds-dollars-backpack-tan"
+ },
+ {
+  "id": "icecream-straight-logo-socks-black",
+  "brand": "ICECREAM",
+  "name": "Straight Logo Socks - Black",
+  "category": "accessory",
+  "price": 21,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BC017_BLACK_01.png?width=900",
+  "fabric": "80% Cotton, 18% Polyamide",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BC017_BLACK_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BC017_BLACK_02.png"
+  ],
+  "silhouette": "tee",
+  "url": "https://bbcicecream.eu/products/straight-logo-socks-black"
+ },
+ {
+  "id": "icecream-distressed-oversized-cargo-shorts-washed-black",
+  "brand": "ICECREAM",
+  "name": "Distressed Oversized Cargo Shorts - Washed Black",
+  "category": "pants",
+  "price": 225,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBWS26250_BLACK_01.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBWS26250_BLACK_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBWS26250_BLACK_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBWS26250_BLACK_03.png"
+  ],
+  "silhouette": "trouser",
+  "url": "https://bbcicecream.eu/products/distressed-oversized-cargo-shorts-washed-black"
+ },
+ {
+  "id": "icecream-clubhouse-track-pants-olive",
+  "brand": "ICECREAM",
+  "name": "Clubhouse Track Pants - Olive",
+  "category": "pants",
+  "price": 195,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBWP26206_OLIVE_01.png?width=900",
+  "fabric": "100% Nylon",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBWP26206_OLIVE_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_585._06_11_25_BBC_Mainline_PF26_Look_28_0807_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_585._06_11_25_BBC_Mainline_PF26_Look_28_0811_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBWP26206_OLIVE_02.png"
+  ],
+  "silhouette": "trouser",
+  "url": "https://bbcicecream.eu/products/clubhouse-track-pants-olive"
+ },
+ {
+  "id": "icecream-clubhouse-polo-shirt-white",
+  "brand": "ICECREAM",
+  "name": "Clubhouse Polo Shirt - White",
+  "category": "top",
+  "price": 125,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBPO26295_WHITE_01.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBPO26295_WHITE_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_585._06_11_25_BBC_Mainline_PF26_Look_14_0450_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBPO26295_WHITE_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBPO26295_WHITE_03.png"
+  ],
+  "silhouette": "polo",
+  "url": "https://bbcicecream.eu/products/clubhouse-polo-shirt-white"
+ },
+ {
+  "id": "icecream-clubhouse-knitted-collared-jumper-off-white",
+  "brand": "ICECREAM",
+  "name": "Clubhouse Knitted Collared Jumper - Off White",
+  "category": "knit",
+  "price": 245,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBKN26261_OFFWHITE_01.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBKN26261_OFFWHITE_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_585._06_11_25_BBC_Mainline_PF26_Look_16_0533_1_6b796da2-6982-4a19-a039-65301c865ead.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBKN26261_OFFWHITE_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBKN26261_OFFWHITE_03.png"
+  ],
+  "silhouette": "sweater",
+  "url": "https://bbcicecream.eu/products/clubhouse-knitted-collared-jumper-off-white"
+ },
+ {
+  "id": "icecream-camo-waffle-ls-t-shirt-camo",
+  "brand": "ICECREAM",
+  "name": "Camo Waffle L/S T-Shirt - Camo",
+  "category": "top",
+  "price": 125,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBLT26278_CAMO_01.png?width=900",
+  "fabric": "100% knit",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBLT26278_CAMO_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBLT26278_CAMO_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBLT26278_CAMO_03.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBLT26278_CAMO_04.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://bbcicecream.eu/products/camo-waffle-ls-t-shirt-camo"
+ },
+ {
+  "id": "icecream-arch-logo-utility-pants-stone",
+  "brand": "ICECREAM",
+  "name": "Arch Logo Utility Pants - Stone",
+  "category": "pants",
+  "price": 225,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBWP26240_STONE_01.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBWP26240_STONE_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_585._06_11_25_BBC_Mainline_PF26_Look_30_0843_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBWP26240_STONE_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBWP26240_STONE_03.png"
+  ],
+  "silhouette": "trouser",
+  "url": "https://bbcicecream.eu/products/arch-logo-utility-pants-stone"
+ },
+ {
+  "id": "icecream-arch-logo-football-shirt-blue",
+  "brand": "ICECREAM",
+  "name": "Arch Logo Football Shirt - Blue",
+  "category": "shirt",
+  "price": 105,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBSS26223_BLUE_01.png?width=900",
+  "fabric": "100% Polyester",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBSS26223_BLUE_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBSS26223_BLUE_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBSS26223_BLUE_03.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBSS26223_BLUE_04.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://bbcicecream.eu/products/arch-logo-football-shirt-blue"
+ },
+ {
+  "id": "icecream-arch-logo-blouson-jacket-sand",
+  "brand": "ICECREAM",
+  "name": "Arch Logo Blouson Jacket - Sand",
+  "category": "outer",
+  "price": 255,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBOU26235_SAND_01.png?width=900",
+  "fabric": "43% Cotton, 40% Polyester",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBOU26235_SAND_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_585._06_11_25_BBC_Mainline_PF26_Look_17_0563_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_585._06_11_25_BBC_Mainline_PF26_Look_17_0570_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBOU26235_SAND_02.png"
+  ],
+  "silhouette": "jacket",
+  "url": "https://bbcicecream.eu/products/arch-logo-blouson-jacket-sand"
+ },
+ {
+  "id": "icecream-arch-logo-applique-wide-leg-sweatpants-black",
+  "brand": "ICECREAM",
+  "name": "Arch Logo Applique Wide Leg Sweatpants - Black",
+  "category": "pants",
+  "price": 175,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBJP26203_BLACK_01.png?width=900",
+  "fabric": "100% cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBJP26203_BLACK_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_585._06_11_25_BBC_Mainline_PF26_Look_26_0778_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBJP26203_BLACK_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBJP26203_BLACK_03.png"
+  ],
+  "silhouette": "trouser",
+  "url": "https://bbcicecream.eu/products/arch-logo-applique-wide-leg-sweatpants-black"
+ },
+ {
+  "id": "icecream-signature-script-dad-cap-pink",
+  "brand": "ICECREAM",
+  "name": "Signature Script Dad Cap - Pink",
+  "category": "accessory",
+  "price": 75,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBHW2601_PINK_01.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBHW2601_PINK_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBHW2601_PINK_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBHW2601_PINK_03.png"
+  ],
+  "silhouette": "cap",
+  "url": "https://bbcicecream.eu/products/signature-script-dad-cap-pink"
+ },
+ {
+  "id": "icecream-leopard-print-denim-shorts-multi",
+  "brand": "ICECREAM",
+  "name": "Leopard Print Denim Shorts - Multi",
+  "category": "pants",
+  "price": 205,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "waist",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBDS26266_BROWNARTWORK_01.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBDS26266_BROWNARTWORK_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_585._06_11_25_BBC_Mainline_PF26_Look_12_0372_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_585._06_11_25_BBC_Mainline_PF26_Look_12_0383_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBDS26266_BROWNARTWORK_02.png"
+  ],
+  "silhouette": "jean",
+  "url": "https://bbcicecream.eu/products/leopard-print-denim-shorts-multi"
+ },
+ {
+  "id": "icecream-leopard-print-panel-astro-denim-shorts-black",
+  "brand": "ICECREAM",
+  "name": "Leopard Print Panel Astro Denim Shorts - Black",
+  "category": "pants",
+  "price": 195,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "waist",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBDS26239_BLACK_01.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBDS26239_BLACK_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBDS26239_BLACK_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBDS26239_BLACK_03.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBDS26239_BLACK_04.png"
+  ],
+  "silhouette": "jean",
+  "url": "https://bbcicecream.eu/products/leopard-print-panel-astro-denim-shorts-black"
+ },
+ {
+  "id": "icecream-tiger-bomber-jacket-khaki",
+  "brand": "ICECREAM",
+  "name": "Tiger Bomber Jacket - Khaki",
+  "category": "outer",
+  "price": 325,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBOU26201_KHAKI_01.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBOU26201_KHAKI_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_585._06_11_25_BBC_Mainline_PF26_Look_03_0077_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_585._06_11_25_BBC_Mainline_PF26_Look_03_0091_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBOU26201_KHAKI_02.png"
+  ],
+  "silhouette": "jacket",
+  "url": "https://bbcicecream.eu/products/tiger-bomber-jacket-khaki"
+ },
+ {
+  "id": "icecream-neon-arch-logo-varsity-jacket-navy",
+  "brand": "ICECREAM",
+  "name": "Neon Arch Logo Varsity Jacket - Navy",
+  "category": "outer",
+  "price": 475,
+  "tier": "grail",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBOU26232_NAVY_01.png?width=900",
+  "fabric": "50% Wool, 50% Polyester",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBOU26232_NAVY_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_585._06_11_25_BBC_Mainline_PF26_Look_12_0372_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_585._06_11_25_BBC_Mainline_PF26_Look_12_0383_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBOU26232_NAVY_02.png"
+  ],
+  "silhouette": "jacket",
+  "url": "https://bbcicecream.eu/products/neon-arch-logo-varsity-jacket-navy"
+ },
+ {
+  "id": "icecream-leopard-camo-hooded-shell-jacket-multi",
+  "brand": "ICECREAM",
+  "name": "Leopard Camo Hooded Shell Jacket - Multi",
+  "category": "outer",
+  "price": 265,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/BBOU26237_MULTI_01.png?width=900",
+  "fabric": "100% Nylon",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBOU26237_MULTI_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_585._06_11_25_BBC_Mainline_PF26_Look_30_0843_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBOU26237_MULTI_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/BBOU26237_MULTI_03.png"
+  ],
+  "silhouette": "jacket",
+  "url": "https://bbcicecream.eu/products/leopard-camo-hooded-shell-jacket-multi"
+ },
+ {
+  "id": "icecream-waitress-varsity-jacket-grey",
+  "brand": "ICECREAM",
+  "name": "Waitress Varsity Jacket - Grey",
+  "category": "outer",
+  "price": 325,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/ICOU26201_GREY_01.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICOU26201_GREY_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICOU26201_GREY_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_584._30_10_25_BBC_Ice_Cream_PF26_Look_06_0001_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_584._30_10_25_BBC_Ice_Cream_PF26_Look_06_0039_1.jpg"
+  ],
+  "silhouette": "jacket",
+  "url": "https://bbcicecream.eu/products/waitress-varsity-jacket-grey"
+ },
+ {
+  "id": "icecream-soft-serve-panelled-track-jacket-navy",
+  "brand": "ICECREAM",
+  "name": "Soft Serve Panelled Track Jacket - Navy",
+  "category": "outer",
+  "price": 165,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/ICOU26205_NAVY_01.png?width=900",
+  "fabric": "100% Nylon",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICOU26205_NAVY_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICOU26205_NAVY_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_584._30_10_25_BBC_Ice_Cream_PF26_Look_21_0022_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_584._30_10_25_BBC_Ice_Cream_PF26_Look_21_0031_1.jpg"
+  ],
+  "silhouette": "jacket",
+  "url": "https://bbcicecream.eu/products/soft-serve-panelled-track-jacket-navy"
+ },
+ {
+  "id": "icecream-moto-lightweight-bomber-jacket-multi",
+  "brand": "ICECREAM",
+  "name": "Moto Lightweight Bomber Jacket - Multi",
+  "category": "outer",
+  "price": 230,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/ICOU26202_MULTI_01.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICOU26202_MULTI_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_584._30_10_25_BBC_Ice_Cream_PF26_Look_16_0018_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_584._30_10_25_BBC_Ice_Cream_PF26_Look_16_0026_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICOU26202_MULTI_02.png"
+  ],
+  "silhouette": "jacket",
+  "url": "https://bbcicecream.eu/products/moto-lightweight-bomber-jacket-multi"
+ },
+ {
+  "id": "icecream-cones-bones-striped-knitted-cardigan-pink-green-stripe",
+  "brand": "ICECREAM",
+  "name": "Cones & Bones Striped Knitted Cardigan - Pink/Green Stripe",
+  "category": "knit",
+  "price": 155,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/ICKN26225_PINKGREEN_01.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICKN26225_PINKGREEN_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_584._30_10_25_BBC_Ice_Cream_PF26_Look_23_0020_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_584._30_10_25_BBC_Ice_Cream_PF26_Look_23_0026_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICKN26225_PINKGREEN_02.png"
+  ],
+  "silhouette": "sweater",
+  "url": "https://bbcicecream.eu/products/cones-bones-striped-knitted-cardigan-pink-green-stripe"
+ },
+ {
+  "id": "icecream-college-knitted-cardigan-ecru",
+  "brand": "ICECREAM",
+  "name": "College Knitted Cardigan - Ecru",
+  "category": "knit",
+  "price": 155,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/ICKN26226_ECRU_01.png?width=900",
+  "fabric": "80% Acrylic, 20% Wool",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICKN26226_ECRU_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_584._30_10_25_BBC_Ice_Cream_PF26_Look_03_0013_2_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/Copy_of_584._30_10_25_BBC_Ice_Cream_PF26_Look_03_0041_1.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/ICKN26226_ECRU_02.png"
+  ],
+  "silhouette": "sweater",
+  "url": "https://bbcicecream.eu/products/college-knitted-cardigan-ecru"
+ },
+ {
+  "id": "icecream-multi-logo-knit-crewneck-black",
+  "brand": "ICECREAM",
+  "name": "Multi Logo Knit Crewneck - Black",
+  "category": "knit",
+  "price": 78,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0384/3957/files/IC25330_BLACK_01.png?width=900",
+  "fabric": "80% Cotton, 20% Wool",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/IC25330_BLACK_01.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/IC25330_BLACK_02.png",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/473.06_12_24_BBC_Ice_Cream_03_Look_03_0067.jpg",
+   "https://cdn.shopify.com/s/files/1/0384/3957/files/473.06_12_24_BBC_Ice_Cream_03_Look_03_0093.jpg"
+  ],
+  "silhouette": "sweater",
+  "url": "https://bbcicecream.eu/products/multi-logo-knit-crewneck-black"
+ },
+ {
+  "id": "bape-1l30-109-008",
+  "brand": "BAPE",
+  "name": "Baseball Big Logo Tee Mens",
+  "category": "top",
+  "price": 195,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301008_WHT_B.jpg?width=900",
+  "fabric": "100% cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301008_WHT_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301008_WHT_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301008_WHT_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301008_WHT_D.jpg"
+  ],
+  "silhouette": "tee",
+  "url": "https://us.bape.com/products/1l30-109-008"
+ },
+ {
+  "id": "bape-1l30-109-006",
+  "brand": "BAPE",
+  "name": "Bape Mens Ape Head College Stripe Tee",
+  "category": "top",
+  "price": 169,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301006_GRN_A.jpg?width=900",
+  "fabric": "100% cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301006_GRN_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301006_GRN_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301006_GRN_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301006_NVY_A.jpg"
+  ],
+  "silhouette": "tee",
+  "url": "https://us.bape.com/products/1l30-109-006"
+ },
+ {
+  "id": "bape-1l30-109-004",
+  "brand": "BAPE",
+  "name": "Trial Camo General Tee Mens",
+  "category": "top",
+  "price": 149,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301004_BEI_A.jpg?width=900",
+  "fabric": "Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301004_BEI_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301004_BEI_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301004_BEI_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301004_GRN_A.jpg"
+  ],
+  "silhouette": "tee",
+  "url": "https://us.bape.com/products/1l30-109-004"
+ },
+ {
+  "id": "bape-1l30-109-011",
+  "brand": "BAPE",
+  "name": "Giant 1st Camo Shark Tee Mens",
+  "category": "top",
+  "price": 195,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301011_GRN_A.jpg?width=900",
+  "fabric": "Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301011_GRN_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301011_GRN_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301011_GRN_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CSL301011_GRN_D.jpg"
+  ],
+  "silhouette": "tee",
+  "url": "https://us.bape.com/products/1l30-109-011"
+ },
+ {
+  "id": "bape-1i80-180-002",
+  "brand": "BAPE",
+  "name": "Snake Panel Cap M",
+  "category": "accessory",
+  "price": 116,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/products/001CPI801002_BLK_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/products/001CPI801002_BLK_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/products/001CPI801002_BLK_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/products/001CPI801002_BLK_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/products/001CPI801002_BLK_D.jpg"
+  ],
+  "silhouette": "cap",
+  "url": "https://us.bape.com/products/1i80-180-002"
+ },
+ {
+  "id": "bape-1l33-180-901",
+  "brand": "BAPE",
+  "name": "Nyc Logo New Era 9forty Cap Mens",
+  "category": "accessory",
+  "price": 155,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPL331901_BRW_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPL331901_BRW_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPL331901_BRW_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPL331901_BRW_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPL331901_NVY_A.jpg"
+  ],
+  "silhouette": "cap",
+  "url": "https://us.bape.com/products/1l33-180-901"
+ },
+ {
+  "id": "bape-1j30-180-008",
+  "brand": "BAPE",
+  "name": "Honeycomb Camo Jet Cap Mens",
+  "category": "accessory",
+  "price": 145,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPJ301008_GRA_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPJ301008_GRA_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPJ301008_GRA_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPJ301008_GRA_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/09_b760f9a0-79bb-4af6-a48a-71c079cdd5a2.jpg"
+  ],
+  "silhouette": "cap",
+  "url": "https://us.bape.com/products/1j30-180-008"
+ },
+ {
+  "id": "bape-1l80-181-002",
+  "brand": "BAPE",
+  "name": "1st Camo Knit Cap Mens",
+  "category": "knit",
+  "price": 139,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001HTL801002_ORG_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001HTL801002_ORG_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001HTL801002_ORG_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001HTL801002_YEL_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001HTL801002_YEL_B.jpg"
+  ],
+  "silhouette": "sweater",
+  "url": "https://us.bape.com/products/1l80-181-002"
+ },
+ {
+  "id": "bape-1l33-180-902",
+  "brand": "BAPE",
+  "name": "B Logo New Era 59fifty Cap Mens",
+  "category": "accessory",
+  "price": 155,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPL331902_NVY_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPL331902_NVY_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPL331902_NVY_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPL331902_NVY_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPL331902_NVY_D.jpg"
+  ],
+  "silhouette": "cap",
+  "url": "https://us.bape.com/products/1l33-180-902"
+ },
+ {
+  "id": "bape-1k72-114-006",
+  "brand": "BAPE",
+  "name": "Abc Camo 2nd Ape Pullover Hoodie Mens",
+  "category": "top",
+  "price": 465,
+  "tier": "grail",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001PPK721006_PNK_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PPK721006_PNK_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PPK721006_PNK_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PPK721006_PNK_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PPK721006_PNK_D.jpg"
+  ],
+  "silhouette": "sweater",
+  "url": "https://us.bape.com/products/1k72-114-006"
+ },
+ {
+  "id": "bape-1l30-114-301",
+  "brand": "BAPE",
+  "name": "One Point Relaxed Pullover Hoodie Mens",
+  "category": "top",
+  "price": 355,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001PPL301301_SAX_A.jpg?width=900",
+  "fabric": "Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PPL301301_SAX_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PPL301301_SAX_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PPL301301_SAX_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PPL301301_SAX_D.jpg"
+  ],
+  "silhouette": "sweater",
+  "url": "https://us.bape.com/products/1l30-114-301"
+ },
+ {
+  "id": "bape-1k80-113-309",
+  "brand": "BAPE",
+  "name": "Line Camo Jacquard Bathing Ape Logo Relaxed Fit Track Jacket Mens",
+  "category": "outer",
+  "price": 355,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001SWK801309_GRN_A.jpg?width=900",
+  "fabric": "Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SWK801309_GRN_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SWK801309_GRN_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SWK801309_GRN_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SWK801309_GRN_D.jpg"
+  ],
+  "silhouette": "jacket",
+  "url": "https://us.bape.com/products/1k80-113-309"
+ },
+ {
+  "id": "bape-1l30-115-309",
+  "brand": "BAPE",
+  "name": "College Monogram Logo Relaxed Fit Track Jacket Mens",
+  "category": "outer",
+  "price": 449,
+  "tier": "grail",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001ZPL301309_OLD_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001ZPL301309_OLD_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001ZPL301309_OLD_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001ZPL301309_OLD_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001ZPL301309_OLD_D.jpg"
+  ],
+  "silhouette": "jacket",
+  "url": "https://us.bape.com/products/1l30-115-309"
+ },
+ {
+  "id": "bape-2m23-114-901",
+  "brand": "BAPE",
+  "name": "Bape x Just Don Milo Relaxed Fit Pullover Hoodie Mens",
+  "category": "top",
+  "price": 415,
+  "tier": "grail",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/002PPM231901_NVY_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/002PPM231901_NVY_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/002PPM231901_NVY_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/002PPM231901_NVY_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/002PPM231901_NVY_D.jpg"
+  ],
+  "silhouette": "sweater",
+  "url": "https://us.bape.com/products/2m23-114-901"
+ },
+ {
+  "id": "bape-1m70-110-008",
+  "brand": "BAPE",
+  "name": "Abc Camo Big Ape Head Tee Mens",
+  "category": "top",
+  "price": 125,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001TEL801006_BK9_A.jpg?width=900",
+  "fabric": "100% cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001TEL801006_BK9_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001TEL801006_BK9_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001TEL801006_BK0_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001TEL801006_BK0_B.jpg"
+  ],
+  "silhouette": "shirt",
+  "url": "https://us.bape.com/products/1m70-110-008"
+ },
+ {
+  "id": "bape-1m80-180-012",
+  "brand": "BAPE",
+  "name": "Ape Head Crystal Mesh Cap Mens",
+  "category": "accessory",
+  "price": 335,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPM801012_BLK_A.jpg?width=900",
+  "fabric": "Nylon",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPM801012_BLK_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPM801012_BLK_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPM801012_BLK_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPM801012_BLK_D.jpg"
+  ],
+  "silhouette": "cap",
+  "url": "https://us.bape.com/products/1m80-180-012"
+ },
+ {
+  "id": "bape-1m20-153-001",
+  "brand": "BAPE",
+  "name": "Fake Print Relaxed Fit Sweat Shorts Mens",
+  "category": "pants",
+  "price": 355,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001SPM201001_BEI_A.jpg?width=900",
+  "fabric": "Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SPM201001_BEI_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SPM201001_BEI_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SPM201001_BEI_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SPM201001_BEI_D.jpg"
+  ],
+  "silhouette": "trouser",
+  "url": "https://us.bape.com/products/1m20-153-001"
+ },
+ {
+  "id": "bape-1m80-152-007",
+  "brand": "BAPE",
+  "name": "Sta Strike Camo Loose Fit Track Pants Mens",
+  "category": "pants",
+  "price": 369,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTM801007_BLU_A.jpg?width=900",
+  "fabric": "Polyester",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTM801007_BLU_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTM801007_BLU_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTM801007_BLU_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTM801007_BLU_D.jpg"
+  ],
+  "silhouette": "trouser",
+  "url": "https://us.bape.com/products/1m80-152-007"
+ },
+ {
+  "id": "bape-1m80-191-322",
+  "brand": "BAPE",
+  "name": "Bape Slides #1 Mens",
+  "category": "shoes",
+  "price": 179,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "shoe",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001FWM801322_OLD_B.png?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001FWM801322_OLD_B.png",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001FWM801322_OLD_A.png",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001FWM801322_OLD_C.png",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001FWM801322_OLD_D.png"
+  ],
+  "silhouette": "sneaker",
+  "url": "https://us.bape.com/products/1m80-191-322"
+ },
+ {
+  "id": "bape-1l73-152-904",
+  "brand": "BAPE",
+  "name": "Bape x Spotify By Central Cee Camo Relaxed Fit Sweatpants Mens",
+  "category": "pants",
+  "price": 369,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTL731904_GRN_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTL731904_GRN_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTL731904_GRN_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTL731904_GRN_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTL731904_PUR_A.jpg"
+  ],
+  "silhouette": "trouser",
+  "url": "https://us.bape.com/products/1l73-152-904"
+ },
+ {
+  "id": "bape-1l80-184-004",
+  "brand": "BAPE",
+  "name": "Ape Head Pattern Socks Mens",
+  "category": "accessory",
+  "price": 35,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001SOL801004_BRW_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SOL801004_BRW_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SOL801004_BRW_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SOL801004_PUR_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SOL801004_PUR_B.jpg"
+  ],
+  "silhouette": "tee",
+  "url": "https://us.bape.com/products/1l80-184-004"
+ },
+ {
+  "id": "bape-1i80-131-008",
+  "brand": "BAPE",
+  "name": "Large Ape Head Oxford Bd Shirt Mens",
+  "category": "shirt",
+  "price": 285,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/products/001SHI801008_BLK_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/products/001SHI801008_BLK_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/products/001SHI801008_BLK_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/products/001SHI801008_BLK_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/products/001SHI801008_BLK_D.jpg"
+  ],
+  "silhouette": "shirt",
+  "url": "https://us.bape.com/products/1i80-131-008"
+ },
+ {
+  "id": "bape-1i80-152-001",
+  "brand": "BAPE",
+  "name": "Color Camo Sweat Pants M",
+  "category": "pants",
+  "price": 309,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/products/001PTI801001_GRN_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/products/001PTI801001_GRN_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/products/001PTI801001_GRN_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/products/001PTI801001_GRN_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/products/001PTI801001_GRN_D.jpg"
+  ],
+  "silhouette": "trouser",
+  "url": "https://us.bape.com/products/1i80-152-001"
+ },
+ {
+  "id": "bape-1m80-132-301",
+  "brand": "BAPE",
+  "name": "Color Camo Mesh Warm Up Relaxed Fit Shirt Mens",
+  "category": "shirt",
+  "price": 335,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001SRM801301_BRW_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SRM801301_BRW_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SRM801301_BRW_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SRM801301_BRW_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SRM801301_BRW_D.jpg"
+  ],
+  "silhouette": "shirt",
+  "url": "https://us.bape.com/products/1m80-132-301"
+ },
+ {
+  "id": "bape-1l73-141-903",
+  "brand": "BAPE",
+  "name": "Bape x Swarovski - Detachable Hoodie Varsity Jacket Mens",
+  "category": "outer",
+  "price": 2160,
+  "tier": "grail",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001HJL731903_BLK_A_R1.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001HJL731903_BLK_A_R1.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001HJL731903_BLK_B_R1.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001HJL731903_BLK_C_R1.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001HJL731903_BLK_D.jpg"
+  ],
+  "silhouette": "jacket",
+  "url": "https://us.bape.com/products/1l73-141-903"
+ },
+ {
+  "id": "bape-1l80-144-001",
+  "brand": "BAPE",
+  "name": "Color Stone Down Jacket Mens",
+  "category": "outer",
+  "price": 1069,
+  "tier": "grail",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001DNL801001_BLK_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001DNL801001_BLK_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001DNL801001_BLK_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001DNL801001_BLK_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001DNL801001_BLK_D.jpg"
+  ],
+  "silhouette": "jacket",
+  "url": "https://us.bape.com/products/1l80-144-001"
+ },
+ {
+  "id": "bape-1m80-180-001",
+  "brand": "BAPE",
+  "name": "College Mesh Cap Mens",
+  "category": "accessory",
+  "price": 119,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPM801001_BLK_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPM801001_BLK_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPM801001_BLK_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPM801001_BLK_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001CPM801001_BRW_A.jpg"
+  ],
+  "silhouette": "cap",
+  "url": "https://us.bape.com/products/1m80-180-001"
+ },
+ {
+  "id": "bape-1m80-153-302",
+  "brand": "BAPE",
+  "name": "One Point Knee Length Relaxed Fit Sweat Shorts Mens",
+  "category": "pants",
+  "price": 309,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001SPM801302_GRA_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SPM801302_GRA_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SPM801302_GRA_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SPM801302_GRA_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SPM801302_NVY_A.jpg"
+  ],
+  "silhouette": "trouser",
+  "url": "https://us.bape.com/products/1m80-153-302"
+ },
+ {
+  "id": "bape-1m80-152-314",
+  "brand": "BAPE",
+  "name": "One Point Sweatpants Mens",
+  "category": "pants",
+  "price": 309,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTM801314_BLK_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTM801314_BLK_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTM801314_BLK_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTM801314_BLK_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTM801314_BLU_A.jpg"
+  ],
+  "silhouette": "trouser",
+  "url": "https://us.bape.com/products/1m80-152-314"
+ },
+ {
+  "id": "bape-1m80-150-301",
+  "brand": "BAPE",
+  "name": "Solid Camo Jacquard Denim Pants Mens",
+  "category": "pants",
+  "price": 509,
+  "tier": "grail",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001DPM801301_LIG_A.jpg?width=900",
+  "fabric": "Denim",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001DPM801301_LIG_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001DPM801301_LIG_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001DPM801301_LIG_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001DPM801301_LIG_D.jpg"
+  ],
+  "silhouette": "jean",
+  "url": "https://us.bape.com/products/1m80-150-301"
+ },
+ {
+  "id": "bape-1m80-131-302",
+  "brand": "BAPE",
+  "name": "One Point Line Camo Jacquard Denim Ls Shirt Mens",
+  "category": "shirt",
+  "price": 449,
+  "tier": "grail",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001SHM801302_LIG_A.jpg?width=900",
+  "fabric": "Denim",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SHM801302_LIG_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SHM801302_LIG_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SHM801302_LIG_C.jpg"
+  ],
+  "silhouette": "jean",
+  "url": "https://us.bape.com/products/1m80-131-302"
+ },
+ {
+  "id": "bape-1m80-140-305",
+  "brand": "BAPE",
+  "name": "Solid Camo Jacquard Denim Trucker Jacket Mens",
+  "category": "outer",
+  "price": 585,
+  "tier": "grail",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001LJM801305_LIG_A.jpg?width=900",
+  "fabric": "Denim",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001LJM801305_LIG_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001LJM801305_LIG_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001LJM801305_LIG_C.jpg"
+  ],
+  "silhouette": "jacket",
+  "url": "https://us.bape.com/products/1m80-140-305"
+ },
+ {
+  "id": "bape-1m80-115-001",
+  "brand": "BAPE",
+  "name": "Bape Sweat Cardigan Mens",
+  "category": "knit",
+  "price": 429,
+  "tier": "grail",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001ZPM801001_NVY_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001ZPM801001_NVY_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001ZPM801001_NVY_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001ZPM801001_NVY_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001ZPM801001_IVY_A.jpg"
+  ],
+  "silhouette": "sweater",
+  "url": "https://us.bape.com/products/1m80-115-001"
+ },
+ {
+  "id": "bape-1m80-140-313",
+  "brand": "BAPE",
+  "name": "Hybrid Camo Multi Badge Jacket Mens",
+  "category": "outer",
+  "price": 895,
+  "tier": "grail",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001LJM801313_MUL_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001LJM801313_MUL_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001LJM801313_OLD_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001LJM801313_MUL_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001LJM801313_MUL_C.jpg"
+  ],
+  "silhouette": "jacket",
+  "url": "https://us.bape.com/products/1m80-140-313"
+ },
+ {
+  "id": "bape-1j80-131-009",
+  "brand": "BAPE",
+  "name": "Ape Head One Point Corduroy Shirt Mens",
+  "category": "shirt",
+  "price": 285,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001SHJ801009_BRW_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SHJ801009_BRW_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SHJ801009_BRW_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SHJ801009_NVY_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SHJ801009_NVY_B.jpg"
+  ],
+  "silhouette": "shirt",
+  "url": "https://us.bape.com/products/1j80-131-009"
+ },
+ {
+  "id": "bape-1l80-152-005",
+  "brand": "BAPE",
+  "name": "Color Camo Sweat Pants Mens",
+  "category": "pants",
+  "price": 345,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTL801005_PUR_A.jpg?width=900",
+  "fabric": "100% cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTL801005_PUR_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTL801005_PUR_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTL801005_PUR_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001PTL801005_PUR_D.jpg"
+  ],
+  "silhouette": "trouser",
+  "url": "https://us.bape.com/products/1l80-152-005"
+ },
+ {
+  "id": "bape-1l73-140-908",
+  "brand": "BAPE",
+  "name": "Bape x Ovo Neon 1st Camo Jacquard Denim Jacket Mens",
+  "category": "outer",
+  "price": 949,
+  "tier": "grail",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001LJL731908_ING_A.jpg?width=900",
+  "fabric": "100% cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001LJL731908_ING_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001LJL731908_ING_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001LJL731908_ING_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001LJL731908_ING_D.jpg"
+  ],
+  "silhouette": "jacket",
+  "url": "https://us.bape.com/products/1l73-140-908"
+ },
+ {
+  "id": "bape-1l83-144-901",
+  "brand": "BAPE",
+  "name": "Bape By Kazuki Kuraishi Multi Logo Varsity Down Jacket Mens",
+  "category": "outer",
+  "price": 1309,
+  "tier": "grail",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001DNL831901_NVY_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001DNL831901_NVY_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001DNL831901_NVY_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001DNL831901_NVY_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001DNL831901_NVY_D.jpg"
+  ],
+  "silhouette": "jacket",
+  "url": "https://us.bape.com/products/1l83-144-901"
+ },
+ {
+  "id": "bape-1l83-182-901",
+  "brand": "BAPE",
+  "name": "Bape By Kazuki Kuraishi Uap Camo Gloves Mens",
+  "category": "accessory",
+  "price": 165,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001GDL831901_CHA_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001GDL831901_CHA_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001GDL831901_CHA_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001GDL831901_CHA_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001GDL831901_CHA_D.jpg"
+  ],
+  "silhouette": "tee",
+  "url": "https://us.bape.com/products/1l83-182-901"
+ },
+ {
+  "id": "bape-1l70-131-003",
+  "brand": "BAPE",
+  "name": "Asia Camo Patchwork Shirt Mens",
+  "category": "shirt",
+  "price": 415,
+  "tier": "grail",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001SHL701003_BLU_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SHL701003_BLU_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SHL701003_BLU_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SHL701003_BLU_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SHL701003_BLU_D.jpg"
+  ],
+  "silhouette": "shirt",
+  "url": "https://us.bape.com/products/1l70-131-003"
+ },
+ {
+  "id": "bape-1m33-132-901",
+  "brand": "BAPE",
+  "name": "Bape By Kazuki Kuraishi Leopard Jacquard Ss Shirt Mens",
+  "category": "shirt",
+  "price": 335,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001SRM331901_BEI_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SRM331901_BEI_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SRM331901_BEI_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SRM331901_BEI_C.jpg"
+  ],
+  "silhouette": "shirt",
+  "url": "https://us.bape.com/products/1m33-132-901"
+ },
+ {
+  "id": "bape-1m30-132-308",
+  "brand": "BAPE",
+  "name": "Japanese Indigo Art Camo Open Collar Ss Shirt Mens",
+  "category": "shirt",
+  "price": 309,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001SRM301308_ING_A.jpg?width=900",
+  "fabric": "100% lyocell",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SRM301308_ING_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SRM301308_ING_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SRM301308_ING_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SRM301308_ING_D.jpg"
+  ],
+  "silhouette": "shirt",
+  "url": "https://us.bape.com/products/1m30-132-308"
+ },
+ {
+  "id": "bape-1l80-181-001",
+  "brand": "BAPE",
+  "name": "Color Stone Sta Knit Cap Mens",
+  "category": "knit",
+  "price": 165,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001HTL801001_BLK_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001HTL801001_BLK_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001HTL801001_BLK_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001HTL801001_BLK_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001HTL801001_SAX_A.jpg"
+  ],
+  "silhouette": "sweater",
+  "url": "https://us.bape.com/products/1l80-181-001"
+ },
+ {
+  "id": "bape-1k80-131-306",
+  "brand": "BAPE",
+  "name": "One Point Oxford Shirt Mens",
+  "category": "shirt",
+  "price": 319,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0214/3706/files/001SHK801306_WHT_A.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SHK801306_WHT_A.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SHK801306_WHT_B.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SHK801306_WHT_C.jpg",
+   "https://cdn.shopify.com/s/files/1/0214/3706/files/001SHK801306_WHT_D.jpg"
+  ],
+  "silhouette": "shirt",
+  "url": "https://us.bape.com/products/1k80-131-306"
+ },
+ {
+  "id": "market-vinebound-tiger-ss-polo-shirt",
+  "brand": "MARKET",
+  "name": "Vinebound Tiger Ss Polo Shirt",
+  "category": "shirt",
+  "price": 65,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1522/4434/files/VINEBOUNDTIGERPOLOSHIRTBLACKFRONT.jpg?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1522/4434/files/VINEBOUNDTIGERPOLOSHIRTBLACKFRONT.jpg",
+   "https://cdn.shopify.com/s/files/1/1522/4434/files/VINEBOUNDTIGERSSPOLOSHIRTBLACKBACK.png"
+  ],
+  "silhouette": "polo",
+  "url": "https://chinatownmarket.com/products/vinebound-tiger-ss-polo-shirt"
+ },
+ {
+  "id": "market-vinebound-tiger-ls-t-shirt",
+  "brand": "MARKET",
+  "name": "Vinebound Tiger Ls T-Shirt",
+  "category": "top",
+  "price": 55,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1522/4434/files/VINEBOUNDTIGERLST-SHIRTDIRTYWHITEBACK.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1522/4434/files/VINEBOUNDTIGERLST-SHIRTDIRTYWHITEBACK.png",
+   "https://cdn.shopify.com/s/files/1/1522/4434/files/VINEBOUNDTIGERLST-SHIRTDIRTYWHITEFRONT.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://chinatownmarket.com/products/vinebound-tiger-ls-t-shirt"
+ },
+ {
+  "id": "market-peekaboo-t-shirt",
+  "brand": "MARKET",
+  "name": "Peekaboo T-Shirt",
+  "category": "top",
+  "price": 45,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1522/4434/files/PEEKABOOT-SHIRTBLANCWHITE.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1522/4434/files/PEEKABOOT-SHIRTBLANCWHITE.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://chinatownmarket.com/products/peekaboo-t-shirt"
+ },
+ {
+  "id": "market-joyride-t-shirt",
+  "brand": "MARKET",
+  "name": "Joyride T-Shirt",
+  "category": "top",
+  "price": 45,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1522/4434/files/JOYRIDET-SHIRTBLANCWHITE.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1522/4434/files/JOYRIDET-SHIRTBLANCWHITE.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://chinatownmarket.com/products/joyride-t-shirt"
+ },
+ {
+  "id": "market-clowning-around-t-shirt",
+  "brand": "MARKET",
+  "name": "Clowning Around T-Shirt",
+  "category": "top",
+  "price": 45,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1522/4434/files/CLOWNINGAROUNDT-SHIRTBLANCWHITE.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1522/4434/files/CLOWNINGAROUNDT-SHIRTBLANCWHITE.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://chinatownmarket.com/products/clowning-around-t-shirt"
+ },
+ {
+  "id": "market-clowning-around-2fer-ls-t-shirt",
+  "brand": "MARKET",
+  "name": "Clowning Around 2Fer Ls T-Shirt",
+  "category": "top",
+  "price": 60,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1522/4434/files/CLOWNINGAROUND2FERLST-SHIRTBLACKWHITESTRIPE.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1522/4434/files/CLOWNINGAROUND2FERLST-SHIRTBLACKWHITESTRIPE.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://chinatownmarket.com/products/clowning-around-2fer-ls-t-shirt"
+ },
+ {
+  "id": "market-flame-arc-t-shirt",
+  "brand": "MARKET",
+  "name": "Flame Arc T-Shirt",
+  "category": "top",
+  "price": 45,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1522/4434/files/FLAMEARCT-SHIRTCHARCOALOILWASH.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1522/4434/files/FLAMEARCT-SHIRTCHARCOALOILWASH.png",
+   "https://cdn.shopify.com/s/files/1/1522/4434/files/FLAMEARCT-SHIRTBLUEHAZEOIL.png",
+   "https://cdn.shopify.com/s/files/1/1522/4434/files/FLAMEARCT-SHIRTBLACKWHITE.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://chinatownmarket.com/products/flame-arc-t-shirt"
+ },
+ {
+  "id": "market-flame-arc-2fer-ls-t-shirt",
+  "brand": "MARKET",
+  "name": "Flame Arc 2Fer Ls T-Shirt",
+  "category": "top",
+  "price": 60,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1522/4434/files/FLAMEARC2FERLST-SHIRTVINTAGEBLACKANDWHITE.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1522/4434/files/FLAMEARC2FERLST-SHIRTVINTAGEBLACKANDWHITE.png"
+  ],
+  "silhouette": "shirt",
+  "url": "https://chinatownmarket.com/products/flame-arc-2fer-ls-t-shirt"
+ },
+ {
+  "id": "market-flame-arc-hoodie",
+  "brand": "MARKET",
+  "name": "Flame Arc Hoodie",
+  "category": "top",
+  "price": 95,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "skate"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1522/4434/files/FLAMEARCHOODIEPAINTVINTAGEBLACK.png?width=900",
+  "fabric": "100% Cotton",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1522/4434/files/FLAMEARCHOODIEPAINTVINTAGEBLACK.png"
+  ],
+  "silhouette": "sweater",
+  "url": "https://chinatownmarket.com/products/flame-arc-hoodie"
+ },
+ {
+  "id": "antisocialsocialclub-assc-x-hello-kitty-world-champ-hoodie",
+  "brand": "Anti Social Social Club",
+  "name": "ASSC x Hello Kitty World Champ Hoodie",
+  "category": "top",
+  "price": 99,
+  "tier": "solid",
+  "styles": [
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_071_d5824f4e-a0da-462f-a414-ed066f4b384f.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_071_d5824f4e-a0da-462f-a414-ed066f4b384f.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_072_292632a2-6653-4bb8-a445-d8702027324c.jpg"
+  ],
+  "silhouette": "sweater",
+  "url": "https://antisocialsocialclub.com/products/assc-x-hello-kitty-world-champ-hoodie"
+ },
+ {
+  "id": "antisocialsocialclub-assc-x-hello-kitty-world-champ-tee",
+  "brand": "Anti Social Social Club",
+  "name": "ASSC x Hello Kitty World Champ Tee",
+  "category": "top",
+  "price": 55,
+  "tier": "entry",
+  "styles": [
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_076.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_076.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_075.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_074.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_073.jpg"
+  ],
+  "silhouette": "shirt",
+  "url": "https://antisocialsocialclub.com/products/assc-x-hello-kitty-world-champ-tee"
+ },
+ {
+  "id": "antisocialsocialclub-assc-x-hello-kitty-pit-stop-tee",
+  "brand": "Anti Social Social Club",
+  "name": "ASSC x Hello Kitty Pit Stop Tee",
+  "category": "top",
+  "price": 55,
+  "tier": "entry",
+  "styles": [
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_068.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_068.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_067.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_066.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_065.jpg"
+  ],
+  "silhouette": "shirt",
+  "url": "https://antisocialsocialclub.com/products/assc-x-hello-kitty-pit-stop-tee"
+ },
+ {
+  "id": "antisocialsocialclub-assc-x-hello-kitty-pit-stop-hoodie",
+  "brand": "Anti Social Social Club",
+  "name": "ASSC x Hello Kitty Pit Stop Hoodie",
+  "category": "top",
+  "price": 99,
+  "tier": "solid",
+  "styles": [
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_062.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_062.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_061.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_064.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_063.jpg"
+  ],
+  "silhouette": "sweater",
+  "url": "https://antisocialsocialclub.com/products/assc-x-hello-kitty-pit-stop-hoodie"
+ },
+ {
+  "id": "antisocialsocialclub-assc-x-hello-kitty-kuromi-apex-tee",
+  "brand": "Anti Social Social Club",
+  "name": "ASSC x Hello Kitty Kuromi Apex Tee",
+  "category": "top",
+  "price": 55,
+  "tier": "entry",
+  "styles": [
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_058.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_058.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_057.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_060.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_059.jpg"
+  ],
+  "silhouette": "shirt",
+  "url": "https://antisocialsocialclub.com/products/assc-x-hello-kitty-kuromi-apex-tee"
+ },
+ {
+  "id": "antisocialsocialclub-assc-x-hello-kitty-kuromi-apex-hoodie",
+  "brand": "Anti Social Social Club",
+  "name": "ASSC X Hello Kitty Kuromi Apex Hoodie",
+  "category": "top",
+  "price": 99,
+  "tier": "solid",
+  "styles": [
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_056.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_056.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_055.jpg"
+  ],
+  "silhouette": "sweater",
+  "url": "https://antisocialsocialclub.com/products/assc-x-hello-kitty-kuromi-apex-hoodie"
+ },
+ {
+  "id": "antisocialsocialclub-assc-x-hello-kitty-final-lap-tee",
+  "brand": "Anti Social Social Club",
+  "name": "ASSC x Hello Kitty Final Lap Tee",
+  "category": "top",
+  "price": 55,
+  "tier": "entry",
+  "styles": [
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_044.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_044.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_043.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_042.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_041.jpg"
+  ],
+  "silhouette": "shirt",
+  "url": "https://antisocialsocialclub.com/products/assc-x-hello-kitty-final-lap-tee"
+ },
+ {
+  "id": "antisocialsocialclub-assc-x-hello-kitty-final-lap-hoodie",
+  "brand": "Anti Social Social Club",
+  "name": "ASSC x Hello Kitty Final Lap Hoodie",
+  "category": "top",
+  "price": 99,
+  "tier": "solid",
+  "styles": [
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_040.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_040.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_HelloKitty_6.29.26_039.jpg"
+  ],
+  "silhouette": "sweater",
+  "url": "https://antisocialsocialclub.com/products/assc-x-hello-kitty-final-lap-hoodie"
+ },
+ {
+  "id": "antisocialsocialclub-polar-fleece-hoodie",
+  "brand": "Anti Social Social Club",
+  "name": "Polar Fleece Hoodie",
+  "category": "outer",
+  "price": 185,
+  "tier": "premium",
+  "styles": [
+   "street"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1246/0173/files/43A8724-Edit.jpg?width=900",
+  "fabric": "Fleece",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/43A8724-Edit.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/43A8738-Edit.jpg"
+  ],
+  "silhouette": "jacket",
+  "url": "https://antisocialsocialclub.com/products/polar-fleece-hoodie"
+ },
+ {
+  "id": "antisocialsocialclub-polar-fleece-sweats",
+  "brand": "Anti Social Social Club",
+  "name": "Polar Fleece Sweats",
+  "category": "outer",
+  "price": 155,
+  "tier": "solid",
+  "styles": [
+   "street"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1246/0173/files/43A8705-Edit.jpg?width=900",
+  "fabric": "Fleece",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/43A8705-Edit.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/43A8721-Edit.jpg"
+  ],
+  "silhouette": "jacket",
+  "url": "https://antisocialsocialclub.com/products/polar-fleece-sweats"
+ },
+ {
+  "id": "antisocialsocialclub-illustrated-sweats",
+  "brand": "Anti Social Social Club",
+  "name": "Illustrated Sweats",
+  "category": "pants",
+  "price": 135,
+  "tier": "solid",
+  "styles": [
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1246/0173/files/43A8174-Edit.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/43A8174-Edit.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/43A8182-Edit.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/43A8179-Edit.jpg"
+  ],
+  "silhouette": "trouser",
+  "url": "https://antisocialsocialclub.com/products/illustrated-sweats"
+ },
+ {
+  "id": "antisocialsocialclub-illustrated-cap",
+  "brand": "Anti Social Social Club",
+  "name": "Illustrated Cap",
+  "category": "accessory",
+  "price": 55,
+  "tier": "entry",
+  "styles": [
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1246/0173/files/43A8546-Edit.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/43A8546-Edit.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/43A8563-Edit.jpg"
+  ],
+  "silhouette": "cap",
+  "url": "https://antisocialsocialclub.com/products/illustrated-cap"
+ },
+ {
+  "id": "antisocialsocialclub-glow-in-the-dark-hat",
+  "brand": "Anti Social Social Club",
+  "name": "Glow In The Dark Hat",
+  "category": "accessory",
+  "price": 55,
+  "tier": "entry",
+  "styles": [
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1246/0173/files/43A8772-Edit10.07.55PM.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/43A8772-Edit10.07.55PM.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/43A8774-Edit.jpg"
+  ],
+  "silhouette": "cap",
+  "url": "https://antisocialsocialclub.com/products/glow-in-the-dark-hat"
+ },
+ {
+  "id": "antisocialsocialclub-crystal-stud-cap",
+  "brand": "Anti Social Social Club",
+  "name": "Crystal Stud Cap",
+  "category": "accessory",
+  "price": 85,
+  "tier": "solid",
+  "styles": [
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1246/0173/files/43A8793-Edit.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/43A8793-Edit.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/43A8792-Edit.jpg"
+  ],
+  "silhouette": "cap",
+  "url": "https://antisocialsocialclub.com/products/crystal-stud-cap"
+ },
+ {
+  "id": "antisocialsocialclub-assc-x-peanuts-snoopy-flowers-nylon-coaches-jacket",
+  "brand": "Anti Social Social Club",
+  "name": "ASSC x Peanuts Snoopy Flowers Nylon Coaches Jacket",
+  "category": "outer",
+  "price": 120,
+  "tier": "solid",
+  "styles": [
+   "street"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_Snoopy_021.jpg?width=900",
+  "fabric": "Nylon",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_Snoopy_021.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_Snoopy_022.jpg"
+  ],
+  "silhouette": "jacket",
+  "url": "https://antisocialsocialclub.com/products/assc-x-peanuts-snoopy-flowers-nylon-coaches-jacket"
+ },
+ {
+  "id": "antisocialsocialclub-assc-mini-logo-undershirt-3-pack-copy",
+  "brand": "Anti Social Social Club",
+  "name": "ASSC Mini Logo Undershirt 3-Pack",
+  "category": "shirt",
+  "price": 48,
+  "tier": "entry",
+  "styles": [
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_TeePack_00a.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_TeePack_00a.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_TeePack_003.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_TeePack_001.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_TeePack_005.jpg"
+  ],
+  "silhouette": "shirt",
+  "url": "https://antisocialsocialclub.com/products/assc-mini-logo-undershirt-3-pack-copy"
+ },
+ {
+  "id": "antisocialsocialclub-assc-x-casio-g-shock-cap",
+  "brand": "Anti Social Social Club",
+  "name": "ASSC x Casio G-Shock Cap",
+  "category": "accessory",
+  "price": 31.5,
+  "tier": "entry",
+  "styles": [
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_G-Shock_020.jpg?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_G-Shock_020.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_G-Shock_022.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_G-Shock_021.jpg",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/ASSC_G-Shock_023.jpg"
+  ],
+  "silhouette": "cap",
+  "url": "https://antisocialsocialclub.com/products/assc-x-casio-g-shock-cap"
+ },
+ {
+  "id": "antisocialsocialclub-assc-x-dickies-trucker-cap",
+  "brand": "Anti Social Social Club",
+  "name": "Assc x Dickies Trucker Cap",
+  "category": "accessory",
+  "price": 45,
+  "tier": "entry",
+  "styles": [
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1246/0173/files/assc-dickies-cap-black-1.png?width=900",
+  "fabric": "",
+  "_candidates": [
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/assc-dickies-cap-black-1.png",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/assc-dickies-cap-black-2.png",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/assc-dickies-cap-black-3.png",
+   "https://cdn.shopify.com/s/files/1/1246/0173/files/assc-dickies-cap-black-4.png"
+  ],
+  "silhouette": "cap",
+  "url": "https://antisocialsocialclub.com/products/assc-x-dickies-trucker-cap"
  }
 ]

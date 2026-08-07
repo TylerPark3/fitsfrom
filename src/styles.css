@@ -938,7 +938,7 @@ input[type='range']:active::-webkit-slider-thumb {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(232px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
   gap: 4px 4px;
 }
 
@@ -1285,8 +1285,8 @@ input.seg__control::placeholder {
 /* ESPN-style interest tiles */
 .intgrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
 }
 
 .inttile {
@@ -1365,8 +1365,8 @@ input.seg__control::placeholder {
 /* team color tiles */
 .teamgrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
 }
 
 .teamtile {
@@ -3764,7 +3764,7 @@ input.seg__control::placeholder {
   padding-top: 14px;
   border-top: 1px solid var(--line);
   animation: qfade 220ms var(--ease) both;
-  grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
 }
 
 .inttile--logo {
@@ -3828,19 +3828,35 @@ input.seg__control::placeholder {
     transparent 58%
   );
   transform: translateX(-120%) rotate(6deg);
-  animation: diamond 5.5s ease-in-out infinite;
+  animation: diamond 3.6s ease-in-out infinite;
   mix-blend-mode: screen;
 }
 
 @keyframes diamond {
   0%,
-  62% {
-    transform: translateX(-120%) rotate(6deg);
+  55% {
+    transform: translateX(-130%) rotate(6deg);
   }
-  78%,
+  75%,
   100% {
-    transform: translateX(120%) rotate(6deg);
+    transform: translateX(130%) rotate(6deg);
   }
+}
+
+/* and a permanent marker so the shine is explained, not mysterious */
+.card--elite .card__frame::after {
+  content: '◆ 90%+ MATCH';
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: 3;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: #fff;
+  background: var(--ink);
+  border-radius: 999px;
+  padding: 4px 9px;
 }
 
 /* the badge upgrades too, so the number explains the shine */
@@ -3959,6 +3975,46 @@ input.seg__control::placeholder {
   .homefeat {
     grid-template-columns: 1fr;
   }
+}
+
+/* product drawer: one match block instead of a chip pile */
+.pdp__match {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 18px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--tile);
+}
+
+.pdp__score {
+  font-family: var(--disp);
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.pdp__matchmeta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pdp__matchmeta b {
+  font-size: 14px;
+  font-weight: 550;
+}
+
+.pdp__cosign {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-top: 12px;
 }
 
 /* saved brands */
@@ -6237,7 +6293,7 @@ input.seg__control::placeholder {
   }
 
   .grid {
-    grid-template-columns: repeat(auto-fill, minmax(158px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
   }
 
   .tabbar {

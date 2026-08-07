@@ -65,6 +65,10 @@ const BRAND_STYLES = {
   'Saint Alfred': ['street', 'athletic'],
   'Wish ATL': ['street', 'athletic'],
   Sp5der: ['street'],
+  ICECREAM: ['street', 'skate'],
+  BAPE: ['street', 'japanese'],
+  MARKET: ['street', 'skate'],
+  'Anti Social Social Club': ['street'],
 }
 
 const CAT = [

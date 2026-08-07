@@ -55,27 +55,20 @@ export function ProductDrawer({
           <h2>{product.name}</h2>
           <div className="pdp__price">${product.price.toFixed(product.price % 1 ? 2 : 0)}</div>
 
-          {seenIn.length > 0 && (
-            <div className="reasons" style={{ marginTop: 14 }}>
-              {seenIn.map((f) => (
-                <span className="reason" key={f.id} style={{ background: 'var(--ink)', color: 'var(--paper)' }}>
-                  As matched in the {f.who} file
-                </span>
-              ))}
+          {profile.onboarded && (
+            <div className="pdp__match">
+              <span className="pdp__score">{score}%</span>
+              <span className="pdp__matchmeta">
+                <b>{scoreLabel(score)}</b>
+                <span className="tiny">{reasons.slice(0, 3).join(' · ')}</span>
+              </span>
             </div>
           )}
 
-          {profile.onboarded && (
-            <div className="reasons">
-              <span className="reason" style={{ background: 'var(--ink)', color: 'var(--paper)' }}>
-                {score}% · {scoreLabel(score)}
-              </span>
-              {reasons.map((r) => (
-                <span className="reason" key={r}>
-                  {r}
-                </span>
-              ))}
-            </div>
+          {seenIn.length > 0 && (
+            <p className="pdp__cosign">
+              ✦ Worn by {seenIn.map((f) => f.who).join(', ')}
+            </p>
           )}
 
           {product.sizeSystem !== 'one' && (

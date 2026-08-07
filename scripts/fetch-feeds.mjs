@@ -72,6 +72,10 @@ const BRANDS = [
   ['Saint Alfred', 'saintalfred.com'],
   ['Wish ATL', 'wishatl.com'],
   ['Sp5der', 'sp5derworldwide.com'],
+  ['ICECREAM', 'bbcicecream.eu'],
+  ['BAPE', 'us.bape.com'],
+  ['MARKET', 'chinatownmarket.com'],
+  ['Anti Social Social Club', 'antisocialsocialclub.com'],
 ]
 
 const UA = { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)' }
