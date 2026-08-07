@@ -15,7 +15,7 @@ CAT = 'src/data/catalog.gen.json'
 UA = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)'}
 
 
-def fetch_thumb(src: str):
+def fetch_thumb(src: str) -> Image.Image:
     url = f"{src}?width=64"
     req = urllib.request.Request(url, headers=UA)
     with urllib.request.urlopen(req, timeout=8) as r:
@@ -51,9 +51,21 @@ def score(src: str):
     return skin_fraction(im), corner_brightness(im)
 
 
+def dhash(im: Image.Image) -> int:
+    g = im.convert('L').resize((9, 8))
+    px = list(g.getdata())
+    bits = 0
+    for row in range(8):
+        for col in range(8):
+            bits = (bits << 1) | (1 if px[row * 9 + col] > px[row * 9 + col + 1] else 0)
+    return bits
+
+
 def main():
     items = json.load(open(CAT))
     changed = 0
+    seen_hashes = {}
+    drop = set()
     for i, it in enumerate(items):
         cands = it.pop('_candidates', None) or []
         if not cands:
@@ -75,10 +87,20 @@ def main():
             if new != it['image']:
                 changed += 1
             it['image'] = new
+        # perceptual dedupe: identical-looking photos = the same product listed twice
+        try:
+            h = dhash(fetch_thumb(it['image'].split('?')[0]))
+            if h in seen_hashes:
+                drop.add(it['id'])
+            else:
+                seen_hashes[h] = it['id']
+        except Exception:
+            pass
         if i % 40 == 0:
             print(f"{i}/{len(items)}…", file=sys.stderr)
+    items = [it for it in items if it['id'] not in drop]
     json.dump(items, open(CAT, 'w'), indent=1)
-    print(f"done — {changed} images swapped across {len(items)} products", file=sys.stderr)
+    print(f"done — {changed} swapped, {len(drop)} visual dupes removed, {len(items)} products", file=sys.stderr)
 
 
 if __name__ == '__main__':
