@@ -12,6 +12,20 @@ const STYLE_IMG: Record<string, string> = {
   minimal: '/fits/sga-arrival.jpg',
   skate: '/fits/bieber-drew.jpg',
   athletic: '/fits/lebron-quiet.jpg',
+  gorp: '/styles/gorp.jpg',
+  japanese: '/styles/japanese.jpg',
+}
+
+/** Adjacent lanes — surfaced after each pick so taste can branch. */
+const RELATED: Record<string, string[]> = {
+  ivy: ['minimal', 'japanese'],
+  workwear: ['skate', 'gorp'],
+  minimal: ['ivy', 'japanese'],
+  gorp: ['athletic', 'workwear'],
+  street: ['skate', 'athletic'],
+  japanese: ['minimal', 'workwear'],
+  skate: ['street', 'workwear'],
+  athletic: ['street', 'gorp'],
 }
 
 function styleImg(id: string): string {
@@ -104,6 +118,27 @@ export function Onboarding({ onDone }: { onDone: () => void }) {
                 ))}
               </div>
             </div>
+            {profile.styles.length > 0 && (() => {
+              const suggested = Array.from(
+                new Set(profile.styles.flatMap((st) => RELATED[st] ?? [])),
+              ).filter((st) => !profile.styles.includes(st as StyleId))
+              return suggested.length ? (
+                <div className="row" style={{ gap: 8, marginTop: 18, flexWrap: 'wrap' }}>
+                  <span className="tiny">Goes with:</span>
+                  {suggested.map((st) => (
+                    <button
+                      key={st}
+                      className="chip chip--sm"
+                      onClick={() =>
+                        setProfile({ styles: [...profile.styles, st as StyleId] })
+                      }
+                    >
+                      + {STYLES.find((x) => x.id === st)?.label}
+                    </button>
+                  ))}
+                </div>
+              ) : null
+            })()}
             {twin && (
               <p className="twinline serif">
                 You dress like <em>{twin.fit.who}</em> — {twin.pct}% style match

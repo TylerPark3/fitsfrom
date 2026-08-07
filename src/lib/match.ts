@@ -62,6 +62,12 @@ export function matchScore(product: Product, p: Profile): MatchResult {
     score -= 6
   }
 
+  // Brands you rock with.
+  if (p.brands?.includes(product.brand)) {
+    score += 7
+    reasons.push('Your brand')
+  }
+
   score += jitter(product.id)
 
   return { score: Math.max(31, Math.min(98, Math.round(score))), reasons }

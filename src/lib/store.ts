@@ -21,6 +21,8 @@ export interface Profile {
   icons: string[]
   /** Teams they follow — ESPN-style personalization for fit files and trends. */
   teams: string[]
+  /** Brands they rock with — boosts ranking. */
+  brands: string[]
   budgetMin: number
   budgetMax: number
   tiers: Tier[]
@@ -96,6 +98,7 @@ export const DEFAULT_STATE: AppState = {
     styles: [],
     icons: [],
     teams: [],
+    brands: [],
     budgetMin: 0,
     budgetMax: 200,
     tiers: ['entry', 'solid'],

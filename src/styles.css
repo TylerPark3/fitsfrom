@@ -288,6 +288,20 @@ img {
   transform: scale(0.96);
 }
 
+.chip__tag {
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  margin-left: 4px;
+}
+
+.chip[aria-pressed='true'] .chip__tag {
+  color: rgba(255, 255, 255, 0.6);
+}
+
 .chip--sm {
   height: 28px;
   padding: 0 11px;

@@ -3,7 +3,26 @@ import { useStore } from '../lib/store'
 import { FITS } from '../data/fits'
 import { Arrow, CheckInk } from '../components/Icons'
 
-const TEAMS = ['Lakers', 'Thunder', 'Mavs', 'Wizards', 'Suns', 'Warriors', 'Knicks', 'Heat', 'Celtics', 'Bulls', 'Cavs', 'Jazz']
+const TEAMS: [string, string][] = [
+  ['Thunder', 'SGA · J-Dub'],
+  ['Lakers', 'Bron'],
+  ['Mavs', 'JC'],
+  ['Wizards', 'Poole Party'],
+  ['Suns', 'Book'],
+  ['Rockets', 'Jalen Green'],
+  ['Warriors', ''],
+  ['Knicks', ''],
+  ['Heat', ''],
+  ['Celtics', ''],
+  ['Cavs', ''],
+  ['Bulls', ''],
+]
+
+const BRAND_PICKS = [
+  'Stüssy', 'Kith', 'Fear of God', 'JJJJound', 'Aime Leon Dore', 'Noah', 'John Elliott',
+  'Represent', '3sixteen', 'Norse Projects', 'Snow Peak', 'Polar Skate Co.',
+  'Checks Downtown', 'Story mfg.', 'Battenwear', 'Sexhippies',
+]
 
 async function sha256(text: string): Promise<string> {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text))
@@ -85,7 +104,7 @@ export function AuthView({ onDone }: { onDone: () => void }) {
 
           <p className="eyebrow" style={{ margin: '22px 0 10px' }}>Teams</p>
           <div className="chips">
-            {TEAMS.map((t) => (
+            {TEAMS.map(([t, players]) => (
               <button
                 key={t}
                 className="chip"
@@ -94,6 +113,22 @@ export function AuthView({ onDone }: { onDone: () => void }) {
               >
                 {profile.teams.includes(t) && <CheckInk size={12} />}
                 {t}
+                {players && <i className="chip__tag">{players}</i>}
+              </button>
+            ))}
+          </div>
+
+          <p className="eyebrow" style={{ margin: '22px 0 10px' }}>Brands you rock with</p>
+          <div className="chips">
+            {BRAND_PICKS.map((b) => (
+              <button
+                key={b}
+                className="chip"
+                aria-pressed={profile.brands.includes(b)}
+                onClick={() => setProfile({ brands: flip(profile.brands, b) })}
+              >
+                {profile.brands.includes(b) && <CheckInk size={12} />}
+                {b}
               </button>
             ))}
           </div>
