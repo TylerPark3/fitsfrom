@@ -7,9 +7,19 @@ import { analyzeBody } from '../lib/pose'
 import { fileToDataUrl } from '../lib/img'
 import { iconScores } from '../lib/twin'
 import { AvatarRig } from '../components/AvatarRig'
-import { InterestPicker } from '../components/InterestPicker'
 import { Slider } from './Onboarding'
 import { Arrow, Upload, Trash } from '../components/Icons'
+
+const INTO: { id: string; label: string; kind: 'team' | 'tag'; options: string[] }[] = [
+  { id: 'nba', label: 'NBA', kind: 'team', options: ['Lakers', 'Thunder', 'Mavs', 'Wizards', 'Suns', 'Rockets', 'Warriors', 'Knicks', 'Celtics', 'Bulls'] },
+  { id: 'mlb', label: 'MLB', kind: 'tag', options: ['Yankees', 'Dodgers', 'Mets', 'Red Sox', 'Braves', 'Giants'] },
+  { id: 'fc', label: 'Football', kind: 'tag', options: ['Barcelona', 'Real Madrid', 'Arsenal', 'Inter Miami', 'PSG'] },
+  { id: 'music', label: 'Music', kind: 'tag', options: ['Hip-hop', 'Pop & R&B', 'K-culture'] },
+  { id: 'culture', label: 'Culture', kind: 'tag', options: ['Sneakers', 'Thrifting', 'Gaming', 'Film & TV', 'Fragrance', 'Outdoors', 'Tokyo street'] },
+]
+
+/** Posters exist for these — picking them decorates the room. */
+const HAS_ART = new Set(['Yankees', 'Dodgers', 'Lakers', 'Rockets'])
 
 const RANKS: [number, string][] = [
   [0, 'ROOKIE'],
@@ -22,6 +32,7 @@ const RANKS: [number, string][] = [
 export function AvatarView({ go }: { go: (v: View) => void }) {
   const { profile, setProfile, reset, wardrobe, customs, saved, outfits, toast } = useStore()
   const [tagDraft, setTagDraft] = useState('')
+  const [intoOpen, setIntoOpen] = useState<string | null>('nba')
   const input = useRef<HTMLInputElement>(null)
   const [busy, setBusy] = useState(false)
 
@@ -151,9 +162,65 @@ export function AvatarView({ go }: { go: (v: View) => void }) {
           </div>
         </div>
 
-        {/* CENTER — the build */}
+        {/* CENTER — the build + the Into module underneath */}
         <div className="stage2k">
           <AvatarRig />
+          <div className="into">
+            <div className="spread" style={{ marginBottom: 10 }}>
+              <span className="eyebrow">Into</span>
+              <span className="tiny">Pick a lane — teams with a ✦ hang art in your room</span>
+            </div>
+            <div className="chips">
+              {INTO.map((cat) => (
+                <button
+                  key={cat.id}
+                  className="chip"
+                  aria-pressed={intoOpen === cat.id}
+                  onClick={() => setIntoOpen(intoOpen === cat.id ? null : cat.id)}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
+            {intoOpen && (
+              <div className="chips into__options">
+                {INTO.find((c) => c.id === intoOpen)!.options.map((opt) => {
+                  const cat = INTO.find((c) => c.id === intoOpen)!
+                  const list = cat.kind === 'team' ? profile.teams : profile.tags
+                  const on = list.includes(opt)
+                  return (
+                    <button
+                      key={opt}
+                      className="chip chip--sm"
+                      aria-pressed={on}
+                      onClick={() => {
+                        const next = on ? list.filter((x) => x !== opt) : [...list, opt]
+                        setProfile(cat.kind === 'team' ? { teams: next } : { tags: next })
+                        if (!on && HAS_ART.has(opt)) toast(`${opt} — poster hung in your room`)
+                      }}
+                    >
+                      {HAS_ART.has(opt) && '✦ '}
+                      {opt}
+                    </button>
+                  )
+                })}
+              </div>
+            )}
+            <div className="room__input" style={{ marginTop: 12, maxWidth: 380 }}>
+              <input
+                className="text-input"
+                placeholder="Add your own — “Larry June”, “F1”…"
+                value={tagDraft}
+                onChange={(e) => setTagDraft(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && tagDraft.trim()) {
+                    setProfile({ tags: [...profile.tags, tagDraft.trim()] })
+                    setTagDraft('')
+                  }
+                }}
+              />
+            </div>
+          </div>
         </div>
 
         {/* RIGHT — ratings */}
@@ -205,21 +272,6 @@ export function AvatarView({ go }: { go: (v: View) => void }) {
               </div>
             </div>
           )}
-
-          <div className="panel">
-            <h3>Into</h3>
-            <InterestPicker />
-            <div className="room__input" style={{ margin: '14px 0 10px' }}>
-              <input className="text-input" placeholder="Add your own — “Larry June”, “F1”…" value={tagDraft}
-                onChange={(e) => setTagDraft(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' && tagDraft.trim()) {
-                    setProfile({ tags: [...profile.tags, tagDraft.trim()] })
-                    setTagDraft('')
-                  }
-                }} />
-            </div>
-          </div>
 
           <div className="row" style={{ gap: 8, flexWrap: 'wrap' }}>
             <button className="btn btn--primary" onClick={() => go('discover')}>
