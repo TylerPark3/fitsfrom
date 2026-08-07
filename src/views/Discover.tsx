@@ -20,7 +20,7 @@ import { Check, Search, Arrow } from '../components/Icons'
 type Sort = 'match' | 'low' | 'high' | 'new'
 
 export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v: View) => void }) {
-  const { profile, setProfile } = useStore()
+  const { profile, setProfile, signedIn, account } = useStore()
   const [q, setQ] = useState('')
   const [cats, setCats] = useState<Category[]>([])
   const [brands, setBrands] = useState<string[]>([])
@@ -69,6 +69,46 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
 
   const activeCount =
     cats.length + brands.length + (q ? 1 : 0) + (onlyMySize ? 1 : 0)
+
+  // Stealth mode: the edit stays classified until you're in.
+  if (!(signedIn && account)) {
+    return (
+      <div className="wrap" style={{ paddingBottom: 110 }}>
+        <div className="pagehead" style={{ textAlign: 'center', paddingTop: 64 }}>
+          <span className="eyebrow" style={{ color: 'var(--red)' }}>
+            Restricted — members only
+          </span>
+          <h2 className="fitcheck" style={{ margin: '10px 0 6px' }}>
+            The Vault
+          </h2>
+          <p className="mono-line" style={{ margin: '0 auto', maxWidth: '52ch' }}>
+            {CATALOG.length} LIVE PIECES FROM {new Set(CATALOG.map((p) => p.brand)).size} BRANDS.
+            SIZED TO YOU. UNLOCKED WITH AN ACCOUNT.
+          </p>
+          <div className="row" style={{ justifyContent: 'center', marginTop: 26 }}>
+            <button className="btn btn--primary btn--lg" onClick={() => go('auth')}>
+              Create account to unlock <Arrow />
+            </button>
+          </div>
+        </div>
+
+        <div className="grid" style={{ marginTop: 34 }} aria-hidden="true">
+          {CATALOG.slice(0, 12).map((p) => (
+            <div className="vaultcard" key={p.id}>
+              <div className="vaultcard__frame">
+                <img src={p.image} alt="" loading="lazy" />
+                <span className="vaultcard__lock">✕</span>
+              </div>
+              <div className="vaultcard__meta">
+                <span>{p.brand}</span>
+                <b>$███</b>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="wrap">
