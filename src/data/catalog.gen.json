@@ -6033,7 +6033,7 @@
   "id": "jpress-vintage-the-21-club-nyc-restaurant-gold-",
   "brand": "J.Press",
   "name": "Vintage The 21 Club NYC Restaurant Gold Tone Horseshoe Belt Buckle",
-  "category": "shoes",
+  "category": "accessory",
   "price": 895,
   "tier": "grail",
   "styles": [
@@ -6046,7 +6046,7 @@
    "winter"
   ],
   "gender": "unisex",
-  "sizeSystem": "shoe",
+  "sizeSystem": "one",
   "fitBias": 0,
   "image": "https://cdn.shopify.com/s/files/1/2116/8679/files/s-l16000098_361c962c-548a-4606-974d-3719dd3381d2.jpg?width=900",
   "fabric": "",
@@ -6395,28 +6395,6 @@
   "fabric": "85% Wool, 15% Nylon",
   "silhouette": "cap",
   "url": "https://jpressonline.com/products/brooklyn-eagles-1935-wool-baseball-cap"
- },
- {
-  "id": "jpress-paris-red-peppers-1946-wool-ballcap",
-  "brand": "J.Press",
-  "name": "Paris Red Peppers 1946 Wool Ballcap",
-  "category": "accessory",
-  "price": 68,
-  "tier": "entry",
-  "styles": [
-   "ivy"
-  ],
-  "seasons": [
-   "fall",
-   "winter"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "one",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/2116/8679/files/Paris-Red-Peppers-1946-Vintage-Ballcap1_af6ca848-91b2-4229-bf0d-624969608363.jpg?width=900",
-  "fabric": "85% Wool, 15% Nylon",
-  "silhouette": "cap",
-  "url": "https://jpressonline.com/products/paris-red-peppers-1946-wool-ballcap"
  },
  {
   "id": "jpress-vintage-fight-for-eli-tee-navy-white",
@@ -6933,6 +6911,28 @@
   "fabric": "100% Cotton",
   "silhouette": "trouser",
   "url": "https://jpressonline.com/products/armor-lux-navy-fatigue-shorts"
+ },
+ {
+  "id": "jpress-off-white-shaker-knit-cotton-crew-neck-s",
+  "brand": "J.Press",
+  "name": "Off White Shaker Knit Cotton Crew Neck Sweater",
+  "category": "knit",
+  "price": 265,
+  "tier": "premium",
+  "styles": [
+   "ivy"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/2116/8679/files/JP-01JAN26-SP26_SWEATER_RAGLAN_2_SOLID_NATURAL_FOLDED_afb337ea-d0cd-43d8-93e8-314a71a97fce.jpg?width=900",
+  "fabric": "100% Peruvian",
+  "silhouette": "sweater",
+  "url": "https://jpressonline.com/products/off-white-shaker-knit-cotton-crew-neck-sweater-trim-fit-1"
  },
  {
   "id": "snowpeak-fireplace-bag-l",
@@ -17358,7 +17358,7 @@
   "id": "johnelliott-wool-wide-easy-trouser-mocha",
   "brand": "John Elliott",
   "name": "Wool Wide Easy Trouser / Mocha",
-  "category": "shoes",
+  "category": "pants",
   "price": 398,
   "tier": "premium",
   "styles": [
@@ -17370,7 +17370,7 @@
    "winter"
   ],
   "gender": "unisex",
-  "sizeSystem": "shoe",
+  "sizeSystem": "alpha",
   "fitBias": 0,
   "image": "https://cdn.shopify.com/s/files/1/0259/3835/files/EASY_WOOL_TROUSER_06.jpg?width=900",
   "fabric": "50% Wool, 50% Polyester",
@@ -17747,29 +17747,6 @@
   "url": "https://johnelliott.com/products/shaolin-oversized-court-shorts-grey-x-tan"
  },
  {
-  "id": "johnelliott-cotton-navy-trouser-navy",
-  "brand": "John Elliott",
-  "name": "Cotton Easy Trouser / Navy",
-  "category": "pants",
-  "price": 248,
-  "tier": "premium",
-  "styles": [
-   "minimal",
-   "street"
-  ],
-  "seasons": [
-   "spring",
-   "fall"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "alpha",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0259/3835/files/COTTON-EASY-TROUSER_NAVY_FLAT.jpg?width=900",
-  "fabric": "100% cotton",
-  "silhouette": "trouser",
-  "url": "https://johnelliott.com/products/cotton-navy-trouser-navy"
- },
- {
   "id": "johnelliott-trucker-hat",
   "brand": "John Elliott",
   "name": "Trucker Hat",
@@ -17931,29 +17908,6 @@
   "fabric": "100% Linen",
   "silhouette": "shirt",
   "url": "https://johnelliott.com/products/nigril-linen-smoking-shirt-washed-black"
- },
- {
-  "id": "johnelliott-club-corduroy-shorts-mocha",
-  "brand": "John Elliott",
-  "name": "Club Corduroy Shorts / Mocha",
-  "category": "shoes",
-  "price": 198,
-  "tier": "premium",
-  "styles": [
-   "minimal",
-   "street"
-  ],
-  "seasons": [
-   "fall",
-   "winter"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "shoe",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0259/3835/files/SU26_ECOMMERCE_LR_314.jpg?width=900",
-  "fabric": "100% Cotton",
-  "silhouette": "sneaker",
-  "url": "https://johnelliott.com/products/club-corduroy-shorts-mocha"
  },
  {
   "id": "johnelliott-brushed-silk-button-up-field-sketch-cela",
@@ -18240,31 +18194,6 @@
   "url": "https://johnelliott.com/products/daze-boot-stomp-selvedge-avalon"
  },
  {
-  "id": "johnelliott-cotton-easy-trouser-mocha",
-  "brand": "John Elliott",
-  "name": "Cotton Easy Trouser / Mocha",
-  "category": "shoes",
-  "price": 248,
-  "tier": "premium",
-  "styles": [
-   "minimal",
-   "street"
-  ],
-  "seasons": [
-   "spring",
-   "summer",
-   "fall",
-   "winter"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "shoe",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0259/3835/files/260212_SS26_ECOM_LR_159.jpg?width=900",
-  "fabric": "100% cotton",
-  "silhouette": "sneaker",
-  "url": "https://johnelliott.com/products/cotton-easy-trouser-mocha"
- },
- {
   "id": "johnelliott-john-elliott-x-hoka-rocket-x-3-spray-gre",
   "brand": "John Elliott",
   "name": "John Elliott x Hoka Rocket X 3 / Spray Green x Antique White",
@@ -18315,12 +18244,12 @@
   "url": "https://johnelliott.com/products/grid-mesh-sprint-hat-black"
  },
  {
-  "id": "johnelliott-raw-edge-cropped-cloak-mocha-check",
+  "id": "johnelliott-square-toe-boot-taupe",
   "brand": "John Elliott",
-  "name": "Raw Edge Cropped Cloak / Mocha Check",
+  "name": "Square Toe Boot / Taupe",
   "category": "shoes",
-  "price": 378,
-  "tier": "premium",
+  "price": 998,
+  "tier": "grail",
   "styles": [
    "minimal",
    "street"
@@ -18334,10 +18263,35 @@
   "gender": "unisex",
   "sizeSystem": "shoe",
   "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0259/3835/files/260212_SS26_ECOM_LR_215.jpg?width=900",
-  "fabric": "84% Cotton / 8% Linen",
-  "silhouette": "sneaker",
-  "url": "https://johnelliott.com/products/raw-edge-cropped-cloak-mocha-check"
+  "image": "https://cdn.shopify.com/s/files/1/0259/3835/files/SQUARE_TOE_SIDE_ZIP_BOOT_TAN_01.jpg?width=900",
+  "fabric": "",
+  "silhouette": "boot",
+  "url": "https://johnelliott.com/products/square-toe-boot-taupe"
+ },
+ {
+  "id": "johnelliott-square-toe-boot-chocolate",
+  "brand": "John Elliott",
+  "name": "Square Toe Boot / Chocolate",
+  "category": "shoes",
+  "price": 998,
+  "tier": "grail",
+  "styles": [
+   "minimal",
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "shoe",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0259/3835/files/SQUARE_TOE_SIDE_ZIP_BOOT_BROWN_01.jpg?width=900",
+  "fabric": "100% Horse",
+  "silhouette": "boot",
+  "url": "https://johnelliott.com/products/square-toe-boot-chocolate"
  },
  {
   "id": "johnelliott-capri-cashmere-cardigan-grey",
@@ -18384,6 +18338,52 @@
   "fabric": "90% Wool / 10% Cashmere",
   "silhouette": "sweater",
   "url": "https://johnelliott.com/products/cashmere-blend-cardigan-black"
+ },
+ {
+  "id": "johnelliott-cotton-cashmere-polo-white",
+  "brand": "John Elliott",
+  "name": "Cotton Cashmere Polo / White",
+  "category": "knit",
+  "price": 298,
+  "tier": "premium",
+  "styles": [
+   "minimal",
+   "street"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0259/3835/files/COTTON_CASHMERE_POLO_WHITE_FLAT.jpg?width=900",
+  "fabric": "90% Cotton / 10% Cashmere",
+  "silhouette": "polo",
+  "url": "https://johnelliott.com/products/cotton-cashmere-polo-white"
+ },
+ {
+  "id": "johnelliott-cotton-cashmere-polo-tan",
+  "brand": "John Elliott",
+  "name": "Cotton Cashmere Polo / Tan",
+  "category": "knit",
+  "price": 298,
+  "tier": "premium",
+  "styles": [
+   "minimal",
+   "street"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0259/3835/files/COTTON_CASHMERE_POLO_TAN_FLAT.jpg?width=900",
+  "fabric": "90% Cotton / 10% Cashmere",
+  "silhouette": "polo",
+  "url": "https://johnelliott.com/products/cotton-cashmere-polo-tan"
  },
  {
   "id": "jjjjound-logo-weekend-cap-black-white-1",
@@ -22407,7 +22407,7 @@
   "id": "east-bandhani-resist-printed-bandana-mocha-ec",
   "brand": "18 East",
   "name": "Bandhani Bandana - Mocha E Pistacchio / Ecru Resist-Dye Striped Featherweight Khadi Cotton",
-  "category": "shoes",
+  "category": "accessory",
   "price": 38,
   "tier": "entry",
   "styles": [
@@ -22421,7 +22421,7 @@
    "winter"
   ],
   "gender": "unisex",
-  "sizeSystem": "shoe",
+  "sizeSystem": "one",
   "fitBias": 0,
   "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/Bandana_02.jpg?width=900",
   "fabric": "Cotton",
@@ -22478,7 +22478,7 @@
   "id": "east-jesper-vintage-button-down-shirt-mocha-e",
   "brand": "18 East",
   "name": "Jesper Vintage Button Down Shirt - Mocha E Pistacchio / Ecru Bandhani Resist-Dye Striped Featherweight Khadi Cotton",
-  "category": "shoes",
+  "category": "shirt",
   "price": 228,
   "tier": "premium",
   "styles": [
@@ -22490,7 +22490,7 @@
    "winter"
   ],
   "gender": "unisex",
-  "sizeSystem": "shoe",
+  "sizeSystem": "alpha",
   "fitBias": 0,
   "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/Mainstays_01.jpg?width=900",
   "fabric": "Cotton",
@@ -22683,31 +22683,6 @@
   "url": "https://18east.co/products/cata-hooded-jacket-fog-heather-featherweight-micro-ripstop-nylon"
  },
  {
-  "id": "east-surplus-combat-smock-bleached-kelp",
-  "brand": "18 East",
-  "name": "Surplus Combat Smock - Sunbleached Kelp \"Cobblestone\" Nylon Ripstop",
-  "category": "shoes",
-  "price": 348,
-  "tier": "premium",
-  "styles": [
-   "ivy",
-   "gorp"
-  ],
-  "seasons": [
-   "spring",
-   "summer",
-   "fall",
-   "winter"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "shoe",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/SurplusCombat_001.jpg?width=900",
-  "fabric": "Nylon",
-  "silhouette": "sneaker",
-  "url": "https://18east.co/products/surplus-combat-smock-bleached-kelp"
- },
- {
   "id": "east-hirock-lte-half-sleeve-crewneck-salt-tec",
   "brand": "18 East",
   "name": "Hirock Half Sleeve Crewneck - Salt Heavyweight Cotton Jersey",
@@ -22821,29 +22796,6 @@
   "fabric": "Cotton",
   "silhouette": "shirt",
   "url": "https://18east.co/products/l-s-winhall-utility-shirt-deep-cacao-ecru"
- },
- {
-  "id": "east-s-s-wes-shirt-black-kantha-stitched-cott",
-  "brand": "18 East",
-  "name": "S/S Wes Straight Hem Work Shirt - Black / Caramel Fully Hand-Embroidered Cotton Poplin",
-  "category": "shirt",
-  "price": 268,
-  "tier": "premium",
-  "styles": [
-   "ivy",
-   "gorp"
-  ],
-  "seasons": [
-   "spring",
-   "fall"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "alpha",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/SSWesShirt-1.jpg?width=900",
-  "fabric": "100% cotton",
-  "silhouette": "shirt",
-  "url": "https://18east.co/products/s-s-wes-shirt-black-kantha-stitched-cotton-poplin"
  },
  {
   "id": "east-ariz-long-sleeve-crewneck-practice-heath",
@@ -23383,6 +23335,52 @@
   "fabric": "Wool",
   "silhouette": "sweater",
   "url": "https://18east.co/products/fola-cardigan-dark-green"
+ },
+ {
+  "id": "east-stowe-5-panel-hat-dark-brown",
+  "brand": "18 East",
+  "name": "Stowe Deconstructed Five Panel Hat - Earthen Brown Cotton Corduroy",
+  "category": "accessory",
+  "price": 58,
+  "tier": "entry",
+  "styles": [
+   "ivy",
+   "gorp"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/18E_HAT_07.jpg?width=900",
+  "fabric": "Cotton",
+  "silhouette": "cap",
+  "url": "https://18east.co/products/stowe-5-panel-hat-dark-brown"
+ },
+ {
+  "id": "east-merino-wool-ragg-socks-black",
+  "brand": "18 East",
+  "name": "Rototo Merino Wool Ragg Socks - Black Fog Heather",
+  "category": "knit",
+  "price": 50,
+  "tier": "entry",
+  "styles": [
+   "ivy",
+   "gorp"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/RototoSocks-4.jpg?width=900",
+  "fabric": "82% Wool, 14% Acrylic",
+  "silhouette": "sweater",
+  "url": "https://18east.co/products/merino-wool-ragg-socks-black"
  },
  {
   "id": "freeeasy-dont-trip-dad-hat-olive",
@@ -24159,29 +24157,6 @@
   "fabric": "Terry",
   "silhouette": "shirt",
   "url": "https://freeandeasy.la/products/f-e-x-party-shirt-dont-trip-embroidered-trucker-hat-1"
- },
- {
-  "id": "freeeasy-dad-grass-x-f-e-hammock-tank",
-  "brand": "Free & Easy",
-  "name": "Dad Grass x F&E Hammock Tank",
-  "category": "shoes",
-  "price": 25,
-  "tier": "entry",
-  "styles": [
-   "street",
-   "athletic"
-  ],
-  "seasons": [
-   "spring",
-   "summer"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "shoe",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0388/0452/1100/products/TANK-4B.jpg?width=900",
-  "fabric": "100% cotton",
-  "silhouette": "sneaker",
-  "url": "https://freeandeasy.la/products/dad-grass-x-f-e-hammock-tank"
  },
  {
   "id": "museumofpeacequiet-natural-tote-bone",
@@ -28123,7 +28098,7 @@
   "gender": "unisex",
   "sizeSystem": "alpha",
   "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0223/1536/8525/files/Dehen-1920-Heavy-Duty-Tee-Long-Sleeve-Tee-Shirt-White-1.jpg?width=900",
+  "image": "https://cdn.shopify.com/s/files/1/0223/1536/8525/files/Dehen-1920-Heavy-Duty-Long-Sleeve-Tee-Natural-1.jpg?width=900",
   "fabric": "10% off",
   "silhouette": "shirt",
   "url": "https://dehen.com/products/heavy-duty-long-sleeve-tee-non-pocket-w-cuff-white"
@@ -29043,7 +29018,7 @@
   "gender": "unisex",
   "sizeSystem": "shoe",
   "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0482/8569/files/TopsSS2600892.jpg?width=900",
+  "image": "https://cdn.shopify.com/s/files/1/0482/8569/files/TopsSS2601063.jpg?width=900",
   "fabric": "",
   "silhouette": "boot",
   "url": "https://freenotecloth.com/products/freenote-cloth-x-viberg-service-boot-horween-black-struck-through-chromexcel"
@@ -30595,7 +30570,7 @@
   "gender": "unisex",
   "sizeSystem": "alpha",
   "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0739/3265/files/BBCJP261X005_BLACK_004_1024x1024_2x_611c7555-a372-4538-8b1e-54f04a6b0146.png?width=900",
+  "image": "https://cdn.shopify.com/s/files/1/0739/3265/files/BBCJP261C020_BLACK_001_jpg_1024x1024_2x_8d3331a9-5f0d-456f-bc73-28351dd87baa.png?width=900",
   "fabric": "100% Cotton",
   "silhouette": "jacket",
   "url": "https://bbcicecream.com/products/billionaire-boys-club-x-initial-d-cotton-jacket-bbc261jpx005-black"
@@ -30665,30 +30640,6 @@
   "fabric": "100% cotton",
   "silhouette": "shirt",
   "url": "https://bbcicecream.com/products/graphic-t-shirt-hm31te021-white"
- },
- {
-  "id": "bbcicecream-emerald-woods-superboot-tb0a2myweeq1-gre",
-  "brand": "BBC Ice Cream",
-  "name": "Emerald Woods Superboot",
-  "category": "shoes",
-  "price": 280,
-  "tier": "premium",
-  "styles": [
-   "street"
-  ],
-  "seasons": [
-   "spring",
-   "summer",
-   "fall",
-   "winter"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "shoe",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0739/3265/files/Mens-Timberland-Emerald-Woods-Waterproof-Super-Boot_3_02723b47-a33a-4840-9dfe-6c876ebfa6d6.png?width=900",
-  "fabric": "100% recycled",
-  "silhouette": "boot",
-  "url": "https://bbcicecream.com/products/emerald-woods-superboot-tb0a2myweeq1-green"
  },
  {
   "id": "bbcicecream-ic-cherry-pie-ss-tee-220-10-156-white",
@@ -31401,6 +31352,30 @@
   "fabric": "100% Cotton",
   "silhouette": "tee",
   "url": "https://bbcicecream.com/products/tube-socks-hm31gd025-red"
+ },
+ {
+  "id": "bbcicecream-glove-coin-case-hm31gd001-brown",
+  "brand": "BBC Ice Cream",
+  "name": "Glove Coin Case",
+  "category": "accessory",
+  "price": 130,
+  "tier": "solid",
+  "styles": [
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0739/3265/files/05MAYHM31GD001GLOVECOINCASEBW-A.png?width=900",
+  "fabric": "Leather",
+  "silhouette": "tee",
+  "url": "https://bbcicecream.com/products/glove-coin-case-hm31gd001-brown"
  },
  {
   "id": "golfwang-rules-tee-by-golf-wang",
@@ -33625,131 +33600,6 @@
   "url": "https://themarathonclothing.com/products/indica-love-x-tmc-tote-bag-black"
  },
  {
-  "id": "themarathonclothing-tmc-distressed-flag-t-shirt-mocha-grey-b",
-  "brand": "The Marathon Clothing",
-  "name": "TMC Distressed Flag T-Shirt - Mocha Grey/Black",
-  "category": "shoes",
-  "price": 80,
-  "tier": "solid",
-  "styles": [
-   "street",
-   "athletic"
-  ],
-  "seasons": [
-   "spring",
-   "summer",
-   "fall",
-   "winter"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "shoe",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0658/9418/7242/files/Mocha_b287b42d-2caf-4149-acbe-5febccdc3ef3.jpg?width=900",
-  "fabric": "100% heavyweight",
-  "silhouette": "sneaker",
-  "url": "https://themarathonclothing.com/products/tmc-distressed-flag-t-shirt-mocha-grey-black"
- },
- {
-  "id": "themarathonclothing-own-your-masters-t-shirt-mocha-grey-blac",
-  "brand": "The Marathon Clothing",
-  "name": "Own Your Masters T-Shirt - Mocha Grey/Black",
-  "category": "shoes",
-  "price": 80,
-  "tier": "solid",
-  "styles": [
-   "street",
-   "athletic"
-  ],
-  "seasons": [
-   "spring",
-   "summer",
-   "fall",
-   "winter"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "shoe",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0658/9418/7242/files/Mocha_709776d1-7a92-45e0-885c-e7ba55f50496.jpg?width=900",
-  "fabric": "100% heavyweight",
-  "silhouette": "sneaker",
-  "url": "https://themarathonclothing.com/products/own-your-masters-t-shirt-mocha-grey-black"
- },
- {
-  "id": "themarathonclothing-vintage-marathon-clothing-t-shirt-mocha-",
-  "brand": "The Marathon Clothing",
-  "name": "Vintage Marathon Clothing T-Shirt - Mocha Grey/Black",
-  "category": "shoes",
-  "price": 80,
-  "tier": "solid",
-  "styles": [
-   "street",
-   "athletic"
-  ],
-  "seasons": [
-   "spring",
-   "summer",
-   "fall",
-   "winter"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "shoe",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0658/9418/7242/files/Mocha_9af6d9fc-f6c4-4bf9-a0c4-98a57e097348.jpg?width=900",
-  "fabric": "100% heavyweight",
-  "silhouette": "sneaker",
-  "url": "https://themarathonclothing.com/products/vintage-marathon-clothing-t-shirt-mocha-grey-black"
- },
- {
-  "id": "themarathonclothing-vintage-tmc-stacked-logo-t-shirt-mocha-g",
-  "brand": "The Marathon Clothing",
-  "name": "Vintage TMC Stacked Logo T-Shirt - Mocha Grey/Black",
-  "category": "shoes",
-  "price": 80,
-  "tier": "solid",
-  "styles": [
-   "street",
-   "athletic"
-  ],
-  "seasons": [
-   "spring",
-   "summer",
-   "fall",
-   "winter"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "shoe",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0658/9418/7242/files/StackedLogo-MochaBlack-1.jpg?width=900",
-  "fabric": "100% heavyweight",
-  "silhouette": "sneaker",
-  "url": "https://themarathonclothing.com/products/vintage-tmc-stacked-logo-t-shirt-mocha-grey-black"
- },
- {
-  "id": "themarathonclothing-vintage-crenshaw-t-shirt-mocha-grey-blac",
-  "brand": "The Marathon Clothing",
-  "name": "Vintage Crenshaw T-Shirt - Mocha Grey/Black",
-  "category": "shoes",
-  "price": 80,
-  "tier": "solid",
-  "styles": [
-   "street",
-   "athletic"
-  ],
-  "seasons": [
-   "spring",
-   "summer",
-   "fall",
-   "winter"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "shoe",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0658/9418/7242/files/VintageCrenshaw-MochaGrey-2.jpg?width=900",
-  "fabric": "100% heavyweight",
-  "silhouette": "sneaker",
-  "url": "https://themarathonclothing.com/products/vintage-crenshaw-t-shirt-mocha-grey-black"
- },
- {
   "id": "themarathonclothing-tmc-flag-1-inch-polo-red",
   "brand": "The Marathon Clothing",
   "name": "TMC Flag (1 inch) Polo - Red",
@@ -33771,31 +33621,6 @@
   "fabric": "",
   "silhouette": "polo",
   "url": "https://themarathonclothing.com/products/tmc-flag-1-inch-polo-red"
- },
- {
-  "id": "themarathonclothing-marathon-property-t-shirt-mocha",
-  "brand": "The Marathon Clothing",
-  "name": "Marathon Property T-Shirt - Mocha",
-  "category": "shoes",
-  "price": 60,
-  "tier": "entry",
-  "styles": [
-   "street",
-   "athletic"
-  ],
-  "seasons": [
-   "spring",
-   "summer",
-   "fall",
-   "winter"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "shoe",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0658/9418/7242/products/CMGL7543.jpg?width=900",
-  "fabric": "100% heavyweight",
-  "silhouette": "sneaker",
-  "url": "https://themarathonclothing.com/products/marathon-property-t-shirt-mocha"
  },
  {
   "id": "themarathonclothing-crenshaw-pants-bone",
@@ -33937,31 +33762,6 @@
   "url": "https://themarathonclothing.com/products/the-marathon-parka-black"
  },
  {
-  "id": "themarathonclothing-the-runners-crewneck-sweatshirt-black",
-  "brand": "The Marathon Clothing",
-  "name": "The Runners Crewneck Sweatshirt - Black",
-  "category": "shoes",
-  "price": 120,
-  "tier": "solid",
-  "styles": [
-   "street",
-   "athletic"
-  ],
-  "seasons": [
-   "spring",
-   "summer",
-   "fall",
-   "winter"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "shoe",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0658/9418/7242/products/IMG_6420.jpg?width=900",
-  "fabric": "Fleece",
-  "silhouette": "sneaker",
-  "url": "https://themarathonclothing.com/products/the-runners-crewneck-sweatshirt-black"
- },
- {
   "id": "themarathonclothing-marathon-life-sweat-shorts-white",
   "brand": "The Marathon Clothing",
   "name": "Marathon Life Sweat Shorts - White",
@@ -33983,31 +33783,6 @@
   "fabric": "",
   "silhouette": "tee",
   "url": "https://themarathonclothing.com/products/marathon-life-sweat-shorts-white"
- },
- {
-  "id": "themarathonclothing-tmc-t-shirt-mocha",
-  "brand": "The Marathon Clothing",
-  "name": "TMC T-Shirt - Mocha",
-  "category": "shoes",
-  "price": 60,
-  "tier": "entry",
-  "styles": [
-   "street",
-   "athletic"
-  ],
-  "seasons": [
-   "spring",
-   "summer",
-   "fall",
-   "winter"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "shoe",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0658/9418/7242/files/TMC-Mocha.jpg?width=900",
-  "fabric": "100% heavyweight",
-  "silhouette": "sneaker",
-  "url": "https://themarathonclothing.com/products/tmc-t-shirt-mocha"
  },
  {
   "id": "kuon-suicoke-sashiko-1",
@@ -36375,29 +36150,6 @@
   "url": "https://bdgastore.com/products/nike-ava-rover"
  },
  {
-  "id": "bodega-nike-tech-fleece-windrunner-full-zip-jac",
-  "brand": "Bodega",
-  "name": "Nike Tech Fleece Windrunner Full-Zip Jacket",
-  "category": "shoes",
-  "price": 112,
-  "tier": "solid",
-  "styles": [
-   "street",
-   "athletic"
-  ],
-  "seasons": [
-   "fall",
-   "winter"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "shoe",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0049/9112/files/AURORA_HV0949-328_PHSYM002-2000.jpg?width=900",
-  "fabric": "Fleece",
-  "silhouette": "sneaker",
-  "url": "https://bdgastore.com/products/nike-tech-fleece-windrunner-full-zip-jacket"
- },
- {
   "id": "bodega-nike-acg-pegasus-trail",
   "brand": "Bodega",
   "name": "Nike Acg Pegasus Trail",
@@ -36598,54 +36350,6 @@
   "url": "https://bdgastore.com/products/nike-air-max-95-big-bubble-england"
  },
  {
-  "id": "bodega-nike-tech-mens-fleece-windrunner-full-zi",
-  "brand": "Bodega",
-  "name": "Nike Tech Men'S Fleece Windrunner Full-Zip Jacket",
-  "category": "shoes",
-  "price": 112,
-  "tier": "solid",
-  "styles": [
-   "street",
-   "athletic"
-  ],
-  "seasons": [
-   "fall",
-   "winter"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "shoe",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0049/9112/files/Untitleddesign-2026-03-18T130430.893.jpg?width=900",
-  "fabric": "Fleece",
-  "silhouette": "sneaker",
-  "url": "https://bdgastore.com/products/nike-tech-mens-fleece-windrunner-full-zip-jacket"
- },
- {
-  "id": "bodega-nike-tech-mens-dri-fit-woven-full-zip-wi",
-  "brand": "Bodega",
-  "name": "Nike Tech Men'S Dri-Fit Woven Full-Zip Windrunner Jacket",
-  "category": "shoes",
-  "price": 108,
-  "tier": "solid",
-  "styles": [
-   "street",
-   "athletic"
-  ],
-  "seasons": [
-   "spring",
-   "summer",
-   "fall",
-   "winter"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "shoe",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0049/9112/files/Untitleddesign_5_746f9815-9d10-4410-a5d1-f8df7dee700d.jpg?width=900",
-  "fabric": "Nylon",
-  "silhouette": "sneaker",
-  "url": "https://bdgastore.com/products/nike-tech-mens-dri-fit-woven-full-zip-windrunner-jacket"
- },
- {
   "id": "bodega-jasper-split-m",
   "brand": "Bodega",
   "name": "Jasper Split M",
@@ -36694,6 +36398,81 @@
   "fabric": "Leather",
   "silhouette": "sneaker",
   "url": "https://bdgastore.com/products/jasper"
+ },
+ {
+  "id": "bodega-uneek-360-m",
+  "brand": "Bodega",
+  "name": "Uneek 360 M",
+  "category": "shoes",
+  "price": 190,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "shoe",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0049/9112/files/f5e2aba88dd5ba1c5c894878834f5071619ae6fa.webp?width=900",
+  "fabric": "",
+  "silhouette": "sneaker",
+  "url": "https://bdgastore.com/products/uneek-360-m"
+ },
+ {
+  "id": "bodega-uneek-m",
+  "brand": "Bodega",
+  "name": "Uneek M",
+  "category": "shoes",
+  "price": 150,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "shoe",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0049/9112/files/e59970fcf2b51a03d6ce0a7d76d631a4be174853.webp?width=900",
+  "fabric": "",
+  "silhouette": "sneaker",
+  "url": "https://bdgastore.com/products/uneek-m"
+ },
+ {
+  "id": "bodega-targhee-apex-wp-m",
+  "brand": "Bodega",
+  "name": "Targhee Apex Wp M",
+  "category": "shoes",
+  "price": 180,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "shoe",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0049/9112/files/06c0fe7cea81050eb5190c86cb2f2dee0487f44b.webp?width=900",
+  "fabric": "70% energy",
+  "silhouette": "sneaker",
+  "url": "https://bdgastore.com/products/targhee-apex-wp-m"
  },
  {
   "id": "concepts-vans-otw-half-cab-sp-boot-oamc-black",
@@ -36794,31 +36573,6 @@
   "fabric": "Leather",
   "silhouette": "sneaker",
   "url": "https://cncpts.com/products/maison-margiela-sneakers-low-top-s57ws0509-p8190-ha778-black-white-anthracite"
- },
- {
-  "id": "concepts-stussy-lightweight-mock-jacket-black",
-  "brand": "Concepts",
-  "name": "Stussy Lightweight Mock Jacket (Black)",
-  "category": "shoes",
-  "price": 185,
-  "tier": "premium",
-  "styles": [
-   "street",
-   "athletic"
-  ],
-  "seasons": [
-   "spring",
-   "summer",
-   "fall",
-   "winter"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "shoe",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0043/5673/5045/files/115902-BLAC_0.jpg?width=900",
-  "fabric": "100% nylon",
-  "silhouette": "sneaker",
-  "url": "https://cncpts.com/products/stussy-lightweight-mock-jacket-black"
  },
  {
   "id": "concepts-crocs-classic-luxe-boat-shoe-dark-cocoa",
@@ -37942,29 +37696,6 @@
   "fabric": "79% polyester",
   "silhouette": "sneaker",
   "url": "https://feature.com/products/crocs-x-beams-classic-all-terrain-military-clog-black"
- },
- {
-  "id": "feature-stussy-micro-ripstop-down-mock-red",
-  "brand": "Feature",
-  "name": "Micro Ripstop Down Mock - Red",
-  "category": "shoes",
-  "price": 260,
-  "tier": "premium",
-  "styles": [
-   "street",
-   "athletic"
-  ],
-  "seasons": [
-   "fall",
-   "winter"
-  ],
-  "gender": "unisex",
-  "sizeSystem": "shoe",
-  "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0408/9909/files/Micro-Ripstop-Down-Mock---Red-115877-REDD-11-12-25-Feature-RM-8.jpg?width=900",
-  "fabric": "100% nylon",
-  "silhouette": "sneaker",
-  "url": "https://feature.com/products/stussy-micro-ripstop-down-mock-red"
  },
  {
   "id": "feature-dr-martens-adrian-pw-butterscotch-dark-b",

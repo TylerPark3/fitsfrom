@@ -44,6 +44,10 @@ export interface WardrobeItem {
   size: string
   addedAt: number
   owned: boolean
+  /** eBay-style condition grade. */
+  condition?: string
+  /** Years owned — drives depreciation. */
+  years?: number
 }
 
 export interface Collection {
@@ -176,6 +180,7 @@ export interface Store extends AppState {
   toggleSaved: (productId: string) => void
   addToWardrobe: (productId: string, size: string, owned: boolean) => void
   removeFromWardrobe: (productId: string) => void
+  updateWardrobe: (productId: string, patch: Partial<WardrobeItem>) => void
   createCollection: (name: string) => string
   renameCollection: (id: string, name: string) => void
   deleteCollection: (id: string) => void

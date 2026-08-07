@@ -67,7 +67,7 @@ const BRAND_STYLES = {
 }
 
 const CAT = [
-  ['shoes', /sneaker|shoe|boot|loafer|moc|slide|sandal|trainer|runner/i],
+  ['shoes', /sneaker|\bshoes?\b|\bboots?\b|loafer|\bmocs?\b|slide|sandal|trainer(?!.{0,20}(jacket|pant|short|crew))|runner(?!.{0,20}(jacket|pant|short|crew))/i],
   ['outer', /jacket|coat|parka|anorak|blazer|vest|puffer|windbreaker|fleece(?!.*pant)|shell/i],
   ['knit', /sweater|cardigan|knit(?!.*(tee|polo))|jumper|pullover(?!.*hood)|shetland|merino|cashmere|mohair/i],
   ['pants', /pant|trouser|jean|denim(?!.*(jacket|shirt))|chino|short(?!.*sleeve)|sweatpant|fatigue|cargo/i],

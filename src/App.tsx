@@ -70,6 +70,12 @@ export function App() {
       removeFromWardrobe: (productId) =>
         setState((s) => ({ ...s, wardrobe: s.wardrobe.filter((w) => w.productId !== productId) })),
 
+      updateWardrobe: (productId, patch) =>
+        setState((s) => ({
+          ...s,
+          wardrobe: s.wardrobe.map((w) => (w.productId === productId ? { ...w, ...patch } : w)),
+        })),
+
       createCollection: (name) => {
         const id = `c${Date.now().toString(36)}`
         setState((s) => ({ ...s, collections: [...s.collections, { id, name, productIds: [] }] }))

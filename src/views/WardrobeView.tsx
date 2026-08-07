@@ -11,6 +11,21 @@ import { Arrow, Plus, Trash, Upload, CheckInk } from '../components/Icons'
 import { Type } from '../components/Type'
 import { Room } from '../components/Room'
 
+export const CONDITIONS: [string, number][] = [
+  ['NWT', 0.85],
+  ['Like new', 0.62],
+  ['Good', 0.45],
+  ['Fair', 0.28],
+  ['Beat', 0.12],
+]
+export const YEAR_STEPS = [0, 1, 2, 3, 5]
+
+export function itemValue(price: number, condition?: string, years?: number): number {
+  const cf = CONDITIONS.find(([c]) => c === condition)?.[1] ?? 0.62
+  const age = Math.max(0.35, 1 - 0.05 * (years ?? 0))
+  return price * cf * age
+}
+
 export function WardrobeView({
   onOpen,
   go,
@@ -47,7 +62,8 @@ export function WardrobeView({
     .slice(0, 4)
     .map((r) => r.product)
 
-  const totalSpent = items.reduce((n, i) => n + i.p.price, 0)
+  const totalRetail = items.reduce((n, i) => n + i.p.price, 0)
+  const totalValue = items.reduce((n, i) => n + itemValue(i.p.price, i.w.condition, i.w.years), 0)
 
   if (items.length === 0) {
     return (
@@ -77,9 +93,9 @@ export function WardrobeView({
       <div className="pagehead">
         <span className="eyebrow"><Type text="THE CLOSET — CATALOGUED" speed={18} /></span>
         <h2>
-          {items.length} {items.length === 1 ? 'piece' : 'pieces'} · ${Math.round(totalSpent)}{' '}
+          {items.length} {items.length === 1 ? 'piece' : 'pieces'} · ${Math.round(totalValue)}{' '}
           <span className="muted" style={{ fontSize: '0.55em', fontWeight: 400 }}>
-            replacement value
+            est. value · ${Math.round(totalRetail)} retail
           </span>
         </h2>
         <p>Fill the short bars before buying another of what you own.</p>
@@ -138,7 +154,7 @@ export function WardrobeView({
 
 /** The closet — every piece on its own shelf, shorts split from pants. */
 function Closet({ onOpen }: { onOpen: (id: string) => void }) {
-  const { wardrobe, customs, removeFromWardrobe, removeCustom, toast } = useStore()
+  const { wardrobe, customs, removeFromWardrobe, removeCustom, updateWardrobe, toast } = useStore()
 
   interface Hang {
     key: string
@@ -147,6 +163,9 @@ function Closet({ onOpen }: { onOpen: (id: string) => void }) {
     size?: string
     productId?: string
     customId?: string
+    condition?: string
+    years?: number
+    price?: number
   }
 
   const shelves: { label: string; items: Hang[] }[] = [
@@ -171,7 +190,16 @@ function Closet({ onOpen }: { onOpen: (id: string) => void }) {
     if (!p) continue
     shelves
       .find((sh) => sh.label === shelfFor(p.category, p.silhouette))!
-      .items.push({ key: p.id, img: p.image, name: p.name, size: w.size, productId: p.id })
+      .items.push({
+        key: p.id,
+        img: p.image,
+        name: p.name,
+        size: w.size,
+        productId: p.id,
+        condition: w.condition,
+        years: w.years,
+        price: p.price,
+      })
   }
   for (const c of customs) {
     shelves
@@ -214,6 +242,37 @@ function Closet({ onOpen }: { onOpen: (id: string) => void }) {
                   <span title={it.name}>{it.name}</span>
                   {it.size && <b>{it.size}</b>}
                 </div>
+                {it.productId && (
+                  <div className="ctile__cond">
+                    <button
+                      className="condchip"
+                      title="Condition — tap to cycle"
+                      onClick={() => {
+                        const i = CONDITIONS.findIndex(([c]) => c === (it.condition ?? 'Like new'))
+                        const next = CONDITIONS[(i + 1) % CONDITIONS.length][0]
+                        updateWardrobe(it.productId!, { condition: next })
+                      }}
+                    >
+                      {it.condition ?? 'Like new'}
+                    </button>
+                    <button
+                      className="condchip"
+                      title="Years owned — tap to cycle"
+                      onClick={() => {
+                        const i = YEAR_STEPS.indexOf(it.years ?? 0)
+                        const next = YEAR_STEPS[(i + 1) % YEAR_STEPS.length]
+                        updateWardrobe(it.productId!, { years: next })
+                      }}
+                    >
+                      {(it.years ?? 0) === 0 ? 'new' : `${it.years}y${it.years === 5 ? '+' : ''}`}
+                    </button>
+                    {it.price != null && (
+                      <b className="condchip condchip--val">
+                        ${Math.round(itemValue(it.price, it.condition, it.years))}
+                      </b>
+                    )}
+                  </div>
+                )}
                 <button
                   className="ctile__x"
                   aria-label={`Remove ${it.name}`}
