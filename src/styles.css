@@ -4854,27 +4854,51 @@ input.seg__control::placeholder {
 
 .ticker__track {
   display: inline-flex;
-  gap: 40px;
-  padding: 9px 0;
+  align-items: baseline;
+  gap: 0;
+  padding: 11px 0;
   white-space: nowrap;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  animation: tickscroll 26s linear infinite;
+  animation: tickscroll 34s linear infinite;
 }
 
+/* alternating weight + a serif italic beat so it reads editorial, not a stock marquee */
 .ticker__track span {
   display: inline-flex;
-  align-items: center;
-  gap: 40px;
+  align-items: baseline;
+  gap: 26px;
+  padding-right: 26px;
+  font-family: var(--disp);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.ticker__track span:nth-child(even) {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 19px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .ticker__track i {
   font-style: normal;
   color: var(--red);
-  font-size: 9px;
+  font-size: 10px;
+  transform: translateY(-2px);
+}
+
+/* edges fade so items enter and leave instead of getting cut */
+.ticker {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.ticker:hover .ticker__track {
+  animation-play-state: paused;
 }
 
 @keyframes tickscroll {
@@ -4896,8 +4920,27 @@ input.seg__control::placeholder {
   inset: 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 2px;
+  gap: 0;
   background: #0c0f0d;
+}
+
+/* the panels bleed into each other — no visible seam */
+.mast__bg img:nth-child(1) {
+  -webkit-mask-image: linear-gradient(90deg, #000 72%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 72%, transparent 100%);
+}
+
+.mast__bg img:nth-child(2) {
+  margin-left: -12%;
+  margin-right: -12%;
+  width: 124%;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 18%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 18%, #000 82%, transparent 100%);
+}
+
+.mast__bg img:nth-child(3) {
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 28%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 28%);
 }
 
 .mast__bg img {
