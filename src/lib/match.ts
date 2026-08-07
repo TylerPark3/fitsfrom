@@ -1,6 +1,7 @@
 import type { Product } from '../data/catalog'
 import type { Profile } from './store'
 import { cosigns } from './fitmatch'
+import { learnedBoost, type LearnedTaste } from './learned'
 
 export interface MatchResult {
   score: number
@@ -19,7 +20,7 @@ function jitter(id: string): number {
   return (h % 15) - 7 // -7 … +7
 }
 
-export function matchScore(product: Product, p: Profile): MatchResult {
+export function matchScore(product: Product, p: Profile, learned?: LearnedTaste): MatchResult {
   const reasons: string[] = []
   let score = 8
 
@@ -92,6 +93,13 @@ export function matchScore(product: Product, p: Profile): MatchResult {
     reasons.push('Your brand')
   }
 
+  // What you've actually saved in this category outweighs any stated preference.
+  if (learned) {
+    const { points, reason } = learnedBoost(product, learned)
+    score += points
+    if (reason) reasons.push(reason)
+  }
+
   // Cosigned pieces earn a real edge — that is the whole differentiator.
   if (cosigns(product.id).length > 0) {
     score += 9
@@ -114,8 +122,8 @@ export function scoreLabel(score: number) {
 }
 
 /** Products sorted best-first for this person. */
-export function rank(products: Product[], p: Profile) {
+export function rank(products: Product[], p: Profile, learned?: LearnedTaste) {
   return products
-    .map((product) => ({ product, ...matchScore(product, p) }))
+    .map((product) => ({ product, ...matchScore(product, p, learned) }))
     .sort((a, b) => b.score - a.score || a.product.price - b.product.price)
 }

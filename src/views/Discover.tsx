@@ -5,6 +5,7 @@ import { FITS } from '../data/fits'
 import { cosigns, resolve } from '../lib/fitmatch'
 import { useStore } from '../lib/store'
 import { rank } from '../lib/match'
+import { learnTaste } from '../lib/learned'
 import { ProductCard } from '../components/ProductCard'
 import { ScentShelf } from '../components/ScentShelf'
 import { SCENTS } from '../data/scents'
@@ -151,7 +152,11 @@ const ASKS: { id: string; label: string; test: (p: Product) => boolean }[] = [
 ]
 
 export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v: View) => void }) {
-  const { profile, signedIn, account } = useStore()
+  const { profile, saved, wardrobe, signedIn, account } = useStore()
+  const learned = useMemo(
+    () => learnTaste(saved, wardrobe.map((w) => w.productId)),
+    [saved, wardrobe],
+  )
   const [ask, setAsk] = useState('any')
   const [q, setQ] = useState('')
   const [sizeF, setSizeF] = useState('mine')
@@ -224,9 +229,9 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
 
     if (sort === 'low') out = [...out].sort((a, b) => a.price - b.price)
     else if (sort === 'high') out = [...out].sort((a, b) => b.price - a.price)
-    else if (sort === 'match') out = rank(out, profile).map((r) => r.product)
+    else if (sort === 'match') out = rank(out, profile, learned).map((r) => r.product)
     else {
-      const ranked = rank(out, profile).map((r) => r.product)
+      const ranked = rank(out, profile, learned).map((r) => r.product)
       out = [
         ...ranked.filter((p) => cosigns(p.id).length > 0),
         ...ranked.filter((p) => cosigns(p.id).length === 0),
@@ -241,7 +246,7 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
       ]
     }
     return out
-  }, [executed, ask, q, sizeF, icon, sort, profile, brand, gender, productType, color, badge])
+  }, [executed, ask, q, sizeF, icon, sort, profile, learned, brand, gender, productType, color, badge])
 
   // Stealth mode until membership.
   if (!(signedIn && account)) {
@@ -429,7 +434,7 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
                   ? [...filtered].sort((a, b) => a.price - b.price)
                   : sort === 'high'
                     ? [...filtered].sort((a, b) => b.price - a.price)
-                    : rank(filtered, profile).map((r) => r.product)
+                    : rank(filtered, profile, learned).map((r) => r.product)
               const ordered =
                 sort === 'featured'
                   ? [...ranked.filter((p) => cosigns(p.id).length > 0), ...ranked.filter((p) => cosigns(p.id).length === 0)]

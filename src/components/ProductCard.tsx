@@ -1,7 +1,8 @@
-import { useState, type ReactNode } from 'react'
+import { useMemo, useState, type ReactNode } from 'react'
 import type { Product } from '../data/catalog'
 import { useStore } from '../lib/store'
 import { matchScore } from '../lib/match'
+import { learnTaste } from '../lib/learned'
 import { recommendSize } from '../lib/sizing'
 import { cosigns } from '../lib/fitmatch'
 import { Bookmark } from './Icons'
@@ -15,9 +16,13 @@ export function ProductCard({
   onOpen: (id: string) => void
   footer?: ReactNode
 }) {
-  const { profile, saved, toggleSaved, toast } = useStore()
+  const { profile, saved, wardrobe, toggleSaved, toast } = useStore()
   const isSaved = saved.includes(product.id)
-  const { score } = matchScore(product, profile)
+  const learned = useMemo(
+    () => learnTaste(saved, wardrobe.map((w) => w.productId)),
+    [saved, wardrobe],
+  )
+  const { score } = matchScore(product, profile, learned)
   const rec = recommendSize(product, profile)
   const worn = cosigns(product.id)
   const [loaded, setLoaded] = useState(false)
