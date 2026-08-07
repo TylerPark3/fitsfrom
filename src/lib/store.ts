@@ -92,6 +92,8 @@ export interface AppState {
   customs: CustomPiece[]
   outfits: Outfit[]
   scentFavs: string[]
+  /** Reactions to recommended fits — teaches the scorer what you actually want. */
+  feedback: { kind: string; itemIds: string[]; at: number }[]
 }
 
 const est = estimateFromBody(70, 160)
@@ -133,6 +135,7 @@ export const DEFAULT_STATE: AppState = {
   customs: [],
   outfits: [],
   scentFavs: [],
+  feedback: [],
 }
 
 const KEY = 'lapel.state.v2'
@@ -176,6 +179,7 @@ export interface Store extends AppState {
   addCustom: (piece: CustomPiece) => void
   removeCustom: (id: string) => void
   toggleScentFav: (id: string) => void
+  pushFeedback: (kind: string, itemIds: string[]) => void
   createOutfit: (name: string) => string
   deleteOutfit: (id: string) => void
   toggleOutfitRef: (outfitId: string, ref: string) => void

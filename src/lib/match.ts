@@ -1,5 +1,6 @@
 import type { Product } from '../data/catalog'
 import type { Profile } from './store'
+import { cosigns } from './fitmatch'
 
 export interface MatchResult {
   score: number
@@ -15,28 +16,28 @@ export interface MatchResult {
 function jitter(id: string): number {
   let h = 0
   for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) >>> 0
-  return (h % 11) - 4 // -4 … +6
+  return (h % 15) - 7 // -7 … +7
 }
 
 export function matchScore(product: Product, p: Profile): MatchResult {
   const reasons: string[] = []
-  let score = 30
+  let score = 8
 
   // Taste — the heaviest signal, weighted by how much of the product's DNA you share.
   const overlap = product.styles.filter((s) => p.styles.includes(s))
   const ratio = product.styles.length ? overlap.length / product.styles.length : 0
   if (overlap.length > 0) {
-    score += Math.round(14 + ratio * 24)
+    score += Math.round(8 + ratio * 22)
     reasons.push(ratio === 1 ? 'Exactly your lane' : 'In your lane')
   } else {
-    score -= 8
+    score -= 14
   }
 
   // Budget — peak in the sweet spot, taper at the edges.
   if (product.price <= p.budgetMax) {
     const t = product.price / Math.max(1, p.budgetMax)
     const sweet = 1 - Math.abs(t - 0.62) / 0.62
-    score += Math.round(8 + Math.max(0, sweet) * 12)
+    score += Math.round(4 + Math.max(0, sweet) * 9)
     if (t <= 1) reasons.push('In budget')
   } else if (product.price <= p.budgetMax * 1.25) {
     score += 2
@@ -47,7 +48,7 @@ export function matchScore(product: Product, p: Profile): MatchResult {
 
   // Quality tier.
   if (p.tiers.includes(product.tier)) {
-    score += product.tier === 'premium' || product.tier === 'grail' ? 9 : 6
+    score += product.tier === 'premium' || product.tier === 'grail' ? 6 : 4
     reasons.push('Your quality tier')
   } else {
     score -= 4
@@ -56,7 +57,7 @@ export function matchScore(product: Product, p: Profile): MatchResult {
   // Season precision beats year-round filler.
   const seasonHit = product.seasons.filter((s) => p.seasons.includes(s))
   if (seasonHit.length > 0) {
-    score += product.seasons.length <= 2 ? 8 : 4
+    score += product.seasons.length <= 2 ? 6 : 3
     if (product.seasons.length <= 2) reasons.push('Right season')
   } else {
     score -= 6
@@ -81,25 +82,34 @@ export function matchScore(product: Product, p: Profile): MatchResult {
     ...teamLane,
   ])
   if (lanes.size && product.styles.some((st) => lanes.has(st))) {
-    score += 5
+    score += 4
     reasons.push('Matches your interests')
   }
 
   // Brands you rock with.
   if (p.brands?.includes(product.brand)) {
-    score += 7
+    score += 8
     reasons.push('Your brand')
+  }
+
+  // Cosigned pieces earn a real edge — that is the whole differentiator.
+  if (cosigns(product.id).length > 0) {
+    score += 9
+    reasons.push('Worn in a fit file')
   }
 
   score += jitter(product.id)
 
-  return { score: Math.max(31, Math.min(98, Math.round(score))), reasons }
+  // Honest ceiling: 95+ should mean "this is almost literally your piece",
+  // not "it passed four filters".
+  return { score: Math.max(12, Math.min(96, Math.round(score))), reasons }
 }
 
 export function scoreLabel(score: number) {
-  if (score >= 85) return 'Strong match'
-  if (score >= 70) return 'Good match'
-  if (score >= 50) return 'Worth a look'
+  if (score >= 82) return 'Almost your piece'
+  if (score >= 68) return 'Strong match'
+  if (score >= 52) return 'Good match'
+  if (score >= 38) return 'Worth a look'
   return 'Stretch'
 }
 

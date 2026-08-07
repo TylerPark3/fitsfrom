@@ -116,6 +116,13 @@ export function App() {
 
       addCustom: (piece) => setState((s) => ({ ...s, customs: [piece, ...s.customs] })),
 
+      pushFeedback: (kind, itemIds) =>
+        setState((s) => ({
+          ...s,
+          // Keep the last 200 signals — enough to calibrate, small enough to store.
+          feedback: [{ kind, itemIds, at: Date.now() }, ...(s.feedback ?? [])].slice(0, 200),
+        })),
+
       toggleScentFav: (id) =>
         setState((s) => ({
           ...s,

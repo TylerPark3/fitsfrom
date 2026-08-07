@@ -640,7 +640,8 @@ function refImage(ref: string, customs: CustomPiece[]): { img: string; label: st
 /** Named fits — the virtual dressing room, flat-lay style. */
 function FitPlanner() {
   const store = useStore()
-  const { wardrobe, customs, profile, outfits, createOutfit, deleteOutfit, toggleOutfitRef, toast } = store
+  const { wardrobe, customs, profile, outfits, feedback, createOutfit, deleteOutfit, toggleOutfitRef, pushFeedback, toast } =
+    store
   const [seed, setSeed] = useState(0)
   const [naming, setNaming] = useState(false)
   const [nameDraft, setNameDraft] = useState('')
@@ -650,10 +651,14 @@ function FitPlanner() {
     () => ({
       profile,
       styleProfile: profileToStyle(profile),
-      signals: [],
+      signals: (feedback ?? []).map((f) => ({
+        kind: f.kind as never,
+        itemIds: f.itemIds,
+        at: f.at,
+      })),
       occasion: 'casual' as const,
     }),
-    [profile],
+    [profile, feedback],
   )
 
   // Three ranked fits, anti-dominated so one hoodie can't headline all of them.
@@ -744,6 +749,30 @@ function FitPlanner() {
                 <button className="btn btn--quiet btn--sm" onClick={() => setSeed((n) => n + 1)}>
                   Swap it out
                 </button>
+              </div>
+
+              <div className="chips" style={{ marginTop: 10 }}>
+                {(
+                  [
+                    ['wear', 'Wore it'],
+                    ['not-my-style', 'Not my style'],
+                    ['too-loud', 'Too loud'],
+                    ['too-basic', 'Too basic'],
+                    ['wrong-silhouette', 'Wrong fit'],
+                  ] as const
+                ).map(([kind, label]) => (
+                  <button
+                    key={kind}
+                    className="chip chip--sm"
+                    onClick={() => {
+                      pushFeedback(kind, f.items.map((i) => i.id))
+                      setSeed((n) => n + 1)
+                      toast('Noted — future fits adjust')
+                    }}
+                  >
+                    {label}
+                  </button>
+                ))}
               </div>
             </div>
           ))}
