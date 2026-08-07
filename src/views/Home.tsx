@@ -63,7 +63,8 @@ export function Home({ go }: { go: (v: View) => void }) {
             THE <em className="serif">culture.</em>
           </h1>
           <p className="mast__sub">
-            Tunnel walks broken down piece by piece — matched to your size, linked to the source.
+            <em className="serif" style={{ color: '#ff8a6d', fontSize: '1.15em' }}>Style is shared.</em>{' '}
+            We curate the fits, break them down piece by piece, and size them to you.
           </p>
           <div className="row" style={{ gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
             <button className="btn btn--invert btn--lg" onClick={() => go('fits')}>
