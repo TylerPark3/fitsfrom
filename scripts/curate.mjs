@@ -45,6 +45,13 @@ const BRAND_STYLES = {
   'Dehen 1920': ['workwear'],
   'Freenote Cloth': ['workwear'],
   Uskees: ['workwear', 'minimal'],
+  'BBC Ice Cream': ['street'],
+  'Golf Wang': ['street', 'skate'],
+  AWGE: ['street'],
+  'Glo Gang': ['street'],
+  'The Marathon Clothing': ['street', 'athletic'],
+  Kuon: ['japanese', 'workwear'],
+  'Iron Heart': ['workwear', 'japanese'],
 }
 
 const CAT = [

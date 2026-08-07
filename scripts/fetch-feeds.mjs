@@ -52,6 +52,13 @@ const BRANDS = [
   ['Dehen 1920', 'dehen.com'],
   ['Freenote Cloth', 'freenotecloth.com'],
   ['Uskees', 'uskees.com'],
+  ['BBC Ice Cream', 'bbcicecream.com'],
+  ['Golf Wang', 'golfwang.com'],
+  ['AWGE', 'awge.com'],
+  ['Glo Gang', 'glogang.com'],
+  ['The Marathon Clothing', 'themarathonclothing.com'],
+  ['Kuon', 'kuon.tokyo'],
+  ['Iron Heart', 'ironheart.co.uk'],
 ]
 
 const UA = { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)' }
