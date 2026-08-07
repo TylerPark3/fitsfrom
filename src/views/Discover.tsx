@@ -324,11 +324,6 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
             <span className="sketch__hatch sketch__hatch--cross" />
           </div>
           <div className="sketch sketch--center">
-            <img className="sketch__base" src="/styles/watermark3.jpg" alt="" />
-            <span className="sketch__hatch" />
-            <span className="sketch__hatch sketch__hatch--cross" />
-          </div>
-          <div className="sketch sketch--side">
             <img className="sketch__base" src="/styles/watermark.jpg" alt="" />
             <span className="sketch__hatch" />
             <span className="sketch__hatch sketch__hatch--cross" />
