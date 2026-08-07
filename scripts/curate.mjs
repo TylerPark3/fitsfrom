@@ -33,6 +33,18 @@ const BRAND_STYLES = {
   'John Elliott': ['minimal', 'street'],
   JJJJound: ['minimal', 'street'],
   Represent: ['street', 'athletic'],
+  Sexhippies: ['skate', 'workwear'],
+  Stingwater: ['skate', 'street'],
+  'Checks Downtown': ['street', 'minimal'],
+  '18 East': ['ivy', 'gorp'],
+  'Free & Easy': ['street', 'athletic'],
+  'Museum of Peace & Quiet': ['minimal', 'athletic'],
+  'Story mfg.': ['workwear', 'japanese'],
+  'Kartik Research': ['japanese', 'ivy'],
+  Battenwear: ['gorp', 'workwear'],
+  'Dehen 1920': ['workwear'],
+  'Freenote Cloth': ['workwear'],
+  Uskees: ['workwear', 'minimal'],
 }
 
 const CAT = [

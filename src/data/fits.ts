@@ -279,6 +279,58 @@ export const FITS: Fit[] = [
     ],
   },
   {
+    id: 'jgreen-flannel',
+    styles: ['street', 'skate'],
+    who: 'Jalen Green',
+    where: 'Rockets tunnel',
+    when: 'Plate of food in hand',
+    context:
+      'Bubblegum-plaid flannel open over a white tee, black baggy cargos puddling on olive boots, iced-out chain. Loud shirt, quiet everything else.',
+    vibe: 'Pink plaid flannel, black baggies, chain',
+    pieces: [
+      { slot: 'Flannel', worn: 'Pink-and-teal plaid flannel', match: { category: 'shirt', kw: 'flannel|plaid|check' } },
+      { slot: 'Tee', worn: 'White tee underneath', match: { category: 'top', kw: 'tee|t-shirt' } },
+      { slot: 'Chain', worn: 'Iced pendant chain', match: { category: 'accessory', kw: 'chain|necklace|jewel' } },
+      { slot: 'Cargos', worn: 'Black baggy cargos', match: { category: 'pants', kw: 'cargo|baggy|wide' } },
+      { slot: 'Boots', worn: 'Olive lug boots', match: { category: 'shoes', sil: 'boot', kw: 'boot' } },
+    ],
+  },
+  {
+    id: 'jwill-arrival',
+    styles: ['ivy', 'street'],
+    who: 'J-Dub',
+    where: 'Thunder arrival',
+    when: 'Duffel over the shoulder',
+    context:
+      'Tennis sweater vest with a pink V over a white tee, washed denim jorts, stacked white socks into white lows. Prep pieces, street proportions.',
+    vibe: 'Tennis vest, denim jorts, stacked socks',
+    pieces: [
+      { slot: 'Vest', worn: 'White tennis sweater vest', match: { category: 'knit', kw: 'vest|cricket|tennis|sweater' } },
+      { slot: 'Tee', worn: 'White tee underneath', match: { category: 'top', kw: 'tee|t-shirt' } },
+      { slot: 'Chains', worn: 'Layered chains + pearls', match: { category: 'accessory', kw: 'chain|pearl|necklace|jewel' } },
+      { slot: 'Jorts', worn: 'Washed denim jorts', match: { category: 'pants', kw: 'short' } },
+      { slot: 'Socks', worn: 'Stacked white socks', match: { category: 'accessory', kw: 'sock' } },
+      { slot: 'Sneakers', worn: 'White low-top sneakers', match: { category: 'shoes', kw: 'sneaker|canvas|court' } },
+    ],
+  },
+  {
+    id: 'booker-stripe',
+    styles: ['street', 'skate'],
+    who: 'Book',
+    where: 'Suns tunnel',
+    when: 'Backwards cap, chain hanging',
+    context:
+      'Pink-striped boxy tee layered over a white longsleeve, raw-hem black jorts, black Chucks with stacked white socks. The layered-tee formula at its cleanest.',
+    vibe: 'Striped tee over longsleeve, black jorts, Chucks',
+    pieces: [
+      { slot: 'Cap', worn: 'Backwards black cap', match: { category: 'accessory', kw: 'cap|hat' } },
+      { slot: 'Tee', worn: 'Pink-striped boxy tee', match: { category: 'top', kw: 'stripe|striped|tee' } },
+      { slot: 'Layer', worn: 'White longsleeve underneath', match: { category: 'top', kw: 'l/s|long sleeve|longsleeve' } },
+      { slot: 'Jorts', worn: 'Raw-hem black jorts', match: { category: 'pants', kw: 'short' } },
+      { slot: 'Sneakers', worn: 'Black canvas Chucks', match: { category: 'shoes', kw: 'canvas|chuck|sneaker' } },
+    ],
+  },
+  {
     id: 'booker-black',
     styles: ['street', 'minimal'],
     who: 'Book',

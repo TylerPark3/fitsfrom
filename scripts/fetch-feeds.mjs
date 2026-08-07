@@ -40,6 +40,18 @@ const BRANDS = [
   ['John Elliott', 'johnelliott.com'],
   ['JJJJound', 'jjjjound.com'],
   ['Represent', 'representclo.com'],
+  ['Sexhippies', 'sexhippies.com'],
+  ['Stingwater', 'stingwater.com'],
+  ['Checks Downtown', 'checksdowntown.com'],
+  ['18 East', '18east.co'],
+  ['Free & Easy', 'freeandeasy.la'],
+  ['Museum of Peace & Quiet', 'museumofpeaceandquiet.com'],
+  ['Story mfg.', 'storymfg.com'],
+  ['Kartik Research', 'kartikresearch.com'],
+  ['Battenwear', 'battenwear.com'],
+  ['Dehen 1920', 'dehen.com'],
+  ['Freenote Cloth', 'freenotecloth.com'],
+  ['Uskees', 'uskees.com'],
 ]
 
 const UA = { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)' }

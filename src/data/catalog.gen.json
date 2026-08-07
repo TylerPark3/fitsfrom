@@ -3774,8 +3774,8 @@
   "brand": "Corridor",
   "name": "Chesapeake Plaid SS - Red",
   "category": "shirt",
-  "price": 115,
-  "tier": "solid",
+  "price": 195,
+  "tier": "premium",
   "styles": [
    "ivy",
    "japanese"
@@ -3891,8 +3891,8 @@
   "brand": "Corridor",
   "name": "Garment Washed Cap - Purple",
   "category": "accessory",
-  "price": 45,
-  "tier": "entry",
+  "price": 70,
+  "tier": "solid",
   "styles": [
    "ivy",
    "japanese"
@@ -6863,5 +6863,3852 @@
   "fabric": "100% brushed",
   "silhouette": "sweater",
   "url": "https://representclo.com/products/los-angeles-dodgers-x-represent-sweater-sprayed-mist"
+ },
+ {
+  "id": "sexhippies-wemby-tee-black",
+  "brand": "Sexhippies",
+  "name": "Wemby Tee Black",
+  "category": "top",
+  "price": 40,
+  "tier": "entry",
+  "styles": [
+   "skate",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0553/5465/4908/files/wembyteeblkIG.png?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "tee",
+  "url": "https://sexhippies.com/products/wemby-tee-black"
+ },
+ {
+  "id": "sexhippies-wemby-tee",
+  "brand": "Sexhippies",
+  "name": "Wemby Tee Heather Grey",
+  "category": "top",
+  "price": 40,
+  "tier": "entry",
+  "styles": [
+   "skate",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0553/5465/4908/files/wembyteegreyIG.png?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "tee",
+  "url": "https://sexhippies.com/products/wemby-tee"
+ },
+ {
+  "id": "sexhippies-reversible-grid-fleece-beanie",
+  "brand": "Sexhippies",
+  "name": "Reversible Grid Fleece Beanie",
+  "category": "outer",
+  "price": 48,
+  "tier": "entry",
+  "styles": [
+   "skate",
+   "workwear"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0553/5465/4908/files/ThermalSkully_Black_Outside.jpg?width=900",
+  "fabric": "",
+  "silhouette": "jacket",
+  "url": "https://sexhippies.com/products/reversible-grid-fleece-beanie"
+ },
+ {
+  "id": "sexhippies-grid-fleece-shorts-1",
+  "brand": "Sexhippies",
+  "name": "Grid Fleece Shorts",
+  "category": "outer",
+  "price": 108,
+  "tier": "solid",
+  "styles": [
+   "skate",
+   "workwear"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0553/5465/4908/files/ThermalShorts_Black-Front.jpg?width=900",
+  "fabric": "",
+  "silhouette": "jacket",
+  "url": "https://sexhippies.com/products/grid-fleece-shorts-1"
+ },
+ {
+  "id": "sexhippies-sh-fit-shirt-1",
+  "brand": "Sexhippies",
+  "name": "SH Fit Shirt",
+  "category": "shirt",
+  "price": 92,
+  "tier": "solid",
+  "styles": [
+   "skate",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0553/5465/4908/files/TechTee_Grey-Front.jpg?width=900",
+  "fabric": "",
+  "silhouette": "shirt",
+  "url": "https://sexhippies.com/products/sh-fit-shirt-1"
+ },
+ {
+  "id": "sexhippies-split-stripe-polo-shirt",
+  "brand": "Sexhippies",
+  "name": "Split Stripe Polo Shirt",
+  "category": "shirt",
+  "price": 98,
+  "tier": "solid",
+  "styles": [
+   "skate",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0553/5465/4908/files/CutPolo_Multi-Front.jpg?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "polo",
+  "url": "https://sexhippies.com/products/split-stripe-polo-shirt"
+ },
+ {
+  "id": "sexhippies-moroccan-beanie",
+  "brand": "Sexhippies",
+  "name": "Moroccan Beanie",
+  "category": "accessory",
+  "price": 44,
+  "tier": "entry",
+  "styles": [
+   "skate",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0553/5465/4908/files/SEXHIPPIES_102124-BEANIE2.jpg?width=900",
+  "fabric": "",
+  "silhouette": "cap",
+  "url": "https://sexhippies.com/products/moroccan-beanie"
+ },
+ {
+  "id": "sexhippies-twill-carpenter-pant",
+  "brand": "Sexhippies",
+  "name": "Twill Carpenter Pant",
+  "category": "pants",
+  "price": 137,
+  "tier": "solid",
+  "styles": [
+   "skate",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "waist",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0553/5465/4908/files/SEXHIPPIES_MARCH_2025_MASTER-27.jpg?width=900",
+  "fabric": "Cotton",
+  "silhouette": "trouser",
+  "url": "https://sexhippies.com/products/twill-carpenter-pant"
+ },
+ {
+  "id": "sexhippies-half-zip-work-shirt-1",
+  "brand": "Sexhippies",
+  "name": "Half Zip Work Shirt",
+  "category": "shirt",
+  "price": 118,
+  "tier": "solid",
+  "styles": [
+   "skate",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0553/5465/4908/files/SEXHIPPIES_MARCH_2025_MASTER-46.jpg?width=900",
+  "fabric": "Cotton",
+  "silhouette": "shirt",
+  "url": "https://sexhippies.com/products/half-zip-work-shirt-1"
+ },
+ {
+  "id": "sexhippies-welders-stitch-loose-fit-work-shorts",
+  "brand": "Sexhippies",
+  "name": "Welder's Stitch Loose Fit Work Shorts",
+  "category": "pants",
+  "price": 122,
+  "tier": "solid",
+  "styles": [
+   "skate",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "waist",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0553/5465/4908/files/SEXHIPPIES_MARCH_2025_MASTER-15.jpg?width=900",
+  "fabric": "60% Cotton",
+  "silhouette": "tee",
+  "url": "https://sexhippies.com/products/welders-stitch-loose-fit-work-shorts"
+ },
+ {
+  "id": "sexhippies-military-over-pant",
+  "brand": "Sexhippies",
+  "name": "Military Over Pant",
+  "category": "pants",
+  "price": 102,
+  "tier": "solid",
+  "styles": [
+   "skate",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0553/5465/4908/files/SEXHIPPIES_MARCH_2025_MASTER-24.jpg?width=900",
+  "fabric": "Nylon",
+  "silhouette": "trouser",
+  "url": "https://sexhippies.com/products/military-over-pant"
+ },
+ {
+  "id": "sexhippies-twisted-6-panel-hat-1",
+  "brand": "Sexhippies",
+  "name": "Twisted 6 Panel Hat",
+  "category": "accessory",
+  "price": 60,
+  "tier": "entry",
+  "styles": [
+   "skate",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0553/5465/4908/files/SEXHIPPIES_MARCH_2025_MASTER-5.jpg?width=900",
+  "fabric": "",
+  "silhouette": "cap",
+  "url": "https://sexhippies.com/products/twisted-6-panel-hat-1"
+ },
+ {
+  "id": "sexhippies-dpcu-welders-stitch-hat",
+  "brand": "Sexhippies",
+  "name": "DPCU Welder's Stitch Hat",
+  "category": "accessory",
+  "price": 60,
+  "tier": "entry",
+  "styles": [
+   "skate",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0553/5465/4908/files/SEXHIPPIES_MARCH_2025_MASTER-4.jpg?width=900",
+  "fabric": "Cotton",
+  "silhouette": "cap",
+  "url": "https://sexhippies.com/products/dpcu-welders-stitch-hat"
+ },
+ {
+  "id": "sexhippies-holy-smokes-tee",
+  "brand": "Sexhippies",
+  "name": "Holy Smokes Tee",
+  "category": "top",
+  "price": 42,
+  "tier": "entry",
+  "styles": [
+   "skate",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0553/5465/4908/files/sexhippies_holysmokestee_militarygreen_mock_d39190f0-cd42-4052-86ba-9283dd95f6b4.png?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "tee",
+  "url": "https://sexhippies.com/products/holy-smokes-tee"
+ },
+ {
+  "id": "stingwater-future-drugs-t-shirt-black",
+  "brand": "Stingwater",
+  "name": "Future Drugs T-Shirt Black",
+  "category": "top",
+  "price": 58,
+  "tier": "entry",
+  "styles": [
+   "skate",
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0550/4227/7525/files/29BD860D-44D2-4588-BFD1-DBA3021316AE.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "shirt",
+  "url": "https://stingwater.com/products/future-drugs-t-shirt-black"
+ },
+ {
+  "id": "stingwater-stingwater-natural-springs-sweatpants",
+  "brand": "Stingwater",
+  "name": "Stingwater Natural Springs Sweatpants",
+  "category": "pants",
+  "price": 150,
+  "tier": "solid",
+  "styles": [
+   "skate",
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0550/4227/7525/files/2BBBE8D9-54F7-440F-B2D7-F406B3939222.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "trouser",
+  "url": "https://stingwater.com/products/stingwater-natural-springs-sweatpants"
+ },
+ {
+  "id": "stingwater-stingwater-spider-web-socks-pink-salt",
+  "brand": "Stingwater",
+  "name": "Stingwater Spider Web Socks Pink/Salt",
+  "category": "accessory",
+  "price": 30,
+  "tier": "entry",
+  "styles": [
+   "skate",
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0550/4227/7525/files/9BE5108E-7EBC-459A-846A-44B75957EDFA.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "tee",
+  "url": "https://stingwater.com/products/stingwater-spider-web-socks-pink-salt"
+ },
+ {
+  "id": "stingwater-stingwater-spider-web-socks-alkaline-sli",
+  "brand": "Stingwater",
+  "name": "Stingwater Spider Web Socks Alkaline/Slime",
+  "category": "accessory",
+  "price": 30,
+  "tier": "entry",
+  "styles": [
+   "skate",
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0550/4227/7525/files/948BC7AF-1BB7-4FA7-925A-FFE2CB69E1B8.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "tee",
+  "url": "https://stingwater.com/products/stingwater-spider-web-socks-alkaline-slime"
+ },
+ {
+  "id": "stingwater-mountain-spring-corduroy-hat",
+  "brand": "Stingwater",
+  "name": "Natural Spring Corduroy Hat Black",
+  "category": "accessory",
+  "price": 58,
+  "tier": "entry",
+  "styles": [
+   "skate",
+   "street"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0550/4227/7525/files/0BE3B1C0-722B-49BC-8B74-4C5B61D47A23.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "cap",
+  "url": "https://stingwater.com/products/mountain-spring-corduroy-hat"
+ },
+ {
+  "id": "stingwater-aya-thorn-t-shirt-black",
+  "brand": "Stingwater",
+  "name": "Aya Thorn T-Shirt White",
+  "category": "top",
+  "price": 58,
+  "tier": "entry",
+  "styles": [
+   "skate",
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0550/4227/7525/files/CA05ED7A-3B77-4F1C-AF99-D1551CE7E2DA.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "shirt",
+  "url": "https://stingwater.com/products/aya-thorn-t-shirt-black"
+ },
+ {
+  "id": "stingwater-aapi-thorn-t-shirt-black",
+  "brand": "Stingwater",
+  "name": "Aapi Thorn T-Shirt Black",
+  "category": "top",
+  "price": 58,
+  "tier": "entry",
+  "styles": [
+   "skate",
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0550/4227/7525/files/5CDCAFB6-BE25-4DB6-ACE4-C906A9F54D04.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "shirt",
+  "url": "https://stingwater.com/products/aapi-thorn-t-shirt-black"
+ },
+ {
+  "id": "stingwater-vegan-suede-double-knee-jeans-black",
+  "brand": "Stingwater",
+  "name": "Vegan Suede Double Knee Moses Jeans Black",
+  "category": "pants",
+  "price": 220,
+  "tier": "premium",
+  "styles": [
+   "skate",
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0550/4227/7525/files/6EF2A6B8-3B41-4DD6-BF59-8DDBC187CDAC.jpg?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "jean",
+  "url": "https://stingwater.com/products/vegan-suede-double-knee-jeans-black"
+ },
+ {
+  "id": "stingwater-big-groe-jeans-dirty-blue",
+  "brand": "Stingwater",
+  "name": "Big Groe Jeans Dirty Blue",
+  "category": "pants",
+  "price": 220,
+  "tier": "premium",
+  "styles": [
+   "skate",
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0550/4227/7525/files/72AA3DF3-E7F4-48BC-BFF1-4EBB50B27AA5.jpg?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "jean",
+  "url": "https://stingwater.com/products/big-groe-jeans-dirty-blue"
+ },
+ {
+  "id": "stingwater-kow-fleece-lined-jersey-black",
+  "brand": "Stingwater",
+  "name": "Kow Fleece Lined Jersey Black",
+  "category": "outer",
+  "price": 128,
+  "tier": "solid",
+  "styles": [
+   "skate",
+   "street"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0550/4227/7525/files/FDF1EE84-0333-46F5-8AB9-D8FB1C14E57B.jpg?width=900",
+  "fabric": "100% polyester",
+  "silhouette": "jacket",
+  "url": "https://stingwater.com/products/kow-fleece-lined-jersey-black"
+ },
+ {
+  "id": "stingwater-kow-fleece-lined-jersey-light-blue",
+  "brand": "Stingwater",
+  "name": "Kow Fleece Lined Jersey Light Blue",
+  "category": "outer",
+  "price": 128,
+  "tier": "solid",
+  "styles": [
+   "skate",
+   "street"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0550/4227/7525/files/83277F30-E739-4214-BF62-8B48DEAC115C.jpg?width=900",
+  "fabric": "100% polyester",
+  "silhouette": "jacket",
+  "url": "https://stingwater.com/products/kow-fleece-lined-jersey-light-blue"
+ },
+ {
+  "id": "stingwater-stingwater-crisis-knit-sweater-army-gree",
+  "brand": "Stingwater",
+  "name": "Stingwater Crisis Knit Sweater Army Green",
+  "category": "knit",
+  "price": 200,
+  "tier": "premium",
+  "styles": [
+   "skate",
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0550/4227/7525/files/C8BF7A0F-70D2-476B-A631-19C5F78C695A.png?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "sweater",
+  "url": "https://stingwater.com/products/stingwater-crisis-knit-sweater-army-gree"
+ },
+ {
+  "id": "stingwater-stingwater-crisis-ribbed-knit-sweater-bl",
+  "brand": "Stingwater",
+  "name": "Stingwater Crisis Knit Sweater Black/Gray",
+  "category": "knit",
+  "price": 200,
+  "tier": "premium",
+  "styles": [
+   "skate",
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0550/4227/7525/files/F43D0A90-63AF-4F68-942B-45B31A776D79.png?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "sweater",
+  "url": "https://stingwater.com/products/stingwater-crisis-ribbed-knit-sweater-black-gray"
+ },
+ {
+  "id": "stingwater-thorn-kountry-sweater-cream",
+  "brand": "Stingwater",
+  "name": "Thorn Knit Sweater Cream",
+  "category": "knit",
+  "price": 138,
+  "tier": "solid",
+  "styles": [
+   "skate",
+   "street"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0550/4227/7525/files/4471DAE4-A3CE-4304-9A60-8A6BF5A4C9EF.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "sweater",
+  "url": "https://stingwater.com/products/thorn-kountry-sweater-cream"
+ },
+ {
+  "id": "checksdowntown-kawakawa-camo-tee-white",
+  "brand": "Checks Downtown",
+  "name": "Kawakawa Camo Tee White",
+  "category": "top",
+  "price": 109,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/2359/8963/files/KawakawaTee_Front.png?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "shirt",
+  "url": "https://checksdowntown.com/products/kawakawa-camo-tee-white"
+ },
+ {
+  "id": "checksdowntown-classic-zip-hoodie-pink",
+  "brand": "Checks Downtown",
+  "name": "Classic Zip Hoodie Pink",
+  "category": "top",
+  "price": 219,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/2359/8963/files/ClassicZipHoodiePink-1.png?width=900",
+  "fabric": "65% Cotton, 35% Polyester",
+  "silhouette": "sweater",
+  "url": "https://checksdowntown.com/products/classic-zip-hoodie-pink"
+ },
+ {
+  "id": "checksdowntown-kawakawa-camo-hoodie-brown",
+  "brand": "Checks Downtown",
+  "name": "Kawakawa Camo Hoodie Brown",
+  "category": "top",
+  "price": 219,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/2359/8963/files/ClassicZipHoodieNativeCamo_Back.png?width=900",
+  "fabric": "65% Cotton, 35% Polyester",
+  "silhouette": "sweater",
+  "url": "https://checksdowntown.com/products/kawakawa-camo-hoodie-brown"
+ },
+ {
+  "id": "checksdowntown-hooper-shorts-black",
+  "brand": "Checks Downtown",
+  "name": "Hooper Shorts Black",
+  "category": "pants",
+  "price": 159,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/2359/8963/files/HooperShortsBlack_Front.png?width=900",
+  "fabric": "100% Polyester",
+  "silhouette": "tee",
+  "url": "https://checksdowntown.com/products/hooper-shorts-black"
+ },
+ {
+  "id": "checksdowntown-hooper-shorts-teal",
+  "brand": "Checks Downtown",
+  "name": "Hooper Shorts Teal",
+  "category": "pants",
+  "price": 159,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/2359/8963/files/HooperShortsTeal_Front.png?width=900",
+  "fabric": "100% Polyester",
+  "silhouette": "tee",
+  "url": "https://checksdowntown.com/products/hooper-shorts-teal"
+ },
+ {
+  "id": "checksdowntown-raglan-overcoat-taupe",
+  "brand": "Checks Downtown",
+  "name": "Raglan Overcoat Taupe",
+  "category": "outer",
+  "price": 489,
+  "tier": "grail",
+  "styles": [
+   "street",
+   "minimal"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/2359/8963/files/RaglanCoatTaupe_Front2.png?width=900",
+  "fabric": "30% Rayon, 70% Polyester",
+  "silhouette": "coat",
+  "url": "https://checksdowntown.com/products/raglan-overcoat-taupe"
+ },
+ {
+  "id": "checksdowntown-tech-beanie-black",
+  "brand": "Checks Downtown",
+  "name": "Tech Beanie Black",
+  "category": "accessory",
+  "price": 79,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/2359/8963/files/ChecksHat_Front.png?width=900",
+  "fabric": "100% Polyester",
+  "silhouette": "cap",
+  "url": "https://checksdowntown.com/products/tech-beanie-black"
+ },
+ {
+  "id": "checksdowntown-swing-tote-woodland-camo",
+  "brand": "Checks Downtown",
+  "name": "Swing Tote Woodland Camo",
+  "category": "accessory",
+  "price": 89,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/2359/8963/files/SwingToteWoodlandCamo_Front.png?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "bag",
+  "url": "https://checksdowntown.com/products/swing-tote-woodland-camo"
+ },
+ {
+  "id": "checksdowntown-hakama-pants-black-denim",
+  "brand": "Checks Downtown",
+  "name": "Hakama Pants Black Denim",
+  "category": "pants",
+  "price": 229,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/2359/8963/files/pantsgrey-4.png?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "jean",
+  "url": "https://checksdowntown.com/products/hakama-pants-black-denim"
+ },
+ {
+  "id": "checksdowntown-layered-shirt-blue-stripe",
+  "brand": "Checks Downtown",
+  "name": "Layered Shirt Blue Stripe",
+  "category": "shirt",
+  "price": 199,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/2359/8963/files/ShirtBlue_Front.png?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "shirt",
+  "url": "https://checksdowntown.com/products/layered-shirt-blue-stripe"
+ },
+ {
+  "id": "checksdowntown-layered-shirt-cream-stripe",
+  "brand": "Checks Downtown",
+  "name": "Layered Shirt Cream Stripe",
+  "category": "shirt",
+  "price": 199,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/2359/8963/files/ShirtCream_Back.png?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "shirt",
+  "url": "https://checksdowntown.com/products/layered-shirt-cream-stripe"
+ },
+ {
+  "id": "checksdowntown-swing-tote-bag-brown-camo",
+  "brand": "Checks Downtown",
+  "name": "Swing Tote Bag Brown Camo",
+  "category": "accessory",
+  "price": 119,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/2359/8963/files/checksbag_Back.png?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "bag",
+  "url": "https://checksdowntown.com/products/swing-tote-bag-brown-camo"
+ },
+ {
+  "id": "east-digimane-6-panel-cap-stone",
+  "brand": "18 East",
+  "name": "Digi Mane 6 Panel Hat - Stone Cotton Twill",
+  "category": "accessory",
+  "price": 48,
+  "tier": "entry",
+  "styles": [
+   "ivy",
+   "gorp"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/NewEra_005.jpg?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "cap",
+  "url": "https://18east.co/products/digimane-6-panel-cap-stone"
+ },
+ {
+  "id": "east-terramap-6-panel-cap-black",
+  "brand": "18 East",
+  "name": "Terra Map 6 Panel Hat - Black Cotton Twill",
+  "category": "accessory",
+  "price": 48,
+  "tier": "entry",
+  "styles": [
+   "ivy",
+   "gorp"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/NewEra_001.jpg?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "cap",
+  "url": "https://18east.co/products/terramap-6-panel-cap-black"
+ },
+ {
+  "id": "east-bandhani-resist-printed-bandana-mocha-ec",
+  "brand": "18 East",
+  "name": "Bandhani Bandana - Mocha E Pistacchio / Ecru Resist-Dye Striped Featherweight Khadi Cotton",
+  "category": "shoes",
+  "price": 38,
+  "tier": "entry",
+  "styles": [
+   "ivy",
+   "gorp"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "shoe",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/Bandana_02.jpg?width=900",
+  "fabric": "Cotton",
+  "silhouette": "sneaker",
+  "url": "https://18east.co/products/bandhani-resist-printed-bandana-mocha-ecru"
+ },
+ {
+  "id": "east-asheville-oversized-blazer-dune-cacao",
+  "brand": "18 East",
+  "name": "Asheville Oversized Blazer - Dune Linen Twill",
+  "category": "outer",
+  "price": 364,
+  "tier": "premium",
+  "styles": [
+   "ivy",
+   "gorp"
+  ],
+  "seasons": [
+   "spring",
+   "summer"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/Asheville-Brown-Jacket_01.jpg?width=900",
+  "fabric": "100% linen",
+  "silhouette": "jacket",
+  "url": "https://18east.co/products/asheville-oversized-blazer-dune-cacao"
+ },
+ {
+  "id": "east-elm-ss-polo-black",
+  "brand": "18 East",
+  "name": "Elm S/S Polo - Black All Cotton Pique",
+  "category": "shirt",
+  "price": 128,
+  "tier": "solid",
+  "styles": [
+   "ivy",
+   "gorp"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/Polo_01.jpg?width=900",
+  "fabric": "Cotton",
+  "silhouette": "polo",
+  "url": "https://18east.co/products/elm-ss-polo-black"
+ },
+ {
+  "id": "east-jesper-vintage-button-down-shirt-mocha-e",
+  "brand": "18 East",
+  "name": "Jesper Vintage Button Down Shirt - Mocha E Pistacchio / Ecru Bandhani Resist-Dye Striped Featherweight Khadi Cotton",
+  "category": "shoes",
+  "price": 228,
+  "tier": "premium",
+  "styles": [
+   "ivy",
+   "gorp"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "shoe",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/Mainstays_01.jpg?width=900",
+  "fabric": "Cotton",
+  "silhouette": "sneaker",
+  "url": "https://18east.co/products/jesper-vintage-button-down-shirt-mocha-ecru"
+ },
+ {
+  "id": "east-tino-double-pleated-wide-pant-dune-cacao",
+  "brand": "18 East",
+  "name": "Tino Double Pleated Wide Easy Pant - Dune Linen Twill",
+  "category": "pants",
+  "price": 228,
+  "tier": "premium",
+  "styles": [
+   "ivy",
+   "gorp"
+  ],
+  "seasons": [
+   "spring",
+   "summer"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/Tino-Brown-Pant_01.jpg?width=900",
+  "fabric": "100% linen",
+  "silhouette": "trouser",
+  "url": "https://18east.co/products/tino-double-pleated-wide-pant-dune-cacao"
+ },
+ {
+  "id": "east-emery-pleated-big-shorts-brown",
+  "brand": "18 East",
+  "name": "Emery Pleated Big Shorts - Chocolate Brown Linen Twill",
+  "category": "pants",
+  "price": 144,
+  "tier": "solid",
+  "styles": [
+   "ivy",
+   "gorp"
+  ],
+  "seasons": [
+   "spring",
+   "summer"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/EmeryPleatedShortBrown_001.jpg?width=900",
+  "fabric": "100% linen",
+  "silhouette": "tee",
+  "url": "https://18east.co/products/emery-pleated-big-shorts-brown"
+ },
+ {
+  "id": "east-gale-box-shirt-fatigue-olive",
+  "brand": "18 East",
+  "name": "Gale Box Shirt - Fatigue Olive / Black Linen Chambray",
+  "category": "pants",
+  "price": 228,
+  "tier": "premium",
+  "styles": [
+   "ivy",
+   "gorp"
+  ],
+  "seasons": [
+   "spring",
+   "summer"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/GaleBoxShirt_01.jpg?width=900",
+  "fabric": "Linen",
+  "silhouette": "trouser",
+  "url": "https://18east.co/products/gale-box-shirt-fatigue-olive"
+ },
+ {
+  "id": "east-theo-hooded-parka-black",
+  "brand": "18 East",
+  "name": "Theo Giant Sailing Parka - Black Linen Twill",
+  "category": "outer",
+  "price": 348,
+  "tier": "premium",
+  "styles": [
+   "ivy",
+   "gorp"
+  ],
+  "seasons": [
+   "spring",
+   "summer"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/TheoHoodedParka_02.jpg?width=900",
+  "fabric": "100% black",
+  "silhouette": "coat",
+  "url": "https://18east.co/products/theo-hooded-parka-black"
+ },
+ {
+  "id": "east-jesper-vintage-button-down-shirt-white",
+  "brand": "18 East",
+  "name": "Jesper Vintage Button Down Shirt - White Featherweight Khadi Cotton",
+  "category": "shirt",
+  "price": 178,
+  "tier": "solid",
+  "styles": [
+   "ivy",
+   "gorp"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/JesperVintageWhite_01.jpg?width=900",
+  "fabric": "Cotton",
+  "silhouette": "shirt",
+  "url": "https://18east.co/products/jesper-vintage-button-down-shirt-white"
+ },
+ {
+  "id": "east-chamois-flap-pocket-sam-shirt-undyed-mor",
+  "brand": "18 East",
+  "name": "Chamois Flap Pocket Sam Shirt - Undyed / Morning Sky Handloom Cotton Chambray",
+  "category": "shirt",
+  "price": 178,
+  "tier": "solid",
+  "styles": [
+   "ivy",
+   "gorp"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/SamShirtChamoisStriped_01.jpg?width=900",
+  "fabric": "",
+  "silhouette": "shirt",
+  "url": "https://18east.co/products/chamois-flap-pocket-sam-shirt-undyed-morning-sky"
+ },
+ {
+  "id": "east-cata-hooded-jacket-fog-heather-featherwe",
+  "brand": "18 East",
+  "name": "Cata Hooded Jacket - Fog Heather Featherweight Micro Ripstop Nylon",
+  "category": "outer",
+  "price": 348,
+  "tier": "premium",
+  "styles": [
+   "ivy",
+   "gorp"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/CataHoodedJacket-1.jpg?width=900",
+  "fabric": "Nylon",
+  "silhouette": "jacket",
+  "url": "https://18east.co/products/cata-hooded-jacket-fog-heather-featherweight-micro-ripstop-nylon"
+ },
+ {
+  "id": "east-surplus-combat-smock-bleached-kelp",
+  "brand": "18 East",
+  "name": "Surplus Combat Smock - Sunbleached Kelp \"Cobblestone\" Nylon Ripstop",
+  "category": "shoes",
+  "price": 348,
+  "tier": "premium",
+  "styles": [
+   "ivy",
+   "gorp"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "shoe",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0026/8707/4416/files/SurplusCombat_001.jpg?width=900",
+  "fabric": "Nylon",
+  "silhouette": "sneaker",
+  "url": "https://18east.co/products/surplus-combat-smock-bleached-kelp"
+ },
+ {
+  "id": "freeeasy-dont-trip-dad-hat-olive",
+  "brand": "Free & Easy",
+  "name": "Don't Trip Dad Hat",
+  "category": "accessory",
+  "price": 40,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0388/0452/1100/files/FE-322-DH_OLIVE.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "cap",
+  "url": "https://freeandeasy.la/products/dont-trip-dad-hat-olive"
+ },
+ {
+  "id": "freeeasy-free-easy-mesh-shorts-brown",
+  "brand": "Free & Easy",
+  "name": "Free & Easy Mesh Shorts",
+  "category": "pants",
+  "price": 88,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0388/0452/1100/files/FE_702_Shorts_Brown_A.jpg?width=900",
+  "fabric": "100% Polyester",
+  "silhouette": "tee",
+  "url": "https://freeandeasy.la/products/free-easy-mesh-shorts-brown"
+ },
+ {
+  "id": "freeeasy-f-e-x-bob-marley-trucker-hat-tan-brown",
+  "brand": "Free & Easy",
+  "name": "F&E x Bob Marley Trucker Hat",
+  "category": "accessory",
+  "price": 40,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0388/0452/1100/files/FE_BM_702_TH04b.jpg?width=900",
+  "fabric": "Terry",
+  "silhouette": "cap",
+  "url": "https://freeandeasy.la/products/f-e-x-bob-marley-trucker-hat-tan-brown"
+ },
+ {
+  "id": "freeeasy-f-e-x-bob-marley-ballaz-ss-tee",
+  "brand": "Free & Easy",
+  "name": "F&E x Bob Marley Ballaz SS Tee",
+  "category": "top",
+  "price": 58,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0388/0452/1100/files/FE_BM_702_05a.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "tee",
+  "url": "https://freeandeasy.la/products/f-e-x-bob-marley-ballaz-ss-tee"
+ },
+ {
+  "id": "freeeasy-f-e-x-bob-marley-vibration-ss-tee",
+  "brand": "Free & Easy",
+  "name": "F&E x Bob Marley Vibration SS Tee",
+  "category": "top",
+  "price": 58,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0388/0452/1100/files/FE_BM_702_06v3a.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "tee",
+  "url": "https://freeandeasy.la/products/f-e-x-bob-marley-vibration-ss-tee"
+ },
+ {
+  "id": "freeeasy-f-e-x-bob-marley-rebel-music-ss-tee",
+  "brand": "Free & Easy",
+  "name": "F&E x Bob Marley Rebel Music SS Tee",
+  "category": "top",
+  "price": 58,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0388/0452/1100/files/FE_BM_702_12v2b.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "tee",
+  "url": "https://freeandeasy.la/products/f-e-x-bob-marley-rebel-music-ss-tee"
+ },
+ {
+  "id": "freeeasy-free-easy-heavy-fleece-sweatpants",
+  "brand": "Free & Easy",
+  "name": "Free & Easy Heavy Fleece Sweatpants",
+  "category": "pants",
+  "price": 165,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "athletic"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0388/0452/1100/files/HFSP_2026_01a.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "jacket",
+  "url": "https://freeandeasy.la/products/free-easy-heavy-fleece-sweatpants"
+ },
+ {
+  "id": "freeeasy-circle-heavy-fleece-zip-hoodie",
+  "brand": "Free & Easy",
+  "name": "Circle Heavy Fleece Zip Hoodie",
+  "category": "outer",
+  "price": 165,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "athletic"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0388/0452/1100/files/FE_RF2026_HD11A.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "jacket",
+  "url": "https://freeandeasy.la/products/circle-heavy-fleece-zip-hoodie"
+ },
+ {
+  "id": "freeeasy-olde-e-realfree-camo-heavy-fleece-hoodie",
+  "brand": "Free & Easy",
+  "name": "Olde E Camo Heavy Fleece Hoodie",
+  "category": "outer",
+  "price": 165,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "athletic"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0388/0452/1100/files/FE_250825_HD300A_393d172a-bac6-442f-a8b1-ddd35414f40d.jpg?width=900",
+  "fabric": "Cotton",
+  "silhouette": "jacket",
+  "url": "https://freeandeasy.la/products/olde-e-realfree-camo-heavy-fleece-hoodie"
+ },
+ {
+  "id": "freeeasy-realfree-heavy-fleece-sweatshirt",
+  "brand": "Free & Easy",
+  "name": "Highway Camo Heavy Fleece Sweatshirt",
+  "category": "outer",
+  "price": 155,
+  "tier": "solid",
+  "styles": [
+   "street",
+   "athletic"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0388/0452/1100/files/Realfree_CNS_01A_dc2ea75a-a224-4214-91b9-44105913d7ef.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "jacket",
+  "url": "https://freeandeasy.la/products/realfree-heavy-fleece-sweatshirt"
+ },
+ {
+  "id": "freeeasy-free-easy-two-tone-5-panel-snapback-hat",
+  "brand": "Free & Easy",
+  "name": "Free & Easy Two Tone 5 Panel Snapback Hat",
+  "category": "accessory",
+  "price": 40,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0388/0452/1100/files/TwoToneWhiteNavy_Free_Easy_5434fd0b-cea5-40c1-acc2-6738480939af.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "cap",
+  "url": "https://freeandeasy.la/products/free-easy-two-tone-5-panel-snapback-hat"
+ },
+ {
+  "id": "freeeasy-f-e-x-bob-marley-one-love-og-painters-pa",
+  "brand": "Free & Easy",
+  "name": "F&E x Bob Marley Stan Ray One Love OG Painters Pants",
+  "category": "pants",
+  "price": 185,
+  "tier": "premium",
+  "styles": [
+   "street",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "waist",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0388/0452/1100/files/FE_1007_01C.jpg?width=900",
+  "fabric": "Denim",
+  "silhouette": "trouser",
+  "url": "https://freeandeasy.la/products/f-e-x-bob-marley-one-love-og-painters-pants"
+ },
+ {
+  "id": "freeeasy-f-e-x-party-shirt-dont-trip-embroidered-",
+  "brand": "Free & Easy",
+  "name": "F&E x Party Shirt Don't Trip Embroidered Trucker Hat",
+  "category": "shirt",
+  "price": 20,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0388/0452/1100/products/FE-PS_07D.jpg?width=900",
+  "fabric": "Terry",
+  "silhouette": "shirt",
+  "url": "https://freeandeasy.la/products/f-e-x-party-shirt-dont-trip-embroidered-trucker-hat-1"
+ },
+ {
+  "id": "freeeasy-dad-grass-x-f-e-hammock-tank",
+  "brand": "Free & Easy",
+  "name": "Dad Grass x F&E Hammock Tank",
+  "category": "shoes",
+  "price": 25,
+  "tier": "entry",
+  "styles": [
+   "street",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "summer"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "shoe",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0388/0452/1100/products/TANK-4B.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "sneaker",
+  "url": "https://freeandeasy.la/products/dad-grass-x-f-e-hammock-tank"
+ },
+ {
+  "id": "museumofpeacequiet-natural-tote-bone",
+  "brand": "Museum of Peace & Quiet",
+  "name": "Natural Tote - Bone",
+  "category": "accessory",
+  "price": 60,
+  "tier": "entry",
+  "styles": [
+   "minimal",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0329/6156/0711/files/MOPQNATURALTOTEBAGBONE_dbaae363-bb9c-4e00-9a72-81b9e698dd89.jpg?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "bag",
+  "url": "https://museumofpeaceandquiet.com/products/natural-tote-bone"
+ },
+ {
+  "id": "museumofpeacequiet-diner-tee-navy",
+  "brand": "Museum of Peace & Quiet",
+  "name": "Diner Tee - Navy",
+  "category": "top",
+  "price": 48,
+  "tier": "entry",
+  "styles": [
+   "minimal",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0329/6156/0711/files/MOPQSU26DINERNAVYFRONT.jpg?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "tee",
+  "url": "https://museumofpeaceandquiet.com/products/diner-tee-navy"
+ },
+ {
+  "id": "museumofpeacequiet-natural-dove-tee-navy",
+  "brand": "Museum of Peace & Quiet",
+  "name": "Natural Dove Tee - Navy",
+  "category": "top",
+  "price": 48,
+  "tier": "entry",
+  "styles": [
+   "minimal",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0329/6156/0711/files/MOPQSU26DOVERNAVYFRONT.jpg?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "tee",
+  "url": "https://museumofpeaceandquiet.com/products/natural-dove-tee-navy"
+ },
+ {
+  "id": "museumofpeacequiet-scramble-tee-white",
+  "brand": "Museum of Peace & Quiet",
+  "name": "Scramble Tee - White",
+  "category": "top",
+  "price": 48,
+  "tier": "entry",
+  "styles": [
+   "minimal",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0329/6156/0711/files/MOPQSU26SCRAMBLEWHITEFRONT.jpg?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "tee",
+  "url": "https://museumofpeaceandquiet.com/products/scramble-tee-white"
+ },
+ {
+  "id": "museumofpeacequiet-wordmark-button-up-brown",
+  "brand": "Museum of Peace & Quiet",
+  "name": "Wordmark Button Up - Brown",
+  "category": "shirt",
+  "price": 120,
+  "tier": "solid",
+  "styles": [
+   "minimal",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0329/6156/0711/files/MOPQSU26SEEERSUCKERWORDMARKSHIRTFRONT.jpg?width=900",
+  "fabric": "",
+  "silhouette": "shirt",
+  "url": "https://museumofpeaceandquiet.com/products/wordmark-button-up-brown"
+ },
+ {
+  "id": "museumofpeacequiet-wordmark-seersucker-shorts-navy",
+  "brand": "Museum of Peace & Quiet",
+  "name": "Wordmark Seersucker Shorts - Navy",
+  "category": "pants",
+  "price": 110,
+  "tier": "solid",
+  "styles": [
+   "minimal",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "summer"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0329/6156/0711/files/MOPQSU26SEEERSUCKERWORDMARKSHORTFRONTNAVY_eae6bbbc-8d91-4b06-86e9-4a3093cacdd9.jpg?width=900",
+  "fabric": "",
+  "silhouette": "tee",
+  "url": "https://museumofpeaceandquiet.com/products/wordmark-seersucker-shorts-navy"
+ },
+ {
+  "id": "museumofpeacequiet-chore-corduroy-coat-bone",
+  "brand": "Museum of Peace & Quiet",
+  "name": "Chore Corduroy Coat - Bone",
+  "category": "outer",
+  "price": 160,
+  "tier": "solid",
+  "styles": [
+   "minimal",
+   "athletic"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0329/6156/0711/files/MOPQCHORECORDJACKETBONEFRONT.jpg?width=900",
+  "fabric": "",
+  "silhouette": "coat",
+  "url": "https://museumofpeaceandquiet.com/products/chore-corduroy-coat-bone"
+ },
+ {
+  "id": "museumofpeacequiet-mid-century-distressed-shorts-forest",
+  "brand": "Museum of Peace & Quiet",
+  "name": "Mid Century Shorts - Forest",
+  "category": "pants",
+  "price": 90,
+  "tier": "solid",
+  "styles": [
+   "minimal",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0329/6156/0711/files/MOPQMIDCENTURYSHORTFORESTFRONT.jpg?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "tee",
+  "url": "https://museumofpeaceandquiet.com/products/mid-century-distressed-shorts-forest"
+ },
+ {
+  "id": "museumofpeacequiet-leisure-corduroy-pants-navy",
+  "brand": "Museum of Peace & Quiet",
+  "name": "Leisure Corduroy Pants - Navy",
+  "category": "pants",
+  "price": 120,
+  "tier": "solid",
+  "styles": [
+   "minimal",
+   "athletic"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0329/6156/0711/files/MOPQLEISURECORDPANTSNAVYFRONT.jpg?width=900",
+  "fabric": "",
+  "silhouette": "trouser",
+  "url": "https://museumofpeaceandquiet.com/products/leisure-corduroy-pants-navy"
+ },
+ {
+  "id": "museumofpeacequiet-jumbo-wordmark-tote-navy",
+  "brand": "Museum of Peace & Quiet",
+  "name": "Jumbo Wordmark Tote - Navy",
+  "category": "accessory",
+  "price": 60,
+  "tier": "entry",
+  "styles": [
+   "minimal",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0329/6156/0711/files/MOPQSU26JUMBOWORDMARKTOTENAVYFRONT.jpg?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "bag",
+  "url": "https://museumofpeaceandquiet.com/products/jumbo-wordmark-tote-navy"
+ },
+ {
+  "id": "museumofpeacequiet-mini-wordmark-small-boat-tote-forest",
+  "brand": "Museum of Peace & Quiet",
+  "name": "Mini Wordmark Small Boat Tote - Forest",
+  "category": "accessory",
+  "price": 60,
+  "tier": "entry",
+  "styles": [
+   "minimal",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0329/6156/0711/files/MOPQSU26WORDMARKMINITOTE.jpg?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "bag",
+  "url": "https://museumofpeaceandquiet.com/products/mini-wordmark-small-boat-tote-forest"
+ },
+ {
+  "id": "museumofpeacequiet-wordmark-lightweight-sweater-bone",
+  "brand": "Museum of Peace & Quiet",
+  "name": "Wordmark Lightweight Sweater - Bone",
+  "category": "knit",
+  "price": 98,
+  "tier": "solid",
+  "styles": [
+   "minimal",
+   "athletic"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0329/6156/0711/files/MOPQSU26WORDMARKBONECREW.jpg?width=900",
+  "fabric": "",
+  "silhouette": "sweater",
+  "url": "https://museumofpeaceandquiet.com/products/wordmark-lightweight-sweater-bone"
+ },
+ {
+  "id": "museumofpeacequiet-utility-canvas-work-jacket-black",
+  "brand": "Museum of Peace & Quiet",
+  "name": "Utility Canvas Work Jacket - Black",
+  "category": "outer",
+  "price": 250,
+  "tier": "premium",
+  "styles": [
+   "minimal",
+   "athletic"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0329/6156/0711/files/MPQ_50_1.jpg?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "jacket",
+  "url": "https://museumofpeaceandquiet.com/products/utility-canvas-work-jacket-black"
+ },
+ {
+  "id": "storymfg-furrow-jumper-r-t-s-co-45",
+  "brand": "Story mfg.",
+  "name": "Furrow Jumper - R.T.S. CO-44",
+  "category": "knit",
+  "price": 166,
+  "tier": "solid",
+  "styles": [
+   "workwear",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1004/1966/files/FURROWJUMPER-BROWN6.jpg?width=900",
+  "fabric": "100% organic",
+  "silhouette": "sweater",
+  "url": "https://storymfg.com/products/furrow-jumper-r-t-s-co-45"
+ },
+ {
+  "id": "storymfg-wander-jacket-overgrown",
+  "brand": "Story mfg.",
+  "name": "Wander Jacket - Overgrown",
+  "category": "outer",
+  "price": 864,
+  "tier": "grail",
+  "styles": [
+   "workwear",
+   "japanese"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1004/1966/files/WANDERJACKETOVERGROWN.jpg?width=900",
+  "fabric": "100% organic",
+  "silhouette": "jacket",
+  "url": "https://storymfg.com/products/wander-jacket-overgrown"
+ },
+ {
+  "id": "storymfg-polite-pullover-sunrise-loved",
+  "brand": "Story mfg.",
+  "name": "Polite Pullover - Sunrise Loved",
+  "category": "knit",
+  "price": 623,
+  "tier": "grail",
+  "styles": [
+   "workwear",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1004/1966/files/SHOWROOMAW26MENS234.jpg?width=900",
+  "fabric": "100% organic",
+  "silhouette": "sweater",
+  "url": "https://storymfg.com/products/polite-pullover-sunrise-loved"
+ },
+ {
+  "id": "storymfg-poetry-pants-olive-heart-repair",
+  "brand": "Story mfg.",
+  "name": "Poetry Pants - Olive Heart Repair",
+  "category": "pants",
+  "price": 668,
+  "tier": "grail",
+  "styles": [
+   "workwear",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1004/1966/files/SHOWROOMAW26MENS114_a58accd6-b98b-4d2d-a7a6-8b52deaeffbb.jpg?width=900",
+  "fabric": "100% organic",
+  "silhouette": "trouser",
+  "url": "https://storymfg.com/products/poetry-pants-olive-heart-repair"
+ },
+ {
+  "id": "storymfg-poetry-pants-iron-black-wonky-wear",
+  "brand": "Story mfg.",
+  "name": "Poetry Pants - Iron Black Wonky-Wear",
+  "category": "pants",
+  "price": 544,
+  "tier": "grail",
+  "styles": [
+   "workwear",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1004/1966/files/POETRYPANTS-IRONBLACKWONKY-WEAR.jpg?width=900",
+  "fabric": "100% organic",
+  "silhouette": "trouser",
+  "url": "https://storymfg.com/products/poetry-pants-iron-black-wonky-wear"
+ },
+ {
+  "id": "storymfg-greetings-shirt-ss-spring-allotment",
+  "brand": "Story mfg.",
+  "name": "Greetings Shirt SS - Spring Allotment",
+  "category": "shirt",
+  "price": 572,
+  "tier": "grail",
+  "styles": [
+   "workwear",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1004/1966/files/SHOWROOMAW26MENS191.jpg?width=900",
+  "fabric": "55% organic",
+  "silhouette": "shirt",
+  "url": "https://storymfg.com/products/greetings-shirt-ss-spring-allotment"
+ },
+ {
+  "id": "storymfg-greetings-shirt-ls-autumn-allotment",
+  "brand": "Story mfg.",
+  "name": "Greetings Shirt LS - Autumn Allotment",
+  "category": "shirt",
+  "price": 634,
+  "tier": "grail",
+  "styles": [
+   "workwear",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1004/1966/files/GreetingsShirtLS-BrownAutumn_BrewHat-CheckerMush11.jpg?width=900",
+  "fabric": "55% organic",
+  "silhouette": "shirt",
+  "url": "https://storymfg.com/products/greetings-shirt-ls-autumn-allotment"
+ },
+ {
+  "id": "storymfg-555-jacket-sand-heart-repair",
+  "brand": "Story mfg.",
+  "name": "555 Jacket - Sand Heart Repair",
+  "category": "outer",
+  "price": 623,
+  "tier": "grail",
+  "styles": [
+   "workwear",
+   "japanese"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1004/1966/files/AW26SHOWROOMWOMENS87.jpg?width=900",
+  "fabric": "100% organic",
+  "silhouette": "jacket",
+  "url": "https://storymfg.com/products/555-jacket-sand-heart-repair"
+ },
+ {
+  "id": "storymfg-plane-shirt-affirmations",
+  "brand": "Story mfg.",
+  "name": "Plane Shirt - Affirmations",
+  "category": "shirt",
+  "price": 488,
+  "tier": "grail",
+  "styles": [
+   "workwear",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1004/1966/files/PlaneShirt-Affirmations.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "shirt",
+  "url": "https://storymfg.com/products/plane-shirt-affirmations"
+ },
+ {
+  "id": "storymfg-grain-bomber-plant-the-seed",
+  "brand": "Story mfg.",
+  "name": "Grain Bomber Jacket - Plant The Seed",
+  "category": "outer",
+  "price": 1564,
+  "tier": "grail",
+  "styles": [
+   "workwear",
+   "japanese"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1004/1966/files/GRAINBOMBER-PLANTTHESEED1.jpg?width=900",
+  "fabric": "100% organic",
+  "silhouette": "jacket",
+  "url": "https://storymfg.com/products/grain-bomber-plant-the-seed"
+ },
+ {
+  "id": "storymfg-studio-special-custom-baseball-cap-indig",
+  "brand": "Story mfg.",
+  "name": "Studio Special Custom Baseball Cap - Indigo Gingham Handloom",
+  "category": "accessory",
+  "price": 141,
+  "tier": "solid",
+  "styles": [
+   "workwear",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1004/1966/files/2026-07-16_FLATS22042-A_04200c22-33aa-4664-ad37-524476feff38.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "cap",
+  "url": "https://storymfg.com/products/studio-special-custom-baseball-cap-indigo-gingham-handloom"
+ },
+ {
+  "id": "storymfg-piper-knit-jumper-caterpillar",
+  "brand": "Story mfg.",
+  "name": "Piper Knit Jumper - Caterpillar",
+  "category": "knit",
+  "price": 612,
+  "tier": "grail",
+  "styles": [
+   "workwear",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1004/1966/files/PiperJumper-Caterpillar4.jpg?width=900",
+  "fabric": "100% organic",
+  "silhouette": "sweater",
+  "url": "https://storymfg.com/products/piper-knit-jumper-caterpillar"
+ },
+ {
+  "id": "storymfg-lush-pants-olive-scarecrow",
+  "brand": "Story mfg.",
+  "name": "Lush Pants - Olive Scarecrow",
+  "category": "pants",
+  "price": 544,
+  "tier": "grail",
+  "styles": [
+   "workwear",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1004/1966/files/LushPants-OliveScarecrow_PAShirtLS-CheckScarecrow11.jpg?width=900",
+  "fabric": "100% organic",
+  "silhouette": "trouser",
+  "url": "https://storymfg.com/products/lush-pants-olive-scarecrow"
+ },
+ {
+  "id": "storymfg-grateful-tee-ss-ends-of-the-world",
+  "brand": "Story mfg.",
+  "name": "Grateful Tee SS - Ends Of The World",
+  "category": "top",
+  "price": 85,
+  "tier": "solid",
+  "styles": [
+   "workwear",
+   "japanese"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/1004/1966/files/GratefulTeeSS-EndsOfTheWorld.jpg?width=900",
+  "fabric": "100% organic",
+  "silhouette": "tee",
+  "url": "https://storymfg.com/products/grateful-tee-ss-ends-of-the-world"
+ },
+ {
+  "id": "kartikresearch-kaza-patchwork-pant",
+  "brand": "Kartik Research",
+  "name": "Kaza Patchwork Pant",
+  "category": "pants",
+  "price": 895,
+  "tier": "grail",
+  "styles": [
+   "japanese",
+   "ivy"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "waist",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0377/1465/7418/files/SS26-115D.jpg?width=900",
+  "fabric": "Linen",
+  "silhouette": "trouser",
+  "url": "https://kartikresearch.com/products/kaza-patchwork-pant"
+ },
+ {
+  "id": "kartikresearch-atma-tote-dark-brown",
+  "brand": "Kartik Research",
+  "name": "Brown Leather Atma Tote",
+  "category": "accessory",
+  "price": 980,
+  "tier": "grail",
+  "styles": [
+   "japanese",
+   "ivy"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0377/1465/7418/files/DSCF2952_1.jpg?width=900",
+  "fabric": "Leather",
+  "silhouette": "bag",
+  "url": "https://kartikresearch.com/products/atma-tote-dark-brown"
+ },
+ {
+  "id": "kartikresearch-rabari-loafer-1",
+  "brand": "Kartik Research",
+  "name": "Rabari Loafer",
+  "category": "shoes",
+  "price": 675,
+  "tier": "grail",
+  "styles": [
+   "japanese",
+   "ivy"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "shoe",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0377/1465/7418/files/SS26-51D.jpg?width=900",
+  "fabric": "Suede",
+  "silhouette": "sneaker",
+  "url": "https://kartikresearch.com/products/rabari-loafer-1"
+ },
+ {
+  "id": "kartikresearch-safari-jacket-1",
+  "brand": "Kartik Research",
+  "name": "Safari Jacket",
+  "category": "outer",
+  "price": 690,
+  "tier": "grail",
+  "styles": [
+   "japanese",
+   "ivy"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0377/1465/7418/files/SS26-34D.jpg?width=900",
+  "fabric": "",
+  "silhouette": "jacket",
+  "url": "https://kartikresearch.com/products/safari-jacket-1"
+ },
+ {
+  "id": "kartikresearch-crash-kantha-blazer",
+  "brand": "Kartik Research",
+  "name": "Crash Kantha Blazer",
+  "category": "outer",
+  "price": 900,
+  "tier": "grail",
+  "styles": [
+   "japanese",
+   "ivy"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0377/1465/7418/files/SS26-08D.jpg?width=900",
+  "fabric": "Wool",
+  "silhouette": "jacket",
+  "url": "https://kartikresearch.com/products/crash-kantha-blazer"
+ },
+ {
+  "id": "kartikresearch-leh-cargo-pant",
+  "brand": "Kartik Research",
+  "name": "Leh Cargo Trouser",
+  "category": "pants",
+  "price": 765,
+  "tier": "grail",
+  "styles": [
+   "japanese",
+   "ivy"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "waist",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0377/1465/7418/files/SS26-108D.jpg?width=900",
+  "fabric": "",
+  "silhouette": "trouser",
+  "url": "https://kartikresearch.com/products/leh-cargo-pant"
+ },
+ {
+  "id": "kartikresearch-kantha-pleated-cargo-shorts",
+  "brand": "Kartik Research",
+  "name": "Kantha Cargo Shorts",
+  "category": "pants",
+  "price": 690,
+  "tier": "grail",
+  "styles": [
+   "japanese",
+   "ivy"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "waist",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0377/1465/7418/files/SS26-124F.jpg?width=900",
+  "fabric": "Cotton",
+  "silhouette": "short",
+  "url": "https://kartikresearch.com/products/kantha-pleated-cargo-shorts"
+ },
+ {
+  "id": "kartikresearch-chikankari-tee",
+  "brand": "Kartik Research",
+  "name": "Chikankari Tee",
+  "category": "top",
+  "price": 220,
+  "tier": "premium",
+  "styles": [
+   "japanese",
+   "ivy"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0377/1465/7418/files/SS26-133D.jpg?width=900",
+  "fabric": "100% organic",
+  "silhouette": "tee",
+  "url": "https://kartikresearch.com/products/chikankari-tee"
+ },
+ {
+  "id": "kartikresearch-bhutia-shirt-6",
+  "brand": "Kartik Research",
+  "name": "Bhutia Shirt",
+  "category": "shirt",
+  "price": 385,
+  "tier": "premium",
+  "styles": [
+   "japanese",
+   "ivy"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0377/1465/7418/files/SS26-70D.jpg?width=900",
+  "fabric": "Cotton",
+  "silhouette": "shirt",
+  "url": "https://kartikresearch.com/products/bhutia-shirt-6"
+ },
+ {
+  "id": "kartikresearch-zip-jacket",
+  "brand": "Kartik Research",
+  "name": "Zip Jacket",
+  "category": "outer",
+  "price": 650,
+  "tier": "grail",
+  "styles": [
+   "japanese",
+   "ivy"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0377/1465/7418/files/SS25-15b.jpg?width=900",
+  "fabric": "50% Cotton",
+  "silhouette": "jacket",
+  "url": "https://kartikresearch.com/products/zip-jacket"
+ },
+ {
+  "id": "kartikresearch-box-shirt-4",
+  "brand": "Kartik Research",
+  "name": "Linen Stripe Shirt",
+  "category": "shirt",
+  "price": 400,
+  "tier": "grail",
+  "styles": [
+   "japanese",
+   "ivy"
+  ],
+  "seasons": [
+   "spring",
+   "summer"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0377/1465/7418/files/56d_96d0e9f0-68ba-4d7d-b99b-74bbf42c56cc.png?width=900",
+  "fabric": "100% Linen",
+  "silhouette": "shirt",
+  "url": "https://kartikresearch.com/products/box-shirt-4"
+ },
+ {
+  "id": "kartikresearch-box-shirt-8",
+  "brand": "Kartik Research",
+  "name": "Red Floral Box Shirt",
+  "category": "shirt",
+  "price": 520,
+  "tier": "grail",
+  "styles": [
+   "japanese",
+   "ivy"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0377/1465/7418/files/EmptyName-44.jpg?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "shirt",
+  "url": "https://kartikresearch.com/products/box-shirt-8"
+ },
+ {
+  "id": "kartikresearch-patchwork-cardigan-1",
+  "brand": "Kartik Research",
+  "name": "Patchwork Cardigan",
+  "category": "knit",
+  "price": 810,
+  "tier": "grail",
+  "styles": [
+   "japanese",
+   "ivy"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0377/1465/7418/files/FW25-80b.jpg?width=900",
+  "fabric": "100% Wool",
+  "silhouette": "sweater",
+  "url": "https://kartikresearch.com/products/patchwork-cardigan-1"
+ },
+ {
+  "id": "kartikresearch-rabari-cardigan",
+  "brand": "Kartik Research",
+  "name": "Rabari Cardigan",
+  "category": "knit",
+  "price": 580,
+  "tier": "grail",
+  "styles": [
+   "japanese",
+   "ivy"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0377/1465/7418/files/FW25-75a.jpg?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "sweater",
+  "url": "https://kartikresearch.com/products/rabari-cardigan"
+ },
+ {
+  "id": "battenwear-ss27-active-lazy-pants-beige-chambray",
+  "brand": "Battenwear",
+  "name": "SS27 - Active Lazy Pants - Beige Chambray",
+  "category": "pants",
+  "price": 170,
+  "tier": "solid",
+  "styles": [
+   "gorp",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0621/9589/files/662688BD-F25E-4F27-BAC3-AB37AE6FB56E_1_105_c.jpg?width=900",
+  "fabric": "",
+  "silhouette": "trouser",
+  "url": "https://battenwear.com/products/ss27-active-lazy-pants-beige-chambray"
+ },
+ {
+  "id": "battenwear-ss27-s-s-basic-pocket-tee-navy",
+  "brand": "Battenwear",
+  "name": "SS27 - S/S Pocket Tee / Navy",
+  "category": "top",
+  "price": 75,
+  "tier": "solid",
+  "styles": [
+   "gorp",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0621/9589/files/Navy_SSPocket_Front.jpg?width=900",
+  "fabric": "",
+  "silhouette": "tee",
+  "url": "https://battenwear.com/products/ss27-s-s-basic-pocket-tee-navy"
+ },
+ {
+  "id": "battenwear-ss27-l-s-pocket-tee-navy",
+  "brand": "Battenwear",
+  "name": "SS27 - L/S Pocket Tee - Navy",
+  "category": "top",
+  "price": 85,
+  "tier": "solid",
+  "styles": [
+   "gorp",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0621/9589/files/NavyFront_6080d97f-5550-49c0-9dac-d7567b87d2a1.jpg?width=900",
+  "fabric": "",
+  "silhouette": "sweater",
+  "url": "https://battenwear.com/products/ss27-l-s-pocket-tee-navy"
+ },
+ {
+  "id": "battenwear-ss27-h-a-n-d-trucker-hat-brown",
+  "brand": "Battenwear",
+  "name": "SS27 - H.A.N.D. Trucker Hat - Brown",
+  "category": "accessory",
+  "price": 75,
+  "tier": "solid",
+  "styles": [
+   "gorp",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0621/9589/files/HANDcap_48154595-0d6f-40c4-9da4-a41bf8ff8474.jpg?width=900",
+  "fabric": "",
+  "silhouette": "cap",
+  "url": "https://battenwear.com/products/ss27-h-a-n-d-trucker-hat-brown"
+ },
+ {
+  "id": "battenwear-ss27-t-t-s-trucker-hat-brown",
+  "brand": "Battenwear",
+  "name": "SS27 - T.T.S. Trucker Hat - Brown",
+  "category": "accessory",
+  "price": 75,
+  "tier": "solid",
+  "styles": [
+   "gorp",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0621/9589/files/1093_7a381362-ee9c-4f08-8b5a-dc23cbd1b3b2.jpg?width=900",
+  "fabric": "",
+  "silhouette": "cap",
+  "url": "https://battenwear.com/products/ss27-t-t-s-trucker-hat-brown"
+ },
+ {
+  "id": "battenwear-ss27-eitherway-bag-midnight-x-navy",
+  "brand": "Battenwear",
+  "name": "SS27 - Eitherway Bag - Midnight/Navy",
+  "category": "accessory",
+  "price": 160,
+  "tier": "solid",
+  "styles": [
+   "gorp",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0621/9589/files/FW16607-_Eitherway_Bag-1151_grande_b3d6c3bc-0171-4e48-bd86-fd59cdd55787.jpg?width=900",
+  "fabric": "",
+  "silhouette": "bag",
+  "url": "https://battenwear.com/products/ss27-eitherway-bag-midnight-x-navy"
+ },
+ {
+  "id": "battenwear-ss27-packable-totedenim-x-tan",
+  "brand": "Battenwear",
+  "name": "SS27 - Packable Tote -  Denim x Tan",
+  "category": "pants",
+  "price": 80,
+  "tier": "solid",
+  "styles": [
+   "gorp",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0621/9589/files/PACKABLETOTE_DENIM_1_c67c9b19-d0fa-43c5-996e-4503acff6cf3.jpg?width=900",
+  "fabric": "",
+  "silhouette": "jean",
+  "url": "https://battenwear.com/products/ss27-packable-totedenim-x-tan"
+ },
+ {
+  "id": "battenwear-ss27-mini-packable-tote-denim-x-tan",
+  "brand": "Battenwear",
+  "name": "SS27 - Mini Packable Tote - Denim x Tan",
+  "category": "pants",
+  "price": 70,
+  "tier": "solid",
+  "styles": [
+   "gorp",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0621/9589/files/MINIPACKABLETOTE_DENIM_1_3f218328-7c2b-466f-ac64-d9e2f20f2342.jpg?width=900",
+  "fabric": "",
+  "silhouette": "jean",
+  "url": "https://battenwear.com/products/ss27-mini-packable-tote-denim-x-tan"
+ },
+ {
+  "id": "battenwear-ss27-light-shell-parka-v-3-moss-green",
+  "brand": "Battenwear",
+  "name": "SS27 - Light Shell Parka V.3-Moss Green",
+  "category": "outer",
+  "price": 470,
+  "tier": "grail",
+  "styles": [
+   "gorp",
+   "workwear"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0621/9589/files/1E44D079-6186-404A-B6BC-E7528001D02E_1_201_a.png?width=900",
+  "fabric": "",
+  "silhouette": "coat",
+  "url": "https://battenwear.com/products/ss27-light-shell-parka-v-3-moss-green"
+ },
+ {
+  "id": "battenwear-ss27-club-jacket-moss-green",
+  "brand": "Battenwear",
+  "name": "SS27 - Club Jacket-Moss Green",
+  "category": "outer",
+  "price": 430,
+  "tier": "grail",
+  "styles": [
+   "gorp",
+   "workwear"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0621/9589/files/C3FF51AD-5AF1-4A44-B295-776A7A13A283_1_201_a.png?width=900",
+  "fabric": "",
+  "silhouette": "jacket",
+  "url": "https://battenwear.com/products/ss27-club-jacket-moss-green"
+ },
+ {
+  "id": "battenwear-ss27-packable-anorak-khaki",
+  "brand": "Battenwear",
+  "name": "SS27 - Packable Anorak-Light Olive",
+  "category": "outer",
+  "price": 380,
+  "tier": "premium",
+  "styles": [
+   "gorp",
+   "workwear"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0621/9589/files/1F07A540-93A0-4B69-B897-657583BADC61_1_201_a.png?width=900",
+  "fabric": "",
+  "silhouette": "jacket",
+  "url": "https://battenwear.com/products/ss27-packable-anorak-khaki"
+ },
+ {
+  "id": "battenwear-ss27-beach-tee-ecru-x-red",
+  "brand": "Battenwear",
+  "name": "SS27 - Beach Tee-Ecru x Red Stripe",
+  "category": "top",
+  "price": 100,
+  "tier": "solid",
+  "styles": [
+   "gorp",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0621/9589/files/251DFCB1-1EFA-4FA9-A008-6E2DFD9A5038.jpg?width=900",
+  "fabric": "",
+  "silhouette": "tee",
+  "url": "https://battenwear.com/products/ss27-beach-tee-ecru-x-red"
+ },
+ {
+  "id": "battenwear-ss27-beach-polo-ecru-x-red",
+  "brand": "Battenwear",
+  "name": "SS27 - Beach Polo-Ecru x Red Stripe",
+  "category": "shirt",
+  "price": 135,
+  "tier": "solid",
+  "styles": [
+   "gorp",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0621/9589/files/6F0A519E-651A-43DA-9331-D5D5E1475570_78c8f475-7485-46f3-a7d4-597e3dff1faa.jpg?width=900",
+  "fabric": "",
+  "silhouette": "polo",
+  "url": "https://battenwear.com/products/ss27-beach-polo-ecru-x-red"
+ },
+ {
+  "id": "battenwear-ss27-scout-shirt-beige-chambray",
+  "brand": "Battenwear",
+  "name": "SS27 - Scout Shirt - Beige Chambray",
+  "category": "shirt",
+  "price": 170,
+  "tier": "solid",
+  "styles": [
+   "gorp",
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0621/9589/files/662688BD-F25E-4F27-BAC3-AB37AE6FB56E_1_105_c_953f140a-4934-4817-8caf-8d84f99f3f19.jpg?width=900",
+  "fabric": "",
+  "silhouette": "shirt",
+  "url": "https://battenwear.com/products/ss27-scout-shirt-beige-chambray"
+ },
+ {
+  "id": "dehen-2-tone-baseball-hat-oatmeal-red-oak",
+  "brand": "Dehen 1920",
+  "name": "2-Tone Baseball Hat - Oatmeal & Red Oak",
+  "category": "accessory",
+  "price": 75,
+  "tier": "solid",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0223/1536/8525/files/Dehen-1920-Baseball-Cap-Oatmeal-Red-Oak-2-Tone-1A.jpg?width=900",
+  "fabric": "10% off",
+  "silhouette": "cap",
+  "url": "https://dehen.com/products/2-tone-baseball-hat-oatmeal-red-oak"
+ },
+ {
+  "id": "dehen-selvedge-overshirt-black-denim",
+  "brand": "Dehen 1920",
+  "name": "Selvedge Overshirt - Black Denim",
+  "category": "pants",
+  "price": 495,
+  "tier": "grail",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0223/1536/8525/files/Dehen-1920-Skyline-Overshirt-Black-Selvedge-1.jpg?width=900",
+  "fabric": "Denim",
+  "silhouette": "jean",
+  "url": "https://dehen.com/products/selvedge-overshirt-black-denim"
+ },
+ {
+  "id": "dehen-crissman-overshirt-dark-tan-mix",
+  "brand": "Dehen 1920",
+  "name": "Crissman Overshirt - Dark Tan Mix",
+  "category": "shirt",
+  "price": 365,
+  "tier": "premium",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0223/1536/8525/files/Dehen-1920-Crissman-Overshirt-Dark-Tan-Mix-3A.jpg?width=900",
+  "fabric": "100% milled",
+  "silhouette": "shirt",
+  "url": "https://dehen.com/products/crissman-overshirt-dark-tan-mix"
+ },
+ {
+  "id": "dehen-shawl-sweater-coat-burnt-orange",
+  "brand": "Dehen 1920",
+  "name": "Shawl Sweater Coat - Burnt Orange",
+  "category": "outer",
+  "price": 460,
+  "tier": "grail",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0223/1536/8525/files/Dehen-1920-Shawl-Sweater-Coat-Burnt-Orange-1.jpg?width=900",
+  "fabric": "100% wool",
+  "silhouette": "coat",
+  "url": "https://dehen.com/products/shawl-sweater-coat-burnt-orange"
+ },
+ {
+  "id": "dehen-skyline-overshirt-granite",
+  "brand": "Dehen 1920",
+  "name": "Skyline Overshirt - Granite",
+  "category": "shirt",
+  "price": 495,
+  "tier": "grail",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0223/1536/8525/files/Dehen-1920-Skyline-Overshirt-Granite-1.jpg?width=900",
+  "fabric": "100% wool",
+  "silhouette": "shirt",
+  "url": "https://dehen.com/products/skyline-overshirt-granite"
+ },
+ {
+  "id": "dehen-unstructured-baseball-hat-spruce",
+  "brand": "Dehen 1920",
+  "name": "Unstructured Baseball Hat - Spruce",
+  "category": "accessory",
+  "price": 75,
+  "tier": "solid",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0223/1536/8525/files/Dehen-1920-Baseball-Cap-Spruce-Dry-Wax-Cotton-1B.jpg?width=900",
+  "fabric": "10% off",
+  "silhouette": "cap",
+  "url": "https://dehen.com/products/unstructured-baseball-hat-spruce"
+ },
+ {
+  "id": "dehen-2-tone-baseball-hat-canyon-plaid",
+  "brand": "Dehen 1920",
+  "name": "Baseball Hat - Canyon Plaid",
+  "category": "accessory",
+  "price": 75,
+  "tier": "solid",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0223/1536/8525/files/Dehen-1920-Baseball-Hat-Melton-Canyon-Plaid-1A.jpg?width=900",
+  "fabric": "10% off",
+  "silhouette": "cap",
+  "url": "https://dehen.com/products/2-tone-baseball-hat-canyon-plaid"
+ },
+ {
+  "id": "dehen-rugby-shirt-navy-red",
+  "brand": "Dehen 1920",
+  "name": "Rugby Shirt - Navy / Red",
+  "category": "shirt",
+  "price": 195,
+  "tier": "premium",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0223/1536/8525/files/Dehen-1920-Rugby-Red-Navy-Stripe-1.jpg?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "shirt",
+  "url": "https://dehen.com/products/rugby-shirt-navy-red"
+ },
+ {
+  "id": "dehen-heavy-duty-baseball-tee-white",
+  "brand": "Dehen 1920",
+  "name": "Heavy Duty Baseball Tee - White",
+  "category": "top",
+  "price": 145,
+  "tier": "solid",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0223/1536/8525/files/Dehen-1920-Heavy-Duty-Baseball-Tee-White-1.jpg?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "shirt",
+  "url": "https://dehen.com/products/heavy-duty-baseball-tee-white"
+ },
+ {
+  "id": "dehen-heavy-duty-baseball-tee-2-tone-natural-r",
+  "brand": "Dehen 1920",
+  "name": "Heavy Duty Baseball Tee - 2-Tone Natural & Red",
+  "category": "top",
+  "price": 145,
+  "tier": "solid",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0223/1536/8525/files/Dehen-1920-Heavy-Duty-Baseball-Tee-Red-Natural-1.jpg?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "shirt",
+  "url": "https://dehen.com/products/heavy-duty-baseball-tee-2-tone-natural-red"
+ },
+ {
+  "id": "dehen-heavy-duty-tee-single-pocket-faded-blue",
+  "brand": "Dehen 1920",
+  "name": "Heavy Duty Tee - Single Pocket - Faded Blue",
+  "category": "top",
+  "price": 72,
+  "tier": "solid",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0223/1536/8525/files/Dehen-1920-Heavy-Duty-Tee-Single-Pocket-Faded-Blue-1.jpg?width=900",
+  "fabric": "10% off",
+  "silhouette": "shirt",
+  "url": "https://dehen.com/products/heavy-duty-tee-single-pocket-faded-blue"
+ },
+ {
+  "id": "dehen-weekender-jacket-indigo-sashiko",
+  "brand": "Dehen 1920",
+  "name": "Weekender Jacket - Indigo Sashi - Ori",
+  "category": "outer",
+  "price": 575,
+  "tier": "grail",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0223/1536/8525/files/Dehen-1920-Weekender-Jacket-Shashiko-Indigo-1.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "jacket",
+  "url": "https://dehen.com/products/weekender-jacket-indigo-sashiko"
+ },
+ {
+  "id": "dehen-spring-slouchy-cardigan-forster-red",
+  "brand": "Dehen 1920",
+  "name": "Spring Slouchy Cardigan - Forster Red",
+  "category": "knit",
+  "price": 360,
+  "tier": "premium",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0223/1536/8525/files/Dehen-1920-Slouchy-Cardigan-Forster-Red-4.jpg?width=900",
+  "fabric": "100% worsted",
+  "silhouette": "sweater",
+  "url": "https://dehen.com/products/spring-slouchy-cardigan-forster-red"
+ },
+ {
+  "id": "dehen-wool-knit-watch-cap-goldmine",
+  "brand": "Dehen 1920",
+  "name": "Wool Knit Watch Cap - Goldmine",
+  "category": "knit",
+  "price": 68,
+  "tier": "entry",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0223/1536/8525/files/Dehen-1920-GoldMine-Watch-Cap-1.jpg?width=900",
+  "fabric": "10% off",
+  "silhouette": "sweater",
+  "url": "https://dehen.com/products/wool-knit-watch-cap-goldmine"
+ },
+ {
+  "id": "freenotecloth-modern-western-11-ounce-black-stone-wash",
+  "brand": "Freenote Cloth",
+  "name": "Modern Western 11 Ounce Black Stone Washed Denim",
+  "category": "pants",
+  "price": 340,
+  "tier": "premium",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0482/8569/files/Tops_SS260764.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "jean",
+  "url": "https://freenotecloth.com/products/modern-western-11-ounce-black-stone-washed-denim"
+ },
+ {
+  "id": "freenotecloth-kirthwood-grey-herringbone",
+  "brand": "Freenote Cloth",
+  "name": "Kirthwood Grey Herringbone",
+  "category": "outer",
+  "price": 400,
+  "tier": "grail",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0482/8569/files/FreenoteProduct202400432_1d96655f-120b-4ec3-ae35-bcb53f07fba7.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "jacket",
+  "url": "https://freenotecloth.com/products/kirthwood-grey-herringbone"
+ },
+ {
+  "id": "freenotecloth-ortega-pant-rust",
+  "brand": "Freenote Cloth",
+  "name": "Ortega Pant 13 Ounce Rust Herringbone",
+  "category": "pants",
+  "price": 340,
+  "tier": "premium",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "waist",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0482/8569/files/FreenoteProduct202602731.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "trouser",
+  "url": "https://freenotecloth.com/products/ortega-pant-rust"
+ },
+ {
+  "id": "freenotecloth-modesto-shirt-stripe",
+  "brand": "Freenote Cloth",
+  "name": "Modesto Shirt Stripe",
+  "category": "shirt",
+  "price": 320,
+  "tier": "premium",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0482/8569/files/TopsSS26006151.jpg?width=900",
+  "fabric": "100% Cotton",
+  "silhouette": "shirt",
+  "url": "https://freenotecloth.com/products/modesto-shirt-stripe"
+ },
+ {
+  "id": "freenotecloth-riders-jacket-maryam-triumph-calf-leathe",
+  "brand": "Freenote Cloth",
+  "name": "Riders Jacket Maryam Triumph Calf Leather",
+  "category": "outer",
+  "price": 2000,
+  "tier": "grail",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "waist",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0482/8569/files/FreenoteProduct202602281.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "jacket",
+  "url": "https://freenotecloth.com/products/riders-jacket-maryam-triumph-calf-leather"
+ },
+ {
+  "id": "freenotecloth-meeks-terracotta-corduroy",
+  "brand": "Freenote Cloth",
+  "name": "Meeks Jacket Terracotta Corduroy",
+  "category": "outer",
+  "price": 400,
+  "tier": "grail",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0482/8569/files/TopsSS2601653.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "jacket",
+  "url": "https://freenotecloth.com/products/meeks-terracotta-corduroy"
+ },
+ {
+  "id": "freenotecloth-trabuco-classic-straight-16-ounce-indigo",
+  "brand": "Freenote Cloth",
+  "name": "Trabuco Classic Straight 16 Ounce Indigo Brown Denim",
+  "category": "pants",
+  "price": 305,
+  "tier": "premium",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "waist",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0482/8569/files/FreenoteProduct20241346.jpg?width=900",
+  "fabric": "Denim",
+  "silhouette": "jean",
+  "url": "https://freenotecloth.com/products/trabuco-classic-straight-16-ounce-indigo-brown-denim"
+ },
+ {
+  "id": "freenotecloth-fairmont-natural-t-shirt",
+  "brand": "Freenote Cloth",
+  "name": "Fairmont Natural T-Shirt",
+  "category": "knit",
+  "price": 100,
+  "tier": "solid",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0482/8569/files/TOPS_AW261352.png?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "sweater",
+  "url": "https://freenotecloth.com/products/fairmont-natural-t-shirt"
+ },
+ {
+  "id": "freenotecloth-fairmont-natural-s-s-henley",
+  "brand": "Freenote Cloth",
+  "name": "Fairmont Natural S/S Henley",
+  "category": "knit",
+  "price": 130,
+  "tier": "solid",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0482/8569/files/TOPS_AW2600121_eb2cda65-5e56-488a-b6c3-c72836585bd2.png?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "sweater",
+  "url": "https://freenotecloth.com/products/fairmont-natural-s-s-henley"
+ },
+ {
+  "id": "freenotecloth-wilkinson-rambler-belt-double-black",
+  "brand": "Freenote Cloth",
+  "name": "Wilkinson - Rambler Belt Double Black",
+  "category": "accessory",
+  "price": 150,
+  "tier": "solid",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0482/8569/files/TopsSS261150.jpg?width=900",
+  "fabric": "Leather",
+  "silhouette": "tee",
+  "url": "https://freenotecloth.com/products/wilkinson-rambler-belt-double-black"
+ },
+ {
+  "id": "freenotecloth-mooch-tee-black-stripe",
+  "brand": "Freenote Cloth",
+  "name": "Mooch Tee Black Stripe",
+  "category": "top",
+  "price": 100,
+  "tier": "solid",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0482/8569/files/FreenoteProduct202604431.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "sweater",
+  "url": "https://freenotecloth.com/products/mooch-tee-black-stripe"
+ },
+ {
+  "id": "freenotecloth-mooch-tee-red-stripe",
+  "brand": "Freenote Cloth",
+  "name": "Mooch Tee Red Stripe",
+  "category": "top",
+  "price": 100,
+  "tier": "solid",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0482/8569/files/FreenoteProduct202604681_c1e755b8-98a6-4e4e-9c0b-47cdd3c3820e.jpg?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "sweater",
+  "url": "https://freenotecloth.com/products/mooch-tee-red-stripe"
+ },
+ {
+  "id": "freenotecloth-viberg-roper-boot-2005-last-maryam-musch",
+  "brand": "Freenote Cloth",
+  "name": "Viberg Roper Boot - 2005 Last - Maryam Muschio Horsebutt",
+  "category": "shoes",
+  "price": 1400,
+  "tier": "grail",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "shoe",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0482/8569/files/FreenoteProduct202601491.jpg?width=900",
+  "fabric": "",
+  "silhouette": "boot",
+  "url": "https://freenotecloth.com/products/viberg-roper-boot-2005-last-maryam-muschio-horsebutt"
+ },
+ {
+  "id": "freenotecloth-9oz-pocketless-t-shirt-vintage-white",
+  "brand": "Freenote Cloth",
+  "name": "9oz Pocketless T-Shirt Vintage White",
+  "category": "knit",
+  "price": 80,
+  "tier": "solid",
+  "styles": [
+   "workwear"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0482/8569/files/TopsSS2601421.png?width=900",
+  "fabric": "100% cotton",
+  "silhouette": "sweater",
+  "url": "https://freenotecloth.com/products/9oz-pocketless-t-shirt-vintage-white"
+ },
+ {
+  "id": "uskees-7006-faded-black-philips-head-screw-tee",
+  "brand": "Uskees",
+  "name": "7006 Phillips head screw t-shirt - faded black",
+  "category": "top",
+  "price": 20,
+  "tier": "entry",
+  "styles": [
+   "workwear",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0047/6921/8632/files/7006-black-screw-tee-front.jpg?width=900",
+  "fabric": "Cotton",
+  "silhouette": "shirt",
+  "url": "https://uskees.com/products/7006-faded-black-philips-head-screw-tee"
+ },
+ {
+  "id": "uskees-4012-lambswool-snowflake-hat-dusty-pink",
+  "brand": "Uskees",
+  "name": "4012 Lambswool Fair Isle hat - dusty pink",
+  "category": "accessory",
+  "price": 33.6,
+  "tier": "entry",
+  "styles": [
+   "workwear",
+   "minimal"
+  ],
+  "seasons": [
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0047/6921/8632/files/4012-dusty-pink-snowflake-hat-close.jpg?width=900",
+  "fabric": "Wool",
+  "silhouette": "cap",
+  "url": "https://uskees.com/products/4012-lambswool-snowflake-hat-dusty-pink"
+ },
+ {
+  "id": "uskees-4009-charcoal-canvas-tote-bag",
+  "brand": "Uskees",
+  "name": "4009 Canvas tote bag - charcoal",
+  "category": "accessory",
+  "price": 21,
+  "tier": "entry",
+  "styles": [
+   "workwear",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0047/6921/8632/files/4009-charcoal-canvas-tote_front.jpg?width=900",
+  "fabric": "Cotton",
+  "silhouette": "bag",
+  "url": "https://uskees.com/products/4009-charcoal-canvas-tote-bag"
+ },
+ {
+  "id": "uskees-4006-colour-fuzz-socks-violet-mix",
+  "brand": "Uskees",
+  "name": "4006 Colour Fuzz Socks - violet mix",
+  "category": "accessory",
+  "price": 21,
+  "tier": "entry",
+  "styles": [
+   "workwear",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "one",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0047/6921/8632/files/4006-violet-mix-cotton-sock-flat.jpg?width=900",
+  "fabric": "Cotton",
+  "silhouette": "tee",
+  "url": "https://uskees.com/products/4006-colour-fuzz-socks-violet-mix"
+ },
+ {
+  "id": "uskees-3006-rust-cord-blazer",
+  "brand": "Uskees",
+  "name": "3006 Unions cord blazer - rust",
+  "category": "outer",
+  "price": 69,
+  "tier": "entry",
+  "styles": [
+   "workwear",
+   "minimal"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0047/6921/8632/files/3006-rust-corduroy-blazer-front.jpg?width=900",
+  "fabric": "",
+  "silhouette": "jacket",
+  "url": "https://uskees.com/products/3006-rust-cord-blazer"
+ },
+ {
+  "id": "uskees-6009-yellow-casual-shorts",
+  "brand": "Uskees",
+  "name": "6009 Casual shorts - yellow",
+  "category": "pants",
+  "price": 25,
+  "tier": "entry",
+  "styles": [
+   "workwear",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0047/6921/8632/files/6009-yellow-casual-shorts-front.jpg?width=900",
+  "fabric": "Cotton",
+  "silhouette": "tee",
+  "url": "https://uskees.com/products/6009-yellow-casual-shorts"
+ },
+ {
+  "id": "uskees-5024-ripstop-utility-shorts-old-ivy-gree",
+  "brand": "Uskees",
+  "name": "5024 Ripstop utility shorts - Previous Dye Batch - Ivy Green",
+  "category": "pants",
+  "price": 49,
+  "tier": "entry",
+  "styles": [
+   "workwear",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0047/6921/8632/files/5024RIPSTOPUTILITYSHORTFRONT.jpg?width=900",
+  "fabric": "Cotton",
+  "silhouette": "tee",
+  "url": "https://uskees.com/products/5024-ripstop-utility-shorts-old-ivy-green"
+ },
+ {
+  "id": "uskees-5023-ripstop-cargo-shorts-old-ivy-green",
+  "brand": "Uskees",
+  "name": "5023 Ripstop cargo shorts - Previous Dye Batch - Ivy Green",
+  "category": "pants",
+  "price": 49,
+  "tier": "entry",
+  "styles": [
+   "workwear",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0047/6921/8632/files/5023RIPSTOPCARGOSHORTFIRFRONT.jpg?width=900",
+  "fabric": "Ripstop",
+  "silhouette": "trouser",
+  "url": "https://uskees.com/products/5023-ripstop-cargo-shorts-old-ivy-green"
+ },
+ {
+  "id": "uskees-3046-ripstop-utility-jacket-previous-dye",
+  "brand": "Uskees",
+  "name": "3046 Ripstop utility jacket - previous dye batch - ivy green",
+  "category": "outer",
+  "price": 65,
+  "tier": "entry",
+  "styles": [
+   "workwear",
+   "minimal"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0047/6921/8632/files/USKEES0061.jpg?width=900",
+  "fabric": "Ripstop",
+  "silhouette": "jacket",
+  "url": "https://uskees.com/products/3046-ripstop-utility-jacket-previous-dye-batch-clearance-ivy-green"
+ },
+ {
+  "id": "uskees-3046-khaki-ripstop-utility-jacket",
+  "brand": "Uskees",
+  "name": "3046 Ripstop utility jacket - khaki",
+  "category": "outer",
+  "price": 65,
+  "tier": "entry",
+  "styles": [
+   "workwear",
+   "minimal"
+  ],
+  "seasons": [
+   "fall",
+   "winter",
+   "spring"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0047/6921/8632/files/3046-khaki-ripstop-utility-jacket-front.jpg?width=900",
+  "fabric": "Ripstop",
+  "silhouette": "jacket",
+  "url": "https://uskees.com/products/3046-khaki-ripstop-utility-jacket"
+ },
+ {
+  "id": "uskees-3003-berry-red-buttoned-workshirt",
+  "brand": "Uskees",
+  "name": "3003 buttoned workshirt - berry red",
+  "category": "shirt",
+  "price": 42.5,
+  "tier": "entry",
+  "styles": [
+   "workwear",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0047/6921/8632/files/3003-berry-red-button-workshirt-front.jpg?width=900",
+  "fabric": "",
+  "silhouette": "shirt",
+  "url": "https://uskees.com/products/3003-berry-red-buttoned-workshirt"
+ },
+ {
+  "id": "uskees-3001-drill-buttoned-overshirt-chestnut",
+  "brand": "Uskees",
+  "name": "3001 drill overshirt - chestnut",
+  "category": "shirt",
+  "price": 47.5,
+  "tier": "entry",
+  "styles": [
+   "workwear",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0047/6921/8632/files/3001-chestnut-button-drill-overshirt-back.jpg?width=900",
+  "fabric": "",
+  "silhouette": "shirt",
+  "url": "https://uskees.com/products/3001-drill-buttoned-overshirt-chestnut"
+ },
+ {
+  "id": "uskees-3001-cord-buttoned-overshirt-deep-indigo",
+  "brand": "Uskees",
+  "name": "3001 Cord overshirt - deep indigo",
+  "category": "shirt",
+  "price": 50,
+  "tier": "entry",
+  "styles": [
+   "workwear",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0047/6921/8632/files/3001-deep-indigo-cord-overshirt-front.jpg?width=900",
+  "fabric": "Corduroy",
+  "silhouette": "shirt",
+  "url": "https://uskees.com/products/3001-cord-buttoned-overshirt-deep-indigo"
+ },
+ {
+  "id": "uskees-3043-foam-green-collared-cardigan",
+  "brand": "Uskees",
+  "name": "3043 Collared cardigan - foam green",
+  "category": "knit",
+  "price": 60,
+  "tier": "entry",
+  "styles": [
+   "workwear",
+   "minimal"
+  ],
+  "seasons": [
+   "spring",
+   "fall"
+  ],
+  "gender": "unisex",
+  "sizeSystem": "alpha",
+  "fitBias": 0,
+  "image": "https://cdn.shopify.com/s/files/1/0047/6921/8632/files/3043-foam-green-cardigan-front.jpg?width=900",
+  "fabric": "",
+  "silhouette": "sweater",
+  "url": "https://uskees.com/products/3043-foam-green-collared-cardigan"
  }
 ]
