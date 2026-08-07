@@ -10,6 +10,7 @@ import {
   type Store,
 } from './lib/store'
 import { Grid, Hanger, Person, CheckInk } from './components/Icons'
+import { installClickSounds, isMuted, setMuted } from './lib/click'
 import { Home } from './views/Home'
 import { Onboarding } from './views/Onboarding'
 import { AvatarView } from './views/AvatarView'
@@ -36,6 +37,10 @@ export function App() {
   useEffect(() => {
     saveState(state)
   }, [state])
+
+  useEffect(() => {
+    installClickSounds()
+  }, [])
 
   const toast = useCallback((message: string) => {
     setToastMsg(message)
@@ -306,6 +311,7 @@ function Nav({
   signedIn: boolean
   daysLeft: number | null
 }) {
+  const [sound, setSound] = useState(!isMuted())
   return (
     <header className="nav">
       <div className="wrap nav__inner">
@@ -343,6 +349,18 @@ function Nav({
         </div>
 
         <div className="nav__spacer" />
+
+        <button
+          className="iconbtn"
+          aria-label={sound ? 'Mute clicks' : 'Unmute clicks'}
+          onClick={() => {
+            setMuted(sound)
+            setSound(!sound)
+          }}
+          style={{ fontSize: 13 }}
+        >
+          {sound ? '🔊' : '🔇'}
+        </button>
 
         {daysLeft !== null && daysLeft > 0 && (
           <span className="trialpill">{daysLeft}D TRIAL</span>

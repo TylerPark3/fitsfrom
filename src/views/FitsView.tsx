@@ -106,7 +106,7 @@ export function FitsView({ go }: { go: (v: View) => void }) {
                 key={pr.who}
                 className="fitcard fitcard--locked"
                 onClick={() => {
-                  playClick(620)
+                  playClick('back')
                   if (!member) go('auth')
                   else toast('Unlimited — $19.99/mo · launching soon, you’re first in line')
                 }}
@@ -139,7 +139,7 @@ export function FitsView({ go }: { go: (v: View) => void }) {
               key={pr.who}
               className="fitcard"
               onClick={() => {
-                playClick()
+                playClick('unlock')
                 pr.fits.length === 1 ? setOpen(f) : setPerson(pr)
               }}
             >
