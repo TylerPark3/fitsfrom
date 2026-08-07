@@ -4,6 +4,7 @@ import { CATALOG } from '../data/catalog'
 import { useStore } from '../lib/store'
 import { estimateFromBody, recommendSize } from '../lib/sizing'
 import { PhotoStage } from '../components/PhotoStage'
+import { InterestPicker } from '../components/InterestPicker'
 import { iconScores } from '../lib/twin'
 import { Slider } from './Onboarding'
 import { Arrow } from '../components/Icons'
@@ -196,12 +197,13 @@ export function AvatarView({ go }: { go: (v: View) => void }) {
           )}
 
           <div className="panel">
-            <h3>More about you</h3>
-            <p>Personalization never ends — add anything: artists, shows, teams, hobbies.</p>
-            <div className="room__input" style={{ marginBottom: 12 }}>
+            <h3>Into</h3>
+            <p>Tap what you’re about — it feeds every score.</p>
+            <InterestPicker />
+            <div className="room__input" style={{ margin: '16px 0 12px' }}>
               <input
                 className="text-input"
-                placeholder="“Larry June”, “F1”, “anime”, “thrifting”…"
+                placeholder="Add your own — “Larry June”, “F1”…"
                 value={tagDraft}
                 onChange={(e) => setTagDraft(e.target.value)}
                 onKeyDown={(e) => {

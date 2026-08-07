@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useStore } from '../lib/store'
 import { FITS } from '../data/fits'
+import { InterestPicker } from '../components/InterestPicker'
 import { Arrow, CheckInk } from '../components/Icons'
 
 const TEAMS: [string, string][] = [
@@ -117,6 +118,9 @@ export function AuthView({ onDone }: { onDone: () => void }) {
               </button>
             ))}
           </div>
+
+          <p className="eyebrow" style={{ margin: '22px 0 10px' }}>What you’re into</p>
+          <InterestPicker />
 
           <p className="eyebrow" style={{ margin: '22px 0 10px' }}>Brands you rock with</p>
           <div className="chips">
