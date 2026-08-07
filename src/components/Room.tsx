@@ -38,8 +38,8 @@ export function Room() {
     { key: 'long', label: 'Long sleeve', shelf: 'Tops', img: firstOf((c) => ['top', 'shirt', 'knit', 'outer'].includes(c)) },
     { key: 'shorts', label: 'Shorts', shelf: 'Shorts', img: firstOf((c, s2) => c === 'pants' && s2 === 'short') },
     { key: 'pants', label: 'Pants', shelf: 'Pants', img: firstOf((c, s2) => c === 'pants' && s2 !== 'short') },
-    { key: 'shoes', label: 'Shoes', shelf: 'Shoes', img: firstOf((c) => c === 'shoes') },
   ]
+  const shoeImg = firstOf((c) => c === 'shoes')
 
   const posters = profile.teams.slice(0, 2)
   const scrollTo = (label: string) =>
@@ -83,22 +83,45 @@ export function Room() {
           <button
             key={r.key}
             className={`hanger${r.img ? '' : ' hanger--ghost'}`}
-            style={{ transform: `rotate(${i % 2 ? 1.3 : -1.1}deg)` }}
+            style={{ transform: `rotate(${i % 2 ? 1.1 : -0.9}deg)` }}
             onClick={() => r.img && scrollTo(r.shelf)}
             aria-label={`Open ${r.label}`}
           >
-            <i className="hanger__hook" />
-            {r.img ? (
-              <CutoutImg src={r.img} className="hanger__img" />
-            ) : (
-              <svg viewBox="0 0 60 40" aria-hidden="true">
-                <path d="M30 2 q6 0 6 6 q0 4 -5 6 L8 32 q-3 2 0 4 l44 0 q3 -2 0 -4 L31 14" fill="none" stroke="#8a7a5e" strokeWidth="2.4" strokeLinecap="round" />
-              </svg>
-            )}
+            <svg className="hanger__wire" viewBox="0 0 100 46" aria-hidden="true">
+              <path
+                d="M50 3 q7 0 7 7 q0 5 -6 7 v4"
+                fill="none"
+                stroke="#7d6a4c"
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
+              <path
+                d="M50 21 L12 39 q-4 2 -1 4 h78 q3 -2 -1 -4 Z"
+                fill="none"
+                stroke="#7d6a4c"
+                strokeWidth="3"
+                strokeLinejoin="round"
+              />
+            </svg>
+            {r.img && <CutoutImg src={r.img} className="hanger__img" />}
             <span className="hanger__label">{r.label}</span>
           </button>
         ))}
       </div>
+
+      {/* shoes live in a box on the floor */}
+      <button
+        className={`shoebox${shoeImg ? '' : ' shoebox--empty'}`}
+        onClick={() => shoeImg && scrollTo('Shoes')}
+        aria-label="Open shoes"
+      >
+        <span className="shoebox__lid" />
+        <span className="shoebox__body">
+          {shoeImg ? <CutoutImg src={shoeImg} className="shoebox__shoe" /> : null}
+          <span className="shoebox__brand">FITS FROM</span>
+        </span>
+        <span className="hanger__label">Shoes</span>
+      </button>
 
       <i className="room2__floor" />
     </div>

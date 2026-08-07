@@ -3061,8 +3061,8 @@ input.seg__control::placeholder {
   position: absolute;
   top: 34px;
   left: 26px;
-  width: min(60%, 520px);
-  height: 220px;
+  width: min(52%, 440px);
+  height: 230px;
   display: flex;
   gap: 10px;
   align-items: flex-start;
@@ -3092,10 +3092,26 @@ input.seg__control::placeholder {
 
 .hanger {
   position: relative;
-  width: 82px;
+  width: 108px;
   flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   transform-origin: top center;
   transition: transform var(--med);
+}
+
+.hanger:hover {
+  transform: translateY(-3px) rotate(0deg) !important;
+}
+
+/* the wire — hook meets the rod, shoulders hold the garment */
+.hanger__wire {
+  width: 76px;
+  display: block;
+  margin-bottom: -14px;
+  position: relative;
+  z-index: 2;
 }
 
 .hanger--ghost {
@@ -3128,15 +3144,15 @@ input.seg__control::placeholder {
 /* garments hang bare — white product backgrounds melt into the wall */
 .hanger__img {
   width: 100%;
-  height: 150px;
+  height: 132px;
   object-fit: contain;
   object-position: center top;
-  filter: contrast(1.04) saturate(1.02) drop-shadow(0 6px 6px rgba(40, 24, 8, 0.2));
+  filter: contrast(1.04) saturate(1.02) drop-shadow(0 8px 8px rgba(40, 24, 8, 0.22));
 }
 
 .hanger__label {
   display: block;
-  margin-top: 6px;
+  margin-top: 4px;
   font-family: var(--mono);
   font-size: 9px;
   letter-spacing: 0.09em;
@@ -3192,6 +3208,72 @@ input.seg__control::placeholder {
 
 .room2__dresser:hover {
   filter: brightness(1.05);
+}
+
+/* the shoe box — on the floor, lid leaning */
+.shoebox {
+  position: absolute;
+  right: 12%;
+  bottom: 9%;
+  width: 168px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+  transition: transform var(--med);
+}
+
+.shoebox:hover {
+  transform: translateY(-3px);
+}
+
+.shoebox__lid {
+  position: absolute;
+  left: -34px;
+  bottom: 18px;
+  width: 78px;
+  height: 104px;
+  background: linear-gradient(160deg, #f3efe6, #e2dbcc);
+  border: 1px solid #cec4b0;
+  border-radius: 4px;
+  transform: rotate(-16deg);
+  box-shadow: 4px 6px 10px rgba(30, 18, 6, 0.28);
+}
+
+.shoebox__body {
+  position: relative;
+  width: 100%;
+  height: 84px;
+  background: linear-gradient(180deg, #f6f2e9 0%, #e8e1d2 62%, #d8cfbb 100%);
+  border: 1px solid #cec4b0;
+  border-radius: 6px;
+  box-shadow:
+    inset 0 8px 12px -8px rgba(30, 18, 6, 0.4),
+    0 10px 16px rgba(30, 18, 6, 0.32);
+  display: grid;
+  place-items: center;
+}
+
+.shoebox__shoe {
+  position: absolute;
+  bottom: 26%;
+  width: 84%;
+  height: 92px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 6px rgba(30, 18, 6, 0.3));
+}
+
+.shoebox__brand {
+  position: absolute;
+  bottom: 7px;
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  color: #a2977f;
+}
+
+.shoebox--empty .shoebox__body {
+  opacity: 0.45;
 }
 
 /* the shoe rack — wood frame, cream shelves, kicks blended in */
