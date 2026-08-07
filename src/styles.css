@@ -1147,6 +1147,16 @@ input[type='range']:active::-webkit-slider-thumb {
   max-width: 28ch;
 }
 
+/* once a real photo is in, it takes over — pins reveal on hover only */
+.av__frame--photo .pin {
+  opacity: 0;
+  transition: opacity var(--med);
+}
+
+.av__frame--photo:hover .pin {
+  opacity: 1;
+}
+
 /* measurement pins overlaid on the photo */
 .pin {
   position: absolute;

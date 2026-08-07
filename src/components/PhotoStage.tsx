@@ -52,7 +52,7 @@ export function PhotoStage({ compact = false }: { compact?: boolean }) {
   return (
     <div className="av__stage">
       <div
-        className="av__frame"
+        className={`av__frame${profile.photo ? ' av__frame--photo' : ''}`}
         onDragOver={(e) => {
           e.preventDefault()
           setOver(true)
