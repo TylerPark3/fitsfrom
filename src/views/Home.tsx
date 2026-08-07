@@ -224,25 +224,13 @@ function PhoneDemo({ go }: { go: (v: View) => void }) {
           <span className="phone__title">{d.title}</span>
 
           {i === 0 && (
-            <div className="phone__mock" style={{ alignItems: 'center', justifyContent: 'center' }}>
-              <div
-                style={{
-                  width: 90,
-                  height: 150,
-                  border: '1.5px dashed var(--ink-4)',
-                  borderRadius: 14,
-                }}
-              />
-              <span className="tiny">full body · fitted clothes</span>
-              <span
-                style={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: '50%',
-                  border: '2.5px solid var(--ink)',
-                  marginTop: 6,
-                }}
-              />
+            <div className="phone__mock phone__mock--snap">
+              <img src="/demo/snap.jpg" alt="" loading="lazy" />
+              <span className="phone__scan" />
+              <div className="phone__row phone__row--float">
+                <span>FULL BODY DETECTED</span>
+                <b className="ok">✓</b>
+              </div>
             </div>
           )}
 

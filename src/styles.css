@@ -3017,6 +3017,55 @@ input[type='range']:active::-webkit-slider-thumb {
   filter: grayscale(1);
 }
 
+.phone__mock--snap {
+  position: relative;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.phone__mock--snap img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* scanning line sweeping the photo */
+.phone__scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: var(--red);
+  box-shadow: 0 0 14px 2px rgba(168, 59, 40, 0.55);
+  animation: scanline 2.4s var(--ease) infinite;
+}
+
+@keyframes scanline {
+  0% {
+    top: 4%;
+  }
+  50% {
+    top: 94%;
+  }
+  100% {
+    top: 4%;
+  }
+}
+
+.phone__row--float {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(6px);
+}
+
 .phone__closet {
   flex: 1;
   display: grid;
