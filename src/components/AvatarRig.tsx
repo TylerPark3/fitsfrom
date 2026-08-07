@@ -9,7 +9,7 @@ const N = 52 // slices — thin enough that the outline reads as one continuous 
 const smooth = (t: number) => (1 - Math.cos(Math.min(1, Math.max(0, t)) * Math.PI)) / 2
 
 /** Piecewise-smooth width profile down the body — never a hard jump. */
-function widthAt(y: number, chestX: number, waistX: number, legX: number): number {
+function widthAt(y: number, chestX: number, waistX: number, legX: number, shoeX: number): number {
   const pts: [number, number][] = [
     [0, 1],
     [0.1, 1],
@@ -19,7 +19,9 @@ function widthAt(y: number, chestX: number, waistX: number, legX: number): numbe
     [0.52, waistX],
     [0.6, (waistX + legX) / 2],
     [0.72, legX],
-    [1, legX * 0.97],
+    [0.88, legX * 0.98],
+    [0.93, shoeX],
+    [1, shoeX],
   ]
   for (let i = 0; i < pts.length - 1; i++) {
     const [y0, v0] = pts[i]
@@ -49,12 +51,13 @@ export function AvatarRig() {
   const waistX = (0.84 + ((profile.waist - 26) / 22) * 0.4) * (1 + heft * 0.28)
   const legX = (0.9 + heft * 0.42) * (1 + ((profile.waist - 26) / 22) * 0.08)
   const legY = 0.88 + ((profile.inseam - 26) / 12) * 0.28
+  const shoeX = (0.82 + ((profile.shoe - 5) / 11) * 0.55) * (1 + heft * 0.1)
 
   let cum = 0
   const slices = Array.from({ length: N }, (_, i) => {
     const a = i / N
     const mid = (i + 0.5) / N
-    const sx = widthAt(mid, chestX, waistX, legX)
+    const sx = widthAt(mid, chestX, waistX, legX, shoeX)
     const sy = heightAt(mid, legY)
     const h = (H / N) * sy
     const slice = { key: i, top: cum, h, sx, imgTop: -a * H * sy, imgH: H * sy }
@@ -84,7 +87,7 @@ export function AvatarRig() {
               />
             </div>
           ))}
-          <span className="rig__shadow" style={{ top: totalH + 4, width: W * 0.6 * Math.max(legX, 0.9) }} />
+          <span className="rig__shadow" style={{ top: totalH + 4, width: W * 0.6 * Math.max(shoeX, 0.9) }} />
         </div>
       </div>
 
