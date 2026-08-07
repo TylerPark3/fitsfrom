@@ -5,6 +5,7 @@ import { FITS } from '../data/fits'
 import { useStore } from '../lib/store'
 import { resolve } from '../lib/fitmatch'
 import { Arrow } from '../components/Icons'
+import { Type } from '../components/Type'
 
 /** Same fit for everyone all day; a new one tomorrow. The reason to come back. */
 export function fitOfTheDay() {
@@ -55,7 +56,7 @@ export function Home({ go }: { go: (v: View) => void }) {
           <img src="/fits/sga-arrival.jpg" alt="" />
         </div>
         <div className="mast__overlay">
-          <p className="mast__date">{date} — the front page of fit culture</p>
+          <p className="mast__date"><Type text={`${date.toUpperCase()} — THE FRONT PAGE OF FIT CULTURE`} speed={16} /></p>
           <h1 className="mast__head">
             THE FITS RUN
             <br />
@@ -96,7 +97,7 @@ export function Home({ go }: { go: (v: View) => void }) {
 
           <div className="fotd2__body">
             <span className="eyebrow" style={{ color: 'var(--red)' }}>
-              Fit of the day — {date}
+              <Type text={`FIT OF THE DAY — ${date.toUpperCase()}`} speed={16} />
             </span>
             <h2 className="fotd2__who serif">{today.who}</h2>
             <p className="mono-line" style={{ marginTop: 4 }}>

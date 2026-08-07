@@ -1,3 +1,5 @@
+import { Type } from '../components/Type'
+
 const SECTIONS: { id: string; title: string; sub: string; qa: [string, string][] }[] = [
   {
     id: 'how',
@@ -89,7 +91,7 @@ export function FaqView() {
   return (
     <div className="wrap" style={{ paddingBottom: 110 }}>
       <div className="faq__mast">
-        <h2 className="faq__title">FAQ</h2>
+        <h2 className="faq__title"><Type text="FAQ" speed={120} /></h2>
         <div className="chips" style={{ justifyContent: 'center' }}>
           {SECTIONS.map((s) => (
             <a key={s.id} className="chip" href={`#faq-${s.id}`}>

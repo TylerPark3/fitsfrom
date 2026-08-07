@@ -4,6 +4,7 @@ import { CATALOG } from '../data/catalog'
 import { useStore } from '../lib/store'
 import { ProductCard } from '../components/ProductCard'
 import { Arrow, Plus, Trash } from '../components/Icons'
+import { Type } from '../components/Type'
 
 export function SavedView({ onOpen, go }: { onOpen: (id: string) => void; go: (v: View) => void }) {
   const { saved, collections, createCollection, deleteCollection, renameCollection, toast } =
@@ -18,7 +19,7 @@ export function SavedView({ onOpen, go }: { onOpen: (id: string) => void; go: (v
   return (
     <div className="wrap" style={{ paddingBottom: 100 }}>
       <div className="pagehead">
-        <span className="eyebrow">Saved</span>
+        <span className="eyebrow"><Type text="SAVED — YOUR PERSONAL COLLECTION" speed={18} /></span>
         <h2>The things you keep coming back to.</h2>
       </div>
 

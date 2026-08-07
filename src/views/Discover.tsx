@@ -8,6 +8,7 @@ import { rank } from '../lib/match'
 import { ProductCard } from '../components/ProductCard'
 import { ScentShelf } from '../components/ScentShelf'
 import { Arrow, Search } from '../components/Icons'
+import { Type } from '../components/Type'
 
 type Sort = 'match' | 'low' | 'high'
 
@@ -77,7 +78,7 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
       <div className="wrap" style={{ paddingBottom: 110 }}>
         <div className="pagehead" style={{ textAlign: 'center', paddingTop: 64 }}>
           <span className="eyebrow" style={{ color: 'var(--red)' }}>
-            Restricted — members only
+            <Type text="RESTRICTED — MEMBERS ONLY" speed={20} />
           </span>
           <h2 className="fitcheck" style={{ margin: '10px 0 6px' }}>
             The Vault
@@ -116,12 +117,10 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
         {!executed && (
           <>
             <span className="eyebrow">
-              {BRANDS.length} brands · {CATALOG.length} live pieces · sized to you
+              <Type text={`${BRANDS.length} BRANDS · ${CATALOG.length} LIVE PIECES · SIZED TO YOU`} speed={14} />
             </span>
             <h2 className="deck__head">
-              WHAT ARE YOU
-              <br />
-              LOOKING <em className="serif">for?</em>
+              <Type text="WHAT ARE YOU LOOKING" speed={40} /> <em className="serif">for?</em>
             </h2>
           </>
         )}

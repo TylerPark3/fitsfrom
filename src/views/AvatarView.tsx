@@ -6,6 +6,7 @@ import { PhotoStage } from '../components/PhotoStage'
 import { styleTwins } from '../lib/twin'
 import { Slider } from './Onboarding'
 import { Arrow } from '../components/Icons'
+import { Type } from '../components/Type'
 
 export function AvatarView({ go }: { go: (v: View) => void }) {
   const { profile, setProfile, reset } = useStore()
@@ -29,7 +30,7 @@ export function AvatarView({ go }: { go: (v: View) => void }) {
   return (
     <div className="wrap">
       <div className="pagehead">
-        <span className="eyebrow">Your avatar</span>
+        <span className="eyebrow"><Type text="AVATAR — MEASUREMENTS ON FILE" speed={18} /></span>
         <h2>Your fit, on file.</h2>
         <p>Drag a slider — every size on the site updates. The photo never leaves this browser.</p>
       </div>
