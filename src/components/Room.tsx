@@ -13,6 +13,7 @@ const TEAM_POSTERS: Record<string, string> = {
   Sixers: '/room/poster-sixers.jpg',
   Magic: '/room/poster-magic.jpg',
   Hornets: '/room/poster-hornets.jpg',
+  Jazz: '/room/poster-jazz.jpg',
 }
 
 const TEAM_COLORS: Record<string, [string, string]> = {
@@ -77,16 +78,18 @@ export function Room() {
             </div>
           ),
         )}
-        {profile.tags.includes('Yankees') && (
-          <div className="room2__poster" style={{ transform: 'rotate(-1.4deg)' }}>
-            <img src="/room/art-yankees.jpg" alt="Yankees caps painting" loading="lazy" />
-          </div>
-        )}
-        {profile.tags.includes('Dodgers') && (
-          <div className="room2__poster" style={{ transform: 'rotate(1.8deg)' }}>
-            <img src="/room/art-dodgers.jpg" alt="Dodgers art" loading="lazy" />
-          </div>
-        )}
+        {[
+          ['Yankees', '/room/art-yankees.jpg', -1.4],
+          ['Dodgers', '/room/art-dodgers.jpg', 1.8],
+          ['Angels', '/room/art-angels.jpg', -1.1],
+          ['Brewers', '/room/art-brewers.jpg', 1.4],
+        ]
+          .filter(([tag]) => profile.tags.includes(tag as string))
+          .map(([tag, img, rot]) => (
+            <div className="room2__poster" key={tag as string} style={{ transform: `rotate(${rot}deg)` }}>
+              <img src={img as string} alt={`${tag} art`} loading="lazy" />
+            </div>
+          ))}
       </div>
 
       {/* the rail */}
