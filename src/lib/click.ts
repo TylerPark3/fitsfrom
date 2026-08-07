@@ -26,15 +26,57 @@ export function setMuted(v: boolean) {
 
 type Variant = 'tap' | 'select' | 'back' | 'unlock'
 
+interface Tone {
+  f: number
+  f2: number
+  dur: number
+  gain: number
+  /** Sub-only, or a sub with a short percussive top layer. */
+  snap?: number
+}
+
+export type Preset = '808' | 'snap'
+
 /**
- * 808-style sub hits. Every variant starts at its peak and drops fast into the
- * 60–90 Hz sub band, and none of them run past 48 ms.
+ * Two sound sets, both strictly sub-band and both under 50 ms.
+ * '808'  — pure sine sub, 90→60 Hz, the heavier hit.
+ * 'snap' — same sub shortened hard, plus a 4 kHz tick for instant response.
  */
-const TONES: Record<Variant, { f: number; f2: number; dur: number; gain: number }> = {
-  tap: { f: 86, f2: 62, dur: 0.042, gain: 0.5 },
-  select: { f: 90, f2: 68, dur: 0.046, gain: 0.58 },
-  back: { f: 74, f2: 60, dur: 0.04, gain: 0.44 },
-  unlock: { f: 90, f2: 60, dur: 0.048, gain: 0.62 },
+const PRESETS: Record<Preset, Record<Variant, Tone>> = {
+  '808': {
+    tap: { f: 86, f2: 62, dur: 0.042, gain: 0.5 },
+    select: { f: 90, f2: 68, dur: 0.046, gain: 0.58 },
+    back: { f: 74, f2: 60, dur: 0.04, gain: 0.44 },
+    unlock: { f: 90, f2: 60, dur: 0.048, gain: 0.62 },
+  },
+  snap: {
+    tap: { f: 90, f2: 64, dur: 0.026, gain: 0.46, snap: 0.05 },
+    select: { f: 90, f2: 70, dur: 0.03, gain: 0.52, snap: 0.06 },
+    back: { f: 78, f2: 60, dur: 0.024, gain: 0.4, snap: 0.035 },
+    unlock: { f: 90, f2: 62, dur: 0.034, gain: 0.56, snap: 0.07 },
+  },
+}
+
+let preset: Preset = '808'
+try {
+  const saved = localStorage.getItem('fitsfrom.sound')
+  if (saved === '808' || saved === 'snap') preset = saved
+} catch {
+  /* storage blocked — keep the default */
+}
+
+export function getPreset() {
+  return preset
+}
+
+export function setPreset(p: Preset) {
+  preset = p
+  try {
+    localStorage.setItem('fitsfrom.sound', p)
+  } catch {
+    /* ignore */
+  }
+  playClick('select')
 }
 
 export function playClick(variant: Variant = 'tap') {
@@ -43,7 +85,7 @@ export function playClick(variant: Variant = 'tap') {
     ctx ??= new AudioContext()
     if (ctx.state === 'suspended') void ctx.resume()
     const t = ctx.currentTime
-    const { f, f2, dur, gain } = TONES[variant]
+    const { f, f2, dur, gain, snap } = PRESETS[preset][variant]
 
     // The 808: sine sub with a fast downward pitch envelope, 90 Hz → 60 Hz.
     const osc = ctx.createOscillator()
@@ -75,11 +117,13 @@ export function playClick(variant: Variant = 'tap') {
     const noise = ctx.createBufferSource()
     noise.buffer = n
     const hp = ctx.createBiquadFilter()
-    hp.type = 'lowpass'
-    hp.frequency.value = 240
-    hp.Q.value = 0.6
+    // 'snap' lets a crisp top through; '808' stays buried in the low end.
+    hp.type = snap ? 'bandpass' : 'lowpass'
+    hp.frequency.value = snap ? 4000 : 240
+    hp.Q.value = snap ? 1.4 : 0.6
     const ng = ctx.createGain()
-    ng.gain.value = gain * 0.18
+    ng.gain.setValueAtTime(snap ?? gain * 0.18, t)
+    if (snap) ng.gain.exponentialRampToValueAtTime(0.0001, t + 0.02)
     noise.connect(hp)
     hp.connect(ng)
     ng.connect(ctx.destination)
