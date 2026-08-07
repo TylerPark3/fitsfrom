@@ -5,6 +5,7 @@ import { resolve } from '../lib/fitmatch'
 import { useStore } from '../lib/store'
 import { recommendSize } from '../lib/sizing'
 import { buyUrl } from '../lib/affiliate'
+import { playClick } from '../lib/click'
 import { Arrow, Bookmark, Close, External } from '../components/Icons'
 import { Type } from '../components/Type'
 
@@ -50,7 +51,12 @@ interface Person {
   fits: Fit[]
 }
 
-const FREE_FILES = ['SGA', 'Pretty Flacko', 'Rookie LeBron']
+/** Three files free at a time — the trio rotates monthly. */
+function freeFiles(people: string[]): string[] {
+  const d = new Date()
+  const off = (d.getFullYear() * 12 + d.getMonth()) % Math.max(1, people.length)
+  return [0, 1, 2].map((i) => people[(off + i) % people.length])
+}
 
 export function FitsView({ go }: { go: (v: View) => void }) {
   const { signedIn, account } = useStore()
@@ -64,15 +70,15 @@ export function FitsView({ go }: { go: (v: View) => void }) {
     if (ex) ex.fits.push(f)
     else people.push({ who: f.who, fits: [f] })
   }
-  // Followed people lead; then free files; the rest stay classified until membership.
-  const { profile } = useStore()
+  const { profile, toast } = useStore()
+  const FREE = freeFiles(people.map((p) => p.who))
   people.sort((a, b) => {
+    const ia = FREE.indexOf(a.who)
+    const ib = FREE.indexOf(b.who)
+    if ((ia === -1) !== (ib === -1)) return ia === -1 ? 1 : -1
     const fa = profile.icons.includes(a.who) ? 0 : 1
     const fb = profile.icons.includes(b.who) ? 0 : 1
-    if (fa !== fb) return fa - fb
-    const ia = FREE_FILES.indexOf(a.who)
-    const ib = FREE_FILES.indexOf(b.who)
-    return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib)
+    return fa - fb
   })
 
   return (
@@ -92,10 +98,18 @@ export function FitsView({ go }: { go: (v: View) => void }) {
       <div className="fitgrid">
         {people.map((pr) => {
           const f = pr.fits[0]
-          const locked = !member && !FREE_FILES.includes(pr.who)
+          const locked = !FREE.includes(pr.who)
           if (locked) {
             return (
-              <button key={pr.who} className="fitcard fitcard--locked" onClick={() => go('auth')}>
+              <button
+                key={pr.who}
+                className="fitcard fitcard--locked"
+                onClick={() => {
+                  playClick(620)
+                  if (!member) go('auth')
+                  else toast('Unlimited — $19.99/mo · launching soon, you’re first in line')
+                }}
+              >
                 <div className="fitcard__frame">
                   <img
                     className="fitcard__photo"
@@ -110,10 +124,10 @@ export function FitsView({ go }: { go: (v: View) => void }) {
                   </div>
                 </div>
                 <div className="fitcard__meta">
-                  <div className="card__brand">Member file · {f.pieces.length} pieces</div>
-                  <div className="card__name">Create an account to open</div>
+                  <div className="card__brand">Locked file · rotates monthly</div>
+                  <div className="card__name">Unlimited — $19.99/mo</div>
                   <div className="tiny" style={{ marginTop: 6 }}>
-                    Unlock →
+                    All files · exclusive drops · alerts →
                   </div>
                 </div>
               </button>
@@ -123,7 +137,10 @@ export function FitsView({ go }: { go: (v: View) => void }) {
             <button
               key={pr.who}
               className="fitcard"
-              onClick={() => (pr.fits.length === 1 ? setOpen(f) : setPerson(pr))}
+              onClick={() => {
+                playClick()
+                pr.fits.length === 1 ? setOpen(f) : setPerson(pr)
+              }}
             >
               <div className="fitcard__frame">
                 <div className="fitcard__type" aria-hidden="true">

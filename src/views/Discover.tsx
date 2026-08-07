@@ -129,6 +129,7 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
   const { profile, signedIn, account } = useStore()
   const [ask, setAsk] = useState('any')
   const [q, setQ] = useState('')
+  const [sizeF, setSizeF] = useState('all')
   const [icon, setIcon] = useState('')
   const [sort, setSort] = useState<Sort>('match')
   const [executed, setExecuted] = useState(false)
@@ -174,6 +175,7 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
 
     let out = CATALOG.filter((p) => {
       if (!test(p)) return false
+      if (sizeF === 'mine' && p.sizeSystem === 'one') return false
       if (icon && !provenIds.has(p.id) && !p.styles.some((st) => iconStyles.has(st))) return false
       if (needle) {
         const hay = `${p.brand} ${p.name} ${p.fabric ?? ''} ${p.styles.join(' ')}`.toLowerCase()
@@ -186,10 +188,15 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
     else if (sort === 'high') out = [...out].sort((a, b) => b.price - a.price)
     else out = rank(out, profile).map((r) => r.product)
 
-    if (icon)
-      out = [...out.filter((p) => provenIds.has(p.id)), ...out.filter((p) => !provenIds.has(p.id))]
+    if (icon) {
+      const overlap = (p: Product) => p.styles.filter((st) => iconStyles.has(st)).length
+      out = [
+        ...out.filter((p) => provenIds.has(p.id)),
+        ...out.filter((p) => !provenIds.has(p.id)).sort((a, b) => overlap(b) - overlap(a)),
+      ]
+    }
     return out
-  }, [executed, ask, q, icon, sort, profile])
+  }, [executed, ask, q, sizeF, icon, sort, profile])
 
   // Stealth mode until membership.
   if (!(signedIn && account)) {
@@ -281,10 +288,11 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
           />
           <Drop
             label="Size"
-            value="me"
-            onPick={() => {}}
+            value={sizeF}
+            onPick={setSizeF}
             options={[
-              { id: 'me', title: 'My size', sub: `${profile.chest}″ chest · ${profile.waist}″ waist` },
+              { id: 'all', title: 'All pieces', sub: 'Including one-size' },
+              { id: 'mine', title: 'Sized only', sub: `Mapped to ${profile.chest}″ / ${profile.waist}″` },
             ]}
           />
           <Drop

@@ -9,7 +9,7 @@ import {
   type Profile,
   type Store,
 } from './lib/store'
-import { Grid, Hanger, Bookmark, Person, CheckInk } from './components/Icons'
+import { Grid, Hanger, Person, CheckInk } from './components/Icons'
 import { Home } from './views/Home'
 import { Onboarding } from './views/Onboarding'
 import { AvatarView } from './views/AvatarView'
@@ -254,7 +254,6 @@ export function App() {
               ['discover', 'Discover', <Grid key="g" />],
               ['fits', 'Fits', <Hanger key="f" />],
               ['avatar', 'Avatar', <Person key="p" />],
-              ['saved', 'Saved', <Bookmark key="b" />],
             ] as const
           ).map(([v, label, icon]) => (
             <button key={v} aria-current={view === v} onClick={() => go(v)}>
@@ -323,9 +322,6 @@ function Nav({
             onClick={() => go('wardrobe')}
           >
             Wardrobe
-          </button>
-          <button className="nav__link" aria-current={view === 'saved'} onClick={() => go('saved')}>
-            Saved
             {savedCount > 0 && <span className="nav__count">{savedCount}</span>}
           </button>
           <button className="nav__link" aria-current={view === 'faq'} onClick={() => go('faq')}>

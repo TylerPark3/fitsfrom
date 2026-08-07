@@ -58,7 +58,7 @@ export function Home({ go }: { go: (v: View) => void }) {
         <div className="mast__overlay">
           <p className="mast__date"><Type text={`${date.toUpperCase()} — THE FRONT PAGE OF FIT CULTURE`} speed={16} /></p>
           <h1 className="mast__head">
-            THE FITS RUN
+            THE FITS FROM
             <br />
             THE <em className="serif">culture.</em>
           </h1>

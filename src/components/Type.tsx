@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 
+// Each string types once per session — repeat visits render instantly.
+const seen = new Set<string>()
+
 /** Types itself out when scrolled into view — mission-console style. */
 export function Type({
   text,
@@ -12,9 +15,10 @@ export function Type({
 }) {
   const ref = useRef<HTMLSpanElement>(null)
   const [go, setGo] = useState(false)
-  const [n, setN] = useState(0)
+  const [n, setN] = useState(() => (seen.has(text) ? text.length : 0))
 
   useEffect(() => {
+    if (seen.has(text)) return
     const el = ref.current
     if (!el) return
     const io = new IntersectionObserver(([e]) => e.isIntersecting && setGo(true), {
@@ -25,7 +29,11 @@ export function Type({
   }, [])
 
   useEffect(() => {
-    if (!go || n >= text.length) return
+    if (n >= text.length) {
+      seen.add(text)
+      return
+    }
+    if (!go) return
     const t = window.setTimeout(() => setN((x) => x + 1), speed)
     return () => window.clearTimeout(t)
   }, [go, n, text, speed])

@@ -129,6 +129,8 @@ export function WardrobeView({
 
       <FitPlanner />
 
+      <SavedShelf onOpen={onOpen} />
+
       <OutfitBuilder onOpen={onOpen} />
     </div>
   )
@@ -431,6 +433,28 @@ function MoreLikeYours({ onOpen }: { onOpen: (id: string) => void }) {
   )
 }
 
+
+/** Liked pieces live inside the wardrobe now. */
+function SavedShelf({ onOpen }: { onOpen: (id: string) => void }) {
+  const { saved } = useStore()
+  const items = saved.map((id) => CATALOG.find((p) => p.id === id)).filter(
+    (p): p is NonNullable<typeof p> => !!p,
+  )
+  if (items.length === 0) return null
+  return (
+    <div className="section">
+      <div className="section__head">
+        <h3>Saved · Liked</h3>
+        <span className="tiny">{items.length} pieces you keep coming back to</span>
+      </div>
+      <div className="grid">
+        {items.map((p) => (
+          <ProductCard key={p.id} product={p} onOpen={onOpen} />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 /** Resolve an outfit ref to something drawable. */
 function refImage(ref: string, customs: CustomPiece[]): { img: string; label: string } | null {

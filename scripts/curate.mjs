@@ -129,6 +129,8 @@ for (const [brand, products] of Object.entries(feeds)) {
     if (EXCLUDE.test(p.title) || EXCLUDE.test(p.type)) continue
     const meta = `${p.type} ${p.title} ${(p.tags || []).join(' ')}`
     if (/\bwomen'?s?\b|\bwmns\b|\bwomans?\b|female|\bdress\b|skirt|blouse|bralette|\bher\b/i.test(meta)) continue
+    // No kids lines — TD/PS/GS Jordans, youth, infant.
+    if (/\b(td|ps|gs|gt)\b|toddler|preschool|pre-school|grade school|gradeschool|infant|\bkids?\b|youth|little|\bbaby\b/i.test(meta)) continue
     // Boring blanks don't make the edit.
     if (/^\s*(classic |basic |essential )?(black |white |grey |gray |navy )?(t-?shirt|tee)\s*$/i.test(p.title)) continue
     const hay = `${p.type} ${p.title}`
@@ -137,7 +139,7 @@ for (const [brand, products] of Object.entries(feeds)) {
     // Dedup near-identical colourways: strip trailing " - Color" noise.
     const base = p.title.replace(/\s*[-–—]\s*[^-–—]+$/, '').toLowerCase()
     if (seen.has(base)) continue
-    if ((perCat[cat] ?? 0) >= 3) continue
+    if ((perCat[cat] ?? 0) >= 8) continue
     seen.add(base)
     perCat[cat] = (perCat[cat] ?? 0) + 1
     const silhouette = SILHOUETTE.find(([, re]) => re.test(hay))?.[0] ?? 'tee'
@@ -159,7 +161,7 @@ for (const [brand, products] of Object.entries(feeds)) {
       silhouette,
       url: p.url,
     })
-    if (picked.length >= 14) break
+    if (picked.length >= 44) break
   }
   out.push(...picked)
 }
