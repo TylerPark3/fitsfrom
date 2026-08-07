@@ -38,6 +38,21 @@ export interface Collection {
   productIds: string[]
 }
 
+/** A piece the user photographed themselves — lives only on this device. */
+export interface CustomPiece {
+  id: string
+  name: string
+  category: string
+  photo: string
+}
+
+/** A planned fit: named set of refs (catalog product ids or custom ids). */
+export interface Outfit {
+  id: string
+  name: string
+  refs: string[]
+}
+
 export interface Account {
   firstName: string
   lastName: string
@@ -54,6 +69,8 @@ export interface AppState {
   collections: Collection[]
   account: Account | null
   signedIn: boolean
+  customs: CustomPiece[]
+  outfits: Outfit[]
 }
 
 const est = estimateFromBody(70, 160)
@@ -84,6 +101,8 @@ export const DEFAULT_STATE: AppState = {
   collections: [{ id: 'wishlist', name: 'Wishlist', productIds: [] }],
   account: null,
   signedIn: false,
+  customs: [],
+  outfits: [],
 }
 
 const KEY = 'lapel.state.v2'
@@ -124,6 +143,11 @@ export interface Store extends AppState {
   createAccount: (a: Account) => void
   signIn: () => void
   signOut: () => void
+  addCustom: (piece: CustomPiece) => void
+  removeCustom: (id: string) => void
+  createOutfit: (name: string) => string
+  deleteOutfit: (id: string) => void
+  toggleOutfitRef: (outfitId: string, ref: string) => void
   toggleSaved: (productId: string) => void
   addToWardrobe: (productId: string, size: string, owned: boolean) => void
   removeFromWardrobe: (productId: string) => void

@@ -1,4 +1,4 @@
-import type { Category } from './taxonomy'
+import type { Category, StyleId } from './taxonomy'
 
 export interface FitPiece {
   /** Top-to-bottom slot label, e.g. "Beanie", "Tee", "Denim". */
@@ -17,6 +17,8 @@ export interface Fit {
   when: string
   context: string
   vibe: string
+  /** The player's style DNA — powers the style-twin match. */
+  styles: StyleId[]
   /** Looks for /fits/<id>.jpg in public — drop a photo in and it appears. */
   pieces: FitPiece[]
 }
@@ -28,10 +30,11 @@ export interface Fit {
 export const FITS: Fit[] = [
   {
     id: 'clarkson-tunnel',
-    who: 'Jordan Clarkson',
-    where: 'Jazz tunnel',
-    when: '2023–24 season, pregame arrival',
-    context: 'Walked in wearing a thrifted ’93 Final Four tee layered over a thermal — the fit that put tunnel-walk vintage on every mood board.',
+    styles: ['street', 'skate'],
+    who: 'Jordan Poole',
+    where: 'Tunnel walk',
+    when: 'Game-day arrival',
+    context: 'Thrifted ’93 Final Four tee layered over a cream thermal — the vintage-tunnel formula: one loud piece, everything else quiet.',
     vibe: 'Vintage tee over thermal, baggy wash, suede boot',
     pieces: [
       { slot: 'Beanie', worn: 'Oatmeal fisherman beanie', match: { category: 'accessory', kw: 'beanie' } },
@@ -43,6 +46,7 @@ export const FITS: Fit[] = [
   },
   {
     id: 'poole-arrival',
+    styles: ['street', 'minimal'],
     who: 'Jordan Poole',
     where: 'Wizards tunnel',
     when: 'Game-day arrival, headphones on',
@@ -59,6 +63,7 @@ export const FITS: Fit[] = [
   },
   {
     id: 'sga-leather',
+    styles: ['minimal', 'japanese'],
     who: 'Shai Gilgeous-Alexander',
     where: 'Thunder tunnel',
     when: '2024 playoffs arrival',
@@ -73,6 +78,7 @@ export const FITS: Fit[] = [
   },
   {
     id: 'tyler-prep',
+    styles: ['ivy', 'street'],
     who: 'Tyler, the Creator',
     where: 'Courtside',
     when: 'Lakers game, courtside seats',
@@ -88,6 +94,7 @@ export const FITS: Fit[] = [
   },
   {
     id: 'rocky-work',
+    styles: ['workwear', 'street'],
     who: 'A$AP Rocky',
     where: 'NYC street',
     when: 'SoHo, paparazzi walk',
@@ -102,6 +109,7 @@ export const FITS: Fit[] = [
   },
   {
     id: 'lebron-quiet',
+    styles: ['minimal', 'ivy'],
     who: 'LeBron James',
     where: 'Lakers tunnel',
     when: 'Season opener arrival',
@@ -116,6 +124,7 @@ export const FITS: Fit[] = [
   },
   {
     id: 'booker-gorp',
+    styles: ['gorp', 'athletic'],
     who: 'Devin Booker',
     where: 'Suns tunnel',
     when: 'Road game arrival',

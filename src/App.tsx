@@ -18,9 +18,10 @@ import { WardrobeView } from './views/WardrobeView'
 import { SavedView } from './views/SavedView'
 import { FitsView } from './views/FitsView'
 import { AuthView } from './views/AuthView'
+import { FaqView } from './views/FaqView'
 import { ProductDrawer } from './components/ProductDrawer'
 
-export type View = 'home' | 'auth' | 'onboarding' | 'discover' | 'fits' | 'avatar' | 'wardrobe' | 'saved'
+export type View = 'home' | 'auth' | 'onboarding' | 'discover' | 'fits' | 'avatar' | 'wardrobe' | 'saved' | 'faq'
 
 export function App() {
   const [state, setState] = useState<AppState>(() => loadState())
@@ -99,6 +100,39 @@ export function App() {
       createAccount: (a: Account) =>
         setState((s) => ({ ...s, account: a, signedIn: true })),
 
+      addCustom: (piece) => setState((s) => ({ ...s, customs: [piece, ...s.customs] })),
+
+      removeCustom: (id) =>
+        setState((s) => ({
+          ...s,
+          customs: s.customs.filter((c) => c.id !== id),
+          outfits: s.outfits.map((o) => ({ ...o, refs: o.refs.filter((r) => r !== id) })),
+        })),
+
+      createOutfit: (name) => {
+        const id = `o${Date.now().toString(36)}`
+        setState((s) => ({ ...s, outfits: [...s.outfits, { id, name, refs: [] }] }))
+        return id
+      },
+
+      deleteOutfit: (id) =>
+        setState((s) => ({ ...s, outfits: s.outfits.filter((o) => o.id !== id) })),
+
+      toggleOutfitRef: (outfitId, ref) =>
+        setState((s) => ({
+          ...s,
+          outfits: s.outfits.map((o) =>
+            o.id !== outfitId
+              ? o
+              : {
+                  ...o,
+                  refs: o.refs.includes(ref)
+                    ? o.refs.filter((r) => r !== ref)
+                    : [...o.refs, ref],
+                },
+          ),
+        })),
+
       signIn: () => setState((s) => ({ ...s, signedIn: true })),
 
       signOut: () => setState((s) => ({ ...s, signedIn: false })),
@@ -141,6 +175,7 @@ export function App() {
           {view === 'onboarding' && <Onboarding onDone={() => go('discover')} />}
           {view === 'discover' && <Discover onOpen={setOpenProduct} go={go} />}
           {view === 'fits' && <FitsView />}
+          {view === 'faq' && <FaqView />}
           {view === 'avatar' && <AvatarView go={go} />}
           {view === 'wardrobe' && <WardrobeView onOpen={setOpenProduct} go={go} />}
           {view === 'saved' && <SavedView onOpen={setOpenProduct} go={go} />}
@@ -229,6 +264,9 @@ function Nav({
           <button className="nav__link" aria-current={view === 'saved'} onClick={() => go('saved')}>
             Saved
             {savedCount > 0 && <span className="nav__count">{savedCount}</span>}
+          </button>
+          <button className="nav__link" aria-current={view === 'faq'} onClick={() => go('faq')}>
+            FAQ
           </button>
         </div>
 

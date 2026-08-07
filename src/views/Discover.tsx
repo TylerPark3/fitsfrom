@@ -13,6 +13,7 @@ import {
 } from '../data/taxonomy'
 import { useStore } from '../lib/store'
 import { rank } from '../lib/match'
+import { topTwin } from '../lib/twin'
 import { ProductCard } from '../components/ProductCard'
 import { Check, Search, Arrow } from '../components/Icons'
 
@@ -74,6 +75,11 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
       <div className="pagehead">
         <span className="eyebrow">{profile.onboarded ? 'Ranked for you' : 'The edit'}</span>
         <h2>{profile.name ? `${profile.name}’s edit` : 'Your edit'}</h2>
+        {profile.onboarded && topTwin(profile.styles) && (
+          <p className="tiny" style={{ marginTop: 8 }}>
+            Style twin: <b style={{ fontWeight: 550, color: 'var(--ink)' }}>{topTwin(profile.styles)!.fit.who}</b> · {topTwin(profile.styles)!.pct}% match
+          </p>
+        )}
         {!profile.onboarded && (
           <p>
             Unranked until you{' '}

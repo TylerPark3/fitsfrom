@@ -1,28 +1,36 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useStore } from '../lib/store'
+import { BRANDS } from '../data/catalog'
+import { fileToDataUrl } from '../lib/img'
 import { Upload, Trash } from './Icons'
 
-const MAX_EDGE = 900
-
-/** Downscale in a canvas before we stash a data URL in localStorage. */
-async function fileToDataUrl(file: File): Promise<string> {
-  const bitmap = await createImageBitmap(file)
-  const scale = Math.min(1, MAX_EDGE / Math.max(bitmap.width, bitmap.height))
-  const w = Math.round(bitmap.width * scale)
-  const h = Math.round(bitmap.height * scale)
-  const canvas = document.createElement('canvas')
-  canvas.width = w
-  canvas.height = h
-  canvas.getContext('2d')!.drawImage(bitmap, 0, 0, w, h)
-  bitmap.close()
-  return canvas.toDataURL('image/jpeg', 0.82)
-}
+const GEN_STAGES = [
+  'Reading proportions…',
+  'Estimating chest & waist…',
+  `Mapping your size across ${BRANDS.length} brands…`,
+  'Avatar ready',
+]
 
 export function PhotoStage({ compact = false }: { compact?: boolean }) {
   const { profile, setProfile, toast } = useStore()
   const input = useRef<HTMLInputElement>(null)
   const [over, setOver] = useState(false)
   const [busy, setBusy] = useState(false)
+  const [gen, setGen] = useState<number | null>(null)
+
+  // Alta-style build moment: stage through the pipeline, then reveal.
+  useEffect(() => {
+    if (gen === null) return
+    if (gen >= GEN_STAGES.length - 1) {
+      const t = window.setTimeout(() => {
+        setGen(null)
+        toast('Avatar ready — every size on the site just updated')
+      }, 900)
+      return () => window.clearTimeout(t)
+    }
+    const t = window.setTimeout(() => setGen((g) => (g === null ? null : g + 1)), 750)
+    return () => window.clearTimeout(t)
+  }, [gen, toast])
 
   const accept = async (file: File | undefined) => {
     if (!file) return
@@ -33,7 +41,7 @@ export function PhotoStage({ compact = false }: { compact?: boolean }) {
     setBusy(true)
     try {
       setProfile({ photo: await fileToDataUrl(file) })
-      toast('Photo added — it stays on this device')
+      setGen(0)
     } catch {
       toast('Couldn’t read that image')
     } finally {
@@ -77,6 +85,18 @@ export function PhotoStage({ compact = false }: { compact?: boolean }) {
           width={pinWidth(profile.inseam, 26, 38, 0.5)}
           label={`Inseam ${profile.inseam}″`}
         />
+
+        {gen !== null && (
+          <div className="gen" role="status">
+            <div className="gen__pulse" />
+            <p className="gen__line" key={gen}>
+              {GEN_STAGES[gen]}
+            </p>
+            <div className="gen__bar">
+              <i style={{ width: `${((gen + 1) / GEN_STAGES.length) * 100}%` }} />
+            </div>
+          </div>
+        )}
 
         {!profile.photo && (
           <label className={`av__drop${over ? ' is-over' : ''}`} style={{ cursor: 'pointer' }}>

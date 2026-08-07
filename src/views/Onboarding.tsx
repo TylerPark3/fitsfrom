@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useStore } from '../lib/store'
 import { STYLES, TIERS, SEASONS, type Gender, type Season, type StyleId, type Tier } from '../data/taxonomy'
 import { estimateFromBody } from '../lib/sizing'
+import { topTwin } from '../lib/twin'
 import { Arrow, CheckInk } from '../components/Icons'
 import { PhotoStage } from '../components/PhotoStage'
 
@@ -10,6 +11,7 @@ const TOTAL = 4
 export function Onboarding({ onDone }: { onDone: () => void }) {
   const { profile, setProfile } = useStore()
   const [step, setStep] = useState(0)
+  const twin = topTwin(profile.styles)
 
   const toggle = <T,>(list: T[], value: T): T[] =>
     list.includes(value) ? list.filter((v) => v !== value) : [...list, value]
@@ -59,6 +61,11 @@ export function Onboarding({ onDone }: { onDone: () => void }) {
                 </button>
               ))}
             </div>
+            {twin && (
+              <p className="twinline serif">
+                You dress like <em>{twin.fit.who}</em> — {twin.pct}% style match
+              </p>
+            )}
           </>
         )}
 

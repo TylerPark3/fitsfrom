@@ -1,10 +1,12 @@
+import { useRef, useState } from 'react'
 import type { View } from '../App'
-import { CATALOG } from '../data/catalog'
+import { CATALOG, type Product } from '../data/catalog'
 import { CATEGORIES, CORE_SLOTS, STYLES } from '../data/taxonomy'
-import { useStore } from '../lib/store'
+import { useStore, type CustomPiece } from '../lib/store'
 import { rank } from '../lib/match'
+import { fileToDataUrl } from '../lib/img'
 import { ProductCard } from '../components/ProductCard'
-import { Arrow, Trash } from '../components/Icons'
+import { Arrow, Plus, Trash, Upload, CheckInk } from '../components/Icons'
 
 export function WardrobeView({
   onOpen,
@@ -54,10 +56,14 @@ export function WardrobeView({
         </div>
         <div className="empty">
           <h3>Nothing in here yet.</h3>
-          <p>Open any piece and hit “Add to wardrobe.”</p>
+          <p>Open any piece and hit “Add to wardrobe” — or snap what you already own below.</p>
           <button className="btn btn--primary" onClick={() => go('discover')}>
             Go to the edit <Arrow />
           </button>
+        </div>
+        <div style={{ marginTop: 40 }}>
+          <OwnCloset />
+          <FitPlanner />
         </div>
       </div>
     )
@@ -150,7 +156,187 @@ export function WardrobeView({
         )
       })}
 
+      <OwnCloset />
+
+      <FitPlanner />
+
       <OutfitBuilder onOpen={onOpen} />
+    </div>
+  )
+}
+
+/** Alta-style closet snap: photograph your own piece, it lives on this device. */
+function OwnCloset() {
+  const { customs, addCustom, removeCustom, toast } = useStore()
+  const input = useRef<HTMLInputElement>(null)
+  const [busy, setBusy] = useState(false)
+
+  const accept = async (file: File | undefined) => {
+    if (!file?.type.startsWith('image/')) return
+    setBusy(true)
+    try {
+      const photo = await fileToDataUrl(file, 700)
+      const name = prompt('What is it? (e.g. “thrifted Carhartt hoodie”)')?.trim() || 'My piece'
+      const category =
+        prompt('Category — top / shirt / knit / outer / pants / shoes / accessory')
+          ?.trim()
+          .toLowerCase() || 'top'
+      addCustom({ id: `c${Date.now().toString(36)}`, name, category, photo })
+      toast('Added to your closet')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <div className="section">
+      <div className="section__head">
+        <h3>Your own pieces</h3>
+        <span className="tiny">Snapped by you · stays on this device</span>
+      </div>
+      <div className="grid">
+        <button className="own own--add" onClick={() => input.current?.click()}>
+          <Upload />
+          <span>{busy ? 'Reading…' : 'Snap a piece you own'}</span>
+          <input
+            ref={input}
+            type="file"
+            accept="image/*"
+            capture="environment"
+            hidden
+            onChange={(e) => void accept(e.target.files?.[0])}
+          />
+        </button>
+        {customs.map((c) => (
+          <div className="own" key={c.id}>
+            <img src={c.photo} alt={c.name} />
+            <div className="own__meta">
+              <span>{c.name}</span>
+              <button
+                className="iconbtn"
+                aria-label={`Remove ${c.name}`}
+                onClick={() => removeCustom(c.id)}
+              >
+                <Trash size={13} />
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/** Resolve an outfit ref to something drawable. */
+function refImage(ref: string, customs: CustomPiece[]): { img: string; label: string } | null {
+  const custom = customs.find((c) => c.id === ref)
+  if (custom) return { img: custom.photo, label: custom.name }
+  const p: Product | undefined = CATALOG.find((x) => x.id === ref)
+  return p ? { img: p.image, label: `${p.brand} ${p.name}` } : null
+}
+
+/** Named fits — the virtual dressing room, flat-lay style. */
+function FitPlanner() {
+  const { wardrobe, customs, outfits, createOutfit, deleteOutfit, toggleOutfitRef, toast } =
+    useStore()
+  const [editing, setEditing] = useState<string | null>(null)
+
+  const pool: { ref: string; img: string; label: string }[] = [
+    ...wardrobe
+      .map((w) => {
+        const p = CATALOG.find((x) => x.id === w.productId)
+        return p ? { ref: p.id, img: p.image, label: p.name } : null
+      })
+      .filter((x): x is { ref: string; img: string; label: string } => x !== null),
+    ...customs.map((c) => ({ ref: c.id, img: c.photo, label: c.name })),
+  ]
+
+  const active = outfits.find((o) => o.id === editing)
+
+  return (
+    <div className="section">
+      <div className="section__head">
+        <h3>Planned fits</h3>
+        <button
+          className="btn btn--ghost btn--sm"
+          onClick={() => {
+            const name = prompt('Name this fit (e.g. “date night”, “gameday”)')?.trim()
+            if (!name) return
+            setEditing(createOutfit(name))
+            toast('Tap pieces below to add them')
+          }}
+        >
+          <Plus /> New fit
+        </button>
+      </div>
+
+      {outfits.length === 0 && (
+        <p className="tiny" style={{ marginBottom: 12 }}>
+          Build “date night” or “gameday” from anything you own — like laying it on the bed, minus
+          the bed.
+        </p>
+      )}
+
+      <div className="fitplans">
+        {outfits.map((o) => (
+          <div className={`plan${editing === o.id ? ' is-editing' : ''}`} key={o.id}>
+            <div className="plan__lay">
+              {o.refs.slice(0, 6).map((ref) => {
+                const r = refImage(ref, customs)
+                return r ? <img key={ref} src={r.img} alt={r.label} /> : null
+              })}
+              {o.refs.length === 0 && <span className="tiny">Empty — tap pieces to add</span>}
+            </div>
+            <div className="plan__meta">
+              <b>{o.name}</b>
+              <div className="row" style={{ gap: 4 }}>
+                <button
+                  className="btn btn--quiet btn--sm"
+                  onClick={() => setEditing(editing === o.id ? null : o.id)}
+                >
+                  {editing === o.id ? 'Done' : 'Edit'}
+                </button>
+                <button
+                  className="iconbtn"
+                  aria-label={`Delete ${o.name}`}
+                  onClick={() => deleteOutfit(o.id)}
+                >
+                  <Trash size={13} />
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {active && (
+        <>
+          <p className="eyebrow" style={{ margin: '18px 0 10px' }}>
+            Tap to add to “{active.name}”
+          </p>
+          <div className="pickrow">
+            {pool.length === 0 && (
+              <p className="tiny">Nothing in your wardrobe yet — add pieces first.</p>
+            )}
+            {pool.map(({ ref, img, label }) => (
+              <button
+                key={ref}
+                className="pick"
+                aria-pressed={active.refs.includes(ref)}
+                onClick={() => toggleOutfitRef(active.id, ref)}
+                title={label}
+              >
+                <img src={img} alt={label} />
+                {active.refs.includes(ref) && (
+                  <span className="pick__tick">
+                    <CheckInk size={12} />
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   )
 }

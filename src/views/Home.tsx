@@ -23,45 +23,52 @@ export function Home({ go }: { go: (v: View) => void }) {
     day: 'numeric',
   })
 
+  const tickerItems = [
+    `Fit of the day — ${today.who}`,
+    'New fits daily',
+    `${BRANDS.length} brands live`,
+    'Steal the whole look',
+    'Every piece identified',
+    'Sized to your body',
+  ]
+
   return (
     <>
-      {/* masthead collage */}
-      <section className="mast">
-        <div className="wrap mast__in">
-          <div className="mast__cutouts" aria-hidden="true">
-            <button className="cutout cutout--a" onClick={() => go('fits')}>
-              <img src="/editorial/iverson-crowd.jpg" alt="" />
-              <span>A.I. · Phila, 2002</span>
-            </button>
-            <button className="cutout cutout--b" onClick={() => go('fits')}>
-              <img src="/fits/clarkson-tunnel.jpg" alt="" />
-              <span>Clarkson · Jazz tunnel</span>
-            </button>
-            <button className="cutout cutout--c" onClick={() => go('fits')}>
-              <img src="/fits/poole-arrival.jpg" alt="" />
-              <span>Poole · gameday</span>
-            </button>
-          </div>
+      {/* hype ticker */}
+      <div className="ticker" aria-hidden="true">
+        <div className="ticker__track">
+          {[...tickerItems, ...tickerItems].map((t, i) => (
+            <span key={i}>
+              {t} <i>◆</i>
+            </span>
+          ))}
+        </div>
+      </div>
 
-          <div className="mast__text">
-            <p className="eyebrow">{date}</p>
-            <h1 className="mast__head serif">
-              The fits run
-              <br />
-              the <em>culture.</em>
-            </h1>
-            <p className="mast__sub">
-              Tunnel walks, courtside cameos, street shots — broken down piece by piece, matched to
-              your size, linked to the source.
-            </p>
-            <div className="row" style={{ gap: 10, flexWrap: 'wrap' }}>
-              <button className="btn btn--primary btn--lg" onClick={() => go('fits')}>
-                Today’s fit <Arrow />
-              </button>
-              <button className="btn btn--ghost btn--lg" onClick={() => go('onboarding')}>
-                {profile.onboarded ? 'My profile' : 'Get sized'}
-              </button>
-            </div>
+      {/* full-bleed black & white triptych */}
+      <section className="mast">
+        <div className="mast__bg" aria-hidden="true">
+          <img src="/editorial/iverson-crowd.jpg" alt="" />
+          <img src="/fits/clarkson-tunnel.jpg" alt="" />
+          <img src="/fits/poole-arrival.jpg" alt="" />
+        </div>
+        <div className="mast__overlay">
+          <p className="mast__date">{date} — the front page of fit culture</p>
+          <h1 className="mast__head">
+            THE FITS RUN
+            <br />
+            THE <em className="serif">culture.</em>
+          </h1>
+          <p className="mast__sub">
+            Tunnel walks broken down piece by piece — matched to your size, linked to the source.
+          </p>
+          <div className="row" style={{ gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
+            <button className="btn btn--invert btn--lg" onClick={() => go('fits')}>
+              Today’s fit <Arrow />
+            </button>
+            <button className="btn btn--outline btn--lg" onClick={() => go('onboarding')}>
+              {profile.onboarded ? 'My profile' : 'Get sized'}
+            </button>
           </div>
         </div>
       </section>

@@ -1,10 +1,47 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { CATALOG, type Product } from '../data/catalog'
 import { FITS, type Fit, type FitPiece } from '../data/fits'
 import { useStore } from '../lib/store'
 import { recommendSize } from '../lib/sizing'
 import { buyUrl } from '../lib/affiliate'
-import { Bookmark, Close, External } from '../components/Icons'
+import { Arrow, Bookmark, Close, External } from '../components/Icons'
+
+const REACTIONS = ['🔥', '💯', '🥶', '👀'] as const
+
+interface ChatMsg {
+  who: string
+  text: string
+  ts: number
+  preview?: boolean
+}
+
+/** Seeded example takes, clearly flagged as previews — not real users. */
+const SEED_TAKES: Record<string, ChatMsg[]> = Object.fromEntries(
+  FITS.map((f) => [
+    f.id,
+    [
+      { who: 'Preview', text: `The ${f.pieces[0].slot.toLowerCase()} makes this one.`, ts: 0, preview: true },
+      { who: 'Preview', text: 'Need the full breakdown asap 🔥', ts: 1, preview: true },
+    ],
+  ]),
+)
+
+function loadJson<T>(key: string, fallback: T): T {
+  try {
+    const raw = localStorage.getItem(key)
+    return raw ? (JSON.parse(raw) as T) : fallback
+  } catch {
+    return fallback
+  }
+}
+
+function saveJson(key: string, value: unknown) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value))
+  } catch {
+    /* full storage is survivable */
+  }
+}
 
 /** Best buyable stand-in for a worn piece. */
 function resolve(piece: FitPiece): Product | null {
@@ -35,11 +72,9 @@ export function FitsView() {
         {FITS.map((f) => (
           <button key={f.id} className="fitcard" onClick={() => setOpen(f)}>
             <div className="fitcard__frame">
-              <div className="fitcollage">
-                {f.pieces.slice(0, 4).map((piece) => {
-                  const p = resolve(piece)
-                  return p ? <img key={piece.slot} src={p.image} alt="" loading="lazy" /> : null
-                })}
+              <div className="fitcard__type" aria-hidden="true">
+                <span className="serif">{f.who}</span>
+                <i>{f.vibe}</i>
               </div>
               <img
                 className="fitcard__photo"
@@ -144,8 +179,87 @@ function FitDrawer({ fit, onClose }: { fit: Fit; onClose: () => void }) {
             <span>The whole look</span>
             <b>${total.toFixed(0)}</b>
           </div>
+
+          <FitRoom fitId={fit.id} />
         </div>
       </aside>
     </>
+  )
+}
+
+/** Reactions + takes for one fit. On-device today; swaps to a realtime backend later. */
+function FitRoom({ fitId }: { fitId: string }) {
+  const { profile, account } = useStore()
+  const [reacts, setReacts] = useState<Record<string, { n: number; mine: boolean }>>(() =>
+    loadJson(`lapel.react.${fitId}`, Object.fromEntries(REACTIONS.map((r) => [r, { n: 0, mine: false }]))),
+  )
+  const [msgs, setMsgs] = useState<ChatMsg[]>(() =>
+    loadJson(`lapel.chat.${fitId}`, SEED_TAKES[fitId] ?? []),
+  )
+  const [draft, setDraft] = useState('')
+  const endRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => saveJson(`lapel.react.${fitId}`, reacts), [reacts, fitId])
+  useEffect(() => saveJson(`lapel.chat.${fitId}`, msgs), [msgs, fitId])
+
+  const toggle = (r: string) =>
+    setReacts((prev) => ({
+      ...prev,
+      [r]: { n: Math.max(0, prev[r].n + (prev[r].mine ? -1 : 1)), mine: !prev[r].mine },
+    }))
+
+  const send = () => {
+    const text = draft.trim()
+    if (!text) return
+    const who = account?.firstName || profile.name.split(' ')[0] || 'You'
+    setMsgs((m) => [...m, { who, text, ts: Date.now() }])
+    setDraft('')
+    requestAnimationFrame(() => endRef.current?.scrollIntoView({ behavior: 'smooth' }))
+  }
+
+  return (
+    <div className="room">
+      <div className="spread" style={{ marginBottom: 10 }}>
+        <span className="eyebrow">The room</span>
+        <span className="tiny">on this device — live rooms launch with accounts</span>
+      </div>
+
+      <div className="room__reacts">
+        {REACTIONS.map((r) => (
+          <button key={r} className="react" aria-pressed={reacts[r]?.mine} onClick={() => toggle(r)}>
+            {r} {reacts[r]?.n > 0 && <b>{reacts[r].n}</b>}
+          </button>
+        ))}
+      </div>
+
+      <div className="room__feed">
+        {msgs.map((m, i) => (
+          <div className="msg" key={i}>
+            <span className="msg__avatar">{m.who[0]?.toUpperCase()}</span>
+            <div>
+              <div className="msg__who">
+                {m.who}
+                {m.preview && <i className="msg__demo">preview</i>}
+              </div>
+              <div className="msg__text">{m.text}</div>
+            </div>
+          </div>
+        ))}
+        <div ref={endRef} />
+      </div>
+
+      <div className="room__input">
+        <input
+          className="text-input"
+          placeholder="Drop a take…"
+          value={draft}
+          onChange={(e) => setDraft(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && send()}
+        />
+        <button className="btn btn--primary" onClick={send} aria-label="Send">
+          <Arrow />
+        </button>
+      </div>
+    </div>
   )
 }
