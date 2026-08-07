@@ -87,6 +87,11 @@ export function AvatarRig() {
               />
             </div>
           ))}
+          <span
+            className="rig__holo"
+            style={{ height: totalH, WebkitMaskImage: `url(${SRC})`, maskImage: `url(${SRC})` }}
+          />
+          <span className="rig__scan" />
           <span className="rig__shadow" style={{ top: totalH + 4, width: W * 0.6 * Math.max(shoeX, 0.9) }} />
         </div>
       </div>

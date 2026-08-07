@@ -277,6 +277,19 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
           </button>
         </div>
 
+        {(profile.teams.length > 0 || profile.tags.length > 0 || profile.brands.length > 0) && (
+          <div className="signal-strip">
+            <span className="eyebrow">Ranked using</span>
+            {[...profile.styles.slice(0, 2), ...profile.teams.slice(0, 2), ...profile.tags.slice(0, 2), ...profile.brands.slice(0, 2)].map(
+              (sig) => (
+                <span className="reason" key={sig}>
+                  {sig}
+                </span>
+              ),
+            )}
+          </div>
+        )}
+
         <div className="deck__subs">
           <Drop
             label="Cut"

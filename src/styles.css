@@ -1410,6 +1410,30 @@ input.seg__control::placeholder {
   color: var(--ink-3);
 }
 
+.feeds {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.signal-strip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.deck--docked .signal-strip {
+  justify-content: flex-start;
+}
+
 /* Soar-grade dropdowns */
 .drop {
   position: relative;
@@ -3429,6 +3453,64 @@ input.seg__control::placeholder {
 .rigslice img {
   transition: transform 220ms var(--ease), height 220ms var(--ease), top 220ms var(--ease);
   user-select: none;
+}
+
+/* holographic sheen — iridescent sweep + scanline, masked to the figure */
+.rig__holo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  mix-blend-mode: color;
+  opacity: 0.55;
+  background: linear-gradient(
+    115deg,
+    transparent 18%,
+    rgba(0, 220, 255, 0.65) 32%,
+    rgba(150, 90, 255, 0.6) 42%,
+    rgba(255, 90, 170, 0.55) 50%,
+    rgba(255, 200, 60, 0.5) 58%,
+    rgba(60, 255, 190, 0.5) 66%,
+    transparent 82%
+  );
+  background-size: 260% 260%;
+  -webkit-mask-size: contain;
+  -webkit-mask-position: center top;
+  -webkit-mask-repeat: no-repeat;
+  mask-size: contain;
+  mask-position: center top;
+  mask-repeat: no-repeat;
+  animation: holoshift 7s linear infinite;
+}
+
+@keyframes holoshift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 260% 50%;
+  }
+}
+
+.rig__scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0 3px,
+    rgba(120, 200, 255, 0.16) 3px 4px
+  );
+  mix-blend-mode: screen;
+  opacity: 0.5;
+  animation: scanroll 3.4s linear infinite;
+}
+
+@keyframes scanroll {
+  to {
+    background-position: 0 24px;
+  }
 }
 
 .rig__shadow {

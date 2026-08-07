@@ -343,6 +343,25 @@ export function AvatarView({ go }: { go: (v: View) => void }) {
             })}
           </div>
         )}
+        <div className="feeds">
+          <div>
+            <span className="eyebrow">Feeding your edit</span>
+            <div className="chips" style={{ marginTop: 10 }}>
+              <span className="reason">{profile.styles.length} styles</span>
+              <span className="reason">{profile.icons.length} icons</span>
+              <span className="reason">{profile.teams.length} teams</span>
+              <span className="reason">{profile.tags.length} interests</span>
+              <span className="reason">{profile.brands.length} brands</span>
+              <span className="reason">
+                {profile.chest}″ / {profile.waist}″ · {recommendSize(cards[0]?.product ?? CATALOG[0], profile).label}
+              </span>
+            </div>
+          </div>
+          <button className="btn btn--primary btn--lg" onClick={() => go('discover')}>
+            See my edit <Arrow />
+          </button>
+        </div>
+
         <div className="room__input" style={{ marginTop: 14, maxWidth: 400 }}>
           <input
             className="text-input"
