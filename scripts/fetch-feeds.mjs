@@ -76,6 +76,7 @@ const BRANDS = [
   ['BAPE', 'us.bape.com'],
   ['MARKET', 'chinatownmarket.com'],
   ['Anti Social Social Club', 'antisocialsocialclub.com'],
+  ['Butter Goods', 'buttergoods.com'],
 ]
 
 const UA = { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)' }

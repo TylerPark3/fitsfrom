@@ -1,5 +1,6 @@
-import { useRef, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { CutoutImg } from './CutoutImg'
+import { AvatarRig } from './AvatarRig'
 import { CATALOG } from '../data/catalog'
 import { useStore } from '../lib/store'
 
@@ -34,53 +35,91 @@ const TEAM_POSTERS: Record<string, string> = {
   Celtics: '/room/poster-celtics.jpg',
 }
 
-/** The dorm — your closet as a place. Head follows the mouse, 2K-style. */
+/** Where each garment sits on the body, as a fraction of figure height. */
+const SLOTS: {
+  key: string
+  label: string
+  top: number
+  height: number
+  width: number
+  match: (cat: string, sil?: string) => boolean
+}[] = [
+  { key: 'hat', label: 'Hat', top: -0.02, height: 0.15, width: 0.34, match: (c) => c === 'accessory' },
+  {
+    key: 'top',
+    label: 'Top',
+    top: 0.14,
+    height: 0.4,
+    width: 0.78,
+    match: (c) => ['top', 'shirt', 'knit', 'outer'].includes(c),
+  },
+  {
+    key: 'bottom',
+    label: 'Bottom',
+    top: 0.46,
+    height: 0.42,
+    width: 0.66,
+    match: (c) => c === 'pants',
+  },
+  { key: 'shoes', label: 'Shoes', top: 0.83, height: 0.17, width: 0.56, match: (c) => c === 'shoes' },
+]
+
+/** Accessories that aren't hats hang beside the figure rather than on it. */
+const ACC_SLOT = { key: 'acc', label: 'Accessory' }
+
+interface Piece {
+  ref: string
+  img: string
+  name: string
+  cat: string
+  sil?: string
+}
+
+/** The dressing room — your avatar in the middle, your closet on the rails. */
 export function Room() {
-  const { wardrobe, customs, profile } = useStore()
-  const roomRef = useRef<HTMLDivElement>(null)
+  const { wardrobe, customs, profile, mannequin, wear, toast } = useStore()
   const [full, setFull] = useState(false)
+  const [open, setOpen] = useState<string>('top')
 
-  const items = wardrobe
-    .map((w) => CATALOG.find((p) => p.id === w.productId))
-    .filter((p): p is NonNullable<typeof p> => !!p)
-  const customImgs = customs.filter((c) => c.photo)
+  const pieces = useMemo<Piece[]>(() => {
+    const list: Piece[] = []
+    for (const w of wardrobe) {
+      const p = CATALOG.find((x) => x.id === w.productId)
+      if (p) list.push({ ref: p.id, img: p.image, name: p.name, cat: p.category, sil: p.silhouette })
+    }
+    for (const c of customs) {
+      if (c.photo) list.push({ ref: c.id, img: c.photo, name: c.name, cat: c.category })
+    }
+    return list
+  }, [wardrobe, customs])
 
-  // One representative per type — the diagram, not the inventory.
-  const firstOf = (pred: (c: string, sil?: string) => boolean): string | null => {
-    const hit = items.find((p) => pred(p.category, p.silhouette))
-    if (hit) return hit.image
-    const cu = customImgs.find((c) => pred(c.category))
-    return cu ? cu.photo : null
+  const byRef = (ref?: string) => (ref ? pieces.find((p) => p.ref === ref) : undefined)
+
+  // Hats are the accessory subset that can actually sit on a head.
+  const isHat = (p: Piece) => p.cat === 'accessory' && /cap|hat|beanie|bucket|visor/i.test(p.name)
+  const forSlot = (key: string) => {
+    if (key === 'hat') return pieces.filter(isHat)
+    if (key === ACC_SLOT.key) return pieces.filter((p) => p.cat === 'accessory' && !isHat(p))
+    const slot = SLOTS.find((s) => s.key === key)!
+    return pieces.filter((p) => slot.match(p.cat, p.sil))
   }
-  const reps: { key: string; label: string; shelf: string; img: string | null }[] = [
-    { key: 'long', label: 'Long sleeve', shelf: 'Tops', img: firstOf((c) => ['top', 'shirt', 'knit', 'outer'].includes(c)) },
-    { key: 'shorts', label: 'Shorts', shelf: 'Shorts', img: firstOf((c, s2) => c === 'pants' && s2 === 'short') },
-    { key: 'pants', label: 'Pants', shelf: 'Pants', img: firstOf((c, s2) => c === 'pants' && s2 !== 'short') },
-    { key: 'acc', label: 'Accessories', shelf: 'Accessories', img: firstOf((c) => c === 'accessory') },
-  ]
-  const shoeImg = firstOf((c) => c === 'shoes')
 
+  const rails = [...SLOTS.map((s) => ({ key: s.key, label: s.label })), ACC_SLOT]
+  const worn = rails.filter((r) => byRef(mannequin[r.key])).length
   const posters = profile.teams.slice(0, 2)
-  const scrollTo = (label: string) =>
-    document.getElementById(`shelf-${label}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
 
   return (
-    <div className={`room2${full ? ' room2--full' : ''}`} ref={roomRef}>
+    <div className={`room2${full ? ' room2--full' : ''}`}>
       <button
         className="room2__expand"
         onClick={() => setFull((v) => !v)}
-        aria-label={full ? 'Exit full screen' : 'Full screen closet'}
+        aria-label={full ? 'Exit full screen' : 'Full screen dressing room'}
       >
         {full ? '✕' : '⤢'}
       </button>
-      {/* the dog lives here */}
-      <img className="room2__dog" src="/room/dog.png" alt="" loading="lazy" />
 
-      {/* the wall — everything flows in rows, top first, never overlapping */}
+      {/* the wall behind the figure */}
       <div className="room2__wall">
-        {posters.length === 0 && !profile.tags.includes('Yankees') && !profile.tags.includes('Dodgers') && (
-          <div className="room2__poster room2__poster--empty">FF</div>
-        )}
         {posters
           .filter((t) => TEAM_POSTERS[t])
           .map((t) => (
@@ -90,66 +129,115 @@ export function Room() {
           ))}
         {profile.tags
           .filter((t) => ARTIST_POSTERS[t])
+          .slice(0, 3)
           .map((t, i) => (
             <div className="room2__poster" key={t} style={{ transform: `rotate(${i % 2 ? 1.5 : -1.3}deg)` }}>
               <img src={ARTIST_POSTERS[t]} alt={`${t} poster`} loading="lazy" />
             </div>
           ))}
-        {[
-          ['Yankees', '/room/art-yankees.jpg', -1.4],
-          ['Dodgers', '/room/art-dodgers.jpg', 1.8],
-          ['Angels', '/room/art-angels.jpg', -1.1],
-          ['Brewers', '/room/art-brewers.jpg', 1.4],
-        ]
-          .filter(([tag]) => profile.tags.includes(tag as string))
-          .map(([tag, img, rot]) => (
-            <div className="room2__poster" key={tag as string} style={{ transform: `rotate(${rot}deg)` }}>
-              <img src={img as string} alt={`${tag} art`} loading="lazy" />
+      </div>
+
+      <div className="mq">
+        {/* THE FIGURE — the avatar you built, wearing what you picked */}
+        <div className="mq__stage">
+          <div className="mq__figure">
+            {profile.photo ? (
+              <img
+                className="mq__body"
+                src={profile.photo}
+                alt="Your avatar"
+                style={{ objectPosition: `50% ${profile.photoY}%` }}
+              />
+            ) : (
+              <div className="mq__rig">
+                <AvatarRig />
+              </div>
+            )}
+
+            {SLOTS.map((s) => {
+              const p = byRef(mannequin[s.key])
+              if (!p) return null
+              return (
+                <div
+                  className={`mqlayer mqlayer--${s.key}`}
+                  key={s.key}
+                  style={{
+                    top: `${s.top * 100}%`,
+                    height: `${s.height * 100}%`,
+                    width: `${s.width * 100}%`,
+                  }}
+                >
+                  <CutoutImg src={p.img} className="mqlayer__img" />
+                </div>
+              )
+            })}
+          </div>
+
+          {byRef(mannequin[ACC_SLOT.key]) && (
+            <div className="mq__acc">
+              <CutoutImg src={byRef(mannequin[ACC_SLOT.key])!.img} className="mqlayer__img" />
             </div>
-          ))}
+          )}
+
+          <i className="mq__pedestal" />
+
+          <div className="mq__caption">
+            <span className="eyebrow">{profile.name ? `${profile.name}'s build` : 'Your build'}</span>
+            <b>
+              {worn}/{rails.length} on
+            </b>
+            {worn > 0 && (
+              <button
+                className="mq__strip"
+                onClick={() => {
+                  rails.forEach((r) => mannequin[r.key] && wear(r.key, mannequin[r.key]))
+                  toast('Stripped')
+                }}
+              >
+                Clear
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* THE RAILS — tap a slot, tap a piece, it goes on */}
+        <div className="mq__rails">
+          {rails.map((r) => {
+            const options = forSlot(r.key)
+            const on = byRef(mannequin[r.key])
+            const isOpen = open === r.key
+            return (
+              <div className={`mqrail${isOpen ? ' is-open' : ''}`} key={r.key}>
+                <button className="mqrail__head" onClick={() => setOpen(isOpen ? '' : r.key)}>
+                  <span className="eyebrow">{r.label}</span>
+                  <span className="mqrail__now">{on ? on.name : options.length ? 'Pick one' : '—'}</span>
+                  <i>{isOpen ? '−' : '+'}</i>
+                </button>
+                {isOpen && (
+                  <div className="mqrail__row">
+                    {options.length === 0 && <p className="tiny">Nothing here yet — add pieces below.</p>}
+                    {options.map((p) => (
+                      <button
+                        key={p.ref}
+                        className={`mqpick${mannequin[r.key] === p.ref ? ' is-on' : ''}`}
+                        onClick={() => {
+                          wear(r.key, p.ref)
+                          toast(mannequin[r.key] === p.ref ? 'Off' : `On — ${p.name}`)
+                        }}
+                        title={p.name}
+                      >
+                        <CutoutImg src={p.img} />
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )
+          })}
+        </div>
       </div>
 
-      {/* the rail — one hanger per type; click to open that shelf */}
-      <div className="room2__rail">
-        <i className="room2__bar" />
-        {reps.map((r, i) => (
-          <button
-            key={r.key}
-            className={`hanger${r.img ? '' : ' hanger--ghost'}`}
-            style={{ transform: `rotate(${i % 2 ? 1.1 : -0.9}deg)` }}
-            onClick={() => r.img && scrollTo(r.shelf)}
-            aria-label={`Open ${r.label}`}
-          >
-            <svg className="hanger__wire" viewBox="0 0 100 46" aria-hidden="true">
-              <path
-                d="M50 3 q7 0 7 7 q0 5 -6 7 v4"
-                fill="none"
-                stroke="#7d6a4c"
-                strokeWidth="3"
-                strokeLinecap="round"
-              />
-              <path
-                d="M50 21 L12 39 q-4 2 -1 4 h78 q3 -2 -1 -4 Z"
-                fill="none"
-                stroke="#7d6a4c"
-                strokeWidth="3"
-                strokeLinejoin="round"
-              />
-            </svg>
-            {r.img && <CutoutImg src={r.img} className="hanger__img" />}
-            <span className="hanger__label">{r.label}</span>
-          </button>
-        ))}
-      </div>
-
-      {/* shoes sit on the floor under the rail */}
-      {shoeImg && (
-        <button className="floorshoe" onClick={() => scrollTo('Shoes')} aria-label="Open shoes">
-          <CutoutImg src={shoeImg} className="floorshoe__img" />
-          <span className="hanger__label">Shoes</span>
-        </button>
-      )}
-
+      <img className="room2__dog" src="/room/dog.png" alt="" loading="lazy" />
       <i className="room2__floor" />
     </div>
   )

@@ -130,6 +130,7 @@ export function WardrobeView({
         <span className="eyebrow">THE CLOSET — CATALOGUED</span>
         <h2>
           {items.length} {items.length === 1 ? 'piece' : 'pieces'}
+          <small className="pagehead__worth">${Math.round(totalValue).toLocaleString()}</small>
         </h2>
 
         <div className="budgetbar">
@@ -149,7 +150,6 @@ export function WardrobeView({
           >
             +
           </button>
-          <span className="tiny">closet worth ${Math.round(totalValue)}</span>
         </div>
       </div>
 

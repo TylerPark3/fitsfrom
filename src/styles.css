@@ -338,9 +338,14 @@ img {
   display: flex;
   align-items: center;
   gap: 9px;
-  font-size: 18px;
-  letter-spacing: -0.035em;
-  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.logo svg {
+  flex: none;
 }
 
 .logo__mark {
@@ -360,7 +365,8 @@ img {
 .logo__word {
   display: inline-flex;
   align-items: baseline;
-  gap: 1px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .logo__word em {
@@ -3116,12 +3122,12 @@ input.seg__control::placeholder {
 /* the dorm room */
 .room2 {
   position: relative;
-  border: 1px solid var(--line);
-  border-radius: 22px;
-  background: var(--paper);
-  min-height: 400px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  min-height: 640px;
   margin-bottom: 40px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .room2__floor {
@@ -4045,6 +4051,72 @@ input.seg__control::placeholder {
 }
 
 /* budget, adjustable inline */
+/* grade what you just added — condition and age set what the closet is worth */
+.grade {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--tile);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  display: grid;
+  gap: 10px;
+  animation: qfade 200ms var(--ease) both;
+}
+
+.grade__row {
+  display: grid;
+  gap: 6px;
+}
+
+.grade__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.gradechip {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 10px;
+  transition: color var(--fast), border-color var(--fast), background var(--fast);
+}
+
+.gradechip:hover {
+  color: var(--ink);
+  border-color: var(--ink-4);
+}
+
+.gradechip.is-on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+.pagehead__worth {
+  display: inline-block;
+  margin-left: 14px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+  vertical-align: middle;
+}
+
+.pagehead__worth::before {
+  content: 'worth ';
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
 .budgetbar {
   display: inline-flex;
   align-items: center;
@@ -6543,5 +6615,323 @@ input.seg__control::placeholder {
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ── the dressing room ─────────────────────────────────────────────────────
+   Your avatar in the middle, your closet on the rails beside it. */
+.mq {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  /* minmax(0,…) or the nowrap piece names blow the column out past the page */
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 26px;
+  padding: 26px 26px 30px;
+  min-height: 600px;
+  align-items: stretch;
+}
+
+.mq__stage {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 8px;
+}
+
+.mq__figure {
+  position: relative;
+  width: min(340px, 100%);
+  height: 470px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.mq__body {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 26px rgba(18, 25, 21, 0.16));
+}
+
+.mq__rig {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.mq__rig .rig {
+  transform: scale(0.74);
+  transform-origin: center center;
+}
+
+/* the rig ships its own turn controls and name — the stage caption covers that */
+.mq__rig .rig__controls {
+  display: none;
+}
+
+/* garments sit on the figure as bands down the body */
+.mqlayer {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+  animation: mqdrop 260ms var(--ease) both;
+}
+
+.mqlayer__img {
+  /* flex parent has a definite height, so these percentages actually bite —
+     a grid area would have grown to the image instead. */
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 12px rgba(18, 25, 21, 0.22));
+}
+
+.mqlayer--hat {
+  z-index: 5;
+}
+.mqlayer--top {
+  z-index: 4;
+}
+.mqlayer--bottom {
+  z-index: 3;
+}
+.mqlayer--shoes {
+  z-index: 4;
+}
+
+@keyframes mqdrop {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.mq__acc {
+  position: absolute;
+  right: 4%;
+  bottom: 96px;
+  width: 84px;
+  height: 84px;
+  display: grid;
+  place-items: center;
+}
+
+.mq__pedestal {
+  display: block;
+  width: 210px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(18, 25, 21, 0.16), transparent 70%);
+  margin-top: -4px;
+}
+
+.mq__caption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.mq__caption b {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  font-weight: 500;
+}
+
+.mq__strip {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border-bottom: 1px solid var(--ink-4);
+  padding-bottom: 1px;
+}
+
+.mq__strip:hover {
+  color: var(--ink);
+}
+
+/* the rails */
+.mq__rails {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-content: start;
+  overflow-y: auto;
+  max-height: 560px;
+  padding-right: 4px;
+}
+
+.mqrail {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--tile);
+  overflow: hidden;
+  flex: none;
+}
+
+.mqrail.is-open {
+  border-color: var(--ink-4);
+}
+
+.mqrail__head {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr) 16px;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 14px;
+  text-align: left;
+}
+
+.mqrail__now {
+  font-size: 13px;
+  color: var(--ink-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mqrail__head i {
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--ink-3);
+}
+
+.mqrail__row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 0 14px 14px;
+  scrollbar-width: thin;
+}
+
+.mqpick {
+  flex: none;
+  width: 66px;
+  height: 66px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  display: grid;
+  place-items: center;
+  padding: 5px;
+  transition: border-color var(--fast), transform var(--fast);
+}
+
+.mqpick img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.mqpick:hover {
+  border-color: var(--ink-4);
+  transform: translateY(-2px);
+}
+
+.mqpick.is-on {
+  border-color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+
+/* the room dresses down behind the figure */
+.room2__wall {
+  left: auto;
+  right: 350px;
+  width: 220px;
+  top: 24px;
+  bottom: auto;
+  opacity: 0.9;
+}
+
+.mq__rails {
+  position: relative;
+  z-index: 4;
+}
+
+.mq__stage {
+  z-index: 4;
+}
+
+/* floor stays a thin band beneath the figure only */
+.room2 .room2__floor {
+  height: 150px;
+  right: 350px;
+  left: 0;
+  opacity: 0.5;
+  box-shadow: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 42%, #000 70%, transparent),
+    linear-gradient(to right, transparent, #000 12%, #000 78%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to bottom, transparent, #000 42%, #000 70%, transparent),
+    linear-gradient(to right, transparent, #000 12%, #000 78%, transparent);
+  mask-composite: intersect;
+}
+
+.room2 .room2__floor::before {
+  display: none;
+}
+
+.room2 .room2__dog {
+  bottom: 18px;
+  right: 380px;
+  width: 76px;
+}
+
+@media (max-width: 900px) {
+  .room2 .room2__floor,
+  .room2 .room2__dog {
+    display: none;
+  }
+}
+
+.room2--full .mq {
+  min-height: calc(100vh - 60px);
+}
+
+.room2--full .mq__figure {
+  height: 62vh;
+}
+
+@media (max-width: 900px) {
+  .mq {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 20px 16px 24px;
+  }
+  .mq__rails {
+    max-height: none;
+    overflow: visible;
+  }
+  .room2__wall {
+    display: none;
+  }
+  .mq__figure {
+    height: 400px;
+  }
+  .mq__rig .rig {
+    transform: scale(0.6);
   }
 }

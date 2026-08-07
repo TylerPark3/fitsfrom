@@ -82,30 +82,11 @@ export function Home({ go }: { go: (v: View) => void }) {
     weekday: 'long',
     month: 'long',
     day: 'numeric',
+    year: 'numeric',
   })
-
-  const tickerItems = [
-    `Fit of the day — ${today.who}`,
-    'New fits daily',
-    `${BRANDS.length} brands live`,
-    'Steal the whole look',
-    'Every piece identified',
-    'Sized to your body',
-  ]
 
   return (
     <>
-      {/* hype ticker */}
-      <div className="ticker" aria-hidden="true">
-        <div className="ticker__track">
-          {[...tickerItems, ...tickerItems].map((t, i) => (
-            <span key={i}>
-              {t} <i>◆</i>
-            </span>
-          ))}
-        </div>
-      </div>
-
       {/* full-bleed black & white triptych */}
       <section className="mast">
         <div className="mast__bg" aria-hidden="true">
@@ -115,16 +96,10 @@ export function Home({ go }: { go: (v: View) => void }) {
         </div>
         <HeroVideo />
         <div className="mast__overlay">
-          <p className="mast__date">{date} — the front page of fit culture</p>
+          <p className="mast__date">Queens, NY | {date}</p>
           <h1 className="mast__head">
-            THE FITS FROM
-            <br />
-            THE <em className="serif">culture.</em>
+            <em className="serif">culture.</em>
           </h1>
-          <p className="mast__sub">
-            <em className="serif" style={{ color: 'var(--red)', fontSize: '1.15em' }}>Style is shared.</em>{' '}
-            Take what you like from the best and make it your own.
-          </p>
           <div className="row" style={{ gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
             <button className="btn btn--invert btn--lg" onClick={() => go('fits')}>
               Today’s fit <Arrow />

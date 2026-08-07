@@ -69,6 +69,7 @@ const BRAND_STYLES = {
   BAPE: ['street', 'japanese'],
   MARKET: ['street', 'skate'],
   'Anti Social Social Club': ['street'],
+  'Butter Goods': ['skate', 'street'],
 }
 
 const CAT = [
@@ -136,6 +137,23 @@ const BRAND_SKIP = new Set(['Gitman Vintage', 'Rowing Blazers', 'Taylor Stitch']
 // Sneaker boutiques: shoes only, deeper cap — this is the sneaker wall.
 const SHOE_ONLY = new Set(['Bodega', 'Concepts', 'Undefeated', 'A Ma Maniére', 'Feature', 'Extra Butter', 'Social Status', 'Oneness', 'Lapstone & Hammer', 'Packer', 'Saint Alfred', 'Wish ATL'])
 
+/**
+ * The majors don't run public Shopify feeds — Nike, adidas, New Balance and
+ * Supreme all block or don't expose /products.json. Their real stock, real
+ * prices and real buy links do show up in the authorized stockists we already
+ * pull, so lift them out by name and give them their own shelves. Clothing as
+ * well as footwear.
+ */
+const MAJORS = [
+  ['Nike', /\bnike\b|\bair\s?(force|max|jordan)\b|\bdunk\b|\bacg\b/i, ['street', 'athletic']],
+  ['Jordan', /\bair jordan\b|\bjordan brand\b|\bjumpman\b/i, ['street', 'athletic']],
+  ['New Balance', /\bnew balance\b|\bnb\s?\d{3,4}\b/i, ['minimal', 'athletic']],
+  ['adidas', /\badidas\b|\bsamba\b|\bgazelle\b|\bspezial\b|\byeezy\b/i, ['street', 'athletic']],
+  ['Supreme', /\bsupreme\b/i, ['street', 'skate']],
+  ['On', /\bon\s+(running|cloud)\b|\bcloud(monster|surfer|nova|tilt|swift|runner|flow|ultra|boom|eclipse)\b/i, ['athletic', 'minimal']],
+]
+const majorFor = (title) => MAJORS.find(([, re]) => re.test(title))
+
 const out = []
 const seenImages = new Set()
 for (const [brand, products] of Object.entries(feeds)) {
@@ -157,6 +175,7 @@ for (const [brand, products] of Object.entries(feeds)) {
     const hay = `${p.type} ${p.title}`
     const cat = CAT.find(([, re]) => re.test(hay))?.[0]
     if (!cat) continue
+    if (majorFor(`${p.title} ${p.type}`)) continue // handled in the majors pass below
     if (SHOE_ONLY.has(brand) && cat !== 'shoes') continue
     // Dedup near-identical colourways: strip trailing " - Color" noise.
     const base = p.title.replace(/\s*[-–—]\s*[^-–—]+$/, '').toLowerCase()
@@ -188,6 +207,56 @@ for (const [brand, products] of Object.entries(feeds)) {
     if (picked.length >= 44) break
   }
   out.push(...picked)
+}
+
+// Majors pass — same filters, but bucketed under the brand people actually
+// searched for, and apparel is allowed through alongside the shoes.
+for (const [major, , mStyles] of MAJORS) {
+  const seen = new Set()
+  const perCat = {}
+  let n = 0
+  for (const products of Object.values(feeds)) {
+    for (const p of products) {
+      if (n >= 40) break
+      if (!p.available || p.price < 20) continue
+      if (EXCLUDE.test(p.title) || EXCLUDE.test(p.type)) continue
+      const meta = `${p.type} ${p.title} ${(p.tags || []).join(' ')}`
+      if (/\bwomen'?s?\b|\bwmns\b|\bwomans?\b|female|\bdress\b|skirt|blouse|bralette/i.test(meta)) continue
+      if (/\b(td|ps|gs|gt)\b|toddler|preschool|pre-school|grade school|gradeschool|infant|\bkids?\b|youth|little|\bbaby\b/i.test(meta)) continue
+      const hay = `${p.type} ${p.title}`
+      const hit = majorFor(hay)
+      if (!hit || hit[0] !== major) continue
+      const cat = CAT.find(([, re]) => re.test(hay))?.[0]
+      if (!cat) continue
+      const base = p.title.replace(/\s*[-–—]\s*[^-–—]+$/, '').toLowerCase()
+      if (seen.has(base)) continue
+      if (seenImages.has(p.image)) continue
+      if ((perCat[cat] ?? 0) >= 12) continue
+      seenImages.add(p.image)
+      seen.add(base)
+      perCat[cat] = (perCat[cat] ?? 0) + 1
+      n++
+      out.push({
+        id: `${major.replace(/[^a-z]/gi, '').toLowerCase()}-${p.handle.slice(0, 70)}`,
+        brand: major,
+        name: titleCase(p.title.replace(/\s*[-–—]\s*(mens?|unisex)$/i, '')),
+        category: cat,
+        price: p.price,
+        tier: tierFor(p.price),
+        styles: mStyles,
+        seasons: seasonFor(cat, p.title),
+        gender: 'unisex',
+        sizeSystem: sizeSystemFor(cat, p.sizes),
+        fitBias: 0,
+        image: `${p.image}?width=900`,
+        fabric: p.fabric || '',
+        _candidates: (p.images || [p.image]).slice(0, 4),
+        silhouette: SILHOUETTE.find(([, re]) => re.test(hay))?.[0] ?? 'tee',
+        url: p.url,
+      })
+    }
+  }
+  console.error(`major ${major.padEnd(14)} ${n}`)
 }
 
 // hard guarantee: no duplicate ids ever reach the app

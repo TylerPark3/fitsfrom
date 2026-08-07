@@ -108,3 +108,24 @@ export const Sparkle = ({ size = 14 }: P) => (
     <path d="M12 3.5 13.7 9l5.3 1.7-5.3 1.7L12 18l-1.7-5.6L5 10.7 10.3 9Z" />
   </svg>
 )
+
+/**
+ * The mark: two F stems sharing two crossbars — an FF ligature drawn as flat
+ * geometry. One colour, no gradients, no type; it holds at 16px the way a
+ * Billionaire Boys Club helmet does.
+ */
+export const Mark = ({ size = 26 }: P) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <rect x="2" y="2" width="20" height="4" />
+    <rect x="2" y="10" width="17" height="4" />
+    <rect x="2" y="2" width="4" height="20" />
+    <rect x="11" y="2" width="4" height="20" />
+  </svg>
+)

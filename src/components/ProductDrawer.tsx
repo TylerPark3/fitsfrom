@@ -8,6 +8,7 @@ import { matchScore, scoreLabel } from '../lib/match'
 import { recommendSize, sizeOptions } from '../lib/sizing'
 import { buyUrl } from '../lib/affiliate'
 import { Bookmark, Close, External, Plus, CheckInk } from './Icons'
+import { CONDITIONS, YEAR_STEPS } from '../views/WardrobeView'
 
 export function ProductDrawer({
   productId,
@@ -23,6 +24,8 @@ export function ProductDrawer({
     product ? recommendSize(product, profile).label : '',
   )
   const [pickingCollection, setPickingCollection] = useState(false)
+  // After adding, grade it — condition and age drive what the closet is worth.
+  const [grading, setGrading] = useState(false)
   const [newName, setNewName] = useState('')
 
   if (!product) return null
@@ -30,6 +33,7 @@ export function ProductDrawer({
   const rec = recommendSize(product, profile)
   const { score, reasons } = matchScore(product, profile)
   const inWardrobe = wardrobe.some((w) => w.productId === product.id)
+  const own = wardrobe.find((w) => w.productId === product.id)
   const isSaved = saved.includes(product.id)
   const tier = TIERS.find((t) => t.id === product.tier)!
 
@@ -166,6 +170,38 @@ export function ProductDrawer({
         </div>
 
         <div className="drawer__foot">
+          {grading && (
+            <div className="grade">
+              <div className="grade__row">
+                <span className="eyebrow">Condition</span>
+                <div className="grade__chips">
+                  {CONDITIONS.map(([label]) => (
+                    <button
+                      key={label}
+                      className={`gradechip${(own?.condition ?? 'Like new') === label ? ' is-on' : ''}`}
+                      onClick={() => store.updateWardrobe(product.id, { condition: label })}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="grade__row">
+                <span className="eyebrow">Had it</span>
+                <div className="grade__chips">
+                  {YEAR_STEPS.map((y) => (
+                    <button
+                      key={y}
+                      className={`gradechip${(own?.years ?? 0) === y ? ' is-on' : ''}`}
+                      onClick={() => store.updateWardrobe(product.id, { years: y })}
+                    >
+                      {y === 0 ? 'Brand new' : `${y} yr${y === 1 ? '' : 's'}${y === 5 ? '+' : ''}`}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
           <div className="row" style={{ gap: 8 }}>
             <button
               className="btn btn--ghost"
@@ -185,6 +221,7 @@ export function ProductDrawer({
               style={{ flex: 1 }}
               onClick={() => {
                 store.addToWardrobe(product.id, size, inWardrobe)
+                setGrading(true)
                 store.toast(`In wardrobe · ${size || 'one size'}`)
               }}
             >

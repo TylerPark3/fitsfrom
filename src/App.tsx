@@ -9,7 +9,7 @@ import {
   type Profile,
   type Store,
 } from './lib/store'
-import { Grid, Hanger, Person, CheckInk } from './components/Icons'
+import { Grid, Hanger, Person, CheckInk, Mark } from './components/Icons'
 import { installClickSounds, isMuted, setMuted } from './lib/click'
 import { Home } from './views/Home'
 import { Onboarding } from './views/Onboarding'
@@ -70,6 +70,15 @@ export function App() {
             { productId, size, owned, addedAt: Date.now() },
             ...s.wardrobe.filter((w) => w.productId !== productId),
           ],
+        })),
+
+      wear: (slot, ref) =>
+        setState((s) => ({
+          ...s,
+          mannequin:
+            s.mannequin[slot] === ref
+              ? Object.fromEntries(Object.entries(s.mannequin).filter(([k]) => k !== slot))
+              : { ...s.mannequin, [slot]: ref },
         })),
 
       removeFromWardrobe: (productId) =>
@@ -260,11 +269,9 @@ export function App() {
 
         <footer className="foot">
           <div className="wrap foot__in">
-            <div className="logo" style={{ fontSize: 17 }}>
-              <span className="logo__mark serif">FF</span>
-          <span className="logo__word">
-            FITS<em className="serif">From</em>
-          </span>
+            <div className="logo" style={{ fontSize: 16 }}>
+              <Mark size={22} />
+              <span className="logo__word">FITS FROM</span>
             </div>
             <p>
               Live products and prices from each brand’s own store. Your photo and measurements stay
@@ -323,10 +330,8 @@ function Nav({
     <header className="nav">
       <div className="wrap nav__inner">
         <button className="logo" onClick={() => go('home')}>
-          <span className="logo__mark serif">FF</span>
-          <span className="logo__word">
-            FITS<em className="serif">From</em>
-          </span>
+          <Mark size={22} />
+          <span className="logo__word">FITS FROM</span>
         </button>
 
         <div className="nav__links">

@@ -199,7 +199,7 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
   const results = useMemo(() => {
     if (!executed || ask === 'scents') return []
     const test = ASKS.find((a) => a.id === ask)?.test ?? (() => true)
-    const needle = q.trim().toLowerCase().replace(/[^a-z0-9]/g, '')
+    const needle = q.trim().toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
 
     // Influencer lens: their proven pieces + their style DNA.
     const iconFits = icon ? FITS.filter((f) => f.who === icon) : []
@@ -216,13 +216,16 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
       if (color !== 'all' && productColor(p) !== color) return false
       if (badge === 'cosigned' && cosigns(p.id).length === 0) return false
       if (badge === 'grail' && p.tier !== 'grail') return false
-      if (sizeF === 'mine' && p.sizeSystem === 'one') return false
+      // A one-size belt or cap is, by definition, in your size — don't hide it.
+      if (sizeF === 'mine' && p.sizeSystem === 'one' && p.category !== 'accessory') return false
       if (icon && !provenIds.has(p.id) && !p.styles.some((st) => iconStyles.has(st))) return false
       if (needle) {
-        const hay = `${p.brand} ${p.name} ${p.fabric ?? ''} ${p.styles.join(' ')}`
+        // Space-collapsing used to make "label trout" match "belt" — keep word
+        // boundaries and require every typed word to appear somewhere.
+        const hay = ` ${`${p.brand} ${p.name} ${p.fabric ?? ''} ${p.styles.join(' ')}`
           .toLowerCase()
-          .replace(/[^a-z0-9]/g, '')
-        if (!hay.includes(needle)) return false
+          .replace(/[^a-z0-9]+/g, ' ')} `
+        if (!needle.split(' ').filter(Boolean).every((w) => hay.includes(` ${w}`))) return false
       }
       return true
     })
