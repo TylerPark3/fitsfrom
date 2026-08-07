@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { CutoutImg } from './CutoutImg'
 import { CATALOG } from '../data/catalog'
 import { useStore } from '../lib/store'
 
@@ -26,15 +27,19 @@ export function Room() {
     .filter((p): p is NonNullable<typeof p> => !!p)
   const customImgs = customs.filter((c) => c.photo)
 
-  const hanging = [
-    ...items.filter((p) => ['top', 'shirt', 'knit', 'outer'].includes(p.category)).map((p) => p.image),
-    ...customImgs.filter((c) => ['top', 'shirt', 'knit', 'outer'].includes(c.category)).map((c) => c.photo),
-  ].slice(0, 6)
-  const folded = [
-    ...items.filter((p) => p.category === 'pants').map((p) => p.image),
-    ...customImgs.filter((c) => c.category === 'pants').map((c) => c.photo),
-  ].slice(0, 4)
-  const shoes = items.filter((p) => p.category === 'shoes').map((p) => p.image).slice(0, 6)
+  // One representative per type — the diagram, not the inventory.
+  const firstOf = (pred: (c: string, sil?: string) => boolean): string | null => {
+    const hit = items.find((p) => pred(p.category, p.silhouette))
+    if (hit) return hit.image
+    const cu = customImgs.find((c) => pred(c.category))
+    return cu ? cu.photo : null
+  }
+  const reps: { key: string; label: string; shelf: string; img: string | null }[] = [
+    { key: 'long', label: 'Long sleeve', shelf: 'Tops', img: firstOf((c) => ['top', 'shirt', 'knit', 'outer'].includes(c)) },
+    { key: 'shorts', label: 'Shorts', shelf: 'Shorts', img: firstOf((c, s2) => c === 'pants' && s2 === 'short') },
+    { key: 'pants', label: 'Pants', shelf: 'Pants', img: firstOf((c, s2) => c === 'pants' && s2 !== 'short') },
+    { key: 'shoes', label: 'Shoes', shelf: 'Shoes', img: firstOf((c) => c === 'shoes') },
+  ]
 
   const posters = profile.teams.slice(0, 2)
   const scrollTo = (label: string) =>
@@ -71,48 +76,29 @@ export function Room() {
           ))}
       </div>
 
-      {/* the rail */}
-      <button className="room2__rail" onClick={() => scrollTo('Tops')} aria-label="Open tops & shirts">
+      {/* the rail — one hanger per type; click to open that shelf */}
+      <div className="room2__rail">
         <i className="room2__bar" />
-                {hanging.map((img, i) => (
-          <span className="hanger" key={i} style={{ transform: `rotate(${i % 2 ? 1.4 : -1.1}deg)` }}>
+        {reps.map((r, i) => (
+          <button
+            key={r.key}
+            className={`hanger${r.img ? '' : ' hanger--ghost'}`}
+            style={{ transform: `rotate(${i % 2 ? 1.3 : -1.1}deg)` }}
+            onClick={() => r.img && scrollTo(r.shelf)}
+            aria-label={`Open ${r.label}`}
+          >
             <i className="hanger__hook" />
-            <img src={img} alt="" loading="lazy" />
-          </span>
+            {r.img ? (
+              <CutoutImg src={r.img} className="hanger__img" />
+            ) : (
+              <svg viewBox="0 0 60 40" aria-hidden="true">
+                <path d="M30 2 q6 0 6 6 q0 4 -5 6 L8 32 q-3 2 0 4 l44 0 q3 -2 0 -4 L31 14" fill="none" stroke="#8a7a5e" strokeWidth="2.4" strokeLinecap="round" />
+              </svg>
+            )}
+            <span className="hanger__label">{r.label}</span>
+          </button>
         ))}
-        {Array.from({ length: Math.max(0, 5 - hanging.length) }, (_, i) => (
-          <span className="hanger hanger--ghost" key={`g${i}`} style={{ transform: `rotate(${i % 2 ? -1.6 : 1.2}deg)` }}>
-            <svg viewBox="0 0 60 40" aria-hidden="true">
-              <path d="M30 2 q6 0 6 6 q0 4 -5 6 L8 32 q-3 2 0 4 l44 0 q3 -2 0 -4 L31 14" fill="none" stroke="#8a7a5e" strokeWidth="2.4" strokeLinecap="round" />
-            </svg>
-          </span>
-        ))}
-      </button>
-
-      {/* dresser with folded pants */}
-      <button className="room2__dresser" onClick={() => scrollTo('Pants')} aria-label="Open pants">
-        {folded.map((img, i) => (
-          <span className="fold" key={i}>
-            <img src={img} alt="" loading="lazy" />
-          </span>
-        ))}
-        <i className="room2__dressertop" />
-      </button>
-
-      {/* shoe rack — bottom left */}
-      <button className="shoerack" onClick={() => scrollTo('Shoes')} aria-label="Open shoe collection">
-        <span className="shoerack__shelf">
-          {shoes.slice(0, 3).map((img, i) => (
-            <img key={i} src={img} alt="" loading="lazy" />
-          ))}
-          {shoes.length === 0 && <i className="shoerack__hint">shoes go here</i>}
-        </span>
-        <span className="shoerack__shelf">
-          {shoes.slice(3, 6).map((img, i) => (
-            <img key={i} src={img} alt="" loading="lazy" />
-          ))}
-        </span>
-      </button>
+      </div>
 
       <i className="room2__floor" />
     </div>
