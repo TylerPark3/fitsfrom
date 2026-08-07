@@ -64,7 +64,7 @@ export function Home({ go }: { go: (v: View) => void }) {
           </h1>
           <p className="mast__sub">
             <em className="serif" style={{ color: '#ff8a6d', fontSize: '1.15em' }}>Style is shared.</em>{' '}
-            We curate the fits, break them down piece by piece, and size them to you.
+            Take what you like from the best and make it your own.
           </p>
           <div className="row" style={{ gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
             <button className="btn btn--invert btn--lg" onClick={() => go('fits')}>
