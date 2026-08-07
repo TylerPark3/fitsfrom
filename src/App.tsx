@@ -185,6 +185,7 @@ export function App() {
         />
 
         <main>
+          <div className="viewfade" key={view}>
           {trialOver && GATED.includes(view) ? (
             <div className="wrap" style={{ paddingBottom: 110 }}>
               <div className="pagehead" style={{ textAlign: 'center', paddingTop: 80 }}>
@@ -231,6 +232,7 @@ export function App() {
           {view === 'saved' && <SavedView onOpen={setOpenProduct} go={go} />}
             </>
           )}
+          </div>
         </main>
 
         <footer className="foot">

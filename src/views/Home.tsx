@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { View } from '../App'
 import { CATALOG, BRANDS } from '../data/catalog'
 import { FITS } from '../data/fits'
@@ -17,6 +17,65 @@ export function fitOfTheDay() {
  * Front page of fit culture — magazine collage, not boxes.
  * Cutout-style tilted photo cards, overlapping serif headline, daily fit.
  */
+/** Counts down to the next daily drop (midnight local). */
+function DropCountdown() {
+  const [left, setLeft] = useState('')
+  useEffect(() => {
+    const tick = () => {
+      const now = new Date()
+      const next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1)
+      const ms = next.getTime() - now.getTime()
+      const h = String(Math.floor(ms / 3600000)).padStart(2, '0')
+      const m = String(Math.floor((ms % 3600000) / 60000)).padStart(2, '0')
+      const sec = String(Math.floor((ms % 60000) / 1000)).padStart(2, '0')
+      setLeft(`${h}:${m}:${sec}`)
+    }
+    tick()
+    const t = setInterval(tick, 1000)
+    return () => clearInterval(t)
+  }, [])
+  return <div className="fotd__count">NEXT DROP IN {left}</div>
+}
+
+/** Muted hero loop — activates when footage exists at /hero/. Poster-first, reduced-motion safe. */
+function HeroVideo() {
+  const [ok, setOk] = useState(true)
+  const [playing, setPlaying] = useState(true)
+  const ref = useRef<HTMLVideoElement>(null)
+  const reduced =
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (reduced || !ok) return null
+  const src = typeof window !== 'undefined' && window.innerWidth < 720 ? '/hero/hero-mobile.mp4' : '/hero/hero-desktop.mp4'
+  return (
+    <>
+      <video
+        ref={ref}
+        className="mast__video"
+        src={src}
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/editorial/iverson-crowd.jpg"
+        onError={() => setOk(false)}
+      />
+      <button
+        className="mast__vidbtn"
+        aria-label={playing ? 'Pause video' : 'Play video'}
+        onClick={() => {
+          const v = ref.current
+          if (!v) return
+          if (playing) v.pause()
+          else void v.play()
+          setPlaying(!playing)
+        }}
+      >
+        {playing ? '❚❚' : '▶'}
+      </button>
+    </>
+  )
+}
+
 export function Home({ go }: { go: (v: View) => void }) {
   const { profile } = useStore()
   const today = fitOfTheDay()
@@ -55,6 +114,7 @@ export function Home({ go }: { go: (v: View) => void }) {
           <img src="/fits/clarkson-tunnel.jpg" alt="" />
           <img src="/fits/sga-arrival.jpg" alt="" />
         </div>
+        <HeroVideo />
         <div className="mast__overlay">
           <p className="mast__date"><Type text={`${date.toUpperCase()} — THE FRONT PAGE OF FIT CULTURE`} speed={16} /></p>
           <h1 className="mast__head">
@@ -123,9 +183,14 @@ export function Home({ go }: { go: (v: View) => void }) {
                 Open the breakdown <Arrow />
               </button>
             </div>
+            <DropCountdown />
           </div>
         </div>
       </section>
+
+      <div className="interstitial" aria-hidden="true">
+        Every piece <em>identified.</em>
+      </div>
 
       <section className="wrap">
         <PhoneDemo go={go} />
