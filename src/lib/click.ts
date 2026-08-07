@@ -90,11 +90,15 @@ export function playClick(variant: Variant = 'tap') {
  * Global click layer: any button/link gets the tick, with the variant chosen
  * from what the control does. Attached once at app start.
  */
+let installed = false
+
 export function installClickSounds() {
-  if (typeof window === 'undefined') return
+  if (typeof window === 'undefined' || installed) return
+  installed = true
   window.addEventListener(
     'pointerdown',
     (e) => {
+      if (muted) return
       const el = (e.target as HTMLElement | null)?.closest(
         'button, a, .chip, .inttile, .teamtile, .tile, .opt, .card__save, .drop__row',
       ) as HTMLElement | null

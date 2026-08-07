@@ -360,9 +360,11 @@ function Nav({
         <button
           className="iconbtn"
           aria-label={sound ? 'Mute clicks' : 'Unmute clicks'}
+          aria-pressed={!sound}
           onClick={() => {
-            setMuted(sound)
-            setSound(!sound)
+            const next = !sound
+            setMuted(!next)
+            setSound(next)
           }}
           style={{ fontSize: 13 }}
         >

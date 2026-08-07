@@ -2403,7 +2403,7 @@ input.seg__control::placeholder {
 }
 
 .stile[aria-pressed='true'] .stile__celebs {
-  color: #ff8a6d !important;
+  color: var(--red) !important;
 }
 
 .tile__tick {
@@ -2479,7 +2479,7 @@ input.seg__control::placeholder {
 }
 
 .stile[aria-pressed='true'] .stile__celebs {
-  color: #ff8a6d !important;
+  color: var(--red) !important;
 }
 
 .tile__tick {
@@ -4977,7 +4977,7 @@ input.seg__control::placeholder {
 .mast__head em {
   font-style: italic;
   font-weight: 400;
-  color: #ff6a4d;
+  color: var(--red);
   letter-spacing: -0.02em;
 }
 
