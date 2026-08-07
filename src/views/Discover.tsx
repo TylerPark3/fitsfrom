@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { View } from '../App'
 import { CATALOG, BRANDS, type Product } from '../data/catalog'
 import { FITS } from '../data/fits'
@@ -12,6 +12,100 @@ import { Arrow, Search } from '../components/Icons'
 import { Type } from '../components/Type'
 
 type Sort = 'match' | 'low' | 'high'
+
+interface DropOption {
+  id: string
+  title: string
+  sub?: string
+  disabled?: boolean
+}
+
+/** Soar-grade dropdown: labeled trigger, floating card, rich rows. */
+function Drop({
+  label,
+  value,
+  options,
+  onPick,
+  seg = false,
+}: {
+  label: string
+  value: string
+  options: DropOption[]
+  onPick: (id: string) => void
+  seg?: boolean
+}) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!open) return
+    const close = (e: MouseEvent) => {
+      if (!ref.current?.contains(e.target as Node)) setOpen(false)
+    }
+    window.addEventListener('mousedown', close)
+    return () => window.removeEventListener('mousedown', close)
+  }, [open])
+
+  const current = options.find((o) => o.id === value)
+
+  return (
+    <div className={`drop${seg ? ' drop--seg' : ''}`} ref={ref}>
+      <button
+        type="button"
+        className={seg ? 'seg' : 'drop__pill'}
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+      >
+        <span className="seg__label">{label}</span>
+        <span className="drop__value">
+          {current?.title ?? '—'}
+          <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" />
+          </svg>
+        </span>
+      </button>
+      {open && (
+        <div className="drop__panel" role="listbox">
+          {options.map((o) => (
+            <button
+              key={o.id}
+              type="button"
+              className="drop__row"
+              role="option"
+              aria-selected={o.id === value}
+              disabled={o.disabled}
+              onClick={() => {
+                if (o.disabled) return
+                onPick(o.id)
+                setOpen(false)
+              }}
+            >
+              <span className="drop__title">
+                {o.id === value && <i>✓</i>}
+                {o.title}
+              </span>
+              {o.sub && <span className="drop__sub">{o.sub}</span>}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+const ASK_SUBS: Record<string, string> = {
+  any: 'The whole vault',
+  tees: 'Heavyweight, boxy, graphic',
+  shirts: 'Oxfords, flannels, camp collars',
+  knit: 'Sweaters, cardigans, vests',
+  outer: 'Jackets & coats',
+  parkas: 'Down & technical shells',
+  pants: 'Denim, cargos, trousers',
+  shorts: 'Jorts & baggies',
+  shoes: 'Sneakers & boots',
+  acc: 'Caps, chains, socks, bags',
+  scents: 'The fragrance files',
+}
 
 const ASKS: { id: string; label: string; test: (p: Product) => boolean }[] = [
   { id: 'any', label: 'Anything', test: () => true },
@@ -145,27 +239,19 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
               <Type text={`${BRANDS.length} BRANDS · ${CATALOG.length} LIVE PIECES · SIZED TO YOU`} speed={14} />
             </span>
             <h2 className="deck__head">
-              <Type text="WHAT ARE YOU LOOKING" speed={40} /> <em className="serif">for?</em>
+              <Type text="FIND YOUR" speed={60} /> <em className="serif">fit.</em>
             </h2>
           </>
         )}
 
         <div className="deck__bar">
-          <label className="seg">
-            <span className="seg__label">Looking for</span>
-            <select
-              className="seg__control"
-              value={ask}
-              onChange={(e) => setAsk(e.target.value)}
-              aria-label="Category"
-            >
-              {ASKS.map((a) => (
-                <option key={a.id} value={a.id}>
-                  {a.label}
-                </option>
-              ))}
-            </select>
-          </label>
+          <Drop
+            seg
+            label="Looking for"
+            value={ask}
+            onPick={setAsk}
+            options={ASKS.map((a) => ({ id: a.id, title: a.label, sub: ASK_SUBS[a.id] }))}
+          />
           <i className="seg__div" />
           <label className="seg seg--grow">
             <span className="seg__label">Details</span>
@@ -184,41 +270,47 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
         </div>
 
         <div className="deck__subs">
-          <select className="select" value="men" onChange={() => {}} aria-label="Cut">
-            <option value="men">Men’s</option>
-            <option value="women" disabled>
-              Women’s — expanding
-            </option>
-          </select>
-          <select className="select" value="me" onChange={() => {}} aria-label="Size">
-            <option value="me">
-              My size · {profile.chest}″ / {profile.waist}″
-            </option>
-          </select>
-          <select
-            className="select"
+          <Drop
+            label="Cut"
+            value="men"
+            onPick={() => {}}
+            options={[
+              { id: 'men', title: 'Men’s', sub: 'The whole vault' },
+              { id: 'women', title: 'Women’s', sub: 'Expanding soon', disabled: true },
+            ]}
+          />
+          <Drop
+            label="Size"
+            value="me"
+            onPick={() => {}}
+            options={[
+              { id: 'me', title: 'My size', sub: `${profile.chest}″ chest · ${profile.waist}″ waist` },
+            ]}
+          />
+          <Drop
+            label="Inspired by"
             value={icon}
-            onChange={(e) => setIcon(e.target.value)}
-            aria-label="Inspired by"
-          >
-            <option value="">Inspired by — anyone</option>
-            {iconChoices.map((who) => (
-              <option key={who} value={who}>
-                {who}
-              </option>
-            ))}
-          </select>
+            onPick={setIcon}
+            options={[
+              { id: '', title: 'Anyone', sub: 'No filter' },
+              ...iconChoices.map((who) => ({
+                id: who,
+                title: who,
+                sub: `${FITS.filter((f) => f.who === who).length} fit${FITS.filter((f) => f.who === who).length === 1 ? '' : 's'} on file`,
+              })),
+            ]}
+          />
           {executed && (
-            <select
-              className="select"
+            <Drop
+              label="Sort"
               value={sort}
-              onChange={(e) => setSort(e.target.value as Sort)}
-              aria-label="Sort"
-            >
-              <option value="match">Best match</option>
-              <option value="low">Price: low → high</option>
-              <option value="high">Price: high → low</option>
-            </select>
+              onPick={(v) => setSort(v as Sort)}
+              options={[
+                { id: 'match', title: 'Best match', sub: 'Ranked to your taste' },
+                { id: 'low', title: 'Price ↑', sub: 'Low to high' },
+                { id: 'high', title: 'Price ↓', sub: 'High to low' },
+              ]}
+            />
           )}
         </div>
       </div>

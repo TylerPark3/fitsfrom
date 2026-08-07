@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { View } from '../App'
 import { CATALOG } from '../data/catalog'
 import { useStore } from '../lib/store'
@@ -10,6 +11,7 @@ import { Type } from '../components/Type'
 
 export function AvatarView({ go }: { go: (v: View) => void }) {
   const { profile, setProfile, reset, wardrobe, customs } = useStore()
+  const [tagDraft, setTagDraft] = useState('')
 
   const onHeightWeight = (patch: { height?: number; weight?: number }) => {
     const height = patch.height ?? profile.height
@@ -154,6 +156,40 @@ export function AvatarView({ go }: { go: (v: View) => void }) {
               </div>
             </div>
           )}
+
+          <div className="panel">
+            <h3>More about you</h3>
+            <p>Personalization never ends — add anything: artists, shows, teams, hobbies.</p>
+            <div className="room__input" style={{ marginBottom: 12 }}>
+              <input
+                className="text-input"
+                placeholder="“Larry June”, “F1”, “anime”, “thrifting”…"
+                value={tagDraft}
+                onChange={(e) => setTagDraft(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && tagDraft.trim()) {
+                    setProfile({ tags: [...profile.tags, tagDraft.trim()] })
+                    setTagDraft('')
+                  }
+                }}
+              />
+            </div>
+            {profile.tags.length > 0 && (
+              <div className="chips">
+                {profile.tags.map((t) => (
+                  <button
+                    key={t}
+                    className="chip chip--sm"
+                    aria-pressed
+                    onClick={() => setProfile({ tags: profile.tags.filter((x) => x !== t) })}
+                    title="Remove"
+                  >
+                    {t} ✕
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
 
           <div className="row" style={{ gap: 10, flexWrap: 'wrap' }}>
             <button className="btn btn--primary" onClick={() => go('discover')}>

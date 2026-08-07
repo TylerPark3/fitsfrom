@@ -25,6 +25,8 @@ export interface Profile {
   teams: string[]
   /** Brands they rock with — boosts ranking. */
   brands: string[]
+  /** Free-form interests — names, shows, anything. Personalization never ends. */
+  tags: string[]
   budgetMin: number
   budgetMax: number
   tiers: Tier[]
@@ -102,6 +104,7 @@ export const DEFAULT_STATE: AppState = {
     icons: [],
     teams: [],
     brands: [],
+    tags: [],
     budgetMin: 0,
     budgetMax: 200,
     tiers: ['entry', 'solid'],
