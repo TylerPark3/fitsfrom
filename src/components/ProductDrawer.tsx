@@ -4,6 +4,7 @@ import { STYLES, TIERS } from '../data/taxonomy'
 import { useStore } from '../lib/store'
 import { matchScore, scoreLabel } from '../lib/match'
 import { recommendSize, sizeOptions } from '../lib/sizing'
+import { buyUrl } from '../lib/affiliate'
 import { Bookmark, Close, External, Plus, CheckInk } from './Icons'
 
 export function ProductDrawer({
@@ -175,7 +176,7 @@ export function ProductDrawer({
             <a
               className="btn btn--primary"
               style={{ flex: 1.2 }}
-              href={product.url}
+              href={buyUrl(product.url)}
               target="_blank"
               rel="noreferrer noopener"
             >

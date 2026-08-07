@@ -3,6 +3,7 @@ import { CATALOG, type Product } from '../data/catalog'
 import { FITS, type Fit, type FitPiece } from '../data/fits'
 import { useStore } from '../lib/store'
 import { recommendSize } from '../lib/sizing'
+import { buyUrl } from '../lib/affiliate'
 import { Bookmark, Close, External } from '../components/Icons'
 
 /** Best buyable stand-in for a worn piece. */
@@ -127,7 +128,7 @@ function FitDrawer({ fit, onClose }: { fit: Fit; onClose: () => void }) {
                   </button>
                   <a
                     className="iconbtn"
-                    href={p.url}
+                    href={buyUrl(p.url)}
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label={`Buy at ${p.brand}`}
