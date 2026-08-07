@@ -163,14 +163,14 @@ const DEMO_STEPS = [
     step: 'Photo of yourself',
   },
   {
-    kicker: 'STEP 02 — ICONS',
-    title: 'Pick who inspires you',
-    step: 'Choose your style',
+    kicker: 'STEP 02 — STYLES & ARTISTS',
+    title: 'Pick your styles and artists',
+    step: 'Styles and Artists',
   },
   {
-    kicker: 'STEP 03 — SIZES',
-    title: 'Your sizes, computed per brand',
-    step: 'Sizes',
+    kicker: 'STEP 03 — SIZES & BRANDS',
+    title: 'Your sizes. Your brands.',
+    step: 'Sizes and Brands',
   },
   {
     kicker: 'STEP 04 — PORTFOLIO',
@@ -261,9 +261,7 @@ function PhoneDemo({ go }: { go: (v: View) => void }) {
             <div className="phone__mock">
               {[
                 ['TOPS', 'M'],
-                ['SHIRTS', 'M / 15.5'],
                 ['PANTS', '32 × 32'],
-                ['SHOES', 'US 10.5'],
                 ['STÜSSY RUNS BOXY', 'SIZE S'],
               ].map(([k, v]) => (
                 <div className="phone__row" key={k}>
@@ -271,6 +269,24 @@ function PhoneDemo({ go }: { go: (v: View) => void }) {
                   <b>{v}</b>
                 </div>
               ))}
+              <span className="phone__kicker" style={{ marginTop: 6 }}>BRANDS YOU ROCK</span>
+              <div className="phone__artists" style={{ gridTemplateColumns: '1fr 1fr' }}>
+                {[
+                  ['Stüssy', true],
+                  ['JJJJound', true],
+                  ['Kith', true],
+                  ['Fear of God', false],
+                ].map(([b, on]) => {
+                  const pr = CATALOG.find((x) => x.brand === b)
+                  return (
+                    <div className={`phone__artist${on ? ' is-on' : ''}`} key={b as string}>
+                      {pr && <img src={pr.image} alt="" loading="lazy" style={{ filter: on ? 'none' : undefined }} />}
+                      {on ? <span className="phone__artistick">✓</span> : null}
+                      <span className="phone__artistname">{b as string}</span>
+                    </div>
+                  )
+                })}
+              </div>
             </div>
           )}
 
