@@ -218,6 +218,16 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
         </div>
       </div>
 
+      {!executed && (
+        <div className="deckstage" aria-hidden="true">
+          <span className="deckstage__glow" />
+          <img className="deckstage__fig" src="/styles/watermark.jpg" alt="" />
+          <p className="mono-line deckstage__cap">
+            <Type text="THE SILHOUETTE IS THE STATEMENT." speed={24} />
+          </p>
+        </div>
+      )}
+
       {executed ? (
         <>
           <div className="spread" style={{ margin: '26px 0 16px' }}>
