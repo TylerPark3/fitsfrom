@@ -52,7 +52,7 @@ export function WardrobeView({
         <div className="pagehead">
           <span className="eyebrow">Wardrobe</span>
           <h2>Everything you own, in one place.</h2>
-          <p>Add what you have. Lapel fills the holes instead of the feed.</p>
+          <p>Add what you have. Fits From fills the holes instead of the feed.</p>
         </div>
         <div className="empty">
           <h3>Nothing in here yet.</h3>
