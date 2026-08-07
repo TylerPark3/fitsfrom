@@ -110,19 +110,13 @@ export function Room() {
         ))}
       </div>
 
-      {/* shoes live in a box on the floor */}
-      <button
-        className={`shoebox${shoeImg ? '' : ' shoebox--empty'}`}
-        onClick={() => shoeImg && scrollTo('Shoes')}
-        aria-label="Open shoes"
-      >
-        <span className="shoebox__lid" />
-        <span className="shoebox__body">
-          {shoeImg ? <CutoutImg src={shoeImg} className="shoebox__shoe" /> : null}
-          <span className="shoebox__brand">FITS FROM</span>
-        </span>
-        <span className="hanger__label">Shoes</span>
-      </button>
+      {/* shoes sit on the floor under the rail */}
+      {shoeImg && (
+        <button className="floorshoe" onClick={() => scrollTo('Shoes')} aria-label="Open shoes">
+          <CutoutImg src={shoeImg} className="floorshoe__img" />
+          <span className="hanger__label">Shoes</span>
+        </button>
+      )}
 
       <i className="room2__floor" />
     </div>
