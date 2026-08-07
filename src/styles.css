@@ -1424,10 +1424,32 @@ input.seg__control::placeholder {
 }
 
 .sketch--walk {
-  height: clamp(250px, 38vh, 400px);
+  height: clamp(210px, 30vh, 320px);
   aspect-ratio: 720 / 888;
   transform: translateY(-4%);
-  opacity: 0.5;
+  opacity: 0.45;
+}
+
+.sketch--side {
+  height: clamp(220px, 32vh, 340px);
+  opacity: 0.48;
+}
+
+.sketch--center {
+  height: clamp(340px, 52vh, 540px);
+  aspect-ratio: 736 / 1104;
+  opacity: 0.85;
+  filter: saturate(0.92);
+}
+
+.sketch--center .sketch__hatch {
+  -webkit-mask-image: url('/styles/watermark3-mask.png');
+  mask-image: url('/styles/watermark3-mask.png');
+  opacity: 0.35;
+}
+
+.sketch--center .sketch__hatch--cross {
+  opacity: 0.25;
 }
 
 .sketch--walk .sketch__hatch {
