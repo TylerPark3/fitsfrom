@@ -1349,45 +1349,52 @@ input.seg__control::placeholder {
 
 .teamtile {
   position: relative;
-  aspect-ratio: 1 / 0.82;
+  aspect-ratio: 1 / 0.92;
   border-radius: 13px;
-  border: 2px solid transparent;
+  border: 2px solid var(--line);
   overflow: hidden;
+  background: #fff;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 10px 11px;
-  filter: saturate(0.35) brightness(1.06);
-  transition: filter 320ms var(--ease), transform var(--med), border-color var(--fast), box-shadow var(--med);
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px;
+  transition: transform var(--med), border-color var(--fast), box-shadow var(--med);
 }
 
 .teamtile:hover {
-  filter: saturate(0.9);
   transform: translateY(-2px);
+  border-color: var(--ink-4);
+}
+
+.teamtile:hover .teamtile__logo {
+  filter: grayscale(0.3);
 }
 
 .teamtile[aria-pressed='true'] {
-  filter: saturate(1.05);
-  border-color: var(--ink);
   box-shadow: var(--shadow);
 }
 
-.teamtile__name {
-  font-size: 13.5px;
-  font-weight: 750;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  color: #fff;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+.teamtile[aria-pressed='true'] .teamtile__logo {
+  filter: grayscale(0) saturate(1.08);
+  transform: scale(1.05);
+}
+
+.teamtile__logo {
+  width: 74%;
+  height: 74%;
+  object-fit: contain;
+  filter: grayscale(1);
+  transition: filter 340ms var(--ease), transform 400ms var(--ease);
 }
 
 .teamtile__star {
   font-family: var(--mono);
-  font-size: 8.5px;
+  font-size: 8px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--ink-3);
 }
 
 /* Soar-grade dropdowns */

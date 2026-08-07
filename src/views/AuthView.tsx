@@ -124,12 +124,12 @@ export function AuthView({ onDone }: { onDone: () => void }) {
 
           <p className="eyebrow" style={{ margin: '22px 0 10px' }}>Teams</p>
           <div className="teamgrid">
-            {TEAMS.map(([t, players, c1, c2]) => (
+            {TEAMS.map(([t, players, c1]) => (
               <button
                 key={t}
                 className="teamtile"
                 aria-pressed={profile.teams.includes(t)}
-                style={{ background: `linear-gradient(135deg, ${c1} 0 52%, ${c2} 52% 100%)` }}
+                style={profile.teams.includes(t) ? { borderColor: c1 } : undefined}
                 onClick={() => setProfile({ teams: flip(profile.teams, t) })}
               >
                 {profile.teams.includes(t) && (
@@ -137,7 +137,7 @@ export function AuthView({ onDone }: { onDone: () => void }) {
                     <CheckInk size={13} />
                   </span>
                 )}
-                <span className="teamtile__name">{t}</span>
+                <img className="teamtile__logo" src={`/teams/${t.toLowerCase()}.jpg`} alt={t} loading="lazy" />
                 {players && <span className="teamtile__star">{players}</span>}
               </button>
             ))}
