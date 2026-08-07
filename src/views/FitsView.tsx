@@ -53,9 +53,10 @@ interface Person {
 
 /** Three files free at a time — the trio rotates monthly. */
 function freeFiles(people: string[]): string[] {
+  const rest = people.filter((p) => p !== 'SGA')
   const d = new Date()
-  const off = (d.getFullYear() * 12 + d.getMonth()) % Math.max(1, people.length)
-  return [0, 1, 2].map((i) => people[(off + i) % people.length])
+  const off = (d.getFullYear() * 12 + d.getMonth()) % Math.max(1, rest.length)
+  return ['SGA', rest[off % rest.length], rest[(off + 1) % rest.length]]
 }
 
 export function FitsView({ go }: { go: (v: View) => void }) {

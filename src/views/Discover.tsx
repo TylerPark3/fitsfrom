@@ -163,7 +163,7 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
   const results = useMemo(() => {
     if (!executed || ask === 'scents') return []
     const test = ASKS.find((a) => a.id === ask)?.test ?? (() => true)
-    const needle = q.trim().toLowerCase()
+    const needle = q.trim().toLowerCase().replace(/[^a-z0-9]/g, '')
 
     // Influencer lens: their proven pieces + their style DNA.
     const iconFits = icon ? FITS.filter((f) => f.who === icon) : []
@@ -177,7 +177,9 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
       if (sizeF === 'mine' && p.sizeSystem === 'one') return false
       if (icon && !provenIds.has(p.id) && !p.styles.some((st) => iconStyles.has(st))) return false
       if (needle) {
-        const hay = `${p.brand} ${p.name} ${p.fabric ?? ''} ${p.styles.join(' ')}`.toLowerCase()
+        const hay = `${p.brand} ${p.name} ${p.fabric ?? ''} ${p.styles.join(' ')}`
+          .toLowerCase()
+          .replace(/[^a-z0-9]/g, '')
         if (!hay.includes(needle)) return false
       }
       return true

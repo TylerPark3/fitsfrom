@@ -160,7 +160,7 @@ for (const [brand, products] of Object.entries(feeds)) {
     perCat[cat] = (perCat[cat] ?? 0) + 1
     const silhouette = SILHOUETTE.find(([, re]) => re.test(hay))?.[0] ?? 'tee'
     picked.push({
-      id: `${brand.replace(/[^a-z]/gi, '').toLowerCase()}-${p.handle.slice(0, 40)}`,
+      id: `${brand.replace(/[^a-z]/gi, '').toLowerCase()}-${p.handle.slice(0, 70)}`,
       brand,
       name: titleCase(p.title.replace(/\s*[-–—]\s*(mens?|unisex)$/i, '')),
       category: cat,
@@ -182,8 +182,11 @@ for (const [brand, products] of Object.entries(feeds)) {
   out.push(...picked)
 }
 
-writeFileSync('src/data/catalog.gen.json', JSON.stringify(out, null, 1))
-console.error(`curated ${out.length} products from ${Object.keys(feeds).length} brands`)
+// hard guarantee: no duplicate ids ever reach the app
+const seenIds = new Set()
+const deduped = out.filter((p) => (seenIds.has(p.id) ? false : (seenIds.add(p.id), true)))
+writeFileSync('src/data/catalog.gen.json', JSON.stringify(deduped, null, 1))
+console.error(`curated ${deduped.length} products from ${Object.keys(feeds).length} brands`)
 const byCat = {}
 out.forEach((p) => (byCat[p.category] = (byCat[p.category] ?? 0) + 1))
 console.error(byCat)
