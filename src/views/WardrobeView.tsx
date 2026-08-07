@@ -228,7 +228,13 @@ function Closet({ onOpen }: { onOpen: (id: string) => void }) {
               <div className="ctile" key={it.key}>
                 <button
                   className="ctile__img"
-                  onClick={() => it.productId && onOpen(it.productId)}
+                  onClick={() => {
+                    if (it.productId) onOpen(it.productId)
+                    else if (it.customId) {
+                      const c = customs.find((x) => x.id === it.customId)
+                      if (c?.link) window.open(c.link, '_blank', 'noopener')
+                    }
+                  }}
                   aria-label={it.name}
                 >
                   {it.img ? (
@@ -311,28 +317,51 @@ function parseQuickAdd(input: string) {
   return { name: name || input.trim(), category, size: size.toUpperCase() }
 }
 
-/** Add to closet: search the vault, type it, or snap it — no popups. */
+/** One clean way in: search the vault, paste a link, or snap a photo. */
 function OwnCloset() {
   const { addCustom, addToWardrobe, profile, toast } = useStore()
   const input = useRef<HTMLInputElement>(null)
+  const [mode, setMode] = useState<'search' | 'link' | 'snap'>('search')
   const [busy, setBusy] = useState(false)
-  const [quick, setQuick] = useState('')
   const [vaultQ, setVaultQ] = useState('')
+  const [linkUrl, setLinkUrl] = useState('')
+  const [linkName, setLinkName] = useState('')
   const [pending, setPending] = useState<{ photo: string; name: string; category: string } | null>(null)
 
   const vaultHits = vaultQ.trim()
     ? CATALOG.filter((p) =>
-        `${p.brand} ${p.name}`.toLowerCase().includes(vaultQ.trim().toLowerCase()),
-      ).slice(0, 4)
+        `${p.brand} ${p.name}`.toLowerCase().replace(/[^a-z0-9]/g, '').includes(vaultQ.trim().toLowerCase().replace(/[^a-z0-9]/g, '')),
+      ).slice(0, 5)
     : []
 
-  const quickAdd = () => {
-    const q = quick.trim()
-    if (!q) return
-    const { name, category, size } = parseQuickAdd(q)
-    addCustom({ id: `c${Date.now().toString(36)}`, name: size ? `${name} · ${size}` : name, category, photo: '' })
-    setQuick('')
-    toast(`Catalogued — ${name}`)
+  const addByLink = () => {
+    let url: URL
+    try {
+      url = new URL(linkUrl.trim())
+    } catch {
+      toast('That doesn’t look like a link')
+      return
+    }
+    const slug = url.pathname.split('/').filter(Boolean).pop() ?? ''
+    const fromSlug = slug
+      .replace(/[-_]+/g, ' ')
+      .replace(/\.(html?|php)$/i, '')
+      .replace(/\b\w/g, (ch) => ch.toUpperCase())
+      .trim()
+    const host = url.hostname.replace(/^www\./, '').split('.')[0]
+    const brandGuess = host.replace(/\b\w/g, (ch) => ch.toUpperCase())
+    const name = linkName.trim() || fromSlug || 'Linked piece'
+    const { category } = parseQuickAdd(`${name} ${slug}`)
+    addCustom({
+      id: `c${Date.now().toString(36)}`,
+      name: `${brandGuess} · ${name}`,
+      category,
+      photo: '',
+      link: url.href,
+    })
+    setLinkUrl('')
+    setLinkName('')
+    toast(`In your closet — ${name}`)
   }
 
   const accept = async (file: File | undefined) => {
@@ -350,104 +379,147 @@ function OwnCloset() {
     <div className="section">
       <div className="section__head">
         <h3>Add to your closet</h3>
-        <span className="tiny">Search it · type it · snap it — stays on this device</span>
+        <span className="tiny">Stays on this device</span>
       </div>
 
-      <div className="room__input" style={{ marginBottom: 10 }}>
-        <input
-          className="text-input"
-          placeholder="Search the vault to add — “stussy tee”, “3sixteen”…"
-          value={vaultQ}
-          onChange={(e) => setVaultQ(e.target.value)}
-        />
-        <button className="btn btn--ghost" onClick={() => input.current?.click()} aria-label="Snap a photo">
-          <Upload size={16} />
-        </button>
-        <input ref={input} type="file" accept="image/*" hidden onChange={(e) => void accept(e.target.files?.[0])} />
-      </div>
-
-      {vaultHits.length > 0 && (
-        <div className="vaulthits">
-          {vaultHits.map((p) => (
-            <button
-              key={p.id}
-              className="vaulthit"
-              onClick={() => {
-                addToWardrobe(p.id, recommendSize(p, profile).label, true)
-                setVaultQ('')
-                toast(`In your closet — ${p.name}`)
-              }}
-            >
-              <img src={p.image} alt="" loading="lazy" />
-              <span>
-                <b>{p.brand}</b> {p.name}
-              </span>
-              <i>+ add</i>
+      <div className="addcard">
+        <div className="addtabs">
+          {(
+            [
+              ['search', 'Search the vault'],
+              ['link', 'Paste a link'],
+              ['snap', 'Snap it'],
+            ] as const
+          ).map(([m, label]) => (
+            <button key={m} className="addtab" aria-pressed={mode === m} onClick={() => setMode(m)}>
+              {label}
             </button>
           ))}
         </div>
-      )}
 
-      <div className="room__input">
-        <input
-          className="text-input"
-          placeholder="Or type what you own — “carhartt jeans, 32”"
-          value={quick}
-          onChange={(e) => setQuick(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && quickAdd()}
-        />
-        <button className="btn btn--primary" onClick={quickAdd} aria-label="Add">
-          <Plus />
-        </button>
-      </div>
-      {busy && <p className="tiny" style={{ marginTop: 8 }}>Reading photo…</p>}
-
-      {pending && (
-        <div className="snapform">
-          <img src={pending.photo} alt="" />
-          <div className="snapform__body">
-            <input
-              className="text-input"
-              placeholder="What is it? “thrifted hoodie”"
-              value={pending.name}
-              onChange={(e) => setPending({ ...pending, name: e.target.value })}
-              autoFocus
-            />
-            <div className="chips" style={{ margin: '10px 0 14px' }}>
-              {CATEGORIES.map((c) => (
-                <button
-                  key={c.id}
-                  className="chip chip--sm"
-                  aria-pressed={pending.category === c.id}
-                  onClick={() => setPending({ ...pending, category: c.id })}
-                >
-                  {c.label}
-                </button>
-              ))}
+        {mode === 'search' && (
+          <>
+            <div className="room__input">
+              <input
+                className="text-input"
+                autoFocus
+                placeholder="“stussy tee”, “3sixteen”, “jordan”…"
+                value={vaultQ}
+                onChange={(e) => setVaultQ(e.target.value)}
+              />
             </div>
-            <div className="row" style={{ gap: 8 }}>
-              <button
-                className="btn btn--primary btn--sm"
-                onClick={() => {
-                  addCustom({
-                    id: `c${Date.now().toString(36)}`,
-                    name: pending.name.trim() || 'My piece',
-                    category: pending.category,
-                    photo: pending.photo,
-                  })
-                  setPending(null)
-                  toast('In your closet')
-                }}
-              >
-                Add to closet
+            {vaultHits.length > 0 && (
+              <div className="vaulthits" style={{ marginTop: 10 }}>
+                {vaultHits.map((p) => (
+                  <button
+                    key={p.id}
+                    className="vaulthit"
+                    onClick={() => {
+                      addToWardrobe(p.id, recommendSize(p, profile).label, true)
+                      setVaultQ('')
+                      toast(`In your closet — ${p.name}`)
+                    }}
+                  >
+                    <img src={p.image} alt="" loading="lazy" />
+                    <span>
+                      <b>{p.brand}</b> {p.name}
+                    </span>
+                    <i>+ add</i>
+                  </button>
+                ))}
+              </div>
+            )}
+            {vaultQ.trim() && vaultHits.length === 0 && (
+              <p className="tiny" style={{ marginTop: 10 }}>
+                Not in the vault — paste a link or snap it instead.
+              </p>
+            )}
+          </>
+        )}
+
+        {mode === 'link' && (
+          <>
+            <div className="room__input">
+              <input
+                className="text-input"
+                autoFocus
+                placeholder="https://stussy.com/products/…"
+                value={linkUrl}
+                onChange={(e) => setLinkUrl(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && addByLink()}
+              />
+            </div>
+            <div className="room__input" style={{ marginTop: 8 }}>
+              <input
+                className="text-input"
+                placeholder="Description (optional) — “purple shorts”"
+                value={linkName}
+                onChange={(e) => setLinkName(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && addByLink()}
+              />
+              <button className="btn btn--primary" onClick={addByLink}>
+                Add
               </button>
-              <button className="btn btn--quiet btn--sm" onClick={() => setPending(null)}>
-                Cancel
-              </button>
+            </div>
+          </>
+        )}
+
+        {mode === 'snap' && (
+          <>
+            <button className="btn btn--ghost" onClick={() => input.current?.click()}>
+              <Upload size={15} /> {busy ? 'Reading…' : 'Choose a photo'}
+            </button>
+            <input ref={input} type="file" accept="image/*" hidden onChange={(e) => void accept(e.target.files?.[0])} />
+          </>
+        )}
+
+        {pending && (
+          <div className="snapform" style={{ marginTop: 14 }}>
+            <img src={pending.photo} alt="" />
+            <div className="snapform__body">
+              <input
+                className="text-input"
+                placeholder="What is it? “thrifted hoodie”"
+                value={pending.name}
+                onChange={(e) => setPending({ ...pending, name: e.target.value })}
+                autoFocus
+              />
+              <div className="chips" style={{ margin: '10px 0 14px' }}>
+                {CATEGORIES.map((c) => (
+                  <button
+                    key={c.id}
+                    className="chip chip--sm"
+                    aria-pressed={pending.category === c.id}
+                    onClick={() => setPending({ ...pending, category: c.id })}
+                  >
+                    {c.label}
+                  </button>
+                ))}
+              </div>
+              <div className="row" style={{ gap: 8 }}>
+                <button
+                  className="btn btn--primary btn--sm"
+                  onClick={() => {
+                    addCustom({
+                      id: `c${Date.now().toString(36)}`,
+                      name: pending.name.trim() || 'My piece',
+                      category: pending.category,
+                      photo: pending.photo,
+                    })
+                    setPending(null)
+                    toast('In your closet')
+                  }}
+                >
+                  Add to closet
+                </button>
+                <button className="btn btn--quiet btn--sm" onClick={() => setPending(null)}>
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   )
 }
@@ -465,9 +537,7 @@ function MoreLikeYours({ onOpen }: { onOpen: (id: string) => void }) {
   if (!top || top[1] < 2) return null
 
   const picks = rank(
-    CATALOG.filter(
-      (p) => p.category === top[0] && !wardrobe.some((w) => w.productId === p.id),
-    ),
+    CATALOG.filter((p) => p.category === top[0] && !wardrobe.some((w) => w.productId === p.id)),
     profile,
   )
     .slice(0, 4)
@@ -490,7 +560,6 @@ function MoreLikeYours({ onOpen }: { onOpen: (id: string) => void }) {
     </div>
   )
 }
-
 
 /** Liked pieces live inside the wardrobe now. */
 function SavedShelf({ onOpen }: { onOpen: (id: string) => void }) {

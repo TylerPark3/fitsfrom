@@ -167,8 +167,13 @@ export function App() {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
+  // Pack guardrail: preserve scroll per view instead of always jumping to top.
+  const scrollMem = useRef<Record<string, number>>({})
+  const prevView = useRef(view)
   useEffect(() => {
-    window.scrollTo({ top: 0 })
+    scrollMem.current[prevView.current] = window.scrollY
+    prevView.current = view
+    window.scrollTo({ top: scrollMem.current[view] ?? 0 })
   }, [view])
 
   const go = (v: View) => setView(v)

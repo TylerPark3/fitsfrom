@@ -62,6 +62,8 @@ export interface CustomPiece {
   name: string
   category: string
   photo: string
+  /** Original product URL when added by link. */
+  link?: string
 }
 
 /** A planned fit: named set of refs (catalog product ids or custom ids). */
