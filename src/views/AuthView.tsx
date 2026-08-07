@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { useStore } from '../lib/store'
-import { Arrow } from '../components/Icons'
+import { FITS } from '../data/fits'
+import { Arrow, CheckInk } from '../components/Icons'
+
+const TEAMS = ['Lakers', 'Thunder', 'Mavs', 'Wizards', 'Suns', 'Warriors', 'Knicks', 'Heat', 'Celtics', 'Bulls', 'Cavs', 'Jazz']
 
 async function sha256(text: string): Promise<string> {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text))
@@ -11,7 +14,7 @@ async function sha256(text: string): Promise<string> {
 
 export function AuthView({ onDone }: { onDone: () => void }) {
   const store = useStore()
-  const [mode, setMode] = useState<'signup' | 'signin'>(store.account ? 'signin' : 'signup')
+  const [mode, setMode] = useState<'signup' | 'signin' | 'follow'>(store.account ? 'signin' : 'signup')
   const [first, setFirst] = useState('')
   const [last, setLast] = useState('')
   const [email, setEmail] = useState('')
@@ -40,7 +43,7 @@ export function AuthView({ onDone }: { onDone: () => void }) {
       store.setProfile({ name: first.trim() })
       store.toast(`Welcome, ${first.trim()}`)
       setBusy(false)
-      onDone()
+      setMode('follow')
     } else {
       const a = store.account
       if (!a) return setErr('No account on this device yet — create one.')
@@ -52,6 +55,59 @@ export function AuthView({ onDone }: { onDone: () => void }) {
       store.toast(`Welcome back, ${a.firstName}`)
       onDone()
     }
+  }
+
+  if (mode === 'follow') {
+    const people = Array.from(new Set(FITS.map((f) => f.who)))
+    const { profile, setProfile } = store
+    const flip = (list: string[], v: string) =>
+      list.includes(v) ? list.filter((x) => x !== v) : [...list, v]
+    return (
+      <div className="auth">
+        <div className="auth__card">
+          <h2 className="auth__title">Who do you follow?</h2>
+          <p className="auth__sub">Your feed reorders around them — fits first, trends next.</p>
+
+          <p className="eyebrow" style={{ margin: '22px 0 10px' }}>Athletes & artists</p>
+          <div className="chips">
+            {people.map((who) => (
+              <button
+                key={who}
+                className="chip"
+                aria-pressed={profile.icons.includes(who)}
+                onClick={() => setProfile({ icons: flip(profile.icons, who) })}
+              >
+                {profile.icons.includes(who) && <CheckInk size={12} />}
+                {who}
+              </button>
+            ))}
+          </div>
+
+          <p className="eyebrow" style={{ margin: '22px 0 10px' }}>Teams</p>
+          <div className="chips">
+            {TEAMS.map((t) => (
+              <button
+                key={t}
+                className="chip"
+                aria-pressed={profile.teams.includes(t)}
+                onClick={() => setProfile({ teams: flip(profile.teams, t) })}
+              >
+                {profile.teams.includes(t) && <CheckInk size={12} />}
+                {t}
+              </button>
+            ))}
+          </div>
+
+          <button
+            className="btn btn--primary btn--lg btn--block"
+            style={{ marginTop: 26 }}
+            onClick={onDone}
+          >
+            Done <Arrow />
+          </button>
+        </div>
+      </div>
+    )
   }
 
   return (

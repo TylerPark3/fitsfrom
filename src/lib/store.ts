@@ -19,6 +19,8 @@ export interface Profile {
   styles: StyleId[]
   /** People they want to dress like — picked at signup, drives similarity scores. */
   icons: string[]
+  /** Teams they follow — ESPN-style personalization for fit files and trends. */
+  teams: string[]
   budgetMin: number
   budgetMax: number
   tiers: Tier[]
@@ -93,6 +95,7 @@ export const DEFAULT_STATE: AppState = {
     fitPreference: 'true',
     styles: [],
     icons: [],
+    teams: [],
     budgetMin: 0,
     budgetMax: 200,
     tiers: ['entry', 'solid'],

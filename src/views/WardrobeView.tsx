@@ -454,9 +454,34 @@ function refImage(ref: string, customs: CustomPiece[]): { img: string; label: st
 
 /** Named fits — the virtual dressing room, flat-lay style. */
 function FitPlanner() {
-  const { wardrobe, customs, outfits, createOutfit, deleteOutfit, toggleOutfitRef, toast } =
+  const { wardrobe, customs, outfits, profile, createOutfit, deleteOutfit, toggleOutfitRef, toast } =
     useStore()
   const [editing, setEditing] = useState<string | null>(null)
+
+  // Whering-style: unlock what you already own — auto-assemble one piece per slot.
+  const autoMatch = () => {
+    const owned = wardrobe
+      .map((w) => CATALOG.find((x) => x.id === w.productId))
+      .filter((x): x is (typeof CATALOG)[number] => !!x)
+    const slots = ['top', 'shirt', 'knit', 'outer', 'pants', 'shoes']
+    const refs: string[] = []
+    for (const slot of slots) {
+      const pool = owned.filter((p) => p.category === slot)
+      const pick = pool.length ? rank(pool, profile)[0]?.product : undefined
+      if (pick) refs.push(pick.id)
+      else {
+        const custom = customs.find((c) => c.category === slot && !refs.includes(c.id))
+        if (custom) refs.push(custom.id)
+      }
+    }
+    if (refs.length < 2) {
+      toast('Add a few more pieces first')
+      return
+    }
+    const id = createOutfit(`Matched fit ${outfits.length + 1}`)
+    refs.forEach((r) => toggleOutfitRef(id, r))
+    toast('Matched from your closet')
+  }
 
   const pool: { ref: string; img: string; label: string }[] = [
     ...wardrobe
@@ -474,17 +499,22 @@ function FitPlanner() {
     <div className="section">
       <div className="section__head">
         <h3>Planned fits</h3>
-        <button
-          className="btn btn--ghost btn--sm"
-          onClick={() => {
-            const name = prompt('Name this fit (e.g. “date night”, “gameday”)')?.trim()
-            if (!name) return
-            setEditing(createOutfit(name))
-            toast('Tap pieces below to add them')
-          }}
-        >
-          <Plus /> New fit
-        </button>
+        <div className="row" style={{ gap: 6 }}>
+          <button className="btn btn--primary btn--sm" onClick={autoMatch}>
+            Match one for me
+          </button>
+          <button
+            className="btn btn--ghost btn--sm"
+            onClick={() => {
+              const name = prompt('Name this fit (e.g. “date night”, “gameday”)')?.trim()
+              if (!name) return
+              setEditing(createOutfit(name))
+              toast('Tap pieces below to add them')
+            }}
+          >
+            <Plus /> New fit
+          </button>
+        </div>
       </div>
 
       {outfits.length === 0 && (

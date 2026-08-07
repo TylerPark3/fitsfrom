@@ -93,8 +93,12 @@ export function FitsView({ go }: { go: (v: View) => void }) {
     if (ex) ex.fits.push(f)
     else people.push({ who: f.who, fits: [f] })
   }
-  // Free files walk first; the rest stay classified until membership.
+  // Followed people lead; then free files; the rest stay classified until membership.
+  const { profile } = useStore()
   people.sort((a, b) => {
+    const fa = profile.icons.includes(a.who) ? 0 : 1
+    const fb = profile.icons.includes(b.who) ? 0 : 1
+    if (fa !== fb) return fa - fb
     const ia = FREE_FILES.indexOf(a.who)
     const ib = FREE_FILES.indexOf(b.who)
     return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib)
