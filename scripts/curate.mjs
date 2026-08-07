@@ -132,6 +132,7 @@ const BRAND_SKIP = new Set(['Gitman Vintage', 'Rowing Blazers', 'Taylor Stitch']
 const SHOE_ONLY = new Set(['Bodega', 'Concepts', 'Undefeated', 'A Ma Maniére', 'Feature', 'Extra Butter', 'Social Status', 'Oneness', 'Lapstone & Hammer', 'Packer', 'Saint Alfred', 'Wish ATL'])
 
 const out = []
+const seenImages = new Set()
 for (const [brand, products] of Object.entries(feeds)) {
   if (BRAND_SKIP.has(brand)) continue
   const styles = BRAND_STYLES[brand] ?? ['minimal']
@@ -155,6 +156,8 @@ for (const [brand, products] of Object.entries(feeds)) {
     // Dedup near-identical colourways: strip trailing " - Color" noise.
     const base = p.title.replace(/\s*[-–—]\s*[^-–—]+$/, '').toLowerCase()
     if (seen.has(base)) continue
+    if (seenImages.has(p.image)) continue
+    seenImages.add(p.image)
     if ((perCat[cat] ?? 0) >= (SHOE_ONLY.has(brand) ? 30 : 8)) continue
     seen.add(base)
     perCat[cat] = (perCat[cat] ?? 0) + 1

@@ -2790,26 +2790,26 @@
   "url": "https://topodesigns.com/products/utility-pants-mens-final-sale-1"
  },
  {
-  "id": "topodesigns-dirt-desert-shirt-short-sleeve-mens",
+  "id": "topodesigns-mountain-shirt-plaid-mens",
   "brand": "Topo Designs",
-  "name": "Desert Shirt - Short Sleeve - Men's",
+  "name": "Mountain Shirt Long Sleeve - Men's - Final Sale",
   "category": "shirt",
-  "price": 89,
-  "tier": "solid",
+  "price": 61,
+  "tier": "entry",
   "styles": [
    "gorp"
   ],
   "seasons": [
    "spring",
-   "summer"
+   "fall"
   ],
   "gender": "unisex",
   "sizeSystem": "alpha",
   "fitBias": 0,
-  "image": "https://cdn.shopify.com/s/files/1/0277/0693/files/S26-M-DesertShirtSS-OilGreen-111402384_1.jpg?width=900",
-  "fabric": "",
-  "silhouette": "short",
-  "url": "https://topodesigns.com/products/dirt-desert-shirt-short-sleeve-mens"
+  "image": "https://cdn.shopify.com/s/files/1/0277/0693/files/F23-M-Mountain-Shirt-Plaid-BoneWhiteMultiPlaid-111355127-Front-1.jpg?width=900",
+  "fabric": "100% organic",
+  "silhouette": "shirt",
+  "url": "https://topodesigns.com/products/mountain-shirt-plaid-mens"
  },
  {
   "id": "topodesigns-waffle-knit-beanie",

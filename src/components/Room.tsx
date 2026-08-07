@@ -92,9 +92,11 @@ export function Room() {
         <i className="room2__bar" />
         {hanging.length === 0 && <span className="room2__hint">closet’s empty — add pieces</span>}
         {hanging.map((img, i) => (
-          <span className="hanger" key={i}>
+          <span className="hanger" key={i} style={{ transform: `rotate(${i % 2 ? 1.6 : -1.2}deg)` }}>
             <i className="hanger__hook" />
-            <img src={img} alt="" loading="lazy" />
+            <span className="hanger__slab">
+              <img src={img} alt="" loading="lazy" />
+            </span>
           </span>
         ))}
       </button>
