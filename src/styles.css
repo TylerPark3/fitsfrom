@@ -3888,46 +3888,15 @@ input.seg__control::placeholder {
   scrollbar-width: thin;
 }
 
-.room2__expand {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  z-index: 6;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid var(--line);
-  display: grid;
-  place-items: center;
-  font-size: 13px;
-  color: var(--ink-2);
-  transition: background var(--fast), transform var(--fast);
-}
 
-.room2__expand:hover {
-  background: #fff;
-  transform: scale(1.06);
-}
 
-.room2--full {
-  position: fixed;
-  inset: 0;
-  z-index: 120;
-  margin: 0;
-  border: 0;
-  border-radius: 0;
-  min-height: 100vh;
-}
 
-.room2--full .room2__wall {
-  left: 30%;
-  bottom: 42%;
-}
 
-.room2--full .room2__floor {
-  height: 38%;
-}
+
+
+
+
+
 
 /* the wall keeps flowing right as you collect more */
 .room2__wall {
@@ -6686,13 +6655,6 @@ input.seg__control::placeholder {
   overflow: hidden;
 }
 
-.mq__body {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 18px 26px rgba(18, 25, 21, 0.16));
-}
-
 .mq__rig {
   position: absolute;
   inset: 0;
@@ -6745,6 +6707,30 @@ input.seg__control::placeholder {
 }
 .mqlayer--shoes {
   z-index: 4;
+}
+
+/* a pair, not a single side-on product shot */
+.mqshoes {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2%;
+  width: 100%;
+  height: 100%;
+}
+
+.mqshoes__l,
+.mqshoes__r {
+  width: 48%;
+  height: 100%;
+}
+
+.mqshoes__l {
+  transform: scaleX(-1) rotate(3deg);
+}
+
+.mqshoes__r {
+  transform: rotate(3deg);
 }
 
 @keyframes mqdrop {
@@ -6942,13 +6928,9 @@ input.seg__control::placeholder {
   }
 }
 
-.room2--full .mq {
-  min-height: calc(100vh - 60px);
-}
 
-.room2--full .mq__figure {
-  height: 62vh;
-}
+
+
 
 @media (max-width: 900px) {
   .mq {
@@ -6968,4 +6950,141 @@ input.seg__control::placeholder {
   .mq__rig .rig {
     transform: scale(0.6);
   }
+}
+
+
+/* ── the cover ─────────────────────────────────────────────────────────────
+   Aimé Leon Dore's move: the image is the whole page. No nav, no buttons,
+   nothing to read but the date and the word. Tap anywhere and the site
+   assembles itself around you. */
+.cover {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.app--covered .nav,
+.app--covered .tabbar,
+.app--covered .foot {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+}
+
+.app--covered .nav,
+.app--covered .tabbar {
+  transition: opacity 420ms var(--ease), transform 420ms var(--ease);
+}
+
+.app--covered main {
+  padding-top: 0;
+}
+
+/* everything under the fold waits its turn */
+.app--covered .mast ~ *,
+.app--covered main > .viewfade > * > section:not(.mast) {
+  display: none;
+}
+
+.app--covered .mast {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin-top: 0;
+}
+
+.app--covered .mast__overlay .row,
+.app--covered .mast__cta {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 500ms var(--ease), transform 500ms var(--ease);
+  pointer-events: none;
+}
+
+.app--covered .mast__head {
+  animation: coverrise 900ms var(--ease) both;
+}
+
+.app--covered .mast__date {
+  animation: coverrise 900ms var(--ease) 120ms both;
+}
+
+/* the only instruction on the page */
+.cover::after {
+  content: 'TAP TO ENTER';
+  position: absolute;
+  left: 50%;
+  bottom: 42px;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.6);
+  animation: coverpulse 2.6s ease-in-out infinite;
+}
+
+@keyframes coverrise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes coverpulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover::after,
+  .app--covered .mast__head,
+  .app--covered .mast__date {
+    animation: none;
+  }
+}
+
+
+/* just the tally — the progress bars were a whole row saying very little */
+.counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 0 0 34px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.count {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.count b {
+  font-size: 13px;
+  letter-spacing: 0;
+  color: var(--ink-3);
+  font-weight: 500;
+}
+
+.count.is-full b {
+  color: var(--ink);
 }

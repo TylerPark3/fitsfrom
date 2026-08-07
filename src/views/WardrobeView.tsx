@@ -155,21 +155,11 @@ export function WardrobeView({
 
       <Room />
 
-      <div className="gaps">
+      <div className="counts">
         {gaps.map((g) => (
-          <div className={`gap${g.pct >= 1 ? ' is-full' : ''}`} key={g.category}>
-            <div className="eyebrow">{g.label}</div>
-            <div className="gap__n">
-              {g.have}
-              <small> / {g.per}</small>
-            </div>
-            <div className="gap__bar">
-              <i style={{ width: `${g.pct * 100}%` }} />
-            </div>
-            <div className="tiny">
-              {g.pct >= 1 ? 'Covered' : `${g.per - g.have} short`}
-            </div>
-          </div>
+          <span className={`count${g.pct >= 1 ? ' is-full' : ''}`} key={g.category}>
+            {g.label} <b>{g.have}</b>
+          </span>
         ))}
       </div>
 

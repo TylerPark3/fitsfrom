@@ -198,7 +198,16 @@ export function App() {
     window.scrollTo({ top: scrollMem.current[view] ?? 0 })
   }, [view])
 
-  const go = (v: View) => setView(v)
+  // ALD-style cover: the landing image owns the whole screen until you tap in.
+  // Once you're through, chrome stays for the rest of the session.
+  const [entered, setEntered] = useState(false)
+  const covered = view === 'home' && !entered
+
+  const go = (v: View) => {
+    // Home is always the cover — going back to it re-arms the full-screen shot.
+    setEntered(v !== 'home')
+    setView(v)
+  }
 
   const daysLeft = state.account
     ? TRIAL_DAYS - Math.floor((Date.now() - state.account.createdAt) / 86_400_000)
@@ -207,7 +216,15 @@ export function App() {
 
   return (
     <StoreContext.Provider value={store}>
-      <div className="app">
+      <div className={`app${covered ? ' app--covered' : ''}`}>
+        {covered && (
+          <button
+            className="cover"
+            aria-label="Enter Fits From"
+            onClick={() => setEntered(true)}
+          />
+        )}
+        {!covered && (
         <Nav
           view={view}
           go={go}
@@ -216,6 +233,7 @@ export function App() {
           signedIn={state.signedIn && !!state.account}
           daysLeft={state.account ? daysLeft : null}
         />
+        )}
 
         <main>
           <div className="viewfade" key={view}>

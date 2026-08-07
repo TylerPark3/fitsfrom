@@ -78,7 +78,6 @@ interface Piece {
 /** The dressing room — your avatar in the middle, your closet on the rails. */
 export function Room() {
   const { wardrobe, customs, profile, mannequin, wear, toast } = useStore()
-  const [full, setFull] = useState(false)
   const [open, setOpen] = useState<string>('top')
 
   const pieces = useMemo<Piece[]>(() => {
@@ -109,15 +108,7 @@ export function Room() {
   const posters = profile.teams.slice(0, 2)
 
   return (
-    <div className={`room2${full ? ' room2--full' : ''}`}>
-      <button
-        className="room2__expand"
-        onClick={() => setFull((v) => !v)}
-        aria-label={full ? 'Exit full screen' : 'Full screen dressing room'}
-      >
-        {full ? '✕' : '⤢'}
-      </button>
-
+    <div className="room2">
       {/* the wall behind the figure */}
       <div className="room2__wall">
         {posters
@@ -141,18 +132,10 @@ export function Room() {
         {/* THE FIGURE — the avatar you built, wearing what you picked */}
         <div className="mq__stage">
           <div className="mq__figure">
-            {profile.photo ? (
-              <img
-                className="mq__body"
-                src={profile.photo}
-                alt="Your avatar"
-                style={{ objectPosition: `50% ${profile.photoY}%` }}
-              />
-            ) : (
-              <div className="mq__rig">
-                <AvatarRig />
-              </div>
-            )}
+            {/* always the rig — the photo is a measuring reference, not a mannequin */}
+            <div className="mq__rig">
+              <AvatarRig />
+            </div>
 
             {SLOTS.map((s) => {
               const p = byRef(mannequin[s.key])
@@ -167,7 +150,16 @@ export function Room() {
                     width: `${s.width * 100}%`,
                   }}
                 >
-                  <CutoutImg src={p.img} className="mqlayer__img" />
+                  {s.key === 'shoes' ? (
+                    // Product shots are one shoe in profile — mirror it so the
+                    // figure reads as a person facing us in a pair.
+                    <span className="mqshoes">
+                      <CutoutImg src={p.img} className="mqlayer__img mqshoes__l" />
+                      <CutoutImg src={p.img} className="mqlayer__img mqshoes__r" />
+                    </span>
+                  ) : (
+                    <CutoutImg src={p.img} className="mqlayer__img" />
+                  )}
                 </div>
               )
             })}
