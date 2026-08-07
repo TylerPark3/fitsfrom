@@ -408,10 +408,10 @@ export function Slider({
   onChange: (v: number) => void
 }) {
   return (
-    <div className="field">
-      <div className="field__label">
-        <span>{label}</span>
-        <b className="slider__val">{format(value)}</b>
+    <div className="mrow">
+      <div className="mrow__top">
+        <span className="mrow__label">{label}</span>
+        <b className="mrow__val">{format(value)}</b>
       </div>
       <input
         type="range"

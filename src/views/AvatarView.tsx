@@ -161,11 +161,12 @@ export function AvatarView({ go }: { go: (v: View) => void }) {
         <div>
           <div className="panel">
             <h3>Body</h3>
+            <p className="mgroup">Frame</p>
             <Slider label="Height" value={profile.height} min={58} max={82} step={1}
               format={(v) => `${Math.floor(v / 12)}′ ${v % 12}″`} onChange={(height) => onHeightWeight({ height })} />
             <Slider label="Weight" value={profile.weight} min={95} max={300} step={1}
               format={(v) => `${v} lb`} onChange={(weight) => onHeightWeight({ weight })} />
-            <hr className="rule" style={{ margin: '4px 0 18px' }} />
+            <p className="mgroup">Measurements</p>
             <Slider label="Chest" value={profile.chest} min={30} max={56} step={0.5}
               format={(v) => `${v}″`} onChange={(chest) => setProfile({ chest })} />
             <Slider label="Waist" value={profile.waist} min={26} max={48} step={0.5}
@@ -174,6 +175,7 @@ export function AvatarView({ go }: { go: (v: View) => void }) {
               format={(v) => `${v}″`} onChange={(inseam) => setProfile({ inseam })} />
             <Slider label="Shoe (US)" value={profile.shoe} min={5} max={16} step={0.5}
               format={(v) => `${v}`} onChange={(shoe) => setProfile({ shoe })} />
+            <p className="mgroup">How it should fit</p>
             <div className="chips" style={{ marginTop: 4 }}>
               {(['slim', 'true', 'relaxed'] as const).map((f) => (
                 <button key={f} className="chip chip--sm" aria-pressed={profile.fitPreference === f}
