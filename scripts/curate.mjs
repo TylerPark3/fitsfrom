@@ -52,6 +52,18 @@ const BRAND_STYLES = {
   'The Marathon Clothing': ['street', 'athletic'],
   Kuon: ['japanese', 'workwear'],
   'Iron Heart': ['workwear', 'japanese'],
+  Bodega: ['street', 'athletic'],
+  Concepts: ['street', 'athletic'],
+  Undefeated: ['street', 'athletic'],
+  'A Ma Maniére': ['street', 'minimal'],
+  Feature: ['street', 'athletic'],
+  'Extra Butter': ['street', 'athletic'],
+  'Social Status': ['street', 'athletic'],
+  Oneness: ['street', 'athletic'],
+  'Lapstone & Hammer': ['street', 'athletic'],
+  Packer: ['street', 'athletic'],
+  'Saint Alfred': ['street', 'athletic'],
+  'Wish ATL': ['street', 'athletic'],
 }
 
 const CAT = [
@@ -116,6 +128,9 @@ const sizeSystemFor = (cat, sizes) => {
 
 const BRAND_SKIP = new Set(['Gitman Vintage', 'Rowing Blazers', 'Taylor Stitch'])
 
+// Sneaker boutiques: shoes only, deeper cap — this is the sneaker wall.
+const SHOE_ONLY = new Set(['Bodega', 'Concepts', 'Undefeated', 'A Ma Maniére', 'Feature', 'Extra Butter', 'Social Status', 'Oneness', 'Lapstone & Hammer', 'Packer', 'Saint Alfred', 'Wish ATL'])
+
 const out = []
 for (const [brand, products] of Object.entries(feeds)) {
   if (BRAND_SKIP.has(brand)) continue
@@ -136,10 +151,11 @@ for (const [brand, products] of Object.entries(feeds)) {
     const hay = `${p.type} ${p.title}`
     const cat = CAT.find(([, re]) => re.test(hay))?.[0]
     if (!cat) continue
+    if (SHOE_ONLY.has(brand) && cat !== 'shoes') continue
     // Dedup near-identical colourways: strip trailing " - Color" noise.
     const base = p.title.replace(/\s*[-–—]\s*[^-–—]+$/, '').toLowerCase()
     if (seen.has(base)) continue
-    if ((perCat[cat] ?? 0) >= 8) continue
+    if ((perCat[cat] ?? 0) >= (SHOE_ONLY.has(brand) ? 30 : 8)) continue
     seen.add(base)
     perCat[cat] = (perCat[cat] ?? 0) + 1
     const silhouette = SILHOUETTE.find(([, re]) => re.test(hay))?.[0] ?? 'tee'

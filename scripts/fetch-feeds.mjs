@@ -59,6 +59,18 @@ const BRANDS = [
   ['The Marathon Clothing', 'themarathonclothing.com'],
   ['Kuon', 'kuon.tokyo'],
   ['Iron Heart', 'ironheart.co.uk'],
+  ['Bodega', 'bdgastore.com'],
+  ['Concepts', 'cncpts.com'],
+  ['Undefeated', 'undefeated.com'],
+  ['A Ma Maniére', 'a-ma-maniere.com'],
+  ['Feature', 'feature.com'],
+  ['Extra Butter', 'extrabutterny.com'],
+  ['Social Status', 'socialstatuspgh.com'],
+  ['Oneness', 'onenessboutique.com'],
+  ['Lapstone & Hammer', 'lapstoneandhammer.com'],
+  ['Packer', 'packershoes.com'],
+  ['Saint Alfred', 'saintalfred.com'],
+  ['Wish ATL', 'wishatl.com'],
 ]
 
 const UA = { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)' }
