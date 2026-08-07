@@ -143,7 +143,8 @@ export function Room() {
           ref={headRef}
           style={{
             backgroundImage: profile.photo ? `url(${profile.photo})` : undefined,
-            backgroundPosition: `${(profile.pose?.cx ?? 0.5) * 100}% 4%`,
+            backgroundSize: `${profile.faceZoom * 100}%`,
+            backgroundPosition: `${profile.faceX}% ${profile.faceY}%`,
           }}
         >
           {!profile.photo && '?'}

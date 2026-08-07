@@ -343,7 +343,15 @@ function Nav({
         >
           <span
             className="nav__avatar"
-            style={profile.photo ? { backgroundImage: `url(${profile.photo})` } : undefined}
+            style={
+              profile.photo
+                ? {
+                    backgroundImage: `url(${profile.photo})`,
+                    backgroundSize: `${profile.faceZoom * 100}%`,
+                    backgroundPosition: `${profile.faceX}% ${profile.faceY}%`,
+                  }
+                : undefined
+            }
           >
             {!profile.photo && <Person size={13} />}
           </span>

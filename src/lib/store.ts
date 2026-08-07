@@ -11,6 +11,10 @@ export interface Profile {
   photoY: number
   /** Detected body-pin positions (fractions of the cropped photo). */
   pose: { chest: number; waist: number; inseam: number; cx: number } | null
+  /** Circular face crop — like setting a profile picture. */
+  faceX: number
+  faceY: number
+  faceZoom: number
   height: number
   weight: number
   chest: number
@@ -93,6 +97,9 @@ export const DEFAULT_STATE: AppState = {
     photoScale: 1,
     photoY: 50,
     pose: null,
+    faceX: 50,
+    faceY: 10,
+    faceZoom: 2.6,
     height: 70,
     weight: 160,
     chest: est.chest,
