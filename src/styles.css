@@ -1515,22 +1515,10 @@ input.seg__control::placeholder {
   justify-content: center;
   gap: clamp(4px, 4vw, 56px);
   margin-top: clamp(30px, 6vh, 64px);
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  padding: 48px 0 72px;
+  padding: 44px 0 56px;
   isolation: isolate;
 }
 
-/* the actual paper — full-bleed, fading in from the page above */
-.deckstage::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: url('/styles/paper.jpg') center / cover no-repeat;
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%);
-  mask-image: linear-gradient(180deg, transparent 0%, #000 22%);
-  z-index: -2;
-}
 
 .deckstage__glow {
   position: absolute;
