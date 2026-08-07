@@ -28,5 +28,12 @@ export async function onRequestGet({ env, params, request }) {
     ? `https://redirect.viglink.com?key=${encodeURIComponent(key)}&u=${encodeURIComponent(destination.href)}&cuid=${encodeURIComponent(`${product.id}:${placement}`)}`
     : destination.href
 
-  return Response.redirect(target, 302)
+  return new Response(null, {
+    status: 302,
+    headers: {
+      Location: target,
+      'Cache-Control': 'private, no-store, max-age=0',
+      'X-Robots-Tag': 'noindex, nofollow',
+    },
+  })
 }
