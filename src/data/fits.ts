@@ -279,6 +279,23 @@ export const FITS: Fit[] = [
     ],
   },
   {
+    id: 'rpattz-paris',
+    styles: ['workwear', 'minimal'],
+    who: 'Rob Pattinson',
+    where: 'Paris hotel exit',
+    when: 'Trucker cap, hands in pockets',
+    context:
+      'Alpha Industries trucker cap, navy harrington over an open plaid shirt, slate cargos breaking over navy suede campus sneakers. The most famous normcore guy alive.',
+    vibe: 'Trucker cap, plaid shirt, slate cargos',
+    pieces: [
+      { slot: 'Cap', worn: 'Alpha Industries trucker cap', match: { category: 'accessory', kw: 'cap|hat|trucker' } },
+      { slot: 'Jacket', worn: 'Navy zip harrington', match: { category: 'outer', kw: 'harrington|jacket|zip' } },
+      { slot: 'Shirt', worn: 'Open plaid button-up', match: { category: 'shirt', kw: 'plaid|check|flannel|button' } },
+      { slot: 'Cargos', worn: 'Slate-blue cargos', match: { category: 'pants', kw: 'cargo|fatigue|work' } },
+      { slot: 'Sneakers', worn: 'Navy suede campus sneakers', match: { category: 'shoes', kw: 'suede|campus|sneaker' } },
+    ],
+  },
+  {
     id: 'jgreen-flannel',
     styles: ['street', 'skate'],
     who: 'Jalen Green',
