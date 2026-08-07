@@ -44,10 +44,15 @@ export function Room() {
 
   return (
     <div className="room2" ref={roomRef}>
-      {/* leaning framed print — always part of the room */}
-      <div className="room2__lean">
-        <img src="/room/art-ny.jpg" alt="" loading="lazy" />
-      </div>
+      {/* leaning framed print — only if you rep NY */}
+      {profile.tags.includes('Yankees') && (
+        <div className="room2__lean">
+          <img src="/room/art-ny.jpg" alt="" loading="lazy" />
+        </div>
+      )}
+
+      {/* the dog lives here */}
+      <img className="room2__dog" src="/room/dog.png" alt="" loading="lazy" />
 
       {[
         ['Yankees', '/room/art-yankees.jpg', '44%'],

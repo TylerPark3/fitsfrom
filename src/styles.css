@@ -2952,12 +2952,12 @@ input.seg__control::placeholder {
   border-bottom: 1px solid #ddd5c6;
 }
 
-/* leaning framed print */
+/* leaning framed print — base exactly at the wall/floor line */
 .room2__lean {
   position: absolute;
-  bottom: 8%;
-  left: 42%;
-  width: 130px;
+  bottom: 34%;
+  left: 40%;
+  width: 118px;
   padding: 7px;
   background: #fff;
   border: 3px solid #b98a4e;
@@ -2969,6 +2969,15 @@ input.seg__control::placeholder {
 .room2__lean img {
   width: 100%;
   display: block;
+}
+
+.room2__dog {
+  position: absolute;
+  bottom: 7%;
+  right: 20%;
+  width: 92px;
+  filter: drop-shadow(0 8px 8px rgba(10, 6, 2, 0.4));
+  z-index: 2;
 }
 
 /* hung art (unlocked by interests) */
