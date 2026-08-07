@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import type { View } from '../App'
 import { CATALOG, BRANDS, type Product } from '../data/catalog'
 import { FITS } from '../data/fits'
-import { resolve } from '../lib/fitmatch'
+import { cosigns, resolve } from '../lib/fitmatch'
 import { useStore } from '../lib/store'
 import { rank } from '../lib/match'
 import { ProductCard } from '../components/ProductCard'
@@ -11,6 +11,31 @@ import { SCENTS } from '../data/scents'
 import { Arrow, Search } from '../components/Icons'
 
 type Sort = 'match' | 'low' | 'high'
+
+const PRODUCT_TYPES = [
+  { id: 'all', title: 'All types' },
+  { id: 'top', title: 'Tees & sweats' },
+  { id: 'shirt', title: 'Shirts' },
+  { id: 'knit', title: 'Knitwear' },
+  { id: 'outer', title: 'Outerwear' },
+  { id: 'pants', title: 'Pants & shorts' },
+  { id: 'shoes', title: 'Shoes' },
+  { id: 'accessory', title: 'Accessories' },
+]
+
+const COLORS = ['black', 'white', 'grey', 'blue', 'brown', 'green', 'red', 'cream'] as const
+
+function productColor(product: Product) {
+  const text = `${product.name} ${product.fabric ?? ''}`.toLowerCase()
+  if (/black|onyx|noir|charcoal|ink|abyss/.test(text)) return 'black'
+  if (/white|ivory|natural|ecru|cream|oat|cashew/.test(text)) return /cream|ecru|oat|cashew/.test(text) ? 'cream' : 'white'
+  if (/grey|gray|silver|heather|slate/.test(text)) return 'grey'
+  if (/blue|navy|indigo|denim|cobalt/.test(text)) return 'blue'
+  if (/brown|tan|khaki|camel|chocolate|olive/.test(text)) return /olive/.test(text) ? 'green' : 'brown'
+  if (/green|forest|sage|mint/.test(text)) return 'green'
+  if (/red|burgundy|maroon|crimson|orange/.test(text)) return 'red'
+  return ''
+}
 
 interface DropOption {
   id: string
@@ -57,7 +82,7 @@ function Drop({
       >
         <span className="seg__label">{label}</span>
         <span className="drop__value">
-          {current?.title ?? '—'}
+          {value === 'all' || value === '' ? label : `${label}: ${current?.title ?? '—'}`}
           <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true">
             <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" />
           </svg>
@@ -92,20 +117,6 @@ function Drop({
   )
 }
 
-const ASK_SUBS: Record<string, string> = {
-  any: 'The whole vault',
-  tees: 'Heavyweight, boxy, graphic',
-  shirts: 'Oxfords, flannels, camp collars',
-  knit: 'Sweaters, cardigans, vests',
-  outer: 'Jackets & coats',
-  parkas: 'Down & technical shells',
-  pants: 'Denim, cargos, trousers',
-  shorts: 'Jorts & baggies',
-  shoes: 'Sneakers & boots',
-  acc: 'Caps, chains, socks, bags',
-  scents: 'The fragrance files',
-}
-
 const ASKS: { id: string; label: string; test: (p: Product) => boolean }[] = [
   { id: 'any', label: 'Anything', test: () => true },
   { id: 'tees', label: 'Tees & sweats', test: (p) => p.category === 'top' },
@@ -131,7 +142,11 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
   const [sizeF, setSizeF] = useState('all')
   const [icon, setIcon] = useState('')
   const [sort, setSort] = useState<Sort>('match')
-  const [executed, setExecuted] = useState(false)
+  const [brand, setBrand] = useState('all')
+  const [gender, setGender] = useState('all')
+  const [productType, setProductType] = useState('all')
+  const [color, setColor] = useState('all')
+  const [badge, setBadge] = useState('all')
 
   const iconChoices = profile.icons.length
     ? profile.icons
@@ -139,7 +154,6 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
 
   // Scents surface only when asked for — never by default.
   const scentHits = useMemo(() => {
-    if (!executed) return []
     const needle = q.trim().toLowerCase()
     const scentQuery =
       ask === 'scents' || /scent|cologne|fragrance|perfume|parfum|smell/.test(needle)
@@ -158,10 +172,10 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
         )
       : SCENTS
     return (pool.length ? pool : SCENTS).map((sc) => sc.id)
-  }, [executed, ask, q])
+  }, [ask, q])
 
   const results = useMemo(() => {
-    if (!executed || ask === 'scents') return []
+    if (ask === 'scents') return []
     const test = ASKS.find((a) => a.id === ask)?.test ?? (() => true)
     const needle = q.trim().toLowerCase().replace(/[^a-z0-9]/g, '')
 
@@ -174,6 +188,12 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
 
     let out = CATALOG.filter((p) => {
       if (!test(p)) return false
+      if (brand !== 'all' && p.brand !== brand) return false
+      if (gender !== 'all' && p.gender !== gender && p.gender !== 'unisex') return false
+      if (productType !== 'all' && p.category !== productType) return false
+      if (color !== 'all' && productColor(p) !== color) return false
+      if (badge === 'cosigned' && cosigns(p.id).length === 0) return false
+      if (badge === 'grail' && p.tier !== 'grail') return false
       if (sizeF === 'mine' && p.sizeSystem === 'one') return false
       if (icon && !provenIds.has(p.id) && !p.styles.some((st) => iconStyles.has(st))) return false
       if (needle) {
@@ -197,7 +217,7 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
       ]
     }
     return out
-  }, [executed, ask, q, sizeF, icon, sort, profile])
+  }, [ask, q, sizeF, icon, sort, profile, brand, gender, productType, color, badge])
 
   // Stealth mode until membership.
   if (!(signedIn && account)) {
@@ -239,153 +259,45 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
   }
 
   return (
-    <div className="wrap" style={{ paddingBottom: 110 }}>
-      <div className={`deck${executed ? ' deck--docked' : ''}`}>
-        {!executed && (
-          <>
-            <span className="eyebrow">
-              {BRANDS.length} brands · {CATALOG.length} live pieces · sized to you
-            </span>
-            <h2 className="deck__head">
-              FIND YOUR <em className="serif">fit.</em>
-            </h2>
-          </>
-        )}
+    <div className="catalog wrap">
+      <header className="catalog__head">
+        <p className="catalog__kicker">THE FITS FROM EDIT</p>
+        <h1>New arrivals</h1>
+        <p>Explore the latest independent labels, streetwear, sneakers and wardrobe staples—ranked to your taste.</p>
+      </header>
 
-        <div className="deck__bar">
-          <Drop
-            seg
-            label="Looking for"
-            value={ask}
-            onPick={setAsk}
-            options={ASKS.map((a) => ({ id: a.id, title: a.label, sub: ASK_SUBS[a.id] }))}
-          />
-          <i className="seg__div" />
-          <label className="seg seg--grow">
-            <span className="seg__label">Details</span>
-            <input
-              className="seg__control"
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && setExecuted(true)}
-              placeholder="Brand, piece, fabric — anything"
-              aria-label="Search"
-            />
-          </label>
-          <button className="deck__go" onClick={() => setExecuted(true)}>
-            <Search size={16} /> Search
-          </button>
-        </div>
+      <div className="catalog__search">
+        <Search size={15} />
+        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search a brand, piece, fabric, or scent" aria-label="Search catalogue" />
+        {q && <button onClick={() => setQ('')} aria-label="Clear search">Clear</button>}
+      </div>
 
-        {(profile.teams.length > 0 || profile.tags.length > 0 || profile.brands.length > 0) && (
-          <div className="signal-strip">
-            <span className="eyebrow">Ranked using</span>
-            {[...profile.styles.slice(0, 2), ...profile.teams.slice(0, 2), ...profile.tags.slice(0, 2), ...profile.brands.slice(0, 2)].map(
-              (sig) => (
-                <span className="reason" key={sig}>
-                  {sig}
-                </span>
-              ),
-            )}
-          </div>
-        )}
-
-        <div className="deck__subs">
-          <Drop
-            label="Cut"
-            value="men"
-            onPick={() => {}}
-            options={[
-              { id: 'men', title: 'Men’s', sub: 'The whole vault' },
-              { id: 'women', title: 'Women’s', sub: 'Expanding soon', disabled: true },
-            ]}
-          />
-          <Drop
-            label="Size"
-            value={sizeF}
-            onPick={setSizeF}
-            options={[
-              { id: 'all', title: 'All pieces', sub: 'Including one-size' },
-              { id: 'mine', title: 'Sized only', sub: `Mapped to ${profile.chest}″ / ${profile.waist}″` },
-            ]}
-          />
-          <Drop
-            label="Inspired by"
-            value={icon}
-            onPick={setIcon}
-            options={[
-              { id: '', title: 'Anyone', sub: 'No filter' },
-              ...iconChoices.map((who) => ({
-                id: who,
-                title: who,
-                sub: `${FITS.filter((f) => f.who === who).length} fit${FITS.filter((f) => f.who === who).length === 1 ? '' : 's'} on file`,
-              })),
-            ]}
-          />
-          {executed && (
-            <Drop
-              label="Sort"
-              value={sort}
-              onPick={(v) => setSort(v as Sort)}
-              options={[
-                { id: 'match', title: 'Best match', sub: 'Ranked to your taste' },
-                { id: 'low', title: 'Price ↑', sub: 'Low to high' },
-                { id: 'high', title: 'Price ↓', sub: 'High to low' },
-              ]}
-            />
-          )}
+      <div className="catalog__filters" aria-label="Catalogue filters">
+        <span className="catalog__filter-label">Filter:</span>
+        <Drop label="Brand" value={brand} onPick={setBrand} options={[{ id: 'all', title: 'All brands' }, ...BRANDS.map((name) => ({ id: name, title: name }))]} />
+        <Drop label="Gender" value={gender} onPick={setGender} options={[{ id: 'all', title: 'All genders' }, { id: 'men', title: 'Men' }, { id: 'women', title: 'Women' }, { id: 'unisex', title: 'Unisex' }]} />
+        <Drop label="Product type" value={productType} onPick={setProductType} options={PRODUCT_TYPES} />
+        <Drop label="Size" value={sizeF} onPick={setSizeF} options={[{ id: 'all', title: 'All sizes' }, { id: 'mine', title: 'My size', sub: `${profile.chest}″ chest · ${profile.waist}″ waist` }]} />
+        <Drop label="Color" value={color} onPick={setColor} options={[{ id: 'all', title: 'All colors' }, ...COLORS.map((name) => ({ id: name, title: name[0].toUpperCase() + name.slice(1) }))]} />
+        <Drop label="Badge" value={badge} onPick={setBadge} options={[{ id: 'all', title: 'All pieces' }, { id: 'cosigned', title: 'Worn by' }, { id: 'grail', title: 'Grail tier' }]} />
+        <Drop label="Inspired by" value={icon} onPick={setIcon} options={[{ id: '', title: 'Anyone' }, ...iconChoices.map((who) => ({ id: who, title: who }))]} />
+        <div className="catalog__sort">
+          <Drop label="Sort" value={sort} onPick={(v) => setSort(v as Sort)} options={[{ id: 'match', title: 'Featured' }, { id: 'low', title: 'Price: low to high' }, { id: 'high', title: 'Price: high to low' }]} />
         </div>
       </div>
 
-      {!executed && (
-        <div className="deckstage" aria-hidden="true">
-          <div className="sketch sketch--walk">
-            <img className="sketch__base" src="/styles/watermark2-cut.png" alt="" />
-            <span className="sketch__hatch" />
-            <span className="sketch__hatch sketch__hatch--cross" />
-          </div>
-        </div>
-      )}
+      <div className="catalog__resultline">
+        <span><b>{results.length}</b> pieces{icon ? ` inspired by ${icon}` : ''}</span>
+        {(brand !== 'all' || gender !== 'all' || productType !== 'all' || color !== 'all' || badge !== 'all' || sizeF !== 'all' || icon || q) && (
+          <button onClick={() => { setBrand('all'); setGender('all'); setProductType('all'); setColor('all'); setBadge('all'); setSizeF('all'); setIcon(''); setQ(''); setAsk('any') }}>Clear all</button>
+        )}
+      </div>
 
-      {executed ? (
-        <>
-          <div className="spread" style={{ margin: '26px 0 16px' }}>
-            <span className="toolbar__count">
-              <b>{results.length}</b> {results.length === 1 ? 'piece' : 'pieces'}
-              {icon && ` · inspired by ${icon}`}
-            </span>
-            <button
-              className="btn btn--quiet btn--sm"
-              onClick={() => {
-                setExecuted(false)
-                setQ('')
-                setIcon('')
-                setAsk('any')
-              }}
-            >
-              New search
-            </button>
-          </div>
-
-          {scentHits.length > 0 && (
-            <div style={{ marginBottom: 34 }}>
-              <ScentShelf ids={scentHits} />
-            </div>
-          )}
-
-          {results.length === 0 && scentHits.length === 0 ? (
-            <div className="empty">
-              <h3>Nothing in the vault for that.</h3>
-              <p>Loosen the ask or drop the icon filter.</p>
-            </div>
-          ) : results.length > 0 ? (
-            <div className="grid">
-              {results.map((p) => (
-                <ProductCard key={p.id} product={p} onOpen={onOpen} />
-              ))}
-            </div>
-          ) : null}
-        </>
+      {scentHits.length > 0 && <div className="catalog__scents"><ScentShelf ids={scentHits} /></div>}
+      {results.length === 0 && scentHits.length === 0 ? (
+        <div className="empty"><h3>No pieces match those filters.</h3><p>Clear a filter and try again.</p></div>
+      ) : results.length > 0 ? (
+        <div className="grid">{results.map((p) => <ProductCard key={p.id} product={p} onOpen={onOpen} />)}</div>
       ) : null}
     </div>
   )
