@@ -19,6 +19,7 @@ const INTERESTS: { id: string; label: string; img: string }[] = [
   { id: 'Fragrance', label: 'Fragrance', img: '/scents/versace-eros.png' },
   { id: 'Sneakers', label: 'Sneakers', img: skate },
   { id: 'Yankees', label: 'Yankees', img: '/room/art-yankees.jpg' },
+  { id: 'Dodgers', label: 'Dodgers', img: '/room/art-dodgers.jpg' },
 ]
 
 /** ESPN-style visual interest grid — tap tiles, they colorize. */

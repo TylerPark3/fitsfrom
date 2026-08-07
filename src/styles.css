@@ -3066,44 +3066,39 @@ input.seg__control::placeholder {
 
 .hanger {
   position: relative;
-  width: 58px;
+  width: 36px;
   flex: none;
+  margin-right: -9px;
+  transform: rotate(4deg);
   transform-origin: top center;
-  animation: sway 4s ease-in-out infinite alternate;
-}
-
-@keyframes sway {
-  from {
-    transform: rotate(-1.6deg);
-  }
-  to {
-    transform: rotate(1.8deg);
-  }
 }
 
 .hanger__hook {
   position: absolute;
-  top: -12px;
+  top: -11px;
   left: 50%;
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border: 2px solid #6f614a;
   border-bottom: 0;
   border-radius: 50% 50% 0 0;
   transform: translateX(-50%);
 }
 
+/* garments packed sideways on the rail — slivers, blended, uniform */
 .hanger img {
   width: 100%;
-  height: 130px;
+  height: 118px;
   object-fit: cover;
-  border-radius: 6px 6px 10px 10px;
-  box-shadow: 0 5px 10px rgba(18, 25, 21, 0.16);
-  background: #fff;
+  object-position: center top;
+  border-radius: 7px 7px 11px 11px;
+  mix-blend-mode: multiply;
+  filter: contrast(1.04) saturate(1.02);
 }
 
-.room2__rail:hover .hanger img {
-  outline: 2px solid var(--red);
+.room2__rail:hover .hanger {
+  margin-right: 2px;
+  transition: margin var(--med);
 }
 
 .room2__dresser {

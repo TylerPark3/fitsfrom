@@ -23,6 +23,7 @@ export function ProductDrawer({
     product ? recommendSize(product, profile).label : '',
   )
   const [pickingCollection, setPickingCollection] = useState(false)
+  const [newName, setNewName] = useState('')
 
   if (!product) return null
 
@@ -151,18 +152,21 @@ export function ProductDrawer({
                     {c.name}
                   </button>
                 ))}
-                <button
-                  className="chip chip--sm"
-                  onClick={() => {
-                    const name = prompt('Name this collection')?.trim()
-                    if (!name) return
-                    const id = store.createCollection(name)
-                    store.toggleInCollection(id, product.id)
-                    store.toast(`Created ${name}`)
+                <input
+                  className="text-input"
+                  style={{ height: 28, width: 140, fontSize: 12, borderRadius: 999, padding: '0 12px' }}
+                  placeholder="New collection…"
+                  value={newName}
+                  onChange={(e) => setNewName(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && newName.trim()) {
+                      const id = store.createCollection(newName.trim())
+                      store.toggleInCollection(id, product.id)
+                      store.toast(`Created ${newName.trim()}`)
+                      setNewName('')
+                    }
                   }}
-                >
-                  <Plus size={12} /> New
-                </button>
+                />
               </div>
             )}
           </div>

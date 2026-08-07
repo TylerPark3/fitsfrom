@@ -90,11 +90,16 @@ export function Room() {
         <img src="/room/art-ny.jpg" alt="" loading="lazy" />
       </div>
 
-      {profile.tags.includes('Yankees') && (
-        <div className="room2__hangart">
-          <img src="/room/art-yankees.jpg" alt="Yankees caps painting" loading="lazy" />
-        </div>
-      )}
+      {[
+        ['Yankees', '/room/art-yankees.jpg', '44%'],
+        ['Dodgers', '/room/art-dodgers.jpg', '57%'],
+      ]
+        .filter(([tag]) => profile.tags.includes(tag as string))
+        .map(([tag, img, left]) => (
+          <div className="room2__hangart" key={tag as string} style={{ left: left as string }}>
+            <img src={img as string} alt={`${tag} art`} loading="lazy" />
+          </div>
+        ))}
 
       {/* wall posters from your teams */}
       <div className="room2__posters">
@@ -123,7 +128,7 @@ export function Room() {
         <i className="room2__bar" />
         {hanging.length === 0 && <span className="room2__hint">closet’s empty — add pieces</span>}
         {hanging.map((img, i) => (
-          <span className="hanger" key={i} style={{ animationDelay: `${i * 0.35}s` }}>
+          <span className="hanger" key={i}>
             <i className="hanger__hook" />
             <img src={img} alt="" loading="lazy" />
           </span>

@@ -528,6 +528,17 @@ function FitPlanner() {
   const { wardrobe, customs, outfits, profile, createOutfit, deleteOutfit, toggleOutfitRef, toast } =
     useStore()
   const [editing, setEditing] = useState<string | null>(null)
+  const [naming, setNaming] = useState(false)
+  const [nameDraft, setNameDraft] = useState('')
+
+  const createNamed = () => {
+    const name = nameDraft.trim()
+    if (!name) return
+    setEditing(createOutfit(name))
+    setNaming(false)
+    setNameDraft('')
+    toast('Tap pieces below to add them')
+  }
 
   // Whering-style: unlock what you already own — auto-assemble one piece per slot.
   const autoMatch = () => {
@@ -574,19 +585,27 @@ function FitPlanner() {
           <button className="btn btn--primary btn--sm" onClick={autoMatch}>
             Match one for me
           </button>
-          <button
-            className="btn btn--ghost btn--sm"
-            onClick={() => {
-              const name = prompt('Name this fit (e.g. “date night”, “gameday”)')?.trim()
-              if (!name) return
-              setEditing(createOutfit(name))
-              toast('Tap pieces below to add them')
-            }}
-          >
+          <button className="btn btn--ghost btn--sm" onClick={() => setNaming((v) => !v)}>
             <Plus /> New fit
           </button>
         </div>
       </div>
+
+      {naming && (
+        <div className="room__input" style={{ marginBottom: 14, maxWidth: 420 }}>
+          <input
+            className="text-input"
+            autoFocus
+            placeholder="Name it — “date night”, “gameday”…"
+            value={nameDraft}
+            onChange={(e) => setNameDraft(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && createNamed()}
+          />
+          <button className="btn btn--primary" onClick={createNamed}>
+            Create
+          </button>
+        </div>
+      )}
 
       {outfits.length === 0 && (
         <p className="tiny" style={{ marginBottom: 12 }}>
