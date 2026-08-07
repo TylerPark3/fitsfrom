@@ -50,7 +50,7 @@ export function Home({ go }: { go: (v: View) => void }) {
         <div className="mast__bg" aria-hidden="true">
           <img src="/editorial/iverson-crowd.jpg" alt="" />
           <img src="/fits/clarkson-tunnel.jpg" alt="" />
-          <img src="/fits/poole-arrival.jpg" alt="" />
+          <img src="/fits/sga-arrival.jpg" alt="" />
         </div>
         <div className="mast__overlay">
           <p className="mast__date">{date} — the front page of fit culture</p>
