@@ -31,7 +31,7 @@ export function AvatarView({ go }: { go: (v: View) => void }) {
     <div className="wrap">
       <div className="pagehead">
         <span className="eyebrow"><Type text="AVATAR — MEASUREMENTS ON FILE" speed={18} /></span>
-        <h2>Your fit, on file.</h2>
+        <h2>Your fit, on file</h2>
         <p>Drag a slider — every size on the site updates. The photo never leaves this browser.</p>
       </div>
 
