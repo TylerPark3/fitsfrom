@@ -167,7 +167,7 @@ export const FITS: Fit[] = [
   {
     id: 'drake-night',
     styles: ['street', 'athletic'],
-    who: 'Drizzy',
+    who: 'Iceman',
     where: 'NYC, leaving dinner',
     when: 'Night out, security in tow',
     context:
