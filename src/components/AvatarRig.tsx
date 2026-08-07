@@ -69,7 +69,12 @@ export function AvatarRig() {
   return (
     <div className="rig">
       <div className="rig__turn" style={{ transform: `perspective(900px) rotateY(${yaw}deg)` }}>
-        <div className="rig__body2" style={{ width: W, height: totalH + 26, transform: `scale(${overall})` }}>
+        <div className="rig__body2 rig__body2--holo" style={{ width: W, height: totalH + 26, transform: `scale(${overall})` }}>
+          <span className="rig__beam" style={{ height: totalH + 20 }} />
+          <span className="rig__emitter" style={{ top: totalH + 10 }}>
+            <i />
+            <i />
+          </span>
           {slices.map((b) => (
             <div key={b.key} className="rigslice" style={{ top: b.top, height: b.h + 1.2, width: W }}>
               <img
