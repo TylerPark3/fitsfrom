@@ -3860,6 +3860,29 @@ input.seg__control::placeholder {
   }
 }
 
+/* new arrivals section under the ask */
+.arrivals {
+  margin-top: 56px;
+  padding-top: 34px;
+  border-top: 1px solid var(--line);
+}
+
+.arrivals__head h2 {
+  font-family: var(--disp);
+  font-size: clamp(30px, 4vw, 50px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  margin: 8px 0 6px;
+}
+
+.arrivals__sub {
+  color: var(--ink-2);
+  font-size: 14.5px;
+  max-width: 60ch;
+  margin-bottom: 22px;
+}
+
 /* outfit builder */
 .builder__ctx {
   display: flex;

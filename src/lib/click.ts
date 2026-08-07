@@ -27,10 +27,10 @@ export function setMuted(v: boolean) {
 type Variant = 'tap' | 'select' | 'back' | 'unlock'
 
 const TONES: Record<Variant, { f: number; f2: number; dur: number; gain: number }> = {
-  tap: { f: 1180, f2: 760, dur: 0.055, gain: 0.05 },
-  select: { f: 880, f2: 1460, dur: 0.09, gain: 0.06 },
-  back: { f: 620, f2: 380, dur: 0.075, gain: 0.045 },
-  unlock: { f: 520, f2: 1560, dur: 0.16, gain: 0.07 },
+  tap: { f: 320, f2: 190, dur: 0.05, gain: 0.045 },
+  select: { f: 300, f2: 420, dur: 0.075, gain: 0.05 },
+  back: { f: 240, f2: 150, dur: 0.07, gain: 0.04 },
+  unlock: { f: 260, f2: 520, dur: 0.14, gain: 0.055 },
 }
 
 export function playClick(variant: Variant = 'tap') {
@@ -43,14 +43,15 @@ export function playClick(variant: Variant = 'tap') {
 
     // Body: a quick pitch sweep through a bandpass — the 2K "tick".
     const osc = ctx.createOscillator()
-    osc.type = 'triangle'
+    osc.type = 'sine'
     osc.frequency.setValueAtTime(f, t)
     osc.frequency.exponentialRampToValueAtTime(Math.max(80, f2), t + dur)
 
+    // Low-pass instead of bandpass: keeps the body warm, kills the thin whistle.
     const band = ctx.createBiquadFilter()
-    band.type = 'bandpass'
-    band.frequency.value = 1400
-    band.Q.value = 1.1
+    band.type = 'lowpass'
+    band.frequency.value = 900
+    band.Q.value = 0.7
 
     const env = ctx.createGain()
     env.gain.setValueAtTime(0.0001, t)
@@ -64,16 +65,18 @@ export function playClick(variant: Variant = 'tap') {
     osc.stop(t + dur + 0.02)
 
     // Transient: a hair of filtered noise so it reads as a physical click.
-    const n = ctx.createBuffer(1, Math.floor(ctx.sampleRate * 0.012), ctx.sampleRate)
+    const n = ctx.createBuffer(1, Math.floor(ctx.sampleRate * 0.008), ctx.sampleRate)
     const data = n.getChannelData(0)
     for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / data.length)
     const noise = ctx.createBufferSource()
     noise.buffer = n
+    // A soft wooden tick, not a hiss.
     const hp = ctx.createBiquadFilter()
-    hp.type = 'highpass'
-    hp.frequency.value = 2600
+    hp.type = 'bandpass'
+    hp.frequency.value = 1100
+    hp.Q.value = 0.9
     const ng = ctx.createGain()
-    ng.gain.value = gain * 0.5
+    ng.gain.value = gain * 0.22
     noise.connect(hp)
     hp.connect(ng)
     ng.connect(ctx.destination)
