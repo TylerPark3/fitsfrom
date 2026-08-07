@@ -16,7 +16,7 @@ interface IntoOpt {
   logo?: boolean
 }
 
-const NBA_TEAMS = ['Lakers', 'Thunder', 'Mavs', 'Wizards', 'Suns', 'Rockets', 'Blazers', 'Clippers', 'Sixers', 'Magic', 'Hornets', 'Jazz', 'Warriors', 'Knicks', 'Celtics', 'Bulls', 'Heat', 'Nets', 'Bucks', 'Nuggets', 'Grizzlies']
+const NBA_TEAMS = ['Lakers', 'Thunder', 'Mavs', 'Wizards', 'Suns', 'Rockets', 'Blazers', 'Clippers', 'Sixers', 'Magic', 'Hornets', 'Jazz', 'Warriors', 'Knicks', 'Celtics', 'Nets', 'Bucks', 'Nuggets', 'Grizzlies']
 
 /** The tile shows the icon photo when we have one — logos are the fallback. */
 const TEAM_TILE: Record<string, string> = {
@@ -31,10 +31,7 @@ const TEAM_TILE: Record<string, string> = {
   Magic: '/room/poster-magic.jpg',
   Hornets: '/room/poster-hornets.jpg',
   Jazz: '/room/poster-jazz.jpg',
-  Bulls: '/room/poster-bulls.jpg',
-  Timberwolves: '/room/poster-timberwolves.jpg',
   Celtics: '/room/poster-celtics.jpg',
-  Heat: '/room/poster-heat.jpg',
 }
 
 const INTO: { id: string; label: string; kind: 'team' | 'tag'; options: IntoOpt[] }[] = [
@@ -94,7 +91,7 @@ const INTO: { id: string; label: string; kind: 'team' | 'tag'; options: IntoOpt[
 ]
 
 /** Posters exist for these — picking them decorates the room. */
-const HAS_ART = new Set(['Yankees', 'Dodgers', 'Lakers', 'Rockets', 'Suns', 'Blazers', 'Bucks', 'Mavs', 'Clippers', 'Sixers', 'Magic', 'Hornets', 'Jazz', 'Bulls', 'Timberwolves', 'Celtics', 'Heat', 'Angels', 'Brewers', 'Pretty Flacko', 'Tyler, the Creator', 'Iceman', 'Bieber', 'V (BTS)', 'Ye', 'Cole World', 'Carti'])
+const HAS_ART = new Set(['Yankees', 'Dodgers', 'Lakers', 'Rockets', 'Suns', 'Blazers', 'Bucks', 'Mavs', 'Clippers', 'Sixers', 'Magic', 'Hornets', 'Jazz', 'Celtics', 'Angels', 'Brewers', 'Pretty Flacko', 'Tyler, the Creator', 'Iceman', 'Bieber', 'V (BTS)', 'Ye', 'Cole World', 'Carti'])
 
 const RANKS: [number, string][] = [
   [0, 'ROOKIE'],

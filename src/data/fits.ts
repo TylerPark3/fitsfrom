@@ -430,23 +430,6 @@ export const FITS: Fit[] = [
     ],
   },
   {
-    id: 'ai-courtside',
-    styles: ['street', 'athletic'],
-    who: 'The Answer',
-    where: 'Courtside',
-    when: 'Headband on, cornrows fresh',
-    context:
-      'Black Pelle Pelle leather hoodie with contrast stitching, plain black tee, iced chains and a diamond watch. The fit that got the NBA a dress code.',
-    vibe: 'Pelle Pelle hoodie, black tee, iced chains',
-    pieces: [
-      { slot: 'Headband', worn: 'White headband', match: { category: 'accessory', kw: 'headband|cap|hat' } },
-      { slot: 'Hoodie', worn: 'Pelle Pelle leather hoodie', match: { category: 'outer', kw: 'leather|hoodie|jacket' } },
-      { slot: 'Tee', worn: 'Plain black tee underneath', match: { category: 'top', kw: 'tee|t-shirt' } },
-      { slot: 'Chains', worn: 'Layered iced chains', match: { category: 'accessory', kw: 'chain|necklace|jewel' } },
-      { slot: 'Watch', worn: 'Diamond watch', match: { category: 'accessory', kw: 'watch' } },
-    ],
-  },
-  {
     id: 'sga-leather',
     styles: ['minimal', 'japanese'],
     who: 'SGA',
@@ -460,24 +443,6 @@ export const FITS: Fit[] = [
       { slot: 'Belt', worn: 'Double-buckle leather belt', match: { category: 'accessory', kw: 'belt' } },
       { slot: 'Trousers', worn: 'Wide leather trousers', match: { category: 'pants', kw: 'leather|wide|trouser' } },
       { slot: 'Boots', worn: 'Black square-toe boots', match: { category: 'shoes', sil: 'boot', kw: 'boot|leather' } },
-    ],
-  },
-  {
-    id: 'ye-college',
-    styles: ['ivy', 'street'],
-    who: 'Ye',
-    where: 'Paris, 2000s',
-    when: 'College Dropout era',
-    context:
-      'Seersucker blazer, varsity-striped scarf, white tee, tan belt on raw dark denim, white high-tops. The blueprint for prep-meets-rap.',
-    vibe: 'Seersucker blazer, striped scarf, raw denim',
-    pieces: [
-      { slot: 'Blazer', worn: 'Striped seersucker blazer', match: { category: 'outer', kw: 'blazer|jacket|seersucker' } },
-      { slot: 'Scarf', worn: 'Varsity-striped scarf', match: { category: 'accessory', kw: 'scarf' } },
-      { slot: 'Tee', worn: 'White tee', match: { category: 'top', kw: 'tee|t-shirt' } },
-      { slot: 'Belt', worn: 'Tan leather belt', match: { category: 'accessory', kw: 'belt' } },
-      { slot: 'Denim', worn: 'Raw dark denim', match: { category: 'pants', sil: 'jean', kw: 'jean(?!s? short)|denim(?! short)' } },
-      { slot: 'Sneakers', worn: 'White high-tops', match: { category: 'shoes', kw: 'sneaker|leather|court' } },
     ],
   },
   {
