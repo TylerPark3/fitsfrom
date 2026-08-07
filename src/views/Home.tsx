@@ -238,17 +238,22 @@ function PhoneDemo({ go }: { go: (v: View) => void }) {
 
           {i === 1 && (
             <div className="phone__mock">
-              {[
-                ['Poole Party', '92%'],
-                ['SGA', '87%'],
-                ['Tyler, the Creator', '74%'],
-                ['V (BTS)', '61%'],
-              ].map(([who, pct]) => (
-                <div className="phone__row" key={who}>
-                  <span>{who}</span>
-                  <b className="ok">{pct}</b>
-                </div>
-              ))}
+              <div className="phone__artists">
+                {[
+                  ['Poole Party', '/fits/clarkson-tunnel.jpg', true],
+                  ['SGA', '/fits/sga-arrival.jpg', true],
+                  ['Tyler', '/fits/tyler-prep.jpg', true],
+                  ['Iceman', '/fits/drake-night.jpg', false],
+                  ['Bieber', '/fits/bieber-drew.jpg', false],
+                  ['Rookie Bron', '/fits/lebron-quiet.jpg', false],
+                ].map(([who, img, on]) => (
+                  <div className={`phone__artist${on ? ' is-on' : ''}`} key={who as string}>
+                    <img src={img as string} alt="" loading="lazy" />
+                    {on ? <span className="phone__artistick">✓</span> : null}
+                    <span className="phone__artistname">{who as string}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
 
