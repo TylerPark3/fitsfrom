@@ -1,4 +1,5 @@
 import type { Profile } from '../store'
+import { COLOR, FOOTWEAR, LAYERING, PROPORTION, STATEMENT, TEXTURE } from './rules'
 import type {
   DimensionScore,
   FeedbackSignal,
@@ -40,28 +41,49 @@ function hueGap(a: number, b: number): number {
 
 // ---------------------------------------------------------------- dimensions
 
+/** 0 = slim … 3 = baggy. The axis every proportion rule reads. */
+const VOLUME: Record<string, number> = {
+  slim: 0,
+  cropped: 1,
+  straight: 1,
+  relaxed: 2,
+  longline: 2,
+  baggy: 3,
+}
+
 function scoreProportion(items: WardrobeItemV3[]): [number, string] {
   const top = items.find((i) => ['top', 'shirt', 'knit'].includes(i.category))
   const bottom = items.find((i) => i.category === 'pants')
   if (!top || !bottom) return [70, 'Needs a top and a bottom to judge proportion.']
 
-  const loose = new Set(['relaxed', 'baggy'])
-  const topLoose = loose.has(top.meta.silhouette.value)
-  const botLoose = loose.has(bottom.meta.silhouette.value)
-  const topLong = top.meta.length.value > 0.55
+  const vTop = VOLUME[top.meta.silhouette.value] ?? 1
+  const vBot = VOLUME[bottom.meta.silhouette.value] ?? 1
+  const gap = Math.abs(vTop - vBot)
 
-  // Volume on both halves reads shapeless unless the top is cropped/short enough
-  // to keep a visible waist break.
-  if (topLoose && botLoose && topLong) {
-    return [46, 'Volume on both halves with a long top — the waist disappears.']
+  // The near-miss is the failure state: commit to a proportion or invert it,
+  // but do not land one notch away. (Ramos / Wang — see rules.ts)
+  if (PROPORTION.polarizationGate && gap === 1 && !(vTop === 1 && vBot === 1)) {
+    return [48, 'The volumes sit one notch apart — commit fuller or slimmer, not halfway.']
   }
-  if (topLoose && botLoose) {
-    return [78, 'Oversized on oversized, saved by the top ending above the hip.']
+
+  // Volume on both halves survives only if the top ends high enough to keep a
+  // waist break (boxy, not just big).
+  if (vTop >= 2 && vBot >= 2) {
+    return top.meta.length.value > PROPORTION.maxTopLengthWhenBothLoose
+      ? [50, 'Volume on both halves and the top runs long — the waist disappears.']
+      : [86, 'Oversized on oversized, saved by the top ending above the hip.']
   }
-  if (!topLoose && !botLoose && top.meta.silhouette.value === 'slim' && bottom.meta.silhouette.value === 'slim') {
-    return [64, 'Slim on slim — clean, but no contrast in the silhouette.']
+
+  if (vTop === 0 && vBot === 0) {
+    return [100 - PROPORTION.columnarPenalty - 24, 'Slim on slim — clean, but no dimensional contrast.']
   }
-  return [88, 'One half fitted, one half relaxed — the proportion reads.']
+
+  const inverted = vTop > vBot
+  const bias = inverted ? PROPORTION.mixBias : -PROPORTION.mixBias
+  return [
+    clamp(90 + bias * 20),
+    inverted ? 'Fuller up top, slimmer below — the proportion reads.' : 'Fitted up top, volume below — the proportion reads.',
+  ]
 }
 
 function scoreColor(items: WardrobeItemV3[], sp: StyleProfileV3): [number, string] {
@@ -69,6 +91,14 @@ function scoreColor(items: WardrobeItemV3[], sp: StyleProfileV3): [number, strin
   if (!cols.length) return [70, 'Not enough colour data yet.']
   const accents = cols.filter((c) => !c.neutral)
   const neutrals = cols.length - accents.length
+
+  // Cluster accents by hue — two clusters reads composed, more reads accidental.
+  const clusters: number[][] = []
+  for (const a of accents) {
+    const hit = clusters.find((c) => c.some((h) => hueGap(h, a.h) < COLOR.analogousMax))
+    if (hit) hit.push(a.h)
+    else clusters.push([a.h])
+  }
 
   let s = 72
   let note = ''
@@ -83,14 +113,20 @@ function scoreColor(items: WardrobeItemV3[], sp: StyleProfileV3): [number, strin
     if (gap < 32) { s = 86; note = 'Two accents sitting close on the wheel — reads intentional.' }
     else if (gap > 145) { s = 82; note = 'Two accents opposite each other — bold but balanced.' }
     else { s = 58; note = 'Two accents clash rather than relate.' }
+  } else if (clusters.length <= COLOR.maxHueClusters) {
+    s = 80
+    note = `${accents.length} colours but only ${clusters.length} hue families — it holds together.`
   } else {
-    s = sp.loudness > 0.6 ? 74 : 48
-    note = sp.loudness > 0.6 ? 'Three-plus accents — loud, which is your lane.' : 'Three-plus accents compete.'
+    s = sp.loudness > STATEMENT.loudTolerance ? 74 : 48
+    note =
+      sp.loudness > STATEMENT.loudTolerance
+        ? `${clusters.length} hue families — loud, which is your lane.`
+        : `${clusters.length} hue families competing.`
   }
   // Value contrast keeps a fit from going flat.
   const ls = cols.map((c) => c.l)
   const spread = Math.max(...ls) - Math.min(...ls)
-  if (spread < 0.15) { s -= 8; note += ' Everything sits at one lightness — it flattens.' }
+  if (spread < COLOR.minValueSpread) { s -= 8; note += ' Everything sits at one lightness — it flattens.' }
   if (neutrals >= 2 && accents.length <= 1) s += 4
   return [clamp(s), note.trim()]
 }
@@ -99,7 +135,10 @@ function scoreLayering(items: WardrobeItemV3[]): [number, string] {
   const layers = items.filter((i) => ['top', 'shirt', 'knit', 'outer'].includes(i.category))
   if (layers.length <= 1) return [76, 'Single layer — nothing to conflict.']
   const lens = layers.map((l) => l.meta.length.value).sort((a, b) => a - b)
-  const stepped = lens.every((v, i) => i === 0 || v - lens[i - 1] > 0.04)
+  if (layers.length > LAYERING.maxTorsoLayers) {
+    return [56, `${layers.length} torso layers — past three it stops reading and starts bulking.`]
+  }
+  const stepped = lens.every((v, i) => i === 0 || v - lens[i - 1] > LAYERING.minLengthStep)
   const outer = layers.find((l) => l.category === 'outer')
   const under = layers.filter((l) => l.category !== 'outer')
   if (outer && under.some((u) => u.meta.length.value > outer.meta.length.value)) {
@@ -112,27 +151,40 @@ function scoreTexture(items: WardrobeItemV3[]): [number, string] {
   const mats = items.map((i) => (i.meta.material || '').toLowerCase()).filter(Boolean)
   if (mats.length < 2) return [74, 'Not enough material data to judge texture.']
   const uniq = new Set(mats.map((m) => m.split(/[\s,/]/)[0]))
-  if (uniq.size === 1) return [66, 'One material throughout — safe but flat.']
+  if (uniq.size < TEXTURE.minTexturesWhenTonal) return [66, 'One material throughout — safe but flat.']
   return [88, `${uniq.size} textures in play — the fit has depth.`]
 }
 
 function scoreFootwear(items: WardrobeItemV3[]): [number, string] {
   const shoe = items.find((i) => i.category === 'shoes')
   if (!shoe) return [60, 'No shoe chosen yet — footwear sets the whole direction.']
+  const bottom = items.find((i) => i.category === 'pants')
+  const chunky = shoe.meta.weight.value === 'heavy'
+  const isBoot = /boot/i.test(shoe.name)
+
+  // A chunky shoe is paid for by leg volume; a slim leg under it reads clown-foot.
+  if (FOOTWEAR.chunkyNeedsVolume && chunky && bottom) {
+    const vBot = VOLUME[bottom.meta.silhouette.value] ?? 1
+    if (vBot === 0) return [54, 'Heavy shoe under a slim leg — the foot takes over.']
+    if (vBot >= 3 && !isBoot) return [72, 'Very wide leg over a chunky shoe — the shoe disappears.']
+  }
+  // Boots want the cuff inside the collar, not draped over the tongue.
+  if (FOOTWEAR.bootCuffMustClearCollar && isBoot && bottom && (VOLUME[bottom.meta.silhouette.value] ?? 1) >= 3) {
+    return [58, 'The cuff is wider than the boot collar — it swallows the boot.']
+  }
+
   const upper = items.filter((i) => ['top', 'shirt', 'knit', 'outer'].includes(i.category))
-  const upperW = avg(upper.map((u) => WEIGHT_N[u.meta.weight.value]))
-  const shoeW = WEIGHT_N[shoe.meta.weight.value]
-  const gap = shoeW - upperW
-  if (gap > 0.6) return [62, 'The shoe carries more visual weight than everything above it.']
-  if (gap < -0.6) return [70, 'Heavy up top, light on the foot — the fit floats.']
+  const gap = WEIGHT_N[shoe.meta.weight.value] - avg(upper.map((u) => WEIGHT_N[u.meta.weight.value]))
+  if (gap > FOOTWEAR.maxWeightGap) return [62, 'The shoe carries more visual weight than everything above it.']
+  if (gap < -FOOTWEAR.maxWeightGap) return [70, 'Heavy up top, light on the foot — the fit floats.']
   return [90, 'Shoe weight matches the upper half.']
 }
 
 function scoreStatement(items: WardrobeItemV3[], sp: StyleProfileV3): [number, string] {
   const loud = items.filter((i) => i.meta.graphic.value >= 3).length
   if (loud === 0) return [sp.loudness > 0.6 ? 66 : 84, loud === 0 && sp.loudness > 0.6 ? 'No statement piece — quieter than your usual.' : 'Clean, no competing graphics.']
-  if (loud === 1) return [94, 'One statement piece, everything else supporting it.']
-  const tolerant = sp.loudness > 0.65
+  if (loud === STATEMENT.idealAnchors) return [94, 'One statement piece, everything else supporting it.']
+  const tolerant = sp.loudness > STATEMENT.loudTolerance
   return [tolerant ? 76 : 52, tolerant ? `${loud} statement pieces — loud on purpose.` : `${loud} graphics compete for the eye.`]
 }
 

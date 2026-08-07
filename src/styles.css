@@ -3735,6 +3735,142 @@ input.seg__control::placeholder {
   }
 }
 
+/* top fits */
+.topfits {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.topfit {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--tile);
+  padding: 14px;
+  animation: gridrise 340ms var(--ease) both;
+}
+
+.topfit__lay {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.topfit__lay img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.topfit__blank {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--mist);
+  font-family: 'Instrument Serif', serif;
+  font-size: 26px;
+  color: var(--ink-4);
+}
+
+/* fit score */
+.fscore {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--tile);
+  padding: 16px 18px;
+}
+
+.fscore__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  text-align: left;
+}
+
+.fscore__num {
+  font-family: var(--disp);
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.fscore__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.fscore__line {
+  font-size: 13.5px;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+
+.fscore__line--good {
+  color: var(--good);
+}
+
+.fscore__line--warn {
+  color: var(--ink-2);
+}
+
+.fscore__rows {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 9px;
+  animation: qfade 220ms var(--ease) both;
+}
+
+.fscore__row {
+  display: grid;
+  grid-template-columns: 116px 1fr 30px;
+  align-items: center;
+  gap: 10px;
+}
+
+.fscore__label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.fscore__bar {
+  margin: 0;
+}
+
+.fscore__val {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.fscore__note {
+  grid-column: 1 / -1;
+  margin-top: -3px;
+  padding-left: 126px;
+}
+
+@media (max-width: 640px) {
+  .fscore__row {
+    grid-template-columns: 92px 1fr 28px;
+  }
+
+  .fscore__note {
+    padding-left: 0;
+  }
+}
+
 /* closet shelves */
 .shelf {
   margin-bottom: 22px;

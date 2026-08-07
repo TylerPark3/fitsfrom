@@ -1,14 +1,15 @@
-import { useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import type { View } from '../App'
 import { CATALOG, type Product } from '../data/catalog'
 import { CATEGORIES, CORE_SLOTS } from '../data/taxonomy'
 import { useStore, type CustomPiece } from '../lib/store'
 import { rank } from '../lib/match'
-import { FITS } from '../data/fits'
+import { complete, hydrate, profileToStyle, rankFits, type BuiltFit } from '../lib/wardrobe/builder'
+import { FitScore } from '../components/FitScore'
 import { recommendSize } from '../lib/sizing'
 import { fileToDataUrl } from '../lib/img'
 import { ProductCard } from '../components/ProductCard'
-import { Arrow, Plus, Trash, Upload, CheckInk } from '../components/Icons'
+import { Arrow, Plus, Trash, Upload } from '../components/Icons'
 import { Room } from '../components/Room'
 
 export const CONDITIONS: [string, number][] = [
@@ -638,119 +639,54 @@ function refImage(ref: string, customs: CustomPiece[]): { img: string; label: st
 
 /** Named fits — the virtual dressing room, flat-lay style. */
 function FitPlanner() {
-  const { wardrobe, customs, outfits, profile, createOutfit, deleteOutfit, toggleOutfitRef, toast } =
-    useStore()
-  const [editing, setEditing] = useState<string | null>(null)
+  const store = useStore()
+  const { wardrobe, customs, profile, outfits, createOutfit, deleteOutfit, toggleOutfitRef, toast } = store
+  const [seed, setSeed] = useState(0)
   const [naming, setNaming] = useState(false)
   const [nameDraft, setNameDraft] = useState('')
 
-  const createNamed = () => {
-    const name = nameDraft.trim()
-    if (!name) return
-    setEditing(createOutfit(name))
-    setNaming(false)
-    setNameDraft('')
-    toast('Tap pieces below to add them')
+  const pool = useMemo(() => hydrate(wardrobe, customs), [wardrobe, customs])
+  const ctx = useMemo(
+    () => ({
+      profile,
+      styleProfile: profileToStyle(profile),
+      signals: [],
+      occasion: 'casual' as const,
+    }),
+    [profile],
+  )
+
+  // Three ranked fits, anti-dominated so one hoodie can't headline all of them.
+  const built: BuiltFit[] = useMemo(() => {
+    if (pool.length < 2) return []
+    const raw = [0, 1, 2, 3, 4].map((i) => complete(pool, { locked: {}, ctx, seed: seed + i }))
+    const seen = new Set<string>()
+    const uniq = raw.filter((f) => {
+      const key = Object.values(f.slots).sort().join('|')
+      if (seen.has(key)) return false
+      seen.add(key)
+      return true
+    })
+    return rankFits(uniq).slice(0, 3)
+  }, [pool, ctx, seed])
+
+  const saveFit = (f: BuiltFit, name: string) => {
+    const id = createOutfit(name)
+    f.items.forEach((i) => toggleOutfitRef(id, i.id))
+    toast(`Saved — ${name}`)
   }
-
-  // Match against proven formulas: celebrity fit templates + brand lanes + color scheme.
-  const NEUTRALS = /black|white|cream|ecru|ivory|grey|gray|charcoal|navy|tan|khaki|beige|natural|stone|sand|off-white/i
-  const ACCENTS: [string, RegExp][] = [
-    ['red', /red|burgundy|maroon|crimson|wine/i],
-    ['green', /green|olive|forest|sage/i],
-    ['blue', /blue|cobalt|royal/i],
-    ['purple', /purple|lavender|lilac|orchid/i],
-    ['yellow', /yellow|mustard|gold/i],
-    ['orange', /orange|rust|clay/i],
-    ['pink', /pink|rose|salmon/i],
-    ['brown', /brown|chocolate|mocha|coffee/i],
-  ]
-  const accentOf = (name: string) => ACCENTS.find(([, re]) => re.test(name))?.[0] ?? null
-
-  const autoMatch = () => {
-    const owned = wardrobe
-      .map((w) => CATALOG.find((x) => x.id === w.productId))
-      .filter((x): x is (typeof CATALOG)[number] => !!x)
-    if (owned.length < 2) {
-      toast('Add a few more pieces first')
-      return
-    }
-    const ownedCats = new Set(owned.map((p) => p.category))
-
-    // Pick the celebrity formula your closet can best recreate.
-    const template = [...FITS]
-      .map((f) => ({
-        f,
-        cover: f.pieces.filter((pc) => ownedCats.has(pc.match.category)).length / f.pieces.length,
-        taste: f.styles.filter((st) => profile.styles.includes(st)).length,
-      }))
-      .sort((a, b) => b.cover - a.cover || b.taste - a.taste)[0]
-
-    const refs: string[] = []
-    const accents = new Set<string>()
-    const lanes = new Set<string>()
-    const usedCats = new Set<string>()
-
-    for (const piece of template.f.pieces) {
-      const cat = piece.match.category
-      if (usedCats.has(cat) && cat !== 'top') continue
-      const pool = owned.filter((p) => p.category === cat && !refs.includes(p.id))
-      if (!pool.length) continue
-      let best: (typeof pool)[number] | null = null
-      let bestScore = -Infinity
-      for (const p of pool) {
-        let sc = p.styles.filter((st) => template.f.styles.includes(st)).length * 2
-        sc += p.styles.some((st) => lanes.has(st)) ? 1.2 : 0
-        const acc = accentOf(p.name)
-        if (!acc || NEUTRALS.test(p.name)) sc += 1.6
-        else if (accents.size === 0) sc += 1
-        else if (accents.has(acc)) sc += 0.8
-        else sc -= 2.2
-        if (sc > bestScore) {
-          bestScore = sc
-          best = p
-        }
-      }
-      if (best) {
-        refs.push(best.id)
-        usedCats.add(cat)
-        best.styles.forEach((st) => lanes.add(st))
-        const acc = accentOf(best.name)
-        if (acc && !NEUTRALS.test(best.name)) accents.add(acc)
-      }
-    }
-
-    if (refs.length < 2) {
-      toast('Add a few more pieces first')
-      return
-    }
-    const id = createOutfit(`The ${template.f.who} formula`)
-    refs.forEach((r) => toggleOutfitRef(id, r))
-    toast(`Matched via the ${template.f.who} formula`)
-  }
-
-  const pool: { ref: string; img: string; label: string }[] = [
-    ...wardrobe
-      .map((w) => {
-        const p = CATALOG.find((x) => x.id === w.productId)
-        return p ? { ref: p.id, img: p.image, label: p.name } : null
-      })
-      .filter((x): x is { ref: string; img: string; label: string } => x !== null),
-    ...customs.map((c) => ({ ref: c.id, img: c.photo, label: c.name })),
-  ]
-
-  const active = outfits.find((o) => o.id === editing)
 
   return (
     <div className="section">
       <div className="section__head">
-        <h3>Planned fits</h3>
-        <div className="row" style={{ gap: 6 }}>
-          <button className="btn btn--primary btn--sm" onClick={autoMatch}>
-            Match one for me
+        <h3>Top fits from your closet</h3>
+        <div className="row" style={{ gap: 8 }}>
+          <span className="tiny">Scored on proportion, colour, layering, occasion</span>
+          <button className="btn btn--ghost btn--sm" onClick={() => setSeed((n) => n + 3)}>
+            ↻ Rebuild
           </button>
           <button className="btn btn--ghost btn--sm" onClick={() => setNaming((v) => !v)}>
-            <Plus /> New fit
+            <Plus /> Blank fit
           </button>
         </div>
       </div>
@@ -763,82 +699,81 @@ function FitPlanner() {
             placeholder="Name it — “date night”, “gameday”…"
             value={nameDraft}
             onChange={(e) => setNameDraft(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && createNamed()}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && nameDraft.trim()) {
+                createOutfit(nameDraft.trim())
+                setNameDraft('')
+                setNaming(false)
+                toast('Fit created')
+              }
+            }}
           />
-          <button className="btn btn--primary" onClick={createNamed}>
-            Create
-          </button>
         </div>
       )}
 
-      {outfits.length === 0 && (
-        <p className="tiny" style={{ marginBottom: 12 }}>
-          Build “date night” or “gameday” from anything you own — like laying it on the bed, minus
-          the bed.
-        </p>
-      )}
-
-      <div className="fitplans">
-        {outfits.map((o) => (
-          <div className={`plan${editing === o.id ? ' is-editing' : ''}`} key={o.id}>
-            <div className="plan__lay">
-              {o.refs.slice(0, 6).map((ref) => {
-                const r = refImage(ref, customs)
-                return r ? <img key={ref} src={r.img} alt={r.label} /> : null
-              })}
-              {o.refs.length === 0 && <span className="tiny">Empty — tap pieces to add</span>}
-            </div>
-            <div className="plan__meta">
-              <b>{o.name}</b>
-              <div className="row" style={{ gap: 4 }}>
+      {pool.length < 2 ? (
+        <p className="tiny">Add a couple more pieces and the engine can start building fits.</p>
+      ) : (
+        <div className="topfits">
+          {built.map((f, i) => (
+            <div className="topfit" key={i}>
+              <div className="topfit__lay">
+                {f.items.slice(0, 6).map((it) =>
+                  it.image ? (
+                    <img key={it.id} src={it.image} alt={it.name} loading="lazy" />
+                  ) : (
+                    <span className="topfit__blank" key={it.id}>
+                      {it.name[0]?.toUpperCase()}
+                    </span>
+                  ),
+                )}
+              </div>
+              <FitScore evaluation={f.evaluation} />
+              {f.gaps.length > 0 && (
+                <p className="tiny" style={{ marginTop: 8, color: 'var(--red)' }}>
+                  Missing: {f.gaps.join(' · ')}
+                </p>
+              )}
+              <div className="row" style={{ gap: 6, marginTop: 12, flexWrap: 'wrap' }}>
                 <button
-                  className="btn btn--quiet btn--sm"
-                  onClick={() => setEditing(editing === o.id ? null : o.id)}
+                  className="btn btn--primary btn--sm"
+                  onClick={() => saveFit(f, `Fit ${outfits.length + 1}`)}
                 >
-                  {editing === o.id ? 'Done' : 'Edit'}
+                  Save this fit
                 </button>
-                <button
-                  className="iconbtn"
-                  aria-label={`Delete ${o.name}`}
-                  onClick={() => deleteOutfit(o.id)}
-                >
-                  <Trash size={13} />
+                <button className="btn btn--quiet btn--sm" onClick={() => setSeed((n) => n + 1)}>
+                  Swap it out
                 </button>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
-      {active && (
-        <>
-          <p className="eyebrow" style={{ margin: '18px 0 10px' }}>
-            Tap to add to “{active.name}”
-          </p>
-          <div className="pickrow">
-            {pool.length === 0 && (
-              <p className="tiny">Nothing in your wardrobe yet — add pieces first.</p>
-            )}
-            {pool.map(({ ref, img, label }) => (
-              <button
-                key={ref}
-                className="pick"
-                aria-pressed={active.refs.includes(ref)}
-                onClick={() => toggleOutfitRef(active.id, ref)}
-                title={label}
-              >
-                <img src={img} alt={label} />
-                {active.refs.includes(ref) && (
-                  <span className="pick__tick">
-                    <CheckInk size={12} />
-                  </span>
-                )}
-              </button>
+      {outfits.length > 0 && (
+        <div style={{ marginTop: 26 }}>
+          <p className="eyebrow" style={{ marginBottom: 10 }}>Saved fits</p>
+          <div className="fitplans">
+            {outfits.map((o) => (
+              <div className="plan" key={o.id}>
+                <div className="plan__lay">
+                  {o.refs.slice(0, 6).map((ref) => {
+                    const r = refImage(ref, customs)
+                    return r ? <img key={ref} src={r.img} alt={r.label} /> : null
+                  })}
+                  {o.refs.length === 0 && <span className="tiny">Empty</span>}
+                </div>
+                <div className="plan__meta">
+                  <b>{o.name}</b>
+                  <button className="iconbtn" aria-label={`Delete ${o.name}`} onClick={() => deleteOutfit(o.id)}>
+                    <Trash size={13} />
+                  </button>
+                </div>
+              </div>
             ))}
           </div>
-        </>
+        </div>
       )}
     </div>
   )
 }
-
