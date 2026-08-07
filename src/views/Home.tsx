@@ -149,7 +149,16 @@ export function Home({ go }: { go: (v: View) => void }) {
               />
             ) : (
               <>
-                <img src={`/fits/${today.id}.jpg`} alt={today.who} onError={(e) => ((e.target as HTMLImageElement).style.opacity = '0')} />
+                <span className="fotd2__fallback" aria-hidden="true">
+                  <span className="serif">{today.who}</span>
+                  <i>{today.vibe}</i>
+                </span>
+                <img
+                  src={`/fits/${today.id}.jpg`}
+                  alt={today.who}
+                  loading="lazy"
+                  onError={(e) => ((e.target as HTMLImageElement).style.display = 'none')}
+                />
                 <span className="fotd2__stamp">{today.where}</span>
               </>
             )}

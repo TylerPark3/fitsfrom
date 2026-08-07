@@ -5116,6 +5116,32 @@ input.seg__control::placeholder {
   background: #fff;
 }
 
+.fotd2__fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 28px;
+  text-align: center;
+  background: linear-gradient(160deg, var(--mist) 0%, var(--mist-2) 100%);
+}
+
+.fotd2__fallback span {
+  font-size: clamp(30px, 3.4vw, 46px);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+
+.fotd2__fallback i {
+  font-style: italic;
+  font-family: 'Instrument Serif', serif;
+  color: var(--red);
+  font-size: 15px;
+}
+
 .fotd2__stamp {
   position: absolute;
   left: 16px;

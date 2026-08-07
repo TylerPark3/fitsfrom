@@ -430,22 +430,6 @@ export const FITS: Fit[] = [
     ],
   },
   {
-    id: 'sga-leather',
-    styles: ['minimal', 'japanese'],
-    who: 'SGA',
-    where: 'New York, leaving the hotel',
-    when: 'Fashion week',
-    context:
-      'Head-to-toe black leather — cropped moto shirt-jacket, double-buckle belt over a wrap panel, wide leather trousers, square-toe boots. No logo anywhere.',
-    vibe: 'All-leather, double belt, square-toe boots',
-    pieces: [
-      { slot: 'Jacket', worn: 'Cropped leather shirt-jacket', match: { category: 'outer', kw: 'leather|jacket|moto' } },
-      { slot: 'Belt', worn: 'Double-buckle leather belt', match: { category: 'accessory', kw: 'belt' } },
-      { slot: 'Trousers', worn: 'Wide leather trousers', match: { category: 'pants', kw: 'leather|wide|trouser' } },
-      { slot: 'Boots', worn: 'Black square-toe boots', match: { category: 'shoes', sil: 'boot', kw: 'boot|leather' } },
-    ],
-  },
-  {
     id: 'carti-studio',
     styles: ['street', 'skate'],
     who: 'Carti',
