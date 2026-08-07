@@ -3118,8 +3118,7 @@ input.seg__control::placeholder {
   position: relative;
   border: 1px solid var(--line);
   border-radius: 22px;
-  background:
-    radial-gradient(120% 90% at 50% 0%, #f8f5ef 0%, #f1ece3 70%, #ece5da 100%);
+  background: var(--paper);
   min-height: 400px;
   margin-bottom: 40px;
   overflow: hidden;
@@ -3142,8 +3141,8 @@ input.seg__control::placeholder {
   left: 0;
   right: 0;
   height: 7px;
-  background: #faf7f1;
-  border-bottom: 1px solid #ddd5c6;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
 }
 
 .room2__lean img {
@@ -3914,6 +3913,116 @@ input.seg__control::placeholder {
   overflow: visible;
 }
 
+/* landing: the two tools */
+.homefeat {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 56px 0 8px;
+}
+
+.homefeat__card {
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--tile);
+  padding: 30px 28px 26px;
+  transition: transform var(--med), box-shadow var(--med), border-color var(--fast);
+}
+
+.homefeat__card:hover {
+  transform: translateY(-3px);
+  border-color: var(--ink-4);
+  box-shadow: var(--shadow);
+}
+
+.homefeat__card h3 {
+  font-family: var(--disp);
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  margin: 10px 0 8px;
+}
+
+.homefeat__card p {
+  color: var(--ink-2);
+  font-size: 14.5px;
+  max-width: 40ch;
+  margin-bottom: 14px;
+}
+
+.homefeat__card .lead__cta {
+  color: var(--red);
+}
+
+@media (max-width: 760px) {
+  .homefeat {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* saved brands */
+.brandgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 10px;
+}
+
+.brandcard {
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--tile);
+  padding: 18px;
+  transition: border-color var(--fast), transform var(--med);
+}
+
+.brandcard:hover {
+  border-color: var(--ink-4);
+  transform: translateY(-2px);
+}
+
+.brandcard__mark {
+  display: block;
+  font-size: 24px;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+/* budget, adjustable inline */
+.budgetbar {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 9px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--tile);
+}
+
+.budgetbar b {
+  font-variant-numeric: tabular-nums;
+  min-width: 52px;
+  text-align: center;
+}
+
+.budgetbar__step {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--line-2);
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  line-height: 1;
+  transition: border-color var(--fast), background var(--fast);
+}
+
+.budgetbar__step:hover {
+  border-color: var(--ink);
+  background: var(--mist);
+}
+
 /* the avatar build, carried into Explore */
 .buildbar {
   display: flex;
@@ -3964,9 +4073,9 @@ input.seg__control::placeholder {
 /* outfit builder */
 .builder__ctx {
   display: flex;
-  gap: 14px;
+  gap: 18px;
   flex-wrap: wrap;
-  margin-bottom: 16px;
+  margin-bottom: 26px;
 }
 
 .builder__ctxrow {
@@ -3977,15 +4086,15 @@ input.seg__control::placeholder {
 
 .builder {
   display: grid;
-  grid-template-columns: 1fr minmax(280px, 360px);
-  gap: 22px;
+  grid-template-columns: 1fr minmax(280px, 340px);
+  gap: 34px;
   align-items: start;
 }
 
 .builder__canvas {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(116px, 1fr));
+  gap: 18px;
 }
 
 .bslot {

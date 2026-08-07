@@ -91,7 +91,7 @@ const INTO: { id: string; label: string; kind: 'team' | 'tag'; options: IntoOpt[
 ]
 
 /** Posters exist for these — picking them decorates the room. */
-const HAS_ART = new Set(['Yankees', 'Dodgers', 'Lakers', 'Rockets', 'Suns', 'Blazers', 'Bucks', 'Mavs', 'Clippers', 'Sixers', 'Magic', 'Hornets', 'Jazz', 'Celtics', 'Angels', 'Brewers', 'Pretty Flacko', 'Tyler, the Creator', 'Iceman', 'Bieber', 'V (BTS)', 'Ye', 'Cole World', 'Carti'])
+const HAS_ART = new Set(['Thunder', 'Wizards', 'Warriors', 'Knicks', 'Yankees', 'Dodgers', 'Lakers', 'Rockets', 'Suns', 'Blazers', 'Bucks', 'Mavs', 'Clippers', 'Sixers', 'Magic', 'Hornets', 'Jazz', 'Celtics', 'Angels', 'Brewers', 'Pretty Flacko', 'Tyler, the Creator', 'Iceman', 'Bieber', 'V (BTS)', 'Ye', 'Cole World', 'Carti'])
 
 const RANKS: [number, string][] = [
   [0, 'ROOKIE'],

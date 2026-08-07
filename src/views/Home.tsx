@@ -196,6 +196,23 @@ export function Home({ go }: { go: (v: View) => void }) {
         </div>
       </section>
 
+      <section className="wrap">
+        <div className="homefeat">
+          <button className="homefeat__card" onClick={() => go('avatar')}>
+            <span className="eyebrow">Your build</span>
+            <h3>Scan yourself once.</h3>
+            <p>Every piece on the site then shows the size to buy for your body.</p>
+            <span className="lead__cta">Build my avatar →</span>
+          </button>
+          <button className="homefeat__card" onClick={() => go('wardrobe')}>
+            <span className="eyebrow">Your closet</span>
+            <h3>Catalogue what you own.</h3>
+            <p>The engine scores your fits and fills the gaps — not another feed.</p>
+            <span className="lead__cta">Open the wardrobe →</span>
+          </button>
+        </div>
+      </section>
+
       <div className="interstitial" aria-hidden="true">
         Every piece <em>identified.</em>
       </div>

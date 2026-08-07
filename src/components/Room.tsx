@@ -16,6 +16,10 @@ const ARTIST_POSTERS: Record<string, string> = {
 }
 
 const TEAM_POSTERS: Record<string, string> = {
+  Thunder: '/room/poster-thunder.jpg',
+  Wizards: '/room/poster-wizards.jpg',
+  Warriors: '/room/poster-warriors.jpg',
+  Knicks: '/room/poster-knicks.jpg',
   Rockets: '/room/poster-rockets.jpg',
   Lakers: '/room/poster-lakers.jpg',
   Suns: '/room/poster-suns.jpg',

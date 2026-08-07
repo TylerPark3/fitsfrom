@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from 'react'
 import type { View } from '../App'
-import { CATALOG, type Product } from '../data/catalog'
+import { CATALOG, BRANDS, type Product } from '../data/catalog'
 import { CATEGORIES, CORE_SLOTS } from '../data/taxonomy'
 import { useStore, type CustomPiece } from '../lib/store'
 import { rank } from '../lib/match'
@@ -9,6 +9,7 @@ import { FitScore } from '../components/FitScore'
 import { OutfitBuilder } from '../components/OutfitBuilder'
 import { recommendSize } from '../lib/sizing'
 import { fileToDataUrl } from '../lib/img'
+import { buyUrl } from '../lib/affiliate'
 import { ProductCard } from '../components/ProductCard'
 import { Arrow, Plus, Trash, Upload } from '../components/Icons'
 import { Room } from '../components/Room'
@@ -35,7 +36,7 @@ export function WardrobeView({
   onOpen: (id: string) => void
   go: (v: View) => void
 }) {
-  const { wardrobe, profile } = useStore()
+  const { wardrobe, profile, setProfile } = useStore()
   const [recPage, setRecPage] = useState(0)
 
   const items = wardrobe
@@ -96,7 +97,6 @@ export function WardrobeView({
   const page = recPage % pages
   const suggestions = windowed.slice(page * 4, page * 4 + 4)
 
-  const totalRetail = items.reduce((n, i) => n + i.p.price, 0)
   const totalValue = items.reduce((n, i) => n + itemValue(i.p.price, i.w.condition, i.w.years), 0)
 
   if (items.length === 0) {
@@ -129,18 +129,28 @@ export function WardrobeView({
       <div className="pagehead">
         <span className="eyebrow">THE CLOSET — CATALOGUED</span>
         <h2>
-          {items.length} {items.length === 1 ? 'piece' : 'pieces'} · ${Math.round(totalValue)}{' '}
-          <span className="muted" style={{ fontSize: '0.55em', fontWeight: 400 }}>
-            est. value · ${Math.round(totalRetail)} retail
-          </span>
+          {items.length} {items.length === 1 ? 'piece' : 'pieces'}
         </h2>
-        <p>
-          Goals set from what you’re into
-          {profile.teams.length + profile.tags.length > 0
-            ? ` — ${[...profile.teams, ...profile.tags].slice(0, 3).join(' · ')}`
-            : ''}
-          .
-        </p>
+
+        <div className="budgetbar">
+          <span className="eyebrow">Budget per piece</span>
+          <button
+            className="budgetbar__step"
+            aria-label="Lower budget"
+            onClick={() => setProfile({ budgetMax: Math.max(40, profile.budgetMax - 25) })}
+          >
+            −
+          </button>
+          <b>${profile.budgetMax}</b>
+          <button
+            className="budgetbar__step"
+            aria-label="Raise budget"
+            onClick={() => setProfile({ budgetMax: Math.min(1200, profile.budgetMax + 25) })}
+          >
+            +
+          </button>
+          <span className="tiny">closet worth ${Math.round(totalValue)}</span>
+        </div>
       </div>
 
       <Room />
@@ -195,6 +205,8 @@ export function WardrobeView({
       <OutfitBuilder />
 
       <FitPlanner />
+
+      <SavedBrands />
 
       <SavedShelf onOpen={onOpen} />
 
@@ -608,6 +620,96 @@ function MoreLikeYours({ onOpen }: { onOpen: (id: string) => void }) {
           <ProductCard key={p.id} product={p} onOpen={onOpen} />
         ))}
       </div>
+    </div>
+  )
+}
+
+/** Brands you rock with — wordmark, piece count, straight link to their store. */
+function SavedBrands() {
+  const { profile, setProfile, toast } = useStore()
+  const [q, setQ] = useState('')
+
+  const saved = profile.brands ?? []
+  const matches = q.trim()
+    ? BRANDS.filter(
+        (b) => b.toLowerCase().includes(q.trim().toLowerCase()) && !saved.includes(b),
+      ).slice(0, 6)
+    : []
+
+  const brandUrl = (b: string) => CATALOG.find((p) => p.brand === b)?.url ?? ''
+
+  return (
+    <div className="section">
+      <div className="section__head">
+        <h3>Saved brands</h3>
+        <span className="tiny">{saved.length} saved · boosts your ranking</span>
+      </div>
+
+      <div className="room__input" style={{ marginBottom: 14, maxWidth: 420 }}>
+        <input
+          className="text-input"
+          placeholder="Save a brand — “Stüssy”, “Sp5der”…"
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+        />
+      </div>
+
+      {matches.length > 0 && (
+        <div className="vaulthits" style={{ marginBottom: 14 }}>
+          {matches.map((b) => (
+            <button
+              key={b}
+              className="vaulthit"
+              onClick={() => {
+                setProfile({ brands: [...saved, b] })
+                setQ('')
+                toast(`Saved — ${b}`)
+              }}
+            >
+              <span>
+                <b>{b}</b> {CATALOG.filter((p) => p.brand === b).length} pieces
+              </span>
+              <i>+ save</i>
+            </button>
+          ))}
+        </div>
+      )}
+
+      {saved.length === 0 ? (
+        <p className="tiny">No brands saved yet — search one above.</p>
+      ) : (
+        <div className="brandgrid">
+          {saved.map((b) => {
+            const url = brandUrl(b)
+            const n = CATALOG.filter((p) => p.brand === b).length
+            return (
+              <div className="brandcard" key={b}>
+                <span className="brandcard__mark serif">{b}</span>
+                <span className="tiny">{n} pieces in the vault</span>
+                <div className="row" style={{ gap: 6, marginTop: 10 }}>
+                  {url && (
+                    <a
+                      className="btn btn--ghost btn--sm"
+                      href={buyUrl(url)}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      Visit site
+                    </a>
+                  )}
+                  <button
+                    className="btn btn--quiet btn--sm"
+                    onClick={() => setProfile({ brands: saved.filter((x) => x !== b) })}
+                    aria-label={`Remove ${b}`}
+                  >
+                    <Trash size={13} />
+                  </button>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      )}
     </div>
   )
 }

@@ -34,11 +34,11 @@ export function FitScore({ evaluation }: { evaluation: FitEvaluation }) {
         </span>
       </button>
 
-      {e.working.length > 0 && (
-        <p className="fscore__line fscore__line--good">✓ {e.working.join(' ')}</p>
+      {!open && e.improve.length > 0 && (
+        <p className="fscore__line fscore__line--warn">{e.improve[0]}</p>
       )}
-      {e.improve.length > 0 && (
-        <p className="fscore__line fscore__line--warn">→ {e.improve.join(' ')}</p>
+      {!open && e.improve.length === 0 && e.working.length > 0 && (
+        <p className="fscore__line fscore__line--good">{e.working[0]}</p>
       )}
 
       {open && (
@@ -58,6 +58,12 @@ export function FitScore({ evaluation }: { evaluation: FitEvaluation }) {
               <span className="fscore__note tiny">{d.note}</span>
             </div>
           ))}
+          {e.working.length > 0 && (
+            <p className="fscore__line fscore__line--good">✓ {e.working.join(' ')}</p>
+          )}
+          {e.improve.length > 0 && (
+            <p className="fscore__line fscore__line--warn">→ {e.improve.join(' ')}</p>
+          )}
           {e.missing.length > 0 && (
             <p className="tiny" style={{ marginTop: 10 }}>
               Uncertain: {e.missing.join(' · ')}

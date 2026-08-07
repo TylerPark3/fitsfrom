@@ -71,6 +71,7 @@ const BRANDS = [
   ['Packer', 'packershoes.com'],
   ['Saint Alfred', 'saintalfred.com'],
   ['Wish ATL', 'wishatl.com'],
+  ['Sp5der', 'sp5derworldwide.com'],
 ]
 
 const UA = { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)' }

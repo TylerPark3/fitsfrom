@@ -64,6 +64,7 @@ const BRAND_STYLES = {
   Packer: ['street', 'athletic'],
   'Saint Alfred': ['street', 'athletic'],
   'Wish ATL': ['street', 'athletic'],
+  Sp5der: ['street'],
 }
 
 const CAT = [

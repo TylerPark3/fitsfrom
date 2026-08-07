@@ -333,14 +333,14 @@ function Nav({
           <button className="nav__link" aria-current={view === 'home'} onClick={() => go('home')}>
             Home
           </button>
-          <button className="nav__link" aria-current={view === 'discover'} onClick={() => go('discover')}>
-            Explore
-          </button>
           <button className="nav__link" aria-current={view === 'fits'} onClick={() => go('fits')}>
             Fits
           </button>
           <button className="nav__link" aria-current={view === 'avatar'} onClick={() => go('avatar')}>
             Avatar
+          </button>
+          <button className="nav__link" aria-current={view === 'discover'} onClick={() => go('discover')}>
+            Explore
           </button>
           <button
             className="nav__link"

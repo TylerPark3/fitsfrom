@@ -188,7 +188,7 @@ export function OutfitBuilder() {
             >
               Wore it
             </button>
-            {(['not-my-style', 'too-loud', 'too-basic', 'wrong-silhouette'] as const).map((k) => (
+            {(['not-my-style', 'too-loud', 'too-basic'] as const).map((k) => (
               <button
                 key={k}
                 className="chip chip--sm"
