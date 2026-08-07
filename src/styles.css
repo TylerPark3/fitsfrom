@@ -3152,7 +3152,7 @@ input.seg__control::placeholder {
 
 .room2__dresser {
   position: absolute;
-  left: 26px;
+  left: 300px;
   bottom: 24px;
   width: 170px;
   height: 120px;
@@ -3195,25 +3195,53 @@ input.seg__control::placeholder {
   filter: brightness(1.05);
 }
 
-.room2__shoes {
+/* the shoe rack — wood frame, cream shelves, kicks blended in */
+.shoerack {
   position: absolute;
-  left: 230px;
-  bottom: 18px;
+  left: 26px;
+  bottom: 20px;
+  width: 230px;
   display: flex;
+  flex-direction: column;
   gap: 8px;
+  padding: 10px;
+  background: linear-gradient(180deg, #a97e4a, #8f6437);
+  border-radius: 10px;
+  box-shadow: 0 10px 16px rgba(20, 12, 4, 0.4);
+  transition: transform var(--med);
 }
 
-.room2__shoes img {
-  width: 46px;
-  height: 34px;
-  object-fit: cover;
-  border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(18, 25, 21, 0.2);
-  background: #fff;
+.shoerack:hover {
+  transform: translateY(-2px);
 }
 
-.room2__shoes:hover img {
-  outline: 2px solid var(--red);
+.shoerack__shelf {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 44px;
+  background: #f1ece1;
+  border-radius: 5px;
+  padding: 3px 6px;
+  box-shadow: inset 0 -3px 0 rgba(40, 24, 8, 0.18);
+}
+
+.shoerack__shelf img {
+  width: 30%;
+  height: 36px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  filter: contrast(1.05);
+}
+
+.shoerack__hint {
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: auto;
 }
 
 /* you, rendered 2K-style */

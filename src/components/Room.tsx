@@ -36,7 +36,7 @@ export function Room() {
     ...items.filter((p) => p.category === 'pants').map((p) => p.image),
     ...customImgs.filter((c) => c.category === 'pants').map((c) => c.photo),
   ].slice(0, 4)
-  const shoes = items.filter((p) => p.category === 'shoes').map((p) => p.image).slice(0, 3)
+  const shoes = items.filter((p) => p.category === 'shoes').map((p) => p.image).slice(0, 6)
 
   const posters = profile.teams.slice(0, 2)
   const scrollTo = (label: string) =>
@@ -109,11 +109,19 @@ export function Room() {
         <i className="room2__dressertop" />
       </button>
 
-      {/* shoes on the floor */}
-      <button className="room2__shoes" onClick={() => scrollTo('Shoes')} aria-label="Open shoes">
-        {shoes.map((img, i) => (
-          <img key={i} src={img} alt="" loading="lazy" />
-        ))}
+      {/* shoe rack — bottom left */}
+      <button className="shoerack" onClick={() => scrollTo('Shoes')} aria-label="Open shoe collection">
+        <span className="shoerack__shelf">
+          {shoes.slice(0, 3).map((img, i) => (
+            <img key={i} src={img} alt="" loading="lazy" />
+          ))}
+          {shoes.length === 0 && <i className="shoerack__hint">shoes go here</i>}
+        </span>
+        <span className="shoerack__shelf">
+          {shoes.slice(3, 6).map((img, i) => (
+            <img key={i} src={img} alt="" loading="lazy" />
+          ))}
+        </span>
       </button>
 
       <i className="room2__floor" />
