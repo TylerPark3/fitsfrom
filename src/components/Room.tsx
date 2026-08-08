@@ -163,6 +163,22 @@ export function Room() {
   const posters = profile.teams.slice(0, 2)
   const topOn = byRef(mannequin.top)
   const wearingTop = !!topOn?.flat
+
+  // Which stretches of the figure are under clothing. Torso and legs get
+  // clipped independently — the arms never do, since the sleeve logic already
+  // handles them — so a transparent gap inside a product photo never shows
+  // wood behind it.
+  const bandFor = (key: string): [number, number] | undefined => {
+    const slot = SLOTS.find((s) => s.key === key)!
+    const p = byRef(mannequin[key])
+    if (!p || !p.flat) return undefined
+    const bottom = key === 'bottom' && p.sil === 'short' ? SHORT_HEM : slot.bottom
+    // Start the clip below where the garment's own pixels begin. A product
+    // photo carries whitespace above the collar, so clipping at the band edge
+    // opened a void between the shoulders and the shirt.
+    return [key === 'top' ? slot.top + 0.13 : slot.top + 0.04, bottom - 0.02]
+  }
+  const cover = { torso: bandFor('top'), legs: bandFor('bottom') }
   // Short sleeves leave the forearm out; long sleeves leave only the hand.
   const sleeveHem = (() => {
     if (!topOn) return SLEEVE.long
@@ -201,7 +217,7 @@ export function Room() {
           {/* this box IS the body's bounding box — bands below are anatomy */}
           <div className="mq__figure" style={{ width: bodyW, height: STAGE_H }}>
             <div className="mq__rig">
-              <Mannequin profile={profile} />
+              <Mannequin profile={profile} cover={cover} />
             </div>
 
             {SLOTS.map((s) => {

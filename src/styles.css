@@ -7580,7 +7580,7 @@ input.seg__control::placeholder {
 }
 
 /* ── instagram embed ───────────────────────────────────────────────────*/
-.igembed { position: relative; min-height: 260px; }
+.igembed { position: relative; min-height: 320px; }
 .igembed .instagram-media { min-width: 0 !important; }
 
 .igembed__skeleton {
@@ -7912,4 +7912,30 @@ input.seg__control::placeholder {
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+}
+
+/* Instagram embeds include the whole caption and run very tall. In the feed
+   the photograph is what matters, so cap it and let the full report show the
+   post at its natural height. */
+.sfit__media .igembed {
+  max-height: 680px;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
+
+.sfit__media .igembed::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 56px;
+  background: linear-gradient(transparent, var(--paper));
+  pointer-events: none;
+}
+
+.igembed iframe {
+  max-width: 100% !important;
+  min-width: 0 !important;
 }

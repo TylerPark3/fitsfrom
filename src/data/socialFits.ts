@@ -109,13 +109,13 @@ export const SOCIAL_FITS: SocialFitPost[] = [
     },
     source: {
       platform: 'instagram',
-      account: '@nba',
+      account: '@leaguefits',
       // ── PASTE THE OFFICIAL INSTAGRAM POST URL HERE ──────────────────────
-      // e.g. 'https://www.instagram.com/p/XXXXXXXXXXX/'
-      // Leave empty and the card renders the "official post coming soon" state
-      // rather than a broken embed.
-      url: '',
-      rightsStatus: 'pending',
+      // Verified public post from @leaguefits naming SGA their 2022–23 MVP.
+      // Swap for any other official permalink; empty renders the
+      // "official post coming soon" state rather than a broken embed.
+      url: 'https://www.instagram.com/p/CsRYjDKpjaV/',
+      rightsStatus: 'official-embed',
     },
     editorial: {
       headline: 'The cargo length is the whole argument',

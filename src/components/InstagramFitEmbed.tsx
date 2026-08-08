@@ -60,10 +60,24 @@ export function InstagramFitEmbed({
   const [state, setState] = useState<State>(url ? 'idle' : 'empty')
 
   // Only start the embed when it's near the viewport — these are heavy, and a
-  // feed of them would otherwise all initialise at once.
+  // feed of them would otherwise all initialise at once. The synchronous check
+  // matters: an observer that is set up on an element already in view doesn't
+  // always deliver a first callback, and the embed would sit on its skeleton
+  // forever waiting for one.
   useEffect(() => {
-    if (!url || !host.current) return
+    if (!url) return
     const el = host.current
+    if (!el) return
+
+    const near = () => {
+      const r = el.getBoundingClientRect()
+      return r.top < window.innerHeight + 400 && r.bottom > -400
+    }
+    if (near()) {
+      setState('loading')
+      return
+    }
+
     const io = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
@@ -80,16 +94,28 @@ export function InstagramFitEmbed({
   useEffect(() => {
     if (state !== 'loading' || !url) return
     let cancelled = false
-    const timeout = window.setTimeout(() => !cancelled && setState('blocked'), 8000)
+
+    // Clear the skeleton when the real iframe lands, not on a guessed delay.
+    const poll = window.setInterval(() => {
+      if (cancelled) return
+      if (host.current?.querySelector('iframe')) {
+        window.clearInterval(poll)
+        setState('ready')
+      }
+    }, 250)
+    const timeout = window.setTimeout(() => {
+      if (cancelled) return
+      window.clearInterval(poll)
+      if (!host.current?.querySelector('iframe')) setState('blocked')
+    }, 9000)
+
     loadEmbedScript()
-      .then(() => {
-        if (cancelled) return
-        window.instgrm?.Embeds.process()
-        window.setTimeout(() => !cancelled && setState('ready'), 600)
-      })
+      .then(() => !cancelled && window.instgrm?.Embeds.process())
       .catch(() => !cancelled && setState('blocked'))
+
     return () => {
       cancelled = true
+      window.clearInterval(poll)
       window.clearTimeout(timeout)
     }
   }, [state, url])

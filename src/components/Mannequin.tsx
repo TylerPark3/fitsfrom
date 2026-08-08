@@ -168,11 +168,23 @@ export function Mannequin({
   className,
   part = 'full',
   sleeveHem,
+  cover,
 }: {
   profile: Profile
   className?: string
   part?: 'full' | 'head' | 'forearms'
   sleeveHem?: number
+  /**
+   * What a garment is covering, as [from, to] fractions of figure height.
+   * A flat product photo has transparent gaps inside it — between two trouser
+   * legs, say — and wood showing through those gaps is the single thing that
+   * makes a garment read as pasted in front of the figure rather than worn.
+   *
+   * Torso and legs are clipped separately, and the arms never are: a shirt
+   * band that also erased the arms is what made the last attempt delete half
+   * the figure.
+   */
+  cover?: { torso?: [number, number]; legs?: [number, number] }
 }) {
   const s = shape(profile)
   const L = armParts(s, -1)
@@ -265,9 +277,22 @@ export function Mannequin({
     'Z',
   ].join(' ')
 
+  /** Everything above and below a covered band — the part still worth drawing. */
+  const uncovered = (band?: [number, number]) =>
+    band ? (
+      <clipPath id={`clip-${uid}-${band[0]}`}>
+        <rect x={-30} y={-30} width={VB_W + 60} height={band[0] * VB_H + 30} />
+        <rect x={-30} y={band[1] * VB_H} width={VB_W + 60} height={VB_H} />
+      </clipPath>
+    ) : null
+  const clipOf = (band?: [number, number]) =>
+    band ? `url(#clip-${uid}-${band[0]})` : undefined
+
   return (
     <svg {...svgProps}>
       <Grads id={uid} />
+      {uncovered(cover?.torso)}
+      {uncovered(cover?.legs)}
 
       <g stroke="#9b7340" strokeWidth="0.9" strokeLinejoin="round">
         {/* limbs go down first — the body blocks and joint balls cover the seams */}
@@ -280,23 +305,29 @@ export function Mannequin({
           </g>
         ))}
 
-        {[LL, RL].map((l, i) => (
-          <g key={`leg-${i}`}>
-            <path d={l.thigh} fill={`url(#wood-${uid})`} />
-            <path d={l.calf} fill={`url(#wood-${uid})`} />
-            <circle cx={l.knee.cx} cy={l.knee.cy} r={l.knee.r} fill={`url(#ball-${uid})`} />
-            <path d={l.foot} fill={`url(#wood-${uid})`} />
-          </g>
-        ))}
+        <g clipPath={clipOf(cover?.legs)}>
+          {[LL, RL].map((l, i) => (
+            <g key={`leg-${i}`}>
+              <path d={l.thigh} fill={`url(#wood-${uid})`} />
+              <path d={l.calf} fill={`url(#wood-${uid})`} />
+              <circle cx={l.knee.cx} cy={l.knee.cy} r={l.knee.r} fill={`url(#ball-${uid})`} />
+              <path d={l.foot} fill={`url(#wood-${uid})`} />
+            </g>
+          ))}
+        </g>
 
         {/* body blocks, then the joints that bridge them */}
-        <path d={pelvis} fill={`url(#wood-${uid})`} />
-        {[LL, RL].map((l, i) => (
-          <circle key={`hip-${i}`} cx={l.hip.cx} cy={l.hip.cy} r={l.hip.r} fill={`url(#ball-${uid})`} />
-        ))}
+        <g clipPath={clipOf(cover?.legs)}>
+          <path d={pelvis} fill={`url(#wood-${uid})`} />
+          {[LL, RL].map((l, i) => (
+            <circle key={`hip-${i}`} cx={l.hip.cx} cy={l.hip.cy} r={l.hip.r} fill={`url(#ball-${uid})`} />
+          ))}
+        </g>
 
-        <path d={chest} fill={`url(#wood-${uid})`} />
-        <circle cx={CX} cy={WAIST_Y} r={15} fill={`url(#ball-${uid})`} />
+        <g clipPath={clipOf(cover?.torso)}>
+          <path d={chest} fill={`url(#wood-${uid})`} />
+          <circle cx={CX} cy={WAIST_Y} r={15} fill={`url(#ball-${uid})`} />
+        </g>
 
         {[L, R].map((a, i) => (
           <circle
