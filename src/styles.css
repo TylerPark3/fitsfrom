@@ -6957,8 +6957,14 @@ input.seg__control::placeholder {
    nothing to read but the date and the word. Tap anywhere and the site
    assembles itself around you. */
 .cover {
-  position: fixed;
-  inset: 0;
+  /* absolute, not fixed: it covers the hero and scrolls away with it, so the
+     page underneath is reachable by scrolling as well as by clicking */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  height: 100dvh;
   z-index: 90;
   background: transparent;
   border: 0;
@@ -6980,12 +6986,6 @@ input.seg__control::placeholder {
 
 .app--covered main {
   padding-top: 0;
-}
-
-/* everything under the fold waits its turn */
-.app--covered .mast ~ *,
-.app--covered main > .viewfade > * > section:not(.mast) {
-  display: none;
 }
 
 .app--covered .mast {
@@ -7014,8 +7014,8 @@ input.seg__control::placeholder {
 
 /* the only instruction on the page */
 .cover::after {
-  content: 'TAP TO ENTER';
-  position: absolute;
+  content: 'TAP OR SCROLL';
+  position: fixed;
   left: 50%;
   bottom: 42px;
   transform: translateX(-50%);

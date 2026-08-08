@@ -1,36 +1,53 @@
 import type { Profile } from '../lib/store'
 
 /**
- * Landmarks down the figure, as fractions of its height. The garment bands in
- * the dressing room are placed against these, so a collar lands at the neck on
- * every build instead of floating wherever the container happens to put it.
+ * Landmarks down the figure, as fractions of its height.
+ *
+ * These are the classical eight-head canon — head 0–1, shoulders at 1.5,
+ * navel at 3, crotch at 4 (dead centre), knee at 6, ankle at 7.5, sole at 8.
+ * The garment bands in the dressing room are placed against these, so a
+ * waistband lands at the waist and a hem lands at the ankle. The previous
+ * numbers put the crotch at 0.577 and the ankle at 0.9, which is why the legs
+ * came out as stubs and the trousers looked like shorts.
  */
 export const ANATOMY = {
-  crown: 0.012,
-  chin: 0.148,
-  shoulder: 0.177,
-  chest: 0.27,
-  waist: 0.5,
-  hip: 0.577,
-  knee: 0.75,
-  ankle: 0.9,
+  crown: 0,
+  chin: 0.125, // 1 head
+  neck: 0.155,
+  shoulder: 0.19, // 1.5 heads
+  chest: 0.25, // 2 heads
+  waist: 0.375, // 3 heads
+  crotch: 0.5, // 4 heads — the midpoint of a standing body
+  knee: 0.75, // 6 heads
+  ankle: 0.93, // 7.5 heads
+  sole: 1,
 }
 
-const VB_W = 200
-const VB_H = 520
+const VB_W = 220
+const VB_H = 560
 
 /** Half-widths at each landmark, in viewBox units, adjusted for the build. */
 function shape(p: Profile) {
   const heft = (p.weight - 95) / 205
-  const chest = (48 + ((p.chest - 30) / 26) * 20) * (1 + heft * 0.16)
-  const waist = (38 + ((p.waist - 26) / 22) * 22) * (1 + heft * 0.22)
-  const shoulder = chest * 1.1
-  const hip = Math.max(waist * 1.14, chest * 0.94)
-  const thigh = hip * 0.52
-  const ankle = 12 + heft * 3
-  const foot = 15 + ((p.shoe - 5) / 11) * 9
-  const headR = 21
-  return { chest, waist, shoulder, hip, thigh, ankle, foot, headR }
+  // Kept narrow on purpose: a garment photographed flat is always slimmer than
+  // a body, so a wide form pokes out either side of everything you put on it.
+  const chest = (31 + ((p.chest - 30) / 26) * 12) * (1 + heft * 0.13)
+  const waist = (25 + ((p.waist - 26) / 22) * 13) * (1 + heft * 0.17)
+  const shoulder = Math.max(chest * 1.14, 36)
+  const hip = Math.max(waist * 1.16, chest * 0.92)
+  return {
+    chest,
+    waist,
+    shoulder,
+    hip,
+    thigh: hip * 0.5,
+    knee: 12 + heft * 2.5,
+    ankle: 8 + heft * 1.5,
+    foot: 13 + ((p.shoe - 5) / 11) * 7,
+    headRx: 22,
+    headRy: (ANATOMY.chin * VB_H) / 2 - 3,
+    neckW: 12,
+  }
 }
 
 const y = (f: number) => f * VB_H
@@ -44,52 +61,50 @@ export function Mannequin({ profile, className }: { profile: Profile; className?
   const s = shape(profile)
   const cx = VB_W / 2
 
-  // torso: shoulders → chest → waist → hip, mirrored down each side
+  // Torso: shoulder line → armpit → waist → hip, mirrored down the far side.
   const torso = [
-    `M ${cx - s.shoulder} ${y(ANATOMY.shoulder)}`,
-    `C ${cx - s.shoulder} ${y(0.23)} ${cx - s.chest} ${y(0.24)} ${cx - s.chest} ${y(ANATOMY.chest)}`,
-    `C ${cx - s.chest} ${y(0.4)} ${cx - s.waist} ${y(0.44)} ${cx - s.waist} ${y(ANATOMY.waist)}`,
-    `C ${cx - s.waist} ${y(0.54)} ${cx - s.hip} ${y(0.55)} ${cx - s.hip} ${y(ANATOMY.hip)}`,
-    `L ${cx + s.hip} ${y(ANATOMY.hip)}`,
-    `C ${cx + s.hip} ${y(0.55)} ${cx + s.waist} ${y(0.54)} ${cx + s.waist} ${y(ANATOMY.waist)}`,
-    `C ${cx + s.waist} ${y(0.44)} ${cx + s.chest} ${y(0.4)} ${cx + s.chest} ${y(ANATOMY.chest)}`,
-    `C ${cx + s.chest} ${y(0.24)} ${cx + s.shoulder} ${y(0.23)} ${cx + s.shoulder} ${y(ANATOMY.shoulder)}`,
+    // neck base → sloped shoulder → down the side
+    `M ${cx - s.neckW / 2 - 2} ${y(ANATOMY.neck)}`,
+    `Q ${cx - s.shoulder * 0.62} ${y(ANATOMY.neck + 0.004)} ${cx - s.shoulder} ${y(ANATOMY.shoulder)}`,
+    `C ${cx - s.shoulder} ${y(0.23)} ${cx - s.chest} ${y(0.23)} ${cx - s.chest} ${y(ANATOMY.chest)}`,
+    `C ${cx - s.chest} ${y(0.31)} ${cx - s.waist} ${y(0.33)} ${cx - s.waist} ${y(ANATOMY.waist)}`,
+    `C ${cx - s.waist} ${y(0.42)} ${cx - s.hip} ${y(0.44)} ${cx - s.hip} ${y(0.475)}`,
+    `L ${cx - s.hip} ${y(ANATOMY.crotch)}`,
+    `L ${cx + s.hip} ${y(ANATOMY.crotch)}`,
+    `L ${cx + s.hip} ${y(0.475)}`,
+    `C ${cx + s.hip} ${y(0.44)} ${cx + s.waist} ${y(0.42)} ${cx + s.waist} ${y(ANATOMY.waist)}`,
+    `C ${cx + s.waist} ${y(0.33)} ${cx + s.chest} ${y(0.31)} ${cx + s.chest} ${y(ANATOMY.chest)}`,
+    `C ${cx + s.chest} ${y(0.23)} ${cx + s.shoulder} ${y(0.23)} ${cx + s.shoulder} ${y(ANATOMY.shoulder)}`,
+    `Q ${cx + s.shoulder * 0.62} ${y(ANATOMY.neck + 0.004)} ${cx + s.neckW / 2 + 2} ${y(ANATOMY.neck)}`,
     'Z',
   ].join(' ')
 
+  // Legs run crotch → knee → ankle, two of them, with a real gap between.
   const leg = (side: 1 | -1) => {
-    const inner = cx + side * 4
-    const outer = cx + side * s.hip
-    const kneeIn = cx + side * (s.thigh * 0.42)
-    const kneeOut = cx + side * (s.thigh * 0.95)
-    const ankIn = cx + side * (s.ankle * 0.35)
-    const ankOut = cx + side * (s.ankle * 1.3)
+    const hipC = cx + side * (s.hip * 0.5) // centre line of this leg
     return [
-      `M ${inner} ${y(ANATOMY.hip)}`,
-      `L ${outer} ${y(ANATOMY.hip)}`,
-      `C ${outer} ${y(0.66)} ${kneeOut} ${y(0.7)} ${kneeOut} ${y(ANATOMY.knee)}`,
-      `C ${kneeOut} ${y(0.83)} ${ankOut} ${y(0.85)} ${ankOut} ${y(ANATOMY.ankle)}`,
-      `L ${ankIn} ${y(ANATOMY.ankle)}`,
-      `C ${ankIn} ${y(0.85)} ${kneeIn} ${y(0.83)} ${kneeIn} ${y(ANATOMY.knee)}`,
-      `C ${kneeIn} ${y(0.7)} ${inner} ${y(0.66)} ${inner} ${y(ANATOMY.hip)}`,
+      `M ${hipC - s.thigh} ${y(ANATOMY.crotch)}`,
+      `C ${hipC - s.thigh} ${y(0.6)} ${hipC - s.knee} ${y(0.68)} ${hipC - s.knee} ${y(ANATOMY.knee)}`,
+      `C ${hipC - s.knee} ${y(0.84)} ${hipC - s.ankle} ${y(0.87)} ${hipC - s.ankle} ${y(ANATOMY.ankle)}`,
+      `L ${hipC + s.ankle} ${y(ANATOMY.ankle)}`,
+      `C ${hipC + s.ankle} ${y(0.87)} ${hipC + s.knee} ${y(0.84)} ${hipC + s.knee} ${y(ANATOMY.knee)}`,
+      `C ${hipC + s.knee} ${y(0.68)} ${hipC + s.thigh} ${y(0.6)} ${hipC + s.thigh} ${y(ANATOMY.crotch)}`,
       'Z',
     ].join(' ')
   }
 
-  // arms hang slightly away from the body so a sleeve has somewhere to sit
-  const arm = (side: 1 | -1) => {
-    const top = cx + side * (s.shoulder - 3)
-    const elbow = cx + side * (s.shoulder + 7)
-    const wrist = cx + side * (s.shoulder + 3)
-    const w = 8.5
-    return [
-      `M ${top - side * w} ${y(ANATOMY.shoulder)}`,
-      `C ${elbow - side * w} ${y(0.32)} ${elbow - side * w} ${y(0.42)} ${wrist - side * w} ${y(0.53)}`,
-      `L ${wrist + side * w} ${y(0.53)}`,
-      `C ${elbow + side * w} ${y(0.42)} ${elbow + side * w} ${y(0.32)} ${top + side * w} ${y(ANATOMY.shoulder)}`,
-      'Z',
+  /**
+   * Arms as a stroked centre line rather than a filled outline — a filled shape
+   * with bezier sides kept blowing out into slabs wider than the shirt. Drawn
+   * twice, thick in the outline colour then thinner in the fill, which gives a
+   * clean tapered limb with an edge.
+   */
+  const armPath = (side: 1 | -1) =>
+    [
+      `M ${cx + side * (s.shoulder - 6)} ${y(ANATOMY.shoulder + 0.022)}`,
+      `Q ${cx + side * (s.chest + 6)} ${y(0.33)}`,
+      `${cx + side * (s.hip + 2)} ${y(0.485)}`,
     ].join(' ')
-  }
 
   return (
     <svg
@@ -99,38 +114,52 @@ export function Mannequin({ profile, className }: { profile: Profile; className?
       height="100%"
       aria-hidden="true"
       focusable="false"
-      preserveAspectRatio="xMidYMax meet"
+      preserveAspectRatio="xMidYMid meet"
     >
       <defs>
         <linearGradient id="mnq" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#d9d6ce" />
-          <stop offset="0.42" stopColor="#f0eee8" />
-          <stop offset="1" stopColor="#cfccc3" />
+          <stop offset="0" stopColor="#d5d1c8" />
+          <stop offset="0.4" stopColor="#efece5" />
+          <stop offset="1" stopColor="#cbc7bd" />
         </linearGradient>
       </defs>
 
-      <g fill="url(#mnq)" stroke="#b9b5ab" strokeWidth="1.1" strokeLinejoin="round">
-        {/* arms sit behind the torso so a sleeve reads as going over them */}
-        <path d={arm(-1)} />
-        <path d={arm(1)} />
+      {/* arms behind the torso, so a sleeve reads as going over the shoulder */}
+      <g fill="none" strokeLinecap="round">
+        <path d={armPath(-1)} stroke="#b6b2a8" strokeWidth="17" />
+        <path d={armPath(1)} stroke="#b6b2a8" strokeWidth="17" />
+        <path d={armPath(-1)} stroke="#e9e6df" strokeWidth="15" />
+        <path d={armPath(1)} stroke="#e9e6df" strokeWidth="15" />
+      </g>
+
+      <g fill="url(#mnq)" stroke="#b6b2a8" strokeWidth="1" strokeLinejoin="round">
         <path d={leg(-1)} />
         <path d={leg(1)} />
         <path d={torso} />
         {/* neck */}
-        <rect x={cx - 13} y={y(0.128)} width="26" height={y(ANATOMY.shoulder) - y(0.128) + 4} rx="8" />
+        <rect
+          x={cx - s.neckW / 2}
+          y={y(ANATOMY.chin) - 2}
+          width={s.neckW}
+          height={y(ANATOMY.shoulder) - y(ANATOMY.chin) + 6}
+          rx="6"
+        />
         {/* head — blank on purpose, a shop form has no face */}
-        <ellipse cx={cx} cy={y(0.075)} rx={s.headR} ry={y(0.075) - y(ANATOMY.crown)} />
+        <ellipse cx={cx} cy={s.headRy} rx={s.headRx} ry={s.headRy} />
       </g>
 
       {/* feet */}
-      <g fill="#c4c0b6">
-        <ellipse cx={cx - s.ankle * 0.85} cy={y(0.968)} rx={s.foot} ry={y(0.03)} />
-        <ellipse cx={cx + s.ankle * 0.85} cy={y(0.968)} rx={s.foot} ry={y(0.03)} />
+      <g fill="#c0bcb2" stroke="#b6b2a8" strokeWidth="1">
+        <path
+          d={`M ${cx - s.hip * 0.5 - s.ankle} ${y(ANATOMY.ankle)} h ${s.ankle * 2} l ${s.foot * 0.4} ${y(0.052)} h ${-s.foot * 1.7} Z`}
+        />
+        <path
+          d={`M ${cx + s.hip * 0.5 - s.ankle} ${y(ANATOMY.ankle)} h ${s.ankle * 2} l ${s.foot * 0.4} ${y(0.052)} h ${-s.foot * 1.7} Z`}
+        />
       </g>
 
-      {/* the stand */}
-      <rect x={cx - 3} y={y(0.98)} width="6" height={y(0.02)} fill="#b9b5ab" />
-      <ellipse cx={cx} cy={y(0.998)} rx="46" ry="7" fill="#c4c0b6" />
+      {/* the base it stands on */}
+      <ellipse cx={cx} cy={y(0.992)} rx="58" ry="8" fill="#c9c5bb" opacity="0.85" />
     </svg>
   )
 }
@@ -147,18 +176,24 @@ export function MannequinHead({ profile, className }: { profile: Profile; classN
       height="100%"
       aria-hidden="true"
       focusable="false"
-      preserveAspectRatio="xMidYMax meet"
+      preserveAspectRatio="xMidYMid meet"
     >
       <defs>
         <linearGradient id="mnqh" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#d9d6ce" />
-          <stop offset="0.42" stopColor="#f0eee8" />
-          <stop offset="1" stopColor="#cfccc3" />
+          <stop offset="0" stopColor="#d5d1c8" />
+          <stop offset="0.4" stopColor="#efece5" />
+          <stop offset="1" stopColor="#cbc7bd" />
         </linearGradient>
       </defs>
-      <g fill="url(#mnqh)" stroke="#b9b5ab" strokeWidth="1.1" strokeLinejoin="round">
-        <rect x={cx - 13} y={y(0.128)} width="26" height={y(0.03)} rx="8" />
-        <ellipse cx={cx} cy={y(0.075)} rx={s.headR} ry={y(0.075) - y(ANATOMY.crown)} />
+      <g fill="url(#mnqh)" stroke="#b6b2a8" strokeWidth="1" strokeLinejoin="round">
+        <rect
+          x={cx - s.neckW / 2}
+          y={y(ANATOMY.chin) - 2}
+          width={s.neckW}
+          height={y(ANATOMY.neck) - y(ANATOMY.chin) + 8}
+          rx="6"
+        />
+        <ellipse cx={cx} cy={s.headRy} rx={s.headRx} ry={s.headRy} />
       </g>
     </svg>
   )

@@ -57,42 +57,47 @@ const SLOTS: {
   {
     key: 'hat',
     label: 'Hat',
-    top: -0.015,
-    bottom: 0.09,
-    width: 0.42,
+    // sits on the crown, ends above the chin
+    top: -0.01,
+    bottom: ANATOMY.chin - 0.03,
+    width: 0.34,
     z: 7,
     match: (c) => c === 'accessory',
   },
   {
     key: 'top',
     label: 'Top',
-    // collar starts just above the chin: it covers the neck, not the face
-    top: ANATOMY.chin - 0.035,
-    bottom: 0.57,
-    width: 0.96,
+    // collar just under the chin, hem past the hip — a shirt covers the whole
+    // torso and the shoulders, so it spans the full shoulder width
+    top: ANATOMY.chin + 0.005,
+    bottom: ANATOMY.crotch + 0.06,
+    width: 1,
     z: 4,
     match: (c) => ['top', 'shirt', 'knit', 'outer'].includes(c),
   },
   {
     key: 'bottom',
     label: 'Bottom',
-    // waistband at the waist, hem at the ankle — legs run the length of it
-    top: ANATOMY.waist - 0.02,
-    bottom: ANATOMY.ankle + 0.015,
-    width: 0.82,
+    // waistband at the navel, hem at the ankle — the full length of the legs
+    top: ANATOMY.waist - 0.01,
+    bottom: ANATOMY.ankle + 0.02,
+    width: 0.76,
     z: 3,
     match: (c) => c === 'pants',
   },
   {
     key: 'shoes',
     label: 'Shoes',
-    top: ANATOMY.ankle - 0.015,
-    bottom: 1.01,
-    width: 0.8,
+    top: ANATOMY.ankle - 0.025,
+    bottom: 1.005,
+    width: 0.74,
     z: 5,
     match: (c) => c === 'shoes',
   },
 ]
+
+/** Shorts stop at the knee, not the ankle — same slot, different hem. */
+const SHORT_HEM = ANATOMY.knee + 0.02
 
 /** Accessories that aren't hats hang beside the figure rather than on it. */
 const ACC_SLOT = { key: 'acc', label: 'Accessory' }
@@ -115,7 +120,7 @@ export function Room() {
   // The mannequin is drawn to a fixed 200x520 box, so the figure IS the
   // coordinate space and every garment band is a straight fraction of it.
   const STAGE_H = 620
-  const bodyW = STAGE_H * (200 / 520)
+  const bodyW = STAGE_H * (220 / 560)
 
   const pieces = useMemo<Piece[]>(() => {
     const list: Piece[] = []
@@ -188,13 +193,15 @@ export function Room() {
             {SLOTS.map((s) => {
               const p = byRef(mannequin[s.key])
               if (!p || !p.flat) return null
+              const bottom =
+                s.key === 'bottom' && p.sil === 'short' ? SHORT_HEM : s.bottom
               return (
                 <div
                   className={`mqlayer mqlayer--${s.key}`}
                   key={s.key}
                   style={{
                     top: `${s.top * 100}%`,
-                    height: `${(s.bottom - s.top) * 100}%`,
+                    height: `${(bottom - s.top) * 100}%`,
                     width: `${s.width * 100}%`,
                     zIndex: s.z,
                   }}

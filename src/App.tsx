@@ -240,6 +240,17 @@ export function App() {
     setView(v)
   }
 
+  // Scrolling past the hero counts as entering: the nav comes back and the
+  // rest of the page is just there, the way a normal site behaves.
+  useEffect(() => {
+    if (!covered) return
+    const onScroll = () => {
+      if (window.scrollY > 60) setEntered(true)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [covered])
+
   const daysLeft = state.account
     ? TRIAL_DAYS - Math.floor((Date.now() - state.account.createdAt) / 86_400_000)
     : TRIAL_DAYS
