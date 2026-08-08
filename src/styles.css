@@ -6655,7 +6655,8 @@ input.seg__control::placeholder {
 }
 
 .mq__rig,
-.mq__head {
+.mq__head,
+.mq__arms {
   position: absolute;
   inset: 0;
 }
@@ -6664,9 +6665,14 @@ input.seg__control::placeholder {
   z-index: 1;
 }
 
-/* the head sits above the shirt so the face clears the collar */
-.mq__head {
+/* the arm below the sleeve, then the head — both over the shirt */
+.mq__arms {
   z-index: 6;
+  pointer-events: none;
+}
+
+.mq__head {
+  z-index: 8;
   pointer-events: none;
 }
 
@@ -6716,14 +6722,14 @@ input.seg__control::placeholder {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 2%;
+  gap: 4%;
   width: 100%;
   height: 100%;
 }
 
 .mqshoes__l,
 .mqshoes__r {
-  width: 48%;
+  width: 46%;
   height: 100%;
 }
 

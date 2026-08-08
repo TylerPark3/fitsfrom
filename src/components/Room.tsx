@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { CutoutImg } from './CutoutImg'
-import { ANATOMY, Mannequin, MannequinHead } from './Mannequin'
+import { ANATOMY, Mannequin, MannequinForearms, MannequinHead, SLEEVE } from './Mannequin'
 import { CATALOG } from '../data/catalog'
 import { useStore } from '../lib/store'
 
@@ -88,9 +88,11 @@ const SLOTS: {
   {
     key: 'shoes',
     label: 'Shoes',
-    top: ANATOMY.ankle - 0.025,
-    bottom: 1.005,
-    width: 0.74,
+    top: ANATOMY.ankle - 0.03,
+    bottom: 1.01,
+    // narrow: the two shoes have to land on the figure's feet, which stand
+    // close together, not out where the hips are
+    width: 0.46,
     z: 5,
     match: (c) => c === 'shoes',
   },
@@ -159,7 +161,19 @@ export function Room() {
   const rails = [...SLOTS.map((s) => ({ key: s.key, label: s.label })), ACC_SLOT]
   const worn = rails.filter((r) => byRef(mannequin[r.key])).length
   const posters = profile.teams.slice(0, 2)
-  const wearingTop = !!byRef(mannequin.top)
+  const topOn = byRef(mannequin.top)
+  const wearingTop = !!topOn?.flat
+  // Short sleeves leave the forearm out; long sleeves leave only the hand.
+  const sleeveHem = (() => {
+    if (!topOn) return SLEEVE.long
+    const n = topOn.name
+    // long markers win: "L/S Municipal T-Shirt" is a long sleeve, not a tee
+    if (/\bl\/s\b|long.?sleeve|hoodie|hooded|crew|sweat|jacket|knit|cardigan|coat|fleece/i.test(n))
+      return SLEEVE.long
+    if (/\btee\b|t-?shirt|short.?sleeve|\bs\/s\b|polo|tank|jersey|singlet/i.test(n))
+      return SLEEVE.short
+    return SLEEVE.long
+  })()
 
   return (
     <div className="room2">
@@ -220,11 +234,18 @@ export function Room() {
               )
             })}
 
-            {/* head redrawn over the shirt — face out of the collar */}
+            {/* Redrawn over the shirt: the head so it clears the collar, and
+                the arm below the sleeve hem so the limb passes through the
+                sleeve instead of the shirt lying flat across it. */}
             {wearingTop && (
-              <div className="mq__head">
-                <MannequinHead profile={profile} />
-              </div>
+              <>
+                <div className="mq__arms">
+                  <MannequinForearms profile={profile} hem={sleeveHem} />
+                </div>
+                <div className="mq__head">
+                  <MannequinHead profile={profile} />
+                </div>
+              </>
             )}
           </div>
 
