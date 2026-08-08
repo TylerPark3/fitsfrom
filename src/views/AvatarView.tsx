@@ -32,6 +32,10 @@ const TEAM_TILE: Record<string, string> = {
   Hornets: '/room/poster-hornets.jpg',
   Jazz: '/room/poster-jazz.jpg',
   Celtics: '/room/poster-celtics.jpg',
+  Thunder: '/room/poster-thunder.jpg',
+  Wizards: '/room/poster-wizards.jpg',
+  Warriors: '/room/poster-warriors.jpg',
+  Knicks: '/room/poster-knicks.jpg',
 }
 
 const INTO: { id: string; label: string; kind: 'team' | 'tag'; options: IntoOpt[] }[] = [

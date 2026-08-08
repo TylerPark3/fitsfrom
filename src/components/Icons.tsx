@@ -129,3 +129,10 @@ export const Mark = ({ size = 26 }: P) => (
     <rect x="11" y="2" width="4" height="20" />
   </svg>
 )
+
+export const ThumbDown = ({ size = 15 }: P) => (
+  <svg {...base(size)}>
+    <path d="M7 3v10l4 8a2 2 0 0 0 2-2v-4h5.5a2 2 0 0 0 2-2.4l-1.4-6A2 2 0 0 0 17 5H7Z" />
+    <path d="M7 3H4.5A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13H7" />
+  </svg>
+)

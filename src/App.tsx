@@ -82,6 +82,16 @@ export function App() {
               : { ...s.mannequin, [slot]: ref },
         })),
 
+      toggleDislike: (productId) =>
+        setState((s) => ({
+          ...s,
+          disliked: s.disliked.includes(productId)
+            ? s.disliked.filter((id) => id !== productId)
+            : [productId, ...s.disliked],
+          // a piece you dislike shouldn't stay sitting in your saves
+          saved: s.saved.filter((id) => id !== productId),
+        })),
+
       removeFromWardrobe: (productId) =>
         setState((s) => ({ ...s, wardrobe: s.wardrobe.filter((w) => w.productId !== productId) })),
 

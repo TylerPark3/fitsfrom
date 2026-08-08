@@ -152,10 +152,10 @@ const ASKS: { id: string; label: string; test: (p: Product) => boolean }[] = [
 ]
 
 export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v: View) => void }) {
-  const { profile, saved, wardrobe, signedIn, account } = useStore()
+  const { profile, saved, wardrobe, disliked, signedIn, account } = useStore()
   const learned = useMemo(
-    () => learnTaste(saved, wardrobe.map((w) => w.productId)),
-    [saved, wardrobe],
+    () => learnTaste(saved, wardrobe.map((w) => w.productId), disliked),
+    [saved, wardrobe, disliked],
   )
   const [ask, setAsk] = useState('any')
   const [q, setQ] = useState('')

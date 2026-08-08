@@ -5,7 +5,7 @@ import { matchScore } from '../lib/match'
 import { learnTaste } from '../lib/learned'
 import { recommendSize } from '../lib/sizing'
 import { cosigns } from '../lib/fitmatch'
-import { Bookmark } from './Icons'
+import { Bookmark, ThumbDown } from './Icons'
 
 export function ProductCard({
   product,
@@ -16,11 +16,12 @@ export function ProductCard({
   onOpen: (id: string) => void
   footer?: ReactNode
 }) {
-  const { profile, saved, wardrobe, toggleSaved, toast } = useStore()
+  const { profile, saved, wardrobe, disliked, toggleSaved, toggleDislike, toast } = useStore()
   const isSaved = saved.includes(product.id)
+  const isDisliked = disliked.includes(product.id)
   const learned = useMemo(
-    () => learnTaste(saved, wardrobe.map((w) => w.productId)),
-    [saved, wardrobe],
+    () => learnTaste(saved, wardrobe.map((w) => w.productId), disliked),
+    [saved, wardrobe, disliked],
   )
   const { score } = matchScore(product, profile, learned)
   const rec = recommendSize(product, profile)
@@ -30,7 +31,7 @@ export function ProductCard({
   const elite = score >= 90
 
   return (
-    <div className={`card${elite ? ' card--elite' : ''}`}>
+    <div className={`card${elite ? ' card--elite' : ''}${isDisliked ? ' card--nope' : ''}`}>
       <button
         className="card__frame"
         onClick={() => onOpen(product.id)}
@@ -54,17 +55,31 @@ export function ProductCard({
         )}
       </button>
 
-      <button
-        className="card__save"
-        aria-pressed={isSaved}
-        aria-label={isSaved ? 'Remove from saved' : 'Save'}
-        onClick={() => {
-          toggleSaved(product.id)
-          toast(isSaved ? 'Removed' : 'Saved')
-        }}
-      >
-        <Bookmark filled={isSaved} />
-      </button>
+      <div className="card__acts">
+        <button
+          className="card__save"
+          aria-pressed={isSaved}
+          aria-label={isSaved ? 'Remove from saved' : 'Save'}
+          onClick={() => {
+            toggleSaved(product.id)
+            toast(isSaved ? 'Removed' : 'Saved')
+          }}
+        >
+          <Bookmark filled={isSaved} />
+        </button>
+        <button
+          className={`card__nope${isDisliked ? ' is-on' : ''}`}
+          aria-pressed={isDisliked}
+          aria-label={isDisliked ? 'Undo — show pieces like this again' : 'Show me less like this'}
+          title="Less like this"
+          onClick={() => {
+            toggleDislike(product.id)
+            toast(isDisliked ? 'Back in the mix' : `Less ${product.brand} · less like this`)
+          }}
+        >
+          <ThumbDown />
+        </button>
+      </div>
 
       <button
         className="card__meta"

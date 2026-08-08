@@ -94,6 +94,8 @@ export interface AppState {
   scentFavs: string[]
   /** What the mannequin is wearing — slot → product id or custom id. */
   mannequin: Record<string, string>
+  /** Pieces you've thumbed down — teaches the ranker what to stop showing. */
+  disliked: string[]
   /** Reactions to recommended fits — teaches the scorer what you actually want. */
   feedback: { kind: string; itemIds: string[]; at: number }[]
 }
@@ -138,6 +140,7 @@ export const DEFAULT_STATE: AppState = {
   outfits: [],
   scentFavs: [],
   mannequin: {},
+  disliked: [],
   feedback: [],
 }
 
@@ -184,6 +187,8 @@ export interface Store extends AppState {
   toggleScentFav: (id: string) => void
   /** Put a piece on the mannequin — same ref twice takes it off. */
   wear: (slot: string, ref: string) => void
+  /** Thumb a piece down; calling again undoes it. */
+  toggleDislike: (productId: string) => void
   pushFeedback: (kind: string, itemIds: string[]) => void
   createOutfit: (name: string) => string
   deleteOutfit: (id: string) => void

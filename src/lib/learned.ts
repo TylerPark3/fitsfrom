@@ -15,7 +15,14 @@ export interface CategoryTaste {
   n: number
 }
 
-export type LearnedTaste = Partial<Record<Category, CategoryTaste>>
+type CategoryMap = Partial<Record<Category, CategoryTaste>>
+
+export interface LearnedTaste {
+  /** Built from saves and owned pieces. */
+  yes: CategoryMap
+  /** Mirror profile built from thumbed-down pieces — subtracted, not added. */
+  no: CategoryMap
+}
 
 const COLOR_RE: [string, RegExp][] = [
   ['black', /black|onyx|noir|jet/i],
@@ -46,10 +53,15 @@ const bump = (m: Record<string, number>, k: string, by = 1) => {
  * Builds the per-category profile from saved pieces and owned pieces.
  * Saves count double — actively choosing something says more than owning it.
  */
-export function learnTaste(savedIds: string[], ownedIds: string[]): LearnedTaste {
-  const out: LearnedTaste = {}
-  const add = (p: Product, weight: number) => {
-    const t = (out[p.category] ??= { brands: {}, colors: {}, styles: {}, priceMid: 0, n: 0 })
+export function learnTaste(
+  savedIds: string[],
+  ownedIds: string[],
+  dislikedIds: string[] = [],
+): LearnedTaste {
+  const yes: CategoryMap = {}
+  const no: CategoryMap = {}
+  const addTo = (bucket: CategoryMap, p: Product, weight: number) => {
+    const t = (bucket[p.category] ??= { brands: {}, colors: {}, styles: {}, priceMid: 0, n: 0 })
     bump(t.brands, p.brand, weight)
     const c = colorOf(p)
     if (c) bump(t.colors, c, weight)
@@ -57,6 +69,7 @@ export function learnTaste(savedIds: string[], ownedIds: string[]): LearnedTaste
     t.priceMid += p.price * weight
     t.n += weight
   }
+  const add = (p: Product, weight: number) => addTo(yes, p, weight)
 
   for (const id of savedIds) {
     const p = CATALOG.find((x) => x.id === id)
@@ -66,8 +79,13 @@ export function learnTaste(savedIds: string[], ownedIds: string[]): LearnedTaste
     const p = CATALOG.find((x) => x.id === id)
     if (p) add(p, 1)
   }
-  for (const t of Object.values(out)) if (t && t.n) t.priceMid /= t.n
-  return out
+  for (const id of dislikedIds) {
+    const p = CATALOG.find((x) => x.id === id)
+    if (p) addTo(no, p, 1)
+  }
+  for (const t of Object.values(yes)) if (t && t.n) t.priceMid /= t.n
+  for (const t of Object.values(no)) if (t && t.n) t.priceMid /= t.n
+  return { yes, no }
 }
 
 /**
@@ -79,11 +97,27 @@ export function learnedBoost(
   product: Product,
   learned: LearnedTaste,
 ): { points: number; reason?: string } {
-  const t = learned[product.category]
-  if (!t || t.n < 2) return { points: 0 }
+  const t = learned.yes[product.category]
+  const n = learned.no[product.category]
 
   let points = 0
   let reason: string | undefined
+
+  // Dislikes bite immediately — one thumbs-down is a clear instruction, and
+  // waiting for a second sample means showing more of what was just rejected.
+  if (n && n.n > 0) {
+    const brandNo = n.brands[product.brand] ?? 0
+    if (brandNo > 0) {
+      points -= Math.min(16, 6 + brandNo * 4)
+      reason = `Less ${product.brand}`
+    }
+    const styleNo = product.styles.reduce((sum, st) => sum + (n.styles[st] ?? 0), 0)
+    if (styleNo > 0) points -= Math.min(14, styleNo * 4)
+    const cNo = colorOf(product)
+    if (cNo && (n.colors[cNo] ?? 0) > 0) points -= Math.min(8, (n.colors[cNo] ?? 0) * 3)
+  }
+
+  if (!t || t.n < 2) return { points, reason }
 
   // Brand you keep coming back to, in this category specifically.
   const brandHits = t.brands[product.brand] ?? 0

@@ -945,7 +945,7 @@ input[type='range']:active::-webkit-slider-thumb {
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
-  gap: 4px 4px;
+  gap: 26px 20px;
 }
 
 .card {
@@ -964,7 +964,7 @@ input[type='range']:active::-webkit-slider-thumb {
 
 .card__frame {
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
   border-radius: var(--r);
   overflow: hidden;
   background: #fff;
@@ -976,7 +976,10 @@ input[type='range']:active::-webkit-slider-thumb {
 .card__img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* contain, not cover — a cropped hem or a sleeve out of frame is useless
+     when the whole point is identifying the piece */
+  object-fit: contain;
+  padding: 12px;
   transition: transform 480ms var(--ease), opacity 300ms var(--ease);
   background: linear-gradient(100deg, var(--mist-2) 40%, #fff 50%, var(--mist-2) 60%);
   background-size: 200% 100%;
@@ -1012,9 +1015,7 @@ input[type='range']:active::-webkit-slider-thumb {
 }
 
 .card__save {
-  position: absolute;
-  top: 9px;
-  right: 9px;
+  position: relative;
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -7087,4 +7088,64 @@ input.seg__control::placeholder {
 
 .count.is-full b {
   color: var(--ink);
+}
+
+/* save + "less like this" sit together in the corner of every card */
+.card__acts {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity var(--fast), transform var(--fast);
+}
+
+.card:hover .card__acts,
+.card__acts:focus-within,
+.card--nope .card__acts {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card__nope {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  color: var(--ink-3);
+  transition: color var(--fast), border-color var(--fast), background var(--fast);
+}
+
+.card__nope:hover {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.card__nope.is-on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+/* a rejected piece fades out rather than vanishing — undo stays reachable */
+.card--nope {
+  opacity: 0.34;
+}
+
+.card--nope:hover {
+  opacity: 0.72;
+}
+
+@media (hover: none) {
+  .card__acts {
+    opacity: 1;
+    transform: none;
+  }
 }
