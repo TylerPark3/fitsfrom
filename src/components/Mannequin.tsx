@@ -22,67 +22,103 @@ export const ANATOMY = {
 }
 
 /** Where a sleeve ends, as a fraction of figure height. */
-export const SLEEVE = {
-  short: 0.33,
-  long: 0.5,
-}
+export const SLEEVE = { short: 0.33, long: 0.5 }
 
 const VB_W = 220
 const VB_H = 560
 const CX = VB_W / 2
 
-const y = (f: number) => f * VB_H
-
 /** Segment widths, nudged by the build. A wooden figure is slim by nature. */
 function shape(p: Profile) {
   const heft = (p.weight - 95) / 205
-  const chest = (34 + ((p.chest - 30) / 26) * 10) * (1 + heft * 0.12)
-  const waist = (24 + ((p.waist - 26) / 22) * 9) * (1 + heft * 0.14)
+  const chest = (40 + ((p.chest - 30) / 26) * 9) * (1 + heft * 0.11)
+  const waist = (26 + ((p.waist - 26) / 22) * 8) * (1 + heft * 0.13)
   return {
     chest,
     waist,
-    pelvis: Math.max(waist * 1.2, chest * 0.82),
-    shoulderX: chest * 1.18,
-    thigh: 15 + heft * 3,
-    calf: 11 + heft * 2,
-    foot: 17 + ((p.shoe - 5) / 11) * 6,
+    pelvis: Math.max(waist * 1.24, chest * 0.8),
+    thigh: 17 + heft * 3,
+    calf: 13 + heft * 2,
+    foot: 20 + ((p.shoe - 5) / 11) * 7,
     headRx: 23,
   }
 }
 
-/** A turned wooden limb: wide end at (x1,y1), narrow end at (x2,y2). */
-function segment(x1: number, y1: number, w1: number, x2: number, y2: number, w2: number) {
+/**
+ * A turned limb. The sides bow outward slightly — a lathe leaves a barrel, not
+ * a cone, and a straight taper is what made the last version read as cardboard.
+ */
+function limb(x1: number, y1: number, w1: number, x2: number, y2: number, w2: number, bulge = 0.09) {
   const d = y2 - y1
+  const b1 = w1 * (1 + bulge)
+  const b2 = w2 * (1 + bulge)
   return [
     `M ${x1 - w1} ${y1}`,
-    `C ${x1 - w1} ${y1 + d * 0.45} ${x2 - w2} ${y2 - d * 0.35} ${x2 - w2} ${y2}`,
-    `L ${x2 + w2} ${y2}`,
-    `C ${x2 + w2} ${y2 - d * 0.35} ${x1 + w1} ${y1 + d * 0.45} ${x1 + w1} ${y1}`,
+    `C ${x1 - b1} ${y1 + d * 0.3} ${x2 - b2} ${y1 + d * 0.72} ${x2 - w2} ${y2}`,
+    `Q ${x2} ${y2 + w2 * 0.5} ${x2 + w2} ${y2}`,
+    `C ${x2 + b2} ${y1 + d * 0.72} ${x1 + b1} ${y1 + d * 0.3} ${x1 + w1} ${y1}`,
+    `Q ${x1} ${y1 - w1 * 0.35} ${x1 - w1} ${y1}`,
     'Z',
   ].join(' ')
 }
 
-const SHOULDER_Y = 0.185
-const ELBOW_Y = 0.355
-const WRIST_Y = 0.5
+/* ── absolute geometry, in viewBox units ───────────────────────────────────
+   Joints overlap on purpose: every ball is drawn wide enough to sit across the
+   seam between the two segments it links, so the figure reads as one object
+   instead of a pile of loose parts. */
+const HEAD_TOP = 5
+const HEAD_BOT = 70
+const NECK_Y = 79
+const CHEST_TOP = 86
+const CHEST_BOT = 198
+const WAIST_Y = 203
+const PELVIS_TOP = 205
+const PELVIS_BOT = 282
+const SHOULDER_Y = 102
+const ELBOW_Y = 198
+const WRIST_Y = 274
+const HAND_BOT = 312
+const HIP_Y = 284
+const THIGH_TOP = 286
+const KNEE_Y = 418
+const CALF_TOP = 422
+const ANKLE_Y = 518
+const SOLE_Y = 553
 
 /** Every piece of one arm, so the parts can be split across z-layers. */
 function armParts(s: ReturnType<typeof shape>, side: 1 | -1) {
-  const sx = CX + side * s.shoulderX
-  const ex = CX + side * (s.shoulderX + 4)
-  const wx = CX + side * (s.shoulderX + 5)
+  const sx = CX + side * (s.chest * 0.98)
+  const ex = CX + side * (s.chest * 1.12)
+  const wx = CX + side * (s.chest * 1.18)
   return {
-    sx,
-    ex,
-    wx,
-    ball: { cx: sx, cy: y(SHOULDER_Y), r: 12 },
-    upper: segment(sx, y(SHOULDER_Y) + 6, 10.5, ex, y(ELBOW_Y) - 6, 8),
-    elbow: { cx: ex, cy: y(ELBOW_Y), r: 8 },
-    fore: segment(ex, y(ELBOW_Y) + 5, 8, wx, y(WRIST_Y) - 4, 6),
+    shoulder: { cx: sx, cy: SHOULDER_Y, r: 15 },
+    upper: limb(sx, SHOULDER_Y - 2, 11.5, ex, ELBOW_Y, 9),
+    elbow: { cx: ex, cy: ELBOW_Y + 3, r: 10 },
+    fore: limb(ex, ELBOW_Y + 1, 9.5, wx, WRIST_Y, 7),
+    // a mitten, not a spike — the wooden figure has a rounded paddle hand
     hand: [
-      `M ${wx - 6} ${y(WRIST_Y) - 2}`,
-      `C ${wx - 7} ${y(0.535)} ${wx - 4} ${y(0.575)} ${wx + side * 1.5} ${y(0.585)}`,
-      `C ${wx + 6} ${y(0.55)} ${wx + 6} ${y(0.53)} ${wx + 6} ${y(WRIST_Y) - 2}`,
+      `M ${wx - 7.5} ${WRIST_Y - 3}`,
+      `C ${wx - 9} ${WRIST_Y + 16} ${wx - 8} ${HAND_BOT - 10} ${wx - 3.5} ${HAND_BOT - 2}`,
+      `Q ${wx} ${HAND_BOT + 2} ${wx + 3.5} ${HAND_BOT - 2}`,
+      `C ${wx + 8} ${HAND_BOT - 10} ${wx + 9} ${WRIST_Y + 16} ${wx + 7.5} ${WRIST_Y - 3}`,
+      'Z',
+    ].join(' '),
+  }
+}
+
+function legParts(s: ReturnType<typeof shape>, side: 1 | -1) {
+  const lx = CX + side * (s.pelvis * 0.46)
+  return {
+    hip: { cx: lx, cy: HIP_Y, r: 15 },
+    thigh: limb(lx, THIGH_TOP, s.thigh, lx, KNEE_Y - 4, s.calf + 1, 0.06),
+    knee: { cx: lx, cy: KNEE_Y, r: 12 },
+    calf: limb(lx, CALF_TOP, s.calf + 1, lx, ANKLE_Y, s.calf * 0.62, 0.12),
+    // a rounded block that runs forward, not a tab hanging off the leg
+    foot: [
+      `M ${lx - s.calf * 0.62} ${ANKLE_Y - 4}`,
+      `C ${lx - s.foot * 0.8} ${ANKLE_Y + 16} ${lx - s.foot * 0.85} ${SOLE_Y} ${lx - s.foot * 0.5} ${SOLE_Y}`,
+      `L ${lx + s.foot * 0.62} ${SOLE_Y}`,
+      `C ${lx + s.foot} ${SOLE_Y - 3} ${lx + s.calf * 0.9} ${ANKLE_Y + 12} ${lx + s.calf * 0.62} ${ANKLE_Y - 4}`,
       'Z',
     ].join(' '),
   }
@@ -91,23 +127,32 @@ function armParts(s: ReturnType<typeof shape>, side: 1 | -1) {
 function Grads({ id }: { id: string }) {
   return (
     <defs>
-      {/* turned wood: highlight down the middle, shadow at both edges */}
+      {/* Mapped to each shape's own bounding box, so every limb gets its own
+          cylinder of light rather than one flat wash across the whole figure. */}
       <linearGradient id={`wood-${id}`} x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0" stopColor="#c49a63" />
-        <stop offset="0.34" stopColor="#eed7ae" />
-        <stop offset="0.6" stopColor="#e2c694" />
-        <stop offset="1" stopColor="#bd9159" />
+        <stop offset="0" stopColor="#a4783f" />
+        <stop offset="0.1" stopColor="#c99e64" />
+        <stop offset="0.3" stopColor="#f6e8cd" />
+        <stop offset="0.46" stopColor="#eedab5" />
+        <stop offset="0.72" stopColor="#d3aa74" />
+        <stop offset="0.9" stopColor="#b0854a" />
+        <stop offset="1" stopColor="#94693a" />
       </linearGradient>
-      <radialGradient id={`ball-${id}`} cx="0.36" cy="0.3" r="0.85">
-        <stop offset="0" stopColor="#f4e0bd" />
-        <stop offset="0.6" stopColor="#ddbf8d" />
-        <stop offset="1" stopColor="#b98d55" />
+      <radialGradient id={`ball-${id}`} cx="0.34" cy="0.28" r="0.82">
+        <stop offset="0" stopColor="#fbf0da" />
+        <stop offset="0.42" stopColor="#e8cfa2" />
+        <stop offset="0.82" stopColor="#c39a5f" />
+        <stop offset="1" stopColor="#966b3a" />
+      </radialGradient>
+      <radialGradient id={`head-${id}`} cx="0.36" cy="0.3" r="0.86">
+        <stop offset="0" stopColor="#fbf1dc" />
+        <stop offset="0.46" stopColor="#ecd3a7" />
+        <stop offset="0.84" stopColor="#c9a066" />
+        <stop offset="1" stopColor="#9c7140" />
       </radialGradient>
     </defs>
   )
 }
-
-const STROKE = '#a88250'
 
 /**
  * A wooden artist's figure — the jointed drawing model. Segmented body, ball
@@ -134,31 +179,6 @@ export function Mannequin({
   const R = armParts(s, 1)
   const uid = part
 
-  const head = (
-    <>
-      <circle cx={CX} cy={y(0.148)} r={8} fill={`url(#ball-${uid})`} />
-      <path
-        d={[
-          `M ${CX - s.headRx} ${y(0.078)}`,
-          `C ${CX - s.headRx} ${y(0.022)} ${CX + s.headRx} ${y(0.022)} ${CX + s.headRx} ${y(0.078)}`,
-          `C ${CX + s.headRx} ${y(0.116)} ${CX + s.headRx * 0.5} ${y(0.137)} ${CX} ${y(0.137)}`,
-          `C ${CX - s.headRx * 0.5} ${y(0.137)} ${CX - s.headRx} ${y(0.116)} ${CX - s.headRx} ${y(0.078)}`,
-          'Z',
-        ].join(' ')}
-      />
-    </>
-  )
-
-  const seam = (
-    <path
-      d={`M ${CX} ${y(0.026)} C ${CX - 9} ${y(0.062)} ${CX - 9} ${y(0.09)} ${CX} ${y(0.106)}`}
-      fill="none"
-      stroke="#c9a06a"
-      strokeWidth="1.4"
-      opacity="0.5"
-    />
-  )
-
   const svgProps = {
     className,
     viewBox: `0 0 ${VB_W} ${VB_H}`,
@@ -169,118 +189,129 @@ export function Mannequin({
     preserveAspectRatio: 'xMidYMid meet' as const,
   }
 
+  const head = (
+    <>
+      <circle cx={CX} cy={NECK_Y} r={10.5} fill={`url(#ball-${uid})`} stroke="#9b7340" strokeWidth="0.9" />
+      <path
+        d={[
+          `M ${CX - s.headRx} ${(HEAD_TOP + HEAD_BOT) / 2 - 4}`,
+          `C ${CX - s.headRx} ${HEAD_TOP - 2} ${CX + s.headRx} ${HEAD_TOP - 2} ${CX + s.headRx} ${(HEAD_TOP + HEAD_BOT) / 2 - 4}`,
+          `C ${CX + s.headRx} ${HEAD_BOT - 8} ${CX + s.headRx * 0.52} ${HEAD_BOT} ${CX} ${HEAD_BOT}`,
+          `C ${CX - s.headRx * 0.52} ${HEAD_BOT} ${CX - s.headRx} ${HEAD_BOT - 8} ${CX - s.headRx} ${(HEAD_TOP + HEAD_BOT) / 2 - 4}`,
+          'Z',
+        ].join(' ')}
+        fill={`url(#head-${uid})`}
+        stroke="#9b7340"
+        strokeWidth="0.9"
+      />
+    </>
+  )
+
   if (part === 'head') {
     return (
       <svg {...svgProps}>
         <Grads id={uid} />
-        <g fill={`url(#wood-${uid})`} stroke={STROKE} strokeWidth="1" strokeLinejoin="round" strokeOpacity="0.6">
-          {head}
-        </g>
-        {seam}
+        {head}
       </svg>
     )
   }
 
-  // Only what pokes out below the sleeve — drawn over the shirt.
   if (part === 'forearms') {
-    const hem = sleeveHem ?? SLEEVE.short
+    const hem = (sleeveHem ?? SLEEVE.short) * VB_H
     return (
       <svg {...svgProps}>
         <Grads id={uid} />
-        <g fill={`url(#wood-${uid})`} stroke={STROKE} strokeWidth="1" strokeLinejoin="round" strokeOpacity="0.6">
-          <clipPath id={`below-${uid}`}>
-            <rect x="0" y={y(hem)} width={VB_W} height={VB_H} />
-          </clipPath>
-          <g clipPath={`url(#below-${uid})`}>
-            {[L, R].map((a, i) => (
-              <g key={i}>
-                <path d={a.upper} />
-                <circle cx={a.elbow.cx} cy={a.elbow.cy} r={a.elbow.r} fill={`url(#ball-${uid})`} />
-                <path d={a.fore} />
-                <path d={a.hand} />
-              </g>
-            ))}
-          </g>
+        <clipPath id={`below-${uid}`}>
+          <rect x="0" y={hem} width={VB_W} height={VB_H} />
+        </clipPath>
+        <g clipPath={`url(#below-${uid})`} stroke="#9b7340" strokeWidth="0.9" strokeLinejoin="round">
+          {[L, R].map((a, i) => (
+            <g key={i}>
+              <path d={a.upper} fill={`url(#wood-${uid})`} />
+              <path d={a.fore} fill={`url(#wood-${uid})`} />
+              <circle cx={a.elbow.cx} cy={a.elbow.cy} r={a.elbow.r} fill={`url(#ball-${uid})`} />
+              <path d={a.hand} fill={`url(#wood-${uid})`} />
+            </g>
+          ))}
         </g>
       </svg>
     )
   }
 
-  const hipY = y(0.505)
-  const kneeY = y(ANATOMY.knee)
-  const ankleY = y(ANATOMY.ankle)
-  const leg = (side: 1 | -1) => {
-    const lx = CX + side * (s.pelvis * 0.52)
-    return {
-      ball: { cx: lx, cy: hipY, r: 13 },
-      thigh: segment(lx, hipY + 7, s.thigh, lx, kneeY - 9, s.calf + 1.5),
-      knee: { cx: lx, cy: kneeY, r: 10 },
-      calf: segment(lx, kneeY + 7, s.calf + 0.5, lx, ankleY - 3, s.calf * 0.72),
-      foot: [
-        `M ${lx - s.calf * 0.72} ${ankleY - 2}`,
-        `C ${lx - s.foot} ${y(0.962)} ${lx - s.foot} ${y(0.997)} ${lx - s.foot * 0.45} ${y(0.997)}`,
-        `L ${lx + s.foot * 0.6} ${y(0.997)}`,
-        `C ${lx + s.foot} ${y(0.99)} ${lx + s.calf} ${y(0.955)} ${lx + s.calf * 0.72} ${ankleY - 2}`,
-        'Z',
-      ].join(' '),
-    }
-  }
-  const LL = leg(-1)
-  const RL = leg(1)
+  const LL = legParts(s, -1)
+  const RL = legParts(s, 1)
 
-  const chestTop = y(0.168)
+  // Chest: a bell. Narrow at the neck, flaring across the shoulders, tapering
+  // to a rounded base that the waist ball sits into.
   const chest = [
-    `M ${CX - s.chest * 0.32} ${chestTop - 5}`,
-    `C ${CX - s.chest * 0.88} ${chestTop - 4} ${CX - s.chest} ${chestTop + 7} ${CX - s.chest} ${y(0.225)}`,
-    `C ${CX - s.chest} ${y(0.29)} ${CX - s.waist * 1.04} ${y(0.315)} ${CX - s.waist * 0.96} ${y(0.34)}`,
-    `L ${CX + s.waist * 0.96} ${y(0.34)}`,
-    `C ${CX + s.waist * 1.04} ${y(0.315)} ${CX + s.chest} ${y(0.29)} ${CX + s.chest} ${y(0.225)}`,
-    `C ${CX + s.chest} ${chestTop + 7} ${CX + s.chest * 0.88} ${chestTop - 4} ${CX + s.chest * 0.32} ${chestTop - 5}`,
+    `M ${CX - 18} ${CHEST_TOP}`,
+    `C ${CX - s.chest * 0.72} ${CHEST_TOP - 3} ${CX - s.chest} ${SHOULDER_Y - 4} ${CX - s.chest} ${SHOULDER_Y + 12}`,
+    `C ${CX - s.chest} ${150} ${CX - s.waist * 1.16} ${170} ${CX - s.waist} ${CHEST_BOT - 12}`,
+    `Q ${CX - s.waist * 0.92} ${CHEST_BOT} ${CX} ${CHEST_BOT}`,
+    `Q ${CX + s.waist * 0.92} ${CHEST_BOT} ${CX + s.waist} ${CHEST_BOT - 12}`,
+    `C ${CX + s.waist * 1.16} ${170} ${CX + s.chest} ${150} ${CX + s.chest} ${SHOULDER_Y + 12}`,
+    `C ${CX + s.chest} ${SHOULDER_Y - 4} ${CX + s.chest * 0.72} ${CHEST_TOP - 3} ${CX + 18} ${CHEST_TOP}`,
+    `Q ${CX} ${CHEST_TOP - 7} ${CX - 18} ${CHEST_TOP}`,
     'Z',
   ].join(' ')
 
+  // Pelvis: a rounded block, widest across the hips.
   const pelvis = [
-    `M ${CX - s.pelvis * 0.86} ${y(0.4)}`,
-    `C ${CX - s.pelvis} ${y(0.43)} ${CX - s.pelvis} ${y(0.47)} ${CX - s.pelvis * 0.9} ${y(0.492)}`,
-    `L ${CX + s.pelvis * 0.9} ${y(0.492)}`,
-    `C ${CX + s.pelvis} ${y(0.47)} ${CX + s.pelvis} ${y(0.43)} ${CX + s.pelvis * 0.86} ${y(0.4)}`,
+    `M ${CX - s.waist * 0.86} ${PELVIS_TOP}`,
+    `C ${CX - s.pelvis} ${PELVIS_TOP + 14} ${CX - s.pelvis} ${PELVIS_BOT - 22} ${CX - s.pelvis * 0.92} ${PELVIS_BOT - 4}`,
+    `Q ${CX} ${PELVIS_BOT + 8} ${CX + s.pelvis * 0.92} ${PELVIS_BOT - 4}`,
+    `C ${CX + s.pelvis} ${PELVIS_BOT - 22} ${CX + s.pelvis} ${PELVIS_TOP + 14} ${CX + s.waist * 0.86} ${PELVIS_TOP}`,
+    `Q ${CX} ${PELVIS_TOP - 6} ${CX - s.waist * 0.86} ${PELVIS_TOP}`,
     'Z',
   ].join(' ')
 
   return (
     <svg {...svgProps}>
       <Grads id={uid} />
-      <g fill={`url(#wood-${uid})`} stroke={STROKE} strokeWidth="1" strokeLinejoin="round" strokeOpacity="0.6">
-        {/* limbs first — the body blocks overlap them at the joints */}
+
+      <g stroke="#9b7340" strokeWidth="0.9" strokeLinejoin="round">
+        {/* limbs go down first — the body blocks and joint balls cover the seams */}
         {[L, R].map((a, i) => (
           <g key={`arm-${i}`}>
-            <circle cx={a.ball.cx} cy={a.ball.cy} r={a.ball.r} fill={`url(#ball-${uid})`} />
-            <path d={a.upper} />
+            <path d={a.upper} fill={`url(#wood-${uid})`} />
+            <path d={a.fore} fill={`url(#wood-${uid})`} />
             <circle cx={a.elbow.cx} cy={a.elbow.cy} r={a.elbow.r} fill={`url(#ball-${uid})`} />
-            <path d={a.fore} />
-            <path d={a.hand} />
+            <path d={a.hand} fill={`url(#wood-${uid})`} />
           </g>
         ))}
 
         {[LL, RL].map((l, i) => (
           <g key={`leg-${i}`}>
-            <circle cx={l.ball.cx} cy={l.ball.cy} r={l.ball.r} fill={`url(#ball-${uid})`} />
-            <path d={l.thigh} />
+            <path d={l.thigh} fill={`url(#wood-${uid})`} />
+            <path d={l.calf} fill={`url(#wood-${uid})`} />
             <circle cx={l.knee.cx} cy={l.knee.cy} r={l.knee.r} fill={`url(#ball-${uid})`} />
-            <path d={l.calf} />
-            <path d={l.foot} />
+            <path d={l.foot} fill={`url(#wood-${uid})`} />
           </g>
         ))}
 
-        <path d={chest} />
-        <circle cx={CX} cy={y(0.372)} r={12} fill={`url(#ball-${uid})`} />
-        <path d={pelvis} />
+        {/* body blocks, then the joints that bridge them */}
+        <path d={pelvis} fill={`url(#wood-${uid})`} />
+        {[LL, RL].map((l, i) => (
+          <circle key={`hip-${i}`} cx={l.hip.cx} cy={l.hip.cy} r={l.hip.r} fill={`url(#ball-${uid})`} />
+        ))}
+
+        <path d={chest} fill={`url(#wood-${uid})`} />
+        <circle cx={CX} cy={WAIST_Y} r={15} fill={`url(#ball-${uid})`} />
+
+        {[L, R].map((a, i) => (
+          <circle
+            key={`sh-${i}`}
+            cx={a.shoulder.cx}
+            cy={a.shoulder.cy}
+            r={a.shoulder.r}
+            fill={`url(#ball-${uid})`}
+          />
+        ))}
 
         {head}
       </g>
 
-      {seam}
-      <ellipse cx={CX} cy={y(1.004)} rx="62" ry="7" fill="#b9b5ab" opacity="0.35" />
+      <ellipse cx={CX} cy={SOLE_Y + 6} rx="60" ry="7" fill="#b9b5ab" opacity="0.3" />
     </svg>
   )
 }

@@ -6685,6 +6685,7 @@ input.seg__control::placeholder {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  overflow: visible;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6694,12 +6695,13 @@ input.seg__control::placeholder {
 }
 
 .mqlayer__img {
-  /* flex parent has a definite height, so these percentages actually bite —
-     a grid area would have grown to the image instead. */
-  max-width: 100%;
-  max-height: 100%;
+  /* Height binds, width follows. Constraining by width left a pair of wide-leg
+     sweatpants ending at the calf, because the band is much taller than it is
+     wide — and a garment is allowed to be wider than the form it hangs on. */
+  height: 100%;
   width: auto;
-  height: auto;
+  max-width: none;
+  max-height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 6px 12px rgba(18, 25, 21, 0.22));
 }
