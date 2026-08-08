@@ -15,7 +15,7 @@ const SECTIONS: { id: string; title: string; sub: string; qa: [string, string][]
       ],
       [
         'Are the prices real?',
-        'Yes — products, prices and images come from each brand’s live store feed. Stock moves fast, so always confirm at the brand’s checkout.',
+        'Yes — products, prices and images come from each brand’s live store feed. Nike, adidas, New Balance and On don’t publish a feed of their own, so those come from authorized stockists that do; the price and link are still the retailer’s real ones. Stock moves fast, so always confirm at checkout.',
       ],
       [
         'What does it cost?',
@@ -47,17 +47,48 @@ const SECTIONS: { id: string; title: string; sub: string; qa: [string, string][]
     ],
   },
   {
+    id: 'wardrobe',
+    title: 'Wardrobe & the dressing room',
+    sub: 'Your closet, and the figure that wears it.',
+    qa: [
+      [
+        'What is the dressing room?',
+        'Your build standing in the middle of your closet. Pick a top, a bottom, shoes, a hat and an accessory off the rails beside it and they go on the figure — placed against your body’s own landmarks, so a collar lands at your neck rather than floating over your face. What it’s wearing saves to this device.',
+      ],
+      [
+        'Why can’t I put some pieces on the figure?',
+        'Some brands photograph a piece on a model instead of flat on white. Pasting one of those onto your build would put a second person on your body, so only flat product shots reach the rails. Those pieces are still in your closet — they just can’t be worn on the mannequin.',
+      ],
+      [
+        'How is my closet worth calculated?',
+        'Retail price, discounted by condition (NWT down to Beat) and by how long you’ve owned it. Both are set when you add a piece and can be changed any time from the closet shelf.',
+      ],
+      [
+        'Why are there only two shelves?',
+        'Tops and Bottoms. Everything finer — shirts, knits, outerwear, shorts, shoes, accessories — is a filter inside those two rather than another row to scroll past.',
+      ],
+      [
+        'What does the diamond on a card mean?',
+        'A match of 90% or higher. Rare on purpose — it earns the shine and the ◆ 90%+ MATCH tag.',
+      ],
+      [
+        'What does the thumbs-down do?',
+        'Tells the ranker to stop showing you that lane. One press pushes the score away from that brand, style and colour straight away, and pulls the piece out of your saves. Press it again to undo.',
+      ],
+    ],
+  },
+  {
     id: 'sizing',
     title: 'Sizing & avatar',
     sub: 'Why every card shows your size.',
     qa: [
       [
         'How does size recommendation work?',
-        'Your height and weight seed an estimate; chest, waist, inseam and shoe sharpen it. Each product then maps your measurements to its size system — including brands that run big or small.',
+        'Your height and weight seed an estimate; chest, waist, inseam and shoe sharpen it. Each product then maps your measurements to its size system — including brands that run big or small. One-size pieces like belts and caps always pass the size filter, because they fit everyone.',
       ],
       [
         'Is the photo I upload private?',
-        'Completely. It’s stored in your browser’s local storage and never uploaded anywhere. Remove it any time from the Avatar tab.',
+        'Completely. It’s stored in your browser’s local storage and never uploaded anywhere. It’s used to read your proportions — the figure in the dressing room is always your build, never your photograph. Remove it any time from the Avatar tab.',
       ],
       [
         'Do I need a tape measure?',

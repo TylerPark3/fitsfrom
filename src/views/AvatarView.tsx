@@ -7,6 +7,7 @@ import { analyzeBody } from '../lib/pose'
 import { fileToDataUrl } from '../lib/img'
 import { iconScores } from '../lib/twin'
 import { AvatarRig } from '../components/AvatarRig'
+import { BuildTicker } from '../components/BuildTicker'
 import { Slider } from './Onboarding'
 import { Arrow, CheckInk, Upload, Trash } from '../components/Icons'
 
@@ -255,6 +256,7 @@ export function AvatarView({ go }: { go: (v: View) => void }) {
         {/* CENTER — the build */}
         <div className="stage2k">
           <AvatarRig />
+          <BuildTicker />
         </div>
 
         {/* RIGHT — ratings */}
