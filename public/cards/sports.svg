@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" width="300" height="420">
+  <rect width="300" height="420" fill="#12100d"/>
+  <rect x="14" y="14" width="272" height="392" rx="6" fill="#f2efe8"/>
+  <rect x="26" y="26" width="248" height="286" fill="#1d2a24"/>
+  <circle cx="150" cy="132" r="42" fill="#c9c3b4"/>
+  <path d="M108 258c0-34 19-58 42-58s42 24 42 58z" fill="#c9c3b4"/>
+  <path d="M150 200c-26 0-46 26-46 62h92c0-36-20-62-46-62z" fill="#a49d8c"/>
+  <rect x="26" y="256" width="248" height="56" fill="#b4402e"/>
+  <text x="150" y="294" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="30" font-weight="700" fill="#f2efe8" letter-spacing="2">ROOKIE</text>
+  <rect x="26" y="326" width="248" height="2" fill="#12100d"/>
+  <text x="150" y="360" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="22" font-weight="700" fill="#12100d" letter-spacing="1">SPORTS CARDS</text>
+  <text x="150" y="386" text-anchor="middle" font-family="monospace" font-size="13" fill="#6c6a63" letter-spacing="3">GRADED · SLABBED</text>
+</svg>

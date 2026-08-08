@@ -87,6 +87,10 @@ def main():
             if new != it['image']:
                 changed += 1
             it['image'] = new
+            # Mark whether the winning shot is actually a flat product photo.
+            # The mannequin can only wear flat shots — pasting a photo of a
+            # model onto the figure puts a whole second person on the body.
+            it['flat'] = bool(best[0][0] == 0)
         # perceptual dedupe: identical-looking photos = the same product listed twice
         try:
             h = dhash(fetch_thumb(it['image'].split('?')[0]))

@@ -1,10 +1,21 @@
 import { useState } from 'react'
 import { useStore } from '../lib/store'
+import type { Profile } from '../lib/store'
 
 const SRC = '/styles/watermark-cut.png'
 const W = 340
 const H = 520
 const N = 52 // slices — thin enough that the outline reads as one continuous curve
+
+/** Where the body's landmarks land, as fractions of the figure's own height. */
+export const ANATOMY = {
+  /** Bottom of the head — a collar sits here, so the face clears it. */
+  chin: 0.148,
+  shoulder: 0.175,
+  waist: 0.5,
+  hip: 0.54,
+  ankle: 0.9,
+}
 
 const smooth = (t: number) => (1 - Math.cos(Math.min(1, Math.max(0, t)) * Math.PI)) / 2
 
@@ -37,14 +48,19 @@ function heightAt(y: number, legY: number): number {
   return legY
 }
 
-/**
- * Continuous morph: the sketch is resampled through a smooth width/height
- * profile, so the silhouette always stays one connected line.
- */
-export function AvatarRig() {
-  const { profile } = useStore()
-  const [yaw, setYaw] = useState(0)
+export interface RigMetrics {
+  w: number
+  h: number
+  overall: number
+  slices: { key: number; top: number; h: number; sx: number; imgTop: number; imgH: number }[]
+}
 
+/**
+ * The figure's geometry for a given body. Exported so anything that has to line
+ * up with the body — garments on the mannequin, for one — can use the same
+ * numbers instead of guessing at percentages of a container.
+ */
+export function rigMetrics(profile: Profile): RigMetrics {
   const overall = 0.82 + ((profile.height - 58) / 24) * 0.32
   const heft = (profile.weight - 95) / 205
   const chestX = (0.88 + ((profile.chest - 30) / 26) * 0.3) * (1 + heft * 0.18)
@@ -64,41 +80,108 @@ export function AvatarRig() {
     cum += h
     return slice
   })
-  const totalH = cum
+
+  return { w: W, h: cum, overall, slices }
+}
+
+/**
+ * The sketch resampled through a smooth width/height profile, so the silhouette
+ * always stays one connected line.
+ *
+ * `part="head"` draws only the slices above the chin. That copy is what gets
+ * stacked *over* a shirt so the face comes out of the collar instead of the
+ * garment sitting flat on top of the whole body.
+ */
+export function RigFigure({
+  metrics,
+  part = 'full',
+}: {
+  metrics: RigMetrics
+  part?: 'full' | 'head'
+}) {
+  const cut = metrics.h * ANATOMY.chin
+  const slices =
+    part === 'head' ? metrics.slices.filter((b) => b.top < cut) : metrics.slices
 
   return (
-    <div className="rig">
-      <div className="rig__turn" style={{ transform: `perspective(900px) rotateY(${yaw}deg)` }}>
-        <div className="rig__body2 rig__body2--holo" style={{ width: W, height: totalH + 26, transform: `scale(${overall})` }}>
-          <span className="rig__beam" style={{ height: totalH + 20 }} />
-          <span className="rig__emitter" style={{ top: totalH + 10 }}>
+    <div
+      className={`rig__body2 rig__body2--holo${part === 'head' ? ' rig__body2--head' : ''}`}
+      style={{
+        width: metrics.w,
+        height: metrics.h,
+        transform: `scale(${metrics.overall})`,
+        transformOrigin: 'top left',
+      }}
+    >
+      {part === 'full' && (
+        <>
+          <span className="rig__beam" style={{ height: metrics.h + 20 }} />
+          <span className="rig__emitter" style={{ top: metrics.h + 10 }}>
             <i />
             <i />
           </span>
-          {slices.map((b) => (
-            <div key={b.key} className="rigslice" style={{ top: b.top, height: b.h + 1.2, width: W }}>
-              <img
-                src={SRC}
-                alt=""
-                draggable={false}
-                style={{
-                  position: 'absolute',
-                  left: '50%',
-                  top: b.imgTop,
-                  width: W,
-                  height: b.imgH,
-                  transform: `translateX(-50%) scaleX(${b.sx})`,
-                }}
-              />
-            </div>
-          ))}
+        </>
+      )}
+      {slices.map((b) => (
+        <div
+          key={b.key}
+          className="rigslice"
+          style={{
+            top: b.top,
+            // the last head slice is clipped so the cut lands exactly at the chin
+            height: Math.min(b.h + 1.2, Math.max(0, cut - b.top) || b.h + 1.2),
+            width: metrics.w,
+          }}
+        >
+          <img
+            src={SRC}
+            alt=""
+            draggable={false}
+            style={{
+              position: 'absolute',
+              left: '50%',
+              top: b.imgTop,
+              width: metrics.w,
+              height: b.imgH,
+              transform: `translateX(-50%) scaleX(${b.sx})`,
+            }}
+          />
+        </div>
+      ))}
+      {part === 'full' && (
+        <>
           <span
             className="rig__holo"
-            style={{ height: totalH, WebkitMaskImage: `url(${SRC})`, maskImage: `url(${SRC})` }}
+            style={{ height: metrics.h, WebkitMaskImage: `url(${SRC})`, maskImage: `url(${SRC})` }}
           />
           <span className="rig__scan" />
-          <span className="rig__shadow" style={{ top: totalH + 4, width: W * 0.6 * Math.max(shoeX, 0.9) }} />
-        </div>
+        </>
+      )}
+    </div>
+  )
+}
+
+/** Standalone figure with turn controls — the Avatar section's build view. */
+export function AvatarRig() {
+  const { profile } = useStore()
+  const [yaw, setYaw] = useState(0)
+  const m = rigMetrics(profile)
+
+  return (
+    <div className="rig">
+      <div
+        className="rig__turn"
+        style={{
+          transform: `perspective(900px) rotateY(${yaw}deg)`,
+          width: m.w * m.overall,
+          height: m.h * m.overall + 26,
+        }}
+      >
+        <RigFigure metrics={m} />
+        <span
+          className="rig__shadow"
+          style={{ top: m.h * m.overall + 4, width: m.w * m.overall * 0.6 }}
+        />
       </div>
 
       <div className="rig__controls">

@@ -36,6 +36,9 @@ const TEAM_TILE: Record<string, string> = {
   Wizards: '/room/poster-wizards.jpg',
   Warriors: '/room/poster-warriors.jpg',
   Knicks: '/room/poster-knicks.jpg',
+  Nets: '/room/poster-nets.jpg',
+  Nuggets: '/room/poster-nuggets.jpg',
+  Grizzlies: '/room/poster-grizzlies.jpg',
 }
 
 const INTO: { id: string; label: string; kind: 'team' | 'tag'; options: IntoOpt[] }[] = [
@@ -92,10 +95,19 @@ const INTO: { id: string; label: string; kind: 'team' | 'tag'; options: IntoOpt[
       { id: 'Tokyo street', img: '/styles/japanese.jpg' },
     ],
   },
+  {
+    id: 'cards',
+    label: 'Cards',
+    kind: 'tag',
+    options: [
+      { id: 'Sports cards', img: '/cards/sports.svg' },
+      { id: 'Pokémon cards', img: '/cards/pokemon.svg' },
+    ],
+  },
 ]
 
 /** Posters exist for these — picking them decorates the room. */
-const HAS_ART = new Set(['Thunder', 'Wizards', 'Warriors', 'Knicks', 'Yankees', 'Dodgers', 'Lakers', 'Rockets', 'Suns', 'Blazers', 'Bucks', 'Mavs', 'Clippers', 'Sixers', 'Magic', 'Hornets', 'Jazz', 'Celtics', 'Angels', 'Brewers', 'Pretty Flacko', 'Tyler, the Creator', 'Iceman', 'Bieber', 'V (BTS)', 'Ye', 'Cole World', 'Carti'])
+const HAS_ART = new Set(['Thunder', 'Wizards', 'Warriors', 'Knicks', 'Yankees', 'Dodgers', 'Lakers', 'Rockets', 'Suns', 'Blazers', 'Bucks', 'Mavs', 'Clippers', 'Sixers', 'Magic', 'Hornets', 'Jazz', 'Celtics', 'Angels', 'Brewers', 'Pretty Flacko', 'Tyler, the Creator', 'Iceman', 'Bieber', 'V (BTS)', 'Ye', 'Cole World', 'Carti', 'Sports cards', 'Pokémon cards'])
 
 const RANKS: [number, string][] = [
   [0, 'ROOKIE'],

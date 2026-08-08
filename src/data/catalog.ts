@@ -17,6 +17,10 @@ export interface Product {
   /** How the garment runs vs. true size. -1 slim / 0 true / +1 roomy */
   fitBias: -1 | 0 | 1
   image: string
+  /** True when `image` is a flat product shot on white — set by pick-images.py.
+      Only flat shots can go on the mannequin; a model shot would put a second
+      person on the figure. */
+  flat?: boolean
   fabric?: string
   silhouette: Silhouette
   url: string

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" width="300" height="420">
+  <rect width="300" height="420" fill="#1a1508"/>
+  <rect x="12" y="12" width="276" height="396" rx="10" fill="#e8c53a"/>
+  <rect x="30" y="30" width="240" height="360" rx="4" fill="#f5f1e4"/>
+  <rect x="42" y="42" width="216" height="216" rx="3" fill="#2f4f43"/>
+  <circle cx="150" cy="150" r="62" fill="#f5f1e4" stroke="#12100d" stroke-width="7"/>
+  <path d="M88 150a62 62 0 0 1 124 0z" fill="#b4402e"/>
+  <rect x="88" y="145" width="124" height="11" fill="#12100d"/>
+  <circle cx="150" cy="150" r="20" fill="#f5f1e4" stroke="#12100d" stroke-width="7"/>
+  <text x="150" y="304" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="26" font-weight="700" fill="#12100d" letter-spacing="1">TRADING</text>
+  <text x="150" y="336" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="26" font-weight="700" fill="#12100d" letter-spacing="1">CARDS</text>
+  <text x="150" y="370" text-anchor="middle" font-family="monospace" font-size="13" fill="#6c6a63" letter-spacing="3">HOLO · SEALED</text>
+</svg>
