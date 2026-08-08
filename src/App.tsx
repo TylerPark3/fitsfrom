@@ -20,20 +20,30 @@ import { Discover } from './views/Discover'
 import { WardrobeView } from './views/WardrobeView'
 import { SavedView } from './views/SavedView'
 import { FitsView } from './views/FitsView'
+import { TunnelView } from './views/TunnelView'
 import { AuthView } from './views/AuthView'
 import { FaqView } from './views/FaqView'
 import { LegalView } from './views/LegalView'
 import { ProductDrawer } from './components/ProductDrawer'
 
-export type View = 'home' | 'auth' | 'onboarding' | 'discover' | 'fits' | 'avatar' | 'wardrobe' | 'saved' | 'faq' | 'legal'
+export type View = 'home' | 'auth' | 'onboarding' | 'discover' | 'tunnel' | 'fits' | 'avatar' | 'wardrobe' | 'saved' | 'faq' | 'legal'
 
 const TRIAL_DAYS = 15
 const GATED: View[] = ['discover', 'fits', 'wardrobe', 'saved', 'avatar']
 
+/** /tunnel/<slug> — a post has a real address without pulling in a router. */
+const readSlug = () => {
+  const m = window.location.pathname.match(/^\/tunnel\/([\w-]+)/)
+  return m ? m[1] : null
+}
+
 export function App() {
   const [state, setState] = useState<AppState>(() => loadState())
-  const [view, setView] = useState<View>(() => (loadState().profile.onboarded ? 'discover' : 'home'))
+  const [view, setView] = useState<View>(() =>
+    readSlug() ? 'tunnel' : loadState().profile.onboarded ? 'discover' : 'home',
+  )
   const [openProduct, setOpenProduct] = useState<string | null>(null)
+  const [tunnelSlug, setTunnelSlug] = useState<string | null>(() => readSlug())
   const [toastMsg, setToastMsg] = useState<string | null>(null)
   const toastTimer = useRef<number>()
 
@@ -230,13 +240,28 @@ export function App() {
   }, [view])
 
   // ALD-style cover: the landing image owns the whole screen until you tap in.
-  // Once you're through, chrome stays for the rest of the session.
-  const [entered, setEntered] = useState(false)
+  // It belongs to the visit, not the view — once you're through it stays down
+  // for the rest of the session, and a fresh tab arms it again.
+  const [entered, setEntered] = useState(() => {
+    try {
+      return sessionStorage.getItem('lapel.entered') === '1'
+    } catch {
+      return false
+    }
+  })
+  const enter = useCallback(() => {
+    setEntered(true)
+    try {
+      sessionStorage.setItem('lapel.entered', '1')
+    } catch {
+      /* private mode — the cover just re-arms, which is harmless */
+    }
+  }, [])
   const covered = view === 'home' && !entered
 
   const go = (v: View) => {
-    // Home is always the cover — going back to it re-arms the full-screen shot.
-    setEntered(v !== 'home')
+    // Navigating never re-arms the cover — you already came through it.
+    enter()
     setView(v)
   }
 
@@ -245,11 +270,11 @@ export function App() {
   useEffect(() => {
     if (!covered) return
     const onScroll = () => {
-      if (window.scrollY > 60) setEntered(true)
+      if (window.scrollY > 60) enter()
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [covered])
+  }, [covered, enter])
 
   const daysLeft = state.account
     ? TRIAL_DAYS - Math.floor((Date.now() - state.account.createdAt) / 86_400_000)
@@ -263,7 +288,7 @@ export function App() {
           <button
             className="cover"
             aria-label="Enter Fits From"
-            onClick={() => setEntered(true)}
+            onClick={enter}
           />
         )}
         {!covered && (
@@ -312,7 +337,18 @@ export function App() {
             </div>
           ) : (
             <>
-          {view === 'home' && <Home go={go} />}
+          {view === 'home' && <Home go={go} onTunnel={(s) => { setTunnelSlug(s); setView('tunnel') }} onOpen={setOpenProduct} />}
+          {view === 'tunnel' && (
+            <TunnelView
+              slug={tunnelSlug}
+              onOpen={setOpenProduct}
+              onSlug={(s) => {
+                setTunnelSlug(s)
+                const path = s ? `/tunnel/${s}` : '/tunnel'
+                window.history.pushState({}, '', path)
+              }}
+            />
+          )}
           {view === 'auth' && (
             <AuthView onDone={() => go(state.profile.onboarded ? 'discover' : 'onboarding')} />
           )}
@@ -346,8 +382,9 @@ export function App() {
         <nav className="tabbar">
           {(
             [
-              ['discover', 'Discover', <Grid key="g" />],
-              ['fits', 'Fits', <Hanger key="f" />],
+              ['tunnel', 'Tunnel', <Hanger key="t" />],
+              ['discover', 'Explore', <Grid key="g" />],
+              ['wardrobe', 'Wardrobe', <Hanger key="w" />],
               ['avatar', 'Avatar', <Person key="p" />],
             ] as const
           ).map(([v, label, icon]) => (
@@ -406,6 +443,9 @@ function Nav({
           </button>
           <button className="nav__link" aria-current={view === 'avatar'} onClick={() => go('avatar')}>
             Avatar
+          </button>
+          <button className="nav__link" aria-current={view === 'tunnel'} onClick={() => go('tunnel')}>
+            Tunnel
           </button>
           <button className="nav__link" aria-current={view === 'discover'} onClick={() => go('discover')}>
             Explore
