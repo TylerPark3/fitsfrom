@@ -13,6 +13,7 @@ import { buyUrl } from '../lib/affiliate'
 import { ProductCard } from '../components/ProductCard'
 import { Arrow, Plus, Trash, Upload } from '../components/Icons'
 import { Room } from '../components/Room'
+import { PRO, halfOf, planFor } from '../lib/plan'
 
 export const CONDITIONS: [string, number][] = [
   ['NWT', 0.85],
@@ -36,8 +37,16 @@ export function WardrobeView({
   onOpen: (id: string) => void
   go: (v: View) => void
 }) {
-  const { wardrobe, profile, setProfile } = useStore()
+  const { wardrobe, customs, account, profile, setProfile, toast } = useStore()
   const [recPage, setRecPage] = useState(0)
+
+  const halves = { tops: 0, bottoms: 0 }
+  for (const w2 of wardrobe) {
+    const p = CATALOG.find((c) => c.id === w2.productId)
+    if (p) halves[halfOf(p.category)]++
+  }
+  for (const c of customs) halves[halfOf(c.category)]++
+  const plan = planFor({ wardrobe, customs, account }, halves)
 
   const items = wardrobe
     .map((w) => ({ w, p: CATALOG.find((c) => c.id === w.productId)! }))
@@ -153,6 +162,15 @@ export function WardrobeView({
         </div>
       </div>
 
+      <PlanStrip plan={plan} onPro={() => {
+        try {
+          localStorage.setItem('lapel.pro.waitlist', '1')
+        } catch {}
+        toast(`Pro — ${PRO.label} · launching soon, you’re first in line`)
+      }} />
+
+      <Artists />
+
       <Room />
 
       <div className="counts">
@@ -176,9 +194,9 @@ export function WardrobeView({
               <button
                 className="btn btn--ghost btn--sm"
                 onClick={() => setRecPage((n) => n + 1)}
-                aria-label="Show different recommendations"
+                aria-label="Show different recommendations in both sections"
               >
-                ↻ Refresh
+                ↻ Refresh both
               </button>
             </div>
           </div>
@@ -190,7 +208,7 @@ export function WardrobeView({
         </div>
       )}
 
-      <MoreLikeYours onOpen={onOpen} />
+      <MoreLikeYours onOpen={onOpen} page={recPage} />
 
       <OutfitBuilder />
 
@@ -606,7 +624,7 @@ function OwnCloset() {
 }
 
 /** "More like what you own" — same category as your deepest stack, ranked to taste. */
-function MoreLikeYours({ onOpen }: { onOpen: (id: string) => void }) {
+function MoreLikeYours({ onOpen, page = 0 }: { onOpen: (id: string) => void; page?: number }) {
   const { wardrobe, customs, profile } = useStore()
   const counts: Record<string, number> = {}
   for (const w of wardrobe) {
@@ -617,12 +635,15 @@ function MoreLikeYours({ onOpen }: { onOpen: (id: string) => void }) {
   const top = Object.entries(counts).sort((a, b) => b[1] - a[1])[0]
   if (!top || top[1] < 2) return null
 
-  const picks = rank(
+  // Same Refresh as the gap block above — both are recommendations, so one
+  // press should turn over both of them.
+  const pool = rank(
     CATALOG.filter((p) => p.category === top[0] && !wardrobe.some((w) => w.productId === p.id)),
     profile,
-  )
-    .slice(0, 4)
-    .map((r) => r.product)
+  ).map((r) => r.product)
+  const pages = Math.max(1, Math.ceil(Math.min(pool.length, 24) / 4))
+  const start = (page % pages) * 4
+  const picks = pool.slice(start, start + 4)
   if (picks.length === 0) return null
 
   const label = CATEGORIES.find((c) => c.id === top[0])?.plural ?? top[0]
@@ -930,4 +951,72 @@ function FitPlanner() {
       )}
     </div>
   )
+}
+
+/**
+ * Where you stand on the free tier. One row, plain words, a number and a
+ * button — nothing overlapping anything else.
+ */
+function PlanStrip({ plan, onPro }: { plan: ReturnType<typeof planFor>; onPro: () => void }) {
+  if (plan.pro) {
+    return (
+      <div className="plan plan--pro">
+        <span className="plan__tag">PRO</span>
+        <p className="plan__line">Unlimited closet, dressing room and planning tools.</p>
+      </div>
+    )
+  }
+  const done = plan.topsLeft === 0 && plan.bottomsLeft === 0
+  return (
+    <div className={`plan${done ? ' plan--full' : ''}`}>
+      <span className="plan__tag">FREE</span>
+      <p className="plan__line">
+        {done ? (
+          <>Your free closet is full.</>
+        ) : (
+          <>
+            {plan.topsLeft} {plan.topsLeft === 1 ? 'top' : 'tops'} and {plan.bottomsLeft}{' '}
+            {plan.bottomsLeft === 1 ? 'bottom' : 'bottoms'} left.
+          </>
+        )}
+      </p>
+      <span className="plan__count">
+        {plan.tops}/{PRO.freeTops} · {plan.bottoms}/{PRO.freeBottoms}
+      </span>
+      <button className="btn btn--primary btn--sm plan__cta" onClick={onPro}>
+        Go Pro — {PRO.label}
+      </button>
+    </div>
+  )
+}
+
+/** The artists you saved, so the wardrobe knows whose taste it is working from. */
+function Artists() {
+  const { profile } = useStore()
+  const picked = profile.tags.filter((t) => ARTIST_FACE[t])
+  if (picked.length === 0) return null
+  return (
+    <div className="artists">
+      <span className="eyebrow">Ranked to</span>
+      <div className="artists__row">
+        {picked.map((t) => (
+          <span className="artist" key={t}>
+            <img src={ARTIST_FACE[t]} alt="" loading="lazy" />
+            {t}
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+const ARTIST_FACE: Record<string, string> = {
+  'Pretty Flacko': '/fits/flacko-money.jpg',
+  'Tyler, the Creator': '/fits/tyler-prep.jpg',
+  Iceman: '/fits/drake-night.jpg',
+  Bieber: '/fits/bieber-night.jpg',
+  'V (BTS)': '/fits/v-airport.jpg',
+  Ye: '/fits/ye-red.jpg',
+  'Cole World': '/fits/jcole-dreamer.jpg',
+  Carti: '/fits/carti-studio.jpg',
 }

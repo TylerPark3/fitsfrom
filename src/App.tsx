@@ -11,6 +11,8 @@ import {
 } from './lib/store'
 import { Grid, Hanger, Person, CheckInk, Mark } from './components/Icons'
 import { installClickSounds, isMuted, setMuted } from './lib/click'
+import { PRO, halfOf } from './lib/plan'
+import { CATALOG } from './data/catalog'
 import { Home } from './views/Home'
 import { Onboarding } from './views/Onboarding'
 import { AvatarView } from './views/AvatarView'
@@ -65,13 +67,32 @@ export function App() {
         })),
 
       addToWardrobe: (productId, size, owned) =>
-        setState((s) => ({
-          ...s,
-          wardrobe: [
-            { productId, size, owned, addedAt: Date.now() },
-            ...s.wardrobe.filter((w) => w.productId !== productId),
-          ],
-        })),
+        setState((s) => {
+          // Free closets hold five up top and five below. Replacing a piece
+          // you already have never counts against you.
+          const already = s.wardrobe.some((w) => w.productId === productId)
+          const p = CATALOG.find((x) => x.id === productId)
+          if (!already && p && !s.account?.pro) {
+            const half = halfOf(p.category)
+            const n =
+              s.wardrobe.filter((w) => {
+                const q = CATALOG.find((x) => x.id === w.productId)
+                return q && halfOf(q.category) === half
+              }).length + s.customs.filter((c) => halfOf(c.category) === half).length
+            const cap = half === 'tops' ? PRO.freeTops : PRO.freeBottoms
+            if (n >= cap) {
+              toast(`Free closet holds ${cap} ${half} — Pro is ${PRO.label}`)
+              return s
+            }
+          }
+          return {
+            ...s,
+            wardrobe: [
+              { productId, size, owned, addedAt: Date.now() },
+              ...s.wardrobe.filter((w) => w.productId !== productId),
+            ],
+          }
+        }),
 
       wear: (slot, ref) =>
         setState((s) => ({

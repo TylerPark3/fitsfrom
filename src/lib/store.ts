@@ -80,6 +80,8 @@ export interface Account {
   /** SHA-256 hex of the password. Local-only — never sent anywhere. */
   passwordHash: string
   createdAt: number
+  /** Paying subscriber — unlocks the closet cap and the planning tools. */
+  pro?: boolean
 }
 
 export interface AppState {

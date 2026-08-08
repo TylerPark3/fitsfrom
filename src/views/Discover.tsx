@@ -151,6 +151,37 @@ const ASKS: { id: string; label: string; test: (p: Product) => boolean }[] = [
   { id: 'scents', label: 'Scents', test: () => false },
 ]
 
+/** Everything worth completing to: brands first, then fabrics, then the
+ *  distinctive words that actually appear in product names. Built once. */
+const SUGGEST: { label: string; kind: string; n: number }[] = (() => {
+  const brands = new Map<string, number>()
+  const fabrics = new Map<string, number>()
+  const words = new Map<string, number>()
+  const STOP = new Set([
+    'the', 'and', 'for', 'with', 'mens', 'men', 's', 'x', 'in', 'of', 'a',
+    'shirt', 'tee', 'black', 'white', 'grey', 'gray', 'navy', 'blue',
+  ])
+  for (const p of CATALOG) {
+    brands.set(p.brand, (brands.get(p.brand) ?? 0) + 1)
+    if (p.fabric) {
+      const f = p.fabric.replace(/\d+%\s*/g, '').split(/[,/]/)[0].trim()
+      if (f.length > 2 && f.length < 22) fabrics.set(f, (fabrics.get(f) ?? 0) + 1)
+    }
+    for (const w of p.name.toLowerCase().split(/[^a-z0-9]+/)) {
+      if (w.length < 4 || STOP.has(w)) continue
+      words.set(w, (words.get(w) ?? 0) + 1)
+    }
+  }
+  const out: { label: string; kind: string; n: number }[] = []
+  for (const [label, n] of brands) out.push({ label, kind: 'Brand', n })
+  for (const [label, n] of fabrics) if (n >= 3) out.push({ label, kind: 'Fabric', n })
+  for (const [label, n] of words) if (n >= 6) out.push({ label, kind: 'Piece', n })
+  return out.sort((a, b) => b.n - a.n)
+})()
+
+const foldStr = (s: string) =>
+  s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+
 export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v: View) => void }) {
   const { profile, saved, wardrobe, disliked, signedIn, account } = useStore()
   const learned = useMemo(
@@ -159,6 +190,19 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
   )
   const [ask, setAsk] = useState('any')
   const [q, setQ] = useState('')
+  const [acOpen, setAcOpen] = useState(false)
+  const [acIdx, setAcIdx] = useState(-1)
+
+  // Type "stu" and Stüssy is right there — no guessing whether a query lands.
+  const suggestions = useMemo(() => {
+    const n = foldStr(q.trim())
+    if (n.length < 2) return []
+    const starts = SUGGEST.filter((s) => foldStr(s.label).startsWith(n))
+    const inside = SUGGEST.filter(
+      (s) => !foldStr(s.label).startsWith(n) && foldStr(s.label).includes(n),
+    )
+    return [...starts, ...inside].slice(0, 7)
+  }, [q])
   const [sizeF, setSizeF] = useState('mine')
   const [icon, setIcon] = useState('')
   const [sort, setSort] = useState<Sort>('featured')
@@ -199,7 +243,16 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
   const results = useMemo(() => {
     if (!executed || ask === 'scents') return []
     const test = ASKS.find((a) => a.id === ask)?.test ?? (() => true)
-    const needle = q.trim().toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
+    // "stussy" must find "Stüssy", "aime" must find "Aimé" — fold accents away
+    // on both sides before comparing.
+    const fold = (s: string) =>
+      s
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, ' ')
+        .trim()
+    const needle = fold(q)
 
     // Influencer lens: their proven pieces + their style DNA.
     const iconFits = icon ? FITS.filter((f) => f.who === icon) : []
@@ -222,9 +275,7 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
       if (needle) {
         // Space-collapsing used to make "label trout" match "belt" — keep word
         // boundaries and require every typed word to appear somewhere.
-        const hay = ` ${`${p.brand} ${p.name} ${p.fabric ?? ''} ${p.styles.join(' ')}`
-          .toLowerCase()
-          .replace(/[^a-z0-9]+/g, ' ')} `
+        const hay = ` ${fold(`${p.brand} ${p.name} ${p.fabric ?? ''} ${p.styles.join(' ')}`)} `
         if (!needle.split(' ').filter(Boolean).every((w) => hay.includes(` ${w}`))) return false
       }
       return true
@@ -313,16 +364,74 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
             options={ASKS.map((a) => ({ id: a.id, title: a.label, sub: ASK_SUBS[a.id] }))}
           />
           <i className="seg__div" />
-          <label className="seg seg--grow">
+          <label className="seg seg--grow seg--ac">
             <span className="seg__label">Details</span>
             <input
               className="seg__control"
               value={q}
-              onChange={(e) => setQ(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && setExecuted(true)}
+              onChange={(e) => {
+                setQ(e.target.value)
+                setAcOpen(true)
+                setAcIdx(-1)
+              }}
+              onFocus={() => setAcOpen(true)}
+              onBlur={() => window.setTimeout(() => setAcOpen(false), 140)}
+              onKeyDown={(e) => {
+                if (acOpen && suggestions.length) {
+                  if (e.key === 'ArrowDown') {
+                    e.preventDefault()
+                    setAcIdx((i) => (i + 1) % suggestions.length)
+                    return
+                  }
+                  if (e.key === 'ArrowUp') {
+                    e.preventDefault()
+                    setAcIdx((i) => (i <= 0 ? suggestions.length - 1 : i - 1))
+                    return
+                  }
+                  if (e.key === 'Escape') {
+                    setAcOpen(false)
+                    return
+                  }
+                }
+                if (e.key === 'Enter') {
+                  if (acOpen && acIdx >= 0 && suggestions[acIdx]) {
+                    setQ(suggestions[acIdx].label)
+                    setAcIdx(-1)
+                  }
+                  setAcOpen(false)
+                  setExecuted(true)
+                }
+              }}
               placeholder="Brand, piece, fabric..."
               aria-label="Search"
+              aria-autocomplete="list"
+              aria-expanded={acOpen && suggestions.length > 0}
+              role="combobox"
             />
+            {acOpen && suggestions.length > 0 && (
+              <ul className="ac" role="listbox">
+                {suggestions.map((s, i) => (
+                  <li key={`${s.kind}-${s.label}`}>
+                    <button
+                      type="button"
+                      className={`ac__row${i === acIdx ? ' is-on' : ''}`}
+                      role="option"
+                      aria-selected={i === acIdx}
+                      onMouseDown={(e) => e.preventDefault()}
+                      onClick={() => {
+                        setQ(s.label)
+                        setAcOpen(false)
+                        setExecuted(true)
+                      }}
+                    >
+                      <span className="ac__label">{s.label}</span>
+                      <span className="ac__kind">{s.kind}</span>
+                      <span className="ac__n">{s.n}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
           </label>
           <button className="deck__go" onClick={() => setExecuted(true)}>
             <Search size={16} /> Search

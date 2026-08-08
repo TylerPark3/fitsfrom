@@ -24,7 +24,7 @@ export function setMuted(v: boolean) {
   }
 }
 
-type Variant = 'tap' | 'select' | 'back' | 'unlock'
+type Variant = 'tap' | 'select' | 'back' | 'unlock' | 'add'
 
 interface Tone {
   f: number
@@ -48,12 +48,16 @@ const PRESETS: Record<Preset, Record<Variant, Tone>> = {
     select: { f: 90, f2: 68, dur: 0.046, gain: 0.58 },
     back: { f: 74, f2: 60, dur: 0.04, gain: 0.44 },
     unlock: { f: 90, f2: 60, dur: 0.048, gain: 0.62 },
+    // adding is the one action that gains you something — it rises instead of
+    // falling, so it reads as confirmation rather than another tap.
+    add: { f: 66, f2: 98, dur: 0.05, gain: 0.6 },
   },
   snap: {
     tap: { f: 90, f2: 64, dur: 0.026, gain: 0.46, snap: 0.05 },
     select: { f: 90, f2: 70, dur: 0.03, gain: 0.52, snap: 0.06 },
     back: { f: 78, f2: 60, dur: 0.024, gain: 0.4, snap: 0.035 },
     unlock: { f: 90, f2: 62, dur: 0.034, gain: 0.56, snap: 0.07 },
+    add: { f: 64, f2: 100, dur: 0.038, gain: 0.54, snap: 0.05 },
   },
 }
 
@@ -137,6 +141,8 @@ export function installClickSounds() {
       if (!el || el.hasAttribute('disabled')) return
       const label = `${el.className} ${el.getAttribute('aria-label') ?? ''}`
       if (/close|back|cancel|remove|trash|delete/i.test(label)) return playClick('back')
+      // anything that puts a piece somewhere gets the rising confirm
+      if (/add to|in wardrobe|in your closet|save|saved|add\b/i.test(label)) return playClick('add')
       if (el.matches('.btn--primary, .deck__go, .inttile, .teamtile, .tile')) return playClick('select')
       playClick('tap')
     },

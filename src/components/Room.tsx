@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { CutoutImg } from './CutoutImg'
-import { ANATOMY, RigFigure, rigMetrics } from './AvatarRig'
+import { ANATOMY, Mannequin, MannequinHead } from './Mannequin'
 import { CATALOG } from '../data/catalog'
 import { useStore } from '../lib/store'
 
@@ -112,12 +112,10 @@ export function Room() {
   const { wardrobe, customs, profile, mannequin, wear, toast } = useStore()
   const [open, setOpen] = useState<string>('top')
 
-  const metrics = useMemo(() => rigMetrics(profile), [profile])
-  // The panel fixes the figure's height; the body box scales from there, and
-  // every garment band is a fraction of that box.
-  const STAGE_H = 460
-  const scale = STAGE_H / (metrics.h * metrics.overall)
-  const bodyW = metrics.w * metrics.overall * scale
+  // The mannequin is drawn to a fixed 200x520 box, so the figure IS the
+  // coordinate space and every garment band is a straight fraction of it.
+  const STAGE_H = 620
+  const bodyW = STAGE_H * (200 / 520)
 
   const pieces = useMemo<Piece[]>(() => {
     const list: Piece[] = []
@@ -158,13 +156,6 @@ export function Room() {
   const posters = profile.teams.slice(0, 2)
   const wearingTop = !!byRef(mannequin.top)
 
-  const rigBox = {
-    width: metrics.w * metrics.overall,
-    height: metrics.h * metrics.overall,
-    transform: `scale(${scale})`,
-    transformOrigin: 'top left' as const,
-  }
-
   return (
     <div className="room2">
       {/* the wall behind the figure */}
@@ -190,13 +181,13 @@ export function Room() {
         <div className="mq__stage">
           {/* this box IS the body's bounding box — bands below are anatomy */}
           <div className="mq__figure" style={{ width: bodyW, height: STAGE_H }}>
-            <div className="mq__rig" style={rigBox}>
-              <RigFigure metrics={metrics} />
+            <div className="mq__rig">
+              <Mannequin profile={profile} />
             </div>
 
             {SLOTS.map((s) => {
               const p = byRef(mannequin[s.key])
-              if (!p) return null
+              if (!p || !p.flat) return null
               return (
                 <div
                   className={`mqlayer mqlayer--${s.key}`}
@@ -224,13 +215,13 @@ export function Room() {
 
             {/* head redrawn over the shirt — face out of the collar */}
             {wearingTop && (
-              <div className="mq__head" style={rigBox}>
-                <RigFigure metrics={metrics} part="head" />
+              <div className="mq__head">
+                <MannequinHead profile={profile} />
               </div>
             )}
           </div>
 
-          {byRef(mannequin[ACC_SLOT.key]) && (
+          {byRef(mannequin[ACC_SLOT.key])?.flat && (
             <div className="mq__acc">
               <CutoutImg src={byRef(mannequin[ACC_SLOT.key])!.img} className="mqlayer__img" />
             </div>

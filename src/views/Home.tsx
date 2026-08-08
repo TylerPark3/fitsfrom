@@ -100,6 +100,9 @@ export function Home({ go }: { go: (v: View) => void }) {
           <h1 className="mast__head">
             <em className="serif">culture.</em>
           </h1>
+          <p className="mast__for">
+            For people who take their fashion seriously — and keep it organised.
+          </p>
           <div className="row" style={{ gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
             <button className="btn btn--invert btn--lg" onClick={() => go('fits')}>
               Today’s fit <Arrow />

@@ -3126,7 +3126,7 @@ input.seg__control::placeholder {
   border: 0;
   border-radius: 0;
   background: transparent;
-  min-height: 640px;
+  min-height: 760px;
   margin-bottom: 40px;
   overflow: visible;
 }
@@ -6630,10 +6630,10 @@ input.seg__control::placeholder {
   z-index: 3;
   display: grid;
   /* minmax(0,…) or the nowrap piece names blow the column out past the page */
-  grid-template-columns: minmax(0, 1fr) 330px;
-  gap: 26px;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 34px;
   padding: 26px 26px 30px;
-  min-height: 600px;
+  min-height: 700px;
   align-items: stretch;
 }
 
@@ -6657,8 +6657,7 @@ input.seg__control::placeholder {
 .mq__rig,
 .mq__head {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
 }
 
 .mq__rig {
@@ -6680,8 +6679,6 @@ input.seg__control::placeholder {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  /* a soft scrim so the sketch underneath doesn't fight the garment */
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.96) 42%, rgba(255, 255, 255, 0) 78%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6804,7 +6801,7 @@ input.seg__control::placeholder {
   gap: 8px;
   align-content: start;
   overflow-y: auto;
-  max-height: 560px;
+  max-height: 680px;
   padding-right: 4px;
 }
 
@@ -6855,8 +6852,8 @@ input.seg__control::placeholder {
 
 .mqpick {
   flex: none;
-  width: 66px;
-  height: 66px;
+  width: 78px;
+  height: 78px;
   border-radius: 12px;
   border: 1px solid var(--line);
   background: var(--paper);
@@ -6903,7 +6900,7 @@ input.seg__control::placeholder {
 
 /* floor stays a thin band beneath the figure only */
 .room2 .room2__floor {
-  height: 150px;
+  height: 170px;
   right: 350px;
   left: 0;
   opacity: 0.5;
@@ -7247,4 +7244,180 @@ input.seg__control::placeholder {
 @media (prefers-reduced-motion: reduce) {
   .bticker__dot,
   .bticker__caret { animation: none; }
+}
+
+/* ── plan strip ────────────────────────────────────────────────────────────
+   One row. Tag, sentence, count, button — each with its own column, so
+   nothing can ever ride over anything else. */
+.plan {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  margin: 0 0 26px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--tile);
+}
+
+.plan--full {
+  border-color: var(--red);
+}
+
+.plan__tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+}
+
+.plan--pro .plan__tag {
+  background: var(--red);
+}
+
+.plan__line {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ink-2);
+  min-width: 0;
+}
+
+.plan__count {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-4);
+  white-space: nowrap;
+}
+
+.plan__cta {
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .plan {
+    grid-template-columns: auto minmax(0, 1fr);
+    row-gap: 10px;
+  }
+  .plan__count,
+  .plan__cta {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}
+
+/* ── the artists your ranking runs on ─────────────────────────────────────*/
+.artists {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 0 0 26px;
+}
+
+.artists__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.artist {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 5px 5px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--tile);
+  font-size: 12px;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+.artist img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: grayscale(1);
+}
+
+/* ── search autocomplete ──────────────────────────────────────────────────
+   Type two letters and the real options drop in under the bar, so you never
+   fire a query that returns nothing. */
+.seg--ac {
+  position: relative;
+}
+
+.ac {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: -10px;
+  right: -10px;
+  z-index: 40;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(18, 25, 21, 0.14);
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.ac__row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-align: left;
+  transition: background var(--fast);
+}
+
+.ac__row:hover,
+.ac__row.is-on {
+  background: var(--tile);
+}
+
+.ac__label {
+  font-size: 15px;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ac__kind {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.ac__n {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  min-width: 3ch;
+  text-align: right;
+}
+
+/* the one line of copy on the cover */
+.mast__for {
+  margin: 18px auto 26px;
+  max-width: 34ch;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.7;
 }
