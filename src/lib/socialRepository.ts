@@ -76,11 +76,11 @@ function write(bag: Bag) {
 
 /** A handful of realistic takes so the drawer isn't empty on first open. */
 const SEED: Record<string, Omit<Take, 'postId'>[]> = {
-  'sga-tunnel-opener': [
+  'sga-leaguefits-mvp': [
     {
       id: 'seed-1',
       author: 'marc',
-      body: 'the calf hem is the whole fit. ankle length and this is nothing',
+      body: 'leaving the shirt open is the entire fit. buttoned it\u2019s nothing',
       at: Date.parse('2026-08-07T17:10:00Z'),
       likes: 24,
       seeded: true,
@@ -88,7 +88,7 @@ const SEED: Record<string, Omit<Take, 'postId'>[]> = {
     {
       id: 'seed-2',
       author: 'eli',
-      body: 'any ID on the hoodie? bonded fleece, no drawcord',
+      body: 'anyone got the denim shirt? snap front, two pockets',
       at: Date.parse('2026-08-07T17:38:00Z'),
       likes: 11,
       seeded: true,
@@ -96,7 +96,7 @@ const SEED: Record<string, Omit<Take, 'postId'>[]> = {
     {
       id: 'seed-3',
       author: 'sam',
-      body: 'would fall apart with a chunky shoe. the low profile is carrying it',
+      body: 'four pieces and he wins fit of the year. that\u2019s the flex',
       at: Date.parse('2026-08-07T18:02:00Z'),
       likes: 8,
       seeded: true,

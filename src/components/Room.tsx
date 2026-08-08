@@ -193,27 +193,40 @@ export function Room() {
 
   return (
     <div className="room2">
-      {/* the wall behind the figure */}
-      <div className="room2__wall">
-        {posters
-          .filter((t) => TEAM_POSTERS[t])
-          .map((t) => (
-            <div className="room2__poster" key={t}>
-              <img src={TEAM_POSTERS[t]} alt={`${t} poster`} />
-            </div>
-          ))}
-        {profile.tags
-          .filter((t) => ARTIST_POSTERS[t])
-          .slice(0, 3)
-          .map((t, i) => (
-            <div className="room2__poster" key={t} style={{ transform: `rotate(${i % 2 ? 1.5 : -1.3}deg)` }}>
-              <img src={ARTIST_POSTERS[t]} alt={`${t} poster`} loading="lazy" />
-            </div>
-          ))}
-      </div>
-
       <div className="mq">
         <div className="mq__stage">
+          {/* the wall lives inside the figure's column so it can never reach
+              the rails — it used to be positioned against the whole room */}
+          <div className="room2__wall">
+            {posters
+              .filter((t) => TEAM_POSTERS[t])
+              .map((t) => (
+                <div className="room2__poster" key={t}>
+                  <img src={TEAM_POSTERS[t]} alt={`${t} poster`} />
+                </div>
+              ))}
+            {profile.tags
+              .filter((t) => ARTIST_POSTERS[t])
+              .slice(0, 2)
+              .map((t, i) => (
+                <div className="room2__poster" key={t} style={{ transform: `rotate(${i % 2 ? 1.4 : -1.2}deg)` }}>
+                  <img src={ARTIST_POSTERS[t]} alt={`${t} poster`} loading="lazy" />
+                </div>
+              ))}
+            {profile.tags.includes('Sports cards') && (
+              <div className="room2__card">
+                <img src="/cards/sports.svg" alt="Sports cards" />
+              </div>
+            )}
+            {profile.tags.includes('Pokémon cards') && (
+              <div className="room2__card">
+                <img src="/cards/pokemon.svg" alt="Trading cards" />
+              </div>
+            )}
+          </div>
+
+          <img className="room2__dog" src="/room/dog.png" alt="" loading="lazy" />
+
           {/* this box IS the body's bounding box — bands below are anatomy */}
           <div className="mq__figure" style={{ width: bodyW, height: STAGE_H }}>
             <div className="mq__rig">
@@ -333,20 +346,6 @@ export function Room() {
         </div>
       </div>
 
-      {/* the card shelf — what you collect sits under the posters */}
-      {(profile.tags.includes('Sports cards') || profile.tags.includes('Pokémon cards')) && (
-        <div className="room2__cards">
-          {profile.tags.includes('Sports cards') && (
-            <img src="/cards/sports.svg" alt="Sports cards" style={{ transform: 'rotate(-4deg)' }} />
-          )}
-          {profile.tags.includes('Pokémon cards') && (
-            <img src="/cards/pokemon.svg" alt="Trading cards" style={{ transform: 'rotate(3deg)' }} />
-          )}
-          <i className="room2__shelf" />
-        </div>
-      )}
-
-      <img className="room2__dog" src="/room/dog.png" alt="" loading="lazy" />
       <i className="room2__floor" />
     </div>
   )

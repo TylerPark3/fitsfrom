@@ -88,14 +88,18 @@ export interface SocialFitPost {
 
 /**
  * One post, built out properly, rather than a dozen filled with placeholder.
- * The garments below are the ones described in the existing `sga-arrival`
- * fit file — grey bonded hoodie, white tee, camo 3/4 cargos, stacked socks,
- * cream sneakers. Nothing here asserts a brand we haven't identified.
+ *
+ * The editorial below describes the outfit in THIS post — a denim western
+ * shirt worn open over a white tee, with white sweatpants. If the URL is
+ * swapped, the read has to be rewritten with it: text that describes a
+ * different fit to the one on screen is worse than no text at all. No brand is
+ * asserted that we haven't actually identified, and the shoes are marked
+ * pending because they aren't visible in the frame.
  */
 export const SOCIAL_FITS: SocialFitPost[] = [
   {
-    id: 'sga-tunnel-opener',
-    slug: 'sga-thunder-tunnel',
+    id: 'sga-leaguefits-mvp',
+    slug: 'sga-leaguefits-mvp',
     person: {
       name: 'Shai Gilgeous-Alexander',
       handle: 'shaigilgeousalexander',
@@ -103,81 +107,80 @@ export const SOCIAL_FITS: SocialFitPost[] = [
       league: 'NBA',
     },
     context: {
-      type: 'tunnel',
-      event: 'Home opener',
-      location: 'Paycom Center, Oklahoma City',
+      type: 'editorial',
+      event: 'LeagueFits \u201923 Awards — Most Valuable Player',
+      location: 'NBA season 2022–23',
     },
     source: {
       platform: 'instagram',
       account: '@leaguefits',
       // ── PASTE THE OFFICIAL INSTAGRAM POST URL HERE ──────────────────────
-      // Verified public post from @leaguefits naming SGA their 2022–23 MVP.
-      // Swap for any other official permalink; empty renders the
-      // "official post coming soon" state rather than a broken embed.
+      // Everything below describes THIS post. Swap the URL and the editorial
+      // has to be rewritten with it, or the read describes the wrong outfit.
       url: 'https://www.instagram.com/p/CsRYjDKpjaV/',
       rightsStatus: 'official-embed',
     },
     editorial: {
-      headline: 'The cargo length is the whole argument',
-      dek: 'A hoodie, a cropped cargo and a dog — and two months of people asking whether they were shorts.',
+      headline: 'Won it in a denim shirt and white sweats',
+      dek: 'LeagueFits named him their 2022–23 fit MVP. The photo they picked to say it is the least complicated thing he wore all year.',
       quickTake:
-        'The hoodie is boxy and short, so the volume stops at the waist instead of running down the body. That hands the whole lower half to the cargo, and cutting it at the calf turns an ordinary trouser into the loudest thing in the fit. The cream sneaker and stacked sock keep the break clean — without them the leg just ends.',
+        'A denim western shirt worn open over a white tee, white sweatpants, a thin silver chain. Four pieces, no logos doing any work, and the only real decision is that the shirt stays unbuttoned — which turns a flat blue rectangle into two vertical lines running the length of the torso. Everything below the waist is white, so the eye goes straight to the blue and stops there.',
     },
     analysis: {
       silhouette:
-        'Short, wide top over a wide, cropped bottom. Both halves are loose, which normally reads sloppy — it holds here because the hoodie stops at the hip and the cargo stops at the calf, so neither volume runs into the other.',
+        'Open shirt over a fitted tee, straight-legged sweat below. The shirt reads as a light jacket rather than a shirt, which is entirely down to leaving it unbuttoned — closed, it would be one solid block and the outfit would flatten.',
       proportion:
-        'Roughly a 1:1 split at the waist rather than the usual 1:2. Equal volumes above and below only work when both are cut short; lengthen either one and the whole thing collapses into a shapeless column.',
+        'The shirt hem sits just past the hip and the sweatpant is full length, so it is close to a 1:2 split. Conservative, and it is the reason a fit this plain still holds shape.',
       color:
-        'Grey top, camo bottom, cream shoe. The camo is doing all the pattern work, so everything else is deliberately flat — one busy piece, two quiet ones.',
+        'Two colours and a metal. White carries the bottom half and the tee, denim blue carries the top, and the chain is the only thing catching light. Nothing is competing.',
       layering:
-        'A white tee sits just under the hoodie hem. It is a single visible line, and it is the only thing separating two large blocks of fabric.',
+        'One layer over one layer. The white tee showing through the open placket is what keeps the blue from becoming a wall — it is a deliberate strip of contrast down the middle.',
       footwear:
-        'A low cream sneaker under a wide, cropped leg. The stacked sock fills the gap the crop opens up; a chunky shoe here would fight the cargo for attention and a low-cut sock would leave the ankle stranded.',
+        'Not visible in this frame, so we are not going to tell you what it was. The pant is long enough to break over most shoes, which is what lets a plain sweat read as considered rather than lazy.',
       whyItWorks:
-        'Every choice is about where things end. Hoodie ends at the hip, cargo ends at the calf, sock ends above the shoe. Three deliberate stopping points in a fit that would otherwise be two large rectangles.',
+        'It is restraint with one move in it. Every piece is basic, the palette is two colours, and the single decision — leaving the shirt open — does all the structural work. That is the argument for why he won: he does not need the clothes to be loud.',
       translation:
-        'This look depends on the cargo hem landing mid-calf, not on the garment size. If you are shorter than SGA, buying his size gives you a trouser that hits at the ankle and reads as a badly-fitted pant rather than a crop. Set your build in the Avatar tab and Fits From maps the hem, not the label size.',
+        'The open shirt only works if it hangs straight. On a narrower frame a boxy western shirt will flare at the hem instead of falling, so size it to your shoulders rather than for room. Set your build in the Avatar tab and Fits From ranks by how a piece actually falls on you.',
     },
     pieces: [
       {
-        slot: 'Hoodie',
-        worn: 'Boxy bonded grey hoodie',
-        match: { category: 'top', kw: 'hoodie|sweatshirt' },
+        slot: 'Shirt',
+        worn: 'Denim western shirt, worn open',
+        match: { category: 'shirt', kw: 'denim|western|chambray|snap' },
         confidence: 'similar',
-        evidence: 'Bonded fleece, no drawcord, cropped body. Brand not confirmed.',
+        evidence: 'Snap-front, two chest pockets, mid-blue wash. Brand not confirmed from this frame.',
       },
       {
         slot: 'Tee',
-        worn: 'White tee under the hoodie',
+        worn: 'Plain white tee',
         match: { category: 'top', kw: 'tee|t-shirt' },
         confidence: 'alternative',
       },
       {
-        slot: 'Cargo',
-        worn: 'Camo 3/4-length cargo',
-        match: { category: 'pants', kw: 'cargo|camo|short' },
+        slot: 'Sweatpant',
+        worn: 'White sweatpant with small graphic',
+        match: { category: 'pants', kw: 'sweat|jogger' },
         confidence: 'similar',
-        evidence: 'Six-pocket camo, hem cut above the ankle.',
+        evidence: 'Elasticated cuff, small yellow print at the thigh.',
       },
       {
-        slot: 'Socks',
-        worn: 'Stacked white socks',
-        match: { category: 'accessory', kw: 'sock' },
+        slot: 'Chain',
+        worn: 'Thin silver chain',
+        match: { category: 'accessory', kw: 'chain|necklace' },
         confidence: 'alternative',
       },
       {
-        slot: 'Sneakers',
-        worn: 'Cream low sneaker',
-        match: { category: 'shoes', kw: 'sneaker|trainer|runner' },
-        confidence: 'similar',
+        slot: 'Shoes',
+        worn: 'Not visible in this frame',
+        match: { category: 'shoes', kw: 'sneaker|trainer' },
+        confidence: 'pending',
       },
     ],
     engagement: { likes: 2417, comments: 183, saves: 946 },
     premium: true,
     publishedAt: '2026-08-07T16:40:00Z',
     fitId: 'sga-arrival',
-    tags: ['NBA', 'Tunnel', 'Cargo', 'Oklahoma City'],
+    tags: ['NBA', 'Denim', 'LeagueFits', 'Oklahoma City'],
   },
 ]
 
