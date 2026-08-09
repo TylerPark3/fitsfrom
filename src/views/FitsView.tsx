@@ -5,7 +5,6 @@ import { resolve } from '../lib/fitmatch'
 import { useStore } from '../lib/store'
 import { recommendSize } from '../lib/sizing'
 import { buyUrl } from '../lib/affiliate'
-import { playClick } from '../lib/click'
 import { Arrow, Bookmark, Close, External } from '../components/Icons'
 import { Type } from '../components/Type'
 import { AffiliateDisclosure } from '../components/AffiliateDisclosure'
@@ -106,8 +105,8 @@ export function FitsView({ go }: { go: (v: View) => void }) {
               <button
                 key={pr.who}
                 className="fitcard fitcard--locked"
+                data-sound="back"
                 onClick={() => {
-                  playClick('back')
                   if (!member) go('auth')
                   else toast('Unlimited — $19.99/mo · launching soon, you’re first in line')
                 }}
@@ -139,8 +138,8 @@ export function FitsView({ go }: { go: (v: View) => void }) {
             <button
               key={pr.who}
               className="fitcard"
+              data-sound="unlock"
               onClick={() => {
-                playClick('unlock')
                 pr.fits.length === 1 ? setOpen(f) : setPerson(pr)
               }}
             >
