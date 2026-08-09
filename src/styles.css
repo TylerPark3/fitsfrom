@@ -7998,3 +7998,113 @@ input.seg__control::placeholder {
     display: none;
   }
 }
+
+/* ══ THE STACK ════════════════════════════════════════════════════════════
+   No figure. A wooden form was always going to fight the clothes for
+   attention, and the clothes are the point — this is the fit as a flat lay,
+   top to bottom, each piece keeping its own proportions. */
+.stack {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0 8px;
+}
+
+/* Product shots carry their own whitespace, so butting the boxes together
+   still leaves a visible gutter. Pulling each piece up slightly closes it and
+   the stack reads as one outfit instead of three separate photographs. */
+.stackpiece + .stackpiece {
+  margin-top: -34px;
+}
+
+.stackpiece--shoes {
+  margin-top: -18px;
+}
+
+.stackpiece {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  animation: stackin 340ms var(--ease) both;
+}
+
+@keyframes stackin {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.stackpiece__img {
+  width: auto;
+  max-width: 86%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(18, 25, 21, 0.14));
+}
+
+/* the relative heights are what make a trouser read longer than a cap */
+.stackpiece--hat .stackpiece__img { height: 96px; }
+.stackpiece--top .stackpiece__img { height: 250px; }
+.stackpiece--bottom .stackpiece__img { height: 320px; }
+.stackpiece--shoes .stackpiece__img { height: 96px; }
+.stackpiece--acc .stackpiece__img { height: 84px; }
+
+/* the piece name only shows on hover — the garment should carry the row */
+.stackpiece__name {
+  position: absolute;
+  bottom: -2px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  background: var(--paper);
+  padding: 2px 8px;
+  border-radius: 999px;
+  opacity: 0;
+  transition: opacity var(--fast);
+  pointer-events: none;
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stackpiece:hover .stackpiece__name {
+  opacity: 1;
+}
+
+.stack__empty {
+  margin: 90px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  text-align: center;
+}
+
+.stack .mqshoes {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 10px;
+}
+
+.stack .mqshoes__l {
+  transform: scaleX(-1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stackpiece {
+    animation: none;
+  }
+}

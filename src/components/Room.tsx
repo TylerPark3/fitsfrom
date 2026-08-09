@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react'
 import { CutoutImg } from './CutoutImg'
-import { ANATOMY, Mannequin, MannequinForearms, MannequinHead, SLEEVE } from './Mannequin'
 import { CATALOG } from '../data/catalog'
 import { useStore } from '../lib/store'
 
@@ -39,67 +38,27 @@ const TEAM_POSTERS: Record<string, string> = {
 }
 
 /**
- * Garment bands, measured against the BODY rather than the panel.
- * `top`/`bottom` are fractions of the figure's own height, so a collar lands at
- * the neck on every build instead of floating wherever the container happens to
- * put it. `z` decides the stack — and the head gets redrawn above the shirt, so
- * the face comes out of the collar instead of vanishing under the garment.
+ * The stack, top to bottom. No figure underneath — a wooden form was always
+ * going to fight the clothes for attention, and the clothes are the point.
+ * Each piece keeps its own proportions; `scale` is how tall it sits relative
+ * to the others, so a trouser reads longer than a cap without being cropped.
  */
 const SLOTS: {
   key: string
   label: string
-  top: number
-  bottom: number
-  width: number
-  z: number
+  scale: number
   match: (cat: string, sil?: string) => boolean
 }[] = [
-  {
-    key: 'hat',
-    label: 'Hat',
-    // sits on the crown, ends above the chin
-    top: -0.01,
-    bottom: ANATOMY.chin - 0.03,
-    width: 0.34,
-    z: 7,
-    match: (c) => c === 'accessory',
-  },
+  { key: 'hat', label: 'Hat', scale: 0.4, match: (c) => c === 'accessory' },
   {
     key: 'top',
     label: 'Top',
-    // collar just under the chin, hem past the hip — a shirt covers the whole
-    // torso and the shoulders, so it spans the full shoulder width
-    top: ANATOMY.chin + 0.005,
-    bottom: ANATOMY.crotch + 0.06,
-    width: 1,
-    z: 4,
+    scale: 1,
     match: (c) => ['top', 'shirt', 'knit', 'outer'].includes(c),
   },
-  {
-    key: 'bottom',
-    label: 'Bottom',
-    // waistband at the navel, hem at the ankle — the full length of the legs
-    top: ANATOMY.waist - 0.01,
-    bottom: ANATOMY.ankle + 0.02,
-    width: 0.76,
-    z: 3,
-    match: (c) => c === 'pants',
-  },
-  {
-    key: 'shoes',
-    label: 'Shoes',
-    top: ANATOMY.ankle - 0.03,
-    bottom: 1.01,
-    // narrow: the two shoes have to land on the figure's feet, which stand
-    // close together, not out where the hips are
-    width: 0.46,
-    z: 5,
-    match: (c) => c === 'shoes',
-  },
+  { key: 'bottom', label: 'Bottom', scale: 1.25, match: (c) => c === 'pants' },
+  { key: 'shoes', label: 'Shoes', scale: 0.46, match: (c) => c === 'shoes' },
 ]
-
-/** Shorts stop at the knee, not the ankle — same slot, different hem. */
-const SHORT_HEM = ANATOMY.knee + 0.02
 
 /** Accessories that aren't hats hang beside the figure rather than on it. */
 const ACC_SLOT = { key: 'acc', label: 'Accessory' }
@@ -119,10 +78,6 @@ export function Room() {
   const { wardrobe, customs, profile, mannequin, wear, toast } = useStore()
   const [open, setOpen] = useState<string>('top')
 
-  // The mannequin is drawn to a fixed 200x520 box, so the figure IS the
-  // coordinate space and every garment band is a straight fraction of it.
-  const STAGE_H = 620
-  const bodyW = STAGE_H * (220 / 560)
 
   const pieces = useMemo<Piece[]>(() => {
     const list: Piece[] = []
@@ -161,36 +116,6 @@ export function Room() {
   const rails = [...SLOTS.map((s) => ({ key: s.key, label: s.label })), ACC_SLOT]
   const worn = rails.filter((r) => byRef(mannequin[r.key])).length
   const posters = profile.teams.slice(0, 2)
-  const topOn = byRef(mannequin.top)
-  const wearingTop = !!topOn?.flat
-
-  // Which stretches of the figure are under clothing. Torso and legs get
-  // clipped independently — the arms never do, since the sleeve logic already
-  // handles them — so a transparent gap inside a product photo never shows
-  // wood behind it.
-  const bandFor = (key: string): [number, number] | undefined => {
-    const slot = SLOTS.find((s) => s.key === key)!
-    const p = byRef(mannequin[key])
-    if (!p || !p.flat) return undefined
-    const bottom = key === 'bottom' && p.sil === 'short' ? SHORT_HEM : slot.bottom
-    // Start the clip below where the garment's own pixels begin. A product
-    // photo carries whitespace above the collar, so clipping at the band edge
-    // opened a void between the shoulders and the shirt.
-    return [key === 'top' ? slot.top + 0.13 : slot.top + 0.04, bottom - 0.02]
-  }
-  const cover = { torso: bandFor('top'), legs: bandFor('bottom') }
-  // Short sleeves leave the forearm out; long sleeves leave only the hand.
-  const sleeveHem = (() => {
-    if (!topOn) return SLEEVE.long
-    const n = topOn.name
-    // long markers win: "L/S Municipal T-Shirt" is a long sleeve, not a tee
-    if (/\bl\/s\b|long.?sleeve|hoodie|hooded|crew|sweat|jacket|knit|cardigan|coat|fleece/i.test(n))
-      return SLEEVE.long
-    if (/\btee\b|t-?shirt|short.?sleeve|\bs\/s\b|polo|tank|jersey|singlet/i.test(n))
-      return SLEEVE.short
-    return SLEEVE.long
-  })()
-
   return (
     <div className="room2">
       <div className="mq">
@@ -227,64 +152,40 @@ export function Room() {
 
           <img className="room2__dog" src="/room/dog.png" alt="" loading="lazy" />
 
-          {/* this box IS the body's bounding box — bands below are anatomy */}
-          <div className="mq__figure" style={{ width: bodyW, height: STAGE_H }}>
-            <div className="mq__rig">
-              <Mannequin profile={profile} cover={cover} />
-            </div>
-
+          <div className="stack">
             {SLOTS.map((s) => {
               const p = byRef(mannequin[s.key])
               if (!p || !p.flat) return null
-              const bottom =
-                s.key === 'bottom' && p.sil === 'short' ? SHORT_HEM : s.bottom
               return (
-                <div
-                  className={`mqlayer mqlayer--${s.key}`}
-                  key={s.key}
-                  style={{
-                    top: `${s.top * 100}%`,
-                    height: `${(bottom - s.top) * 100}%`,
-                    width: `${s.width * 100}%`,
-                    zIndex: s.z,
-                  }}
-                >
+                <div className={`stackpiece stackpiece--${s.key}`} key={s.key}>
                   {s.key === 'shoes' ? (
                     // Product shots are one shoe in profile — mirror it so the
-                    // figure reads as a person facing us, standing in a pair.
+                    // row reads as a pair rather than a single loose trainer.
                     <span className="mqshoes">
-                      <CutoutImg src={p.img} className="mqlayer__img mqshoes__l" />
-                      <CutoutImg src={p.img} className="mqlayer__img mqshoes__r" />
+                      <CutoutImg src={p.img} className="stackpiece__img mqshoes__l" />
+                      <CutoutImg src={p.img} className="stackpiece__img mqshoes__r" />
                     </span>
                   ) : (
-                    <CutoutImg src={p.img} className="mqlayer__img" />
+                    <CutoutImg src={p.img} className="stackpiece__img" />
                   )}
+                  <span className="stackpiece__name">{p.name}</span>
                 </div>
               )
             })}
 
-            {/* Redrawn over the shirt: the head so it clears the collar, and
-                the arm below the sleeve hem so the limb passes through the
-                sleeve instead of the shirt lying flat across it. */}
-            {wearingTop && (
-              <>
-                <div className="mq__arms">
-                  <MannequinForearms profile={profile} hem={sleeveHem} />
-                </div>
-                <div className="mq__head">
-                  <MannequinHead profile={profile} />
-                </div>
-              </>
+            {byRef(mannequin[ACC_SLOT.key])?.flat && (
+              <div className="stackpiece stackpiece--acc">
+                <CutoutImg src={byRef(mannequin[ACC_SLOT.key])!.img} className="stackpiece__img" />
+                <span className="stackpiece__name">{byRef(mannequin[ACC_SLOT.key])!.name}</span>
+              </div>
+            )}
+
+            {worn === 0 && (
+              <p className="stack__empty">
+                Pick a piece from the rails and the fit builds here.
+              </p>
             )}
           </div>
-
-          {byRef(mannequin[ACC_SLOT.key])?.flat && (
-            <div className="mq__acc">
-              <CutoutImg src={byRef(mannequin[ACC_SLOT.key])!.img} className="mqlayer__img" />
-            </div>
-          )}
-
-          <i className="mq__pedestal" />
 
           <div className="mq__caption">
             <span className="eyebrow">{profile.name ? `${profile.name}'s build` : 'Your build'}</span>
