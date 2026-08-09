@@ -150,24 +150,17 @@ export function Room() {
             )}
           </div>
 
-          <img className="room2__dog" src="/room/dog.png" alt="" loading="lazy" />
-
           <div className="stack">
             {SLOTS.map((s) => {
               const p = byRef(mannequin[s.key])
               if (!p || !p.flat) return null
               return (
                 <div className={`stackpiece stackpiece--${s.key}`} key={s.key}>
-                  {s.key === 'shoes' ? (
-                    // Product shots are one shoe in profile — mirror it so the
-                    // row reads as a pair rather than a single loose trainer.
-                    <span className="mqshoes">
-                      <CutoutImg src={p.img} className="stackpiece__img mqshoes__l" />
-                      <CutoutImg src={p.img} className="stackpiece__img mqshoes__r" />
-                    </span>
-                  ) : (
-                    <CutoutImg src={p.img} className="stackpiece__img" />
-                  )}
+                  {/* The product photo goes in as the brand shot it. Mirroring
+                      a shoe into a pair only made sense when there were feet to
+                      put it on — most catalogue shots are already a pair, so it
+                      was rendering four. */}
+                  <CutoutImg src={p.img} className="stackpiece__img" />
                   <span className="stackpiece__name">{p.name}</span>
                 </div>
               )
@@ -247,7 +240,6 @@ export function Room() {
         </div>
       </div>
 
-      <i className="room2__floor" />
     </div>
   )
 }

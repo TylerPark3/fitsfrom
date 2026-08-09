@@ -8054,7 +8054,7 @@ input.seg__control::placeholder {
 .stackpiece--hat .stackpiece__img { height: 96px; }
 .stackpiece--top .stackpiece__img { height: 250px; }
 .stackpiece--bottom .stackpiece__img { height: 320px; }
-.stackpiece--shoes .stackpiece__img { height: 96px; }
+.stackpiece--shoes .stackpiece__img { height: 118px; }
 .stackpiece--acc .stackpiece__img { height: 84px; }
 
 /* the piece name only shows on hover — the garment should carry the row */
@@ -8092,19 +8092,64 @@ input.seg__control::placeholder {
   text-align: center;
 }
 
-.stack .mqshoes {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 10px;
-}
-
-.stack .mqshoes__l {
-  transform: scaleX(-1);
-}
-
 @media (prefers-reduced-motion: reduce) {
   .stackpiece {
     animation: none;
   }
+}
+
+
+/* ── the flat lay stands on nothing ───────────────────────────────────────
+   The floor, the dog and the pedestal all existed to give a standing figure
+   somewhere to stand. There is no figure, so they went — and the caption is
+   legible again now that it isn't sitting on a wood texture. */
+.room2 .room2__floor,
+.room2 .room2__dog,
+.mq__pedestal {
+  display: none;
+}
+
+.room2 {
+  min-height: 0;
+  padding-bottom: 8px;
+}
+
+.mq {
+  min-height: 0;
+  padding-bottom: 8px;
+}
+
+.mq__caption {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  width: 100%;
+}
+
+.mq__caption b {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.mq__strip {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  border-bottom: 1px solid var(--ink-4);
+  padding-bottom: 1px;
+}
+
+.mq__strip:hover {
+  color: var(--red);
+  border-color: var(--red);
 }
