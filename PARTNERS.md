@@ -1,4 +1,4 @@
-# Fits From — Partner Targets
+# Cosign — Partner Targets
 
 Under-the-radar men's brands to feature (and later pitch the 15%-code deal), plus the stylists who actually dress the people in our fit files. Ordered by how gettable they are for a small platform.
 

@@ -1,5 +1,5 @@
 /* ============================================================================
-   Fits From — design system
+   Cosign — design system
    Elite white. Monochrome chrome, hairline rules, generous air.
    The only colour on the page comes from the clothes themselves.
    ========================================================================= */
@@ -8514,4 +8514,23 @@ input.seg__control::placeholder {
 
 @media (prefers-reduced-motion: reduce) {
   .verdict, .verdict span, .tally__seg { transition: none; }
+}
+
+/* Crediting the stylist is editorially honest — they did the work — and it
+   opens a door: stylists notice, and they know what the pieces are. */
+.report__stylist {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--ink-3);
+}
+
+.report__stylist a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.sfit__stylist {
+  margin: 4px 0 0;
+  color: var(--ink-4);
 }

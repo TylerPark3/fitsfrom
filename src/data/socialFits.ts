@@ -3,7 +3,7 @@ import type { FitPiece } from './fits'
 /**
  * A culturally relevant outfit, sourced from a post someone else published.
  *
- * Instagram discovers the fit. Fits From explains it. The post is the input;
+ * Instagram discovers the fit. Cosign explains it. The post is the input;
  * everything around it — identification, analysis, translation to your body —
  * is the product. The model is deliberately shallow so an editor can add one
  * by hand, and so a future admin form maps onto it field for field.
@@ -49,6 +49,14 @@ export interface SocialFitPost {
     url?: string
     rightsStatus?: RightsStatus
   }
+
+  /**
+   * Who actually put the fit together. Naming the stylist is editorially
+   * honest — they did the work — and it opens a door: stylists notice being
+   * credited, and they are the people who know what the pieces are.
+   * Leave undefined rather than guessing.
+   */
+  stylist?: { name: string; handle?: string }
 
   editorial: {
     headline: string
@@ -140,7 +148,7 @@ export const SOCIAL_FITS: SocialFitPost[] = [
       whyItWorks:
         'It is restraint with one move in it. Every piece is basic, the palette is two colours, and the single decision — leaving the shirt open — does all the structural work. That is the argument for why he won: he does not need the clothes to be loud.',
       translation:
-        'The open shirt only works if it hangs straight. On a narrower frame a boxy western shirt will flare at the hem instead of falling, so size it to your shoulders rather than for room. Set your build in the Avatar tab and Fits From ranks by how a piece actually falls on you.',
+        'The open shirt only works if it hangs straight. On a narrower frame a boxy western shirt will flare at the hem instead of falling, so size it to your shoulders rather than for room. Set your build in the Avatar tab and Cosign ranks by how a piece actually falls on you.',
     },
     pieces: [
       {
@@ -184,8 +192,24 @@ export const SOCIAL_FITS: SocialFitPost[] = [
   },
 ]
 
-export const LEAGUES = ['All', 'NBA', 'Music', 'NFL', 'Soccer', 'F1', 'Creators'] as const
-export type LeagueFilter = (typeof LEAGUES)[number]
+/**
+ * Filters are derived from the posts that exist, never hardcoded.
+ *
+ * A row of tabs where five of seven say "0" reads as an unfinished site — it
+ * advertises the leagues you haven't covered instead of the one you have. Be
+ * the best in the world at NBA first; a new league appears here on its own the
+ * day the first post lands.
+ */
+export type LeagueFilter = string
+
+export function leagueFilters(posts: SocialFitPost[] = SOCIAL_FITS): string[] {
+  const seen: string[] = []
+  for (const p of posts) {
+    const l = p.person.league
+    if (l && !seen.includes(l)) seen.push(l)
+  }
+  return ['All', ...seen]
+}
 
 export const findSocialFit = (slug: string) => SOCIAL_FITS.find((p) => p.slug === slug)
 

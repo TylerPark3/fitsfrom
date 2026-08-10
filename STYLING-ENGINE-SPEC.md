@@ -1,12 +1,12 @@
 # Personal Styling Engine — Product & Technical Specification
-### Project: **Fits From** (`/Users/tylerpark/Desktop/Fashion`) · React 18 + Vite + TypeScript · client-only, localStorage, no backend
+### Project: **Cosign** (`/Users/tylerpark/Desktop/Fashion`) · React 18 + Vite + TypeScript · client-only, localStorage, no backend
 ### Spec version 1.0 · 2026-08-07
 
 ---
 
 ## 0. Scope in one paragraph
 
-Fits From today ranks *products* against a taste profile (`matchScore`, 1672-product catalog) and lets a user stash owned pieces in a closet. It cannot reason about an **outfit**. This spec adds a deterministic styling engine: a metadata layer over every garment (owned + catalog), a 12-dimension outfit fit score derived from sourced styling rules, an outfit builder with a completion solver, a ranked "Top Fits" surface, a four-tier recommendation engine, and a feedback loop that adapts per-user weights. Everything runs in the browser with zero network calls at runtime and zero model calls. All new numbers live in one tunable config module so seasonal drift is a config edit, not a code change.
+Cosign today ranks *products* against a taste profile (`matchScore`, 1672-product catalog) and lets a user stash owned pieces in a closet. It cannot reason about an **outfit**. This spec adds a deterministic styling engine: a metadata layer over every garment (owned + catalog), a 12-dimension outfit fit score derived from sourced styling rules, an outfit builder with a completion solver, a ranked "Top Fits" surface, a four-tier recommendation engine, and a feedback loop that adapts per-user weights. Everything runs in the browser with zero network calls at runtime and zero model calls. All new numbers live in one tunable config module so seasonal drift is a config edit, not a code change.
 
 ---
 
@@ -593,9 +593,9 @@ Storage cap: **500 signals**, FIFO. Older signals are compacted into `StyleProfi
 ### Target
 | Key | Shape |
 |---|---|
-| `fitsfrom.state.v3` | `AppState` with `schemaVersion: 3` + new collections |
-| `fitsfrom.feedback.v1` | `FeedbackSignal[]`, capped 500 |
-| `fitsfrom.photos.v1` | **IndexedDB** store (not localStorage) for `profile.photo` + `customs[].photo` + item photos |
+| `cosign.state.v3` | `AppState` with `schemaVersion: 3` + new collections |
+| `cosign.feedback.v1` | `FeedbackSignal[]`, capped 500 |
+| `cosign.photos.v1` | **IndexedDB** store (not localStorage) for `profile.photo` + `customs[].photo` + item photos |
 | `lapel.state.v2` | **left in place, untouched, for one release** as rollback |
 | `lapel.state.v2.bak` | raw string quarantine, written only if parse throws |
 | `lapel.social.v1` | `{ unlocks: string[]; react: Record<fitId, …>; chat: Record<fitId, …> }` — folds the unbounded keys |
@@ -609,7 +609,7 @@ const MIGRATIONS: Record<number, Migration> = { 2: v2_to_v3 }
 
 export function loadState(): AppState {
   // 1. New key wins.
-  const v3 = readJSON('fitsfrom.state.v3')
+  const v3 = readJSON('cosign.state.v3')
   if (v3 && v3.schemaVersion === CURRENT_SCHEMA) return hydrate(v3)
   if (v3) return hydrate(runChain(v3))
 
@@ -651,12 +651,12 @@ Ordered. Each numbered rule maps to an audit finding; **each has a test in §10.
 8. `customs[].category` coerced to `Category` with a `'top'` fallback, mirroring `parseQuickAdd`'s own default (`WardrobeView.tsx:361`).
 9. `saved` and `scentFavs` copied **in order** — newest-prepended semantics (`App.tsx:56-58, 117-119`). Never sorted.
 10. `collections` copied verbatim, including a present-but-empty array (a user who deleted Wishlist must not get it back).
-11. `lapel.unlocks` / `lapel.react.*` / `lapel.chat.*` folded into `fitsfrom.social.v1`; legacy keys left in place for one release.
-12. Write order: IDB photos → `fitsfrom.state.v3` → `fitsfrom.feedback.v1`. If the v3 write throws `QuotaExceededError`, retry once with `customs[].photo` also pushed to IDB, then surface a toast — **never silently drop data**, unlike the current behavior.
+11. `lapel.unlocks` / `lapel.react.*` / `lapel.chat.*` folded into `cosign.social.v1`; legacy keys left in place for one release.
+12. Write order: IDB photos → `cosign.state.v3` → `cosign.feedback.v1`. If the v3 write throws `QuotaExceededError`, retry once with `customs[].photo` also pushed to IDB, then surface a toast — **never silently drop data**, unlike the current behavior.
 13. `AppState.styleProfile` seeded from `Profile`: `weights = DEFAULT_WEIGHTS`, `cal` at defaults, `context.primaryOccasions = ['school','casual']`, `context.climate` from `profile.seasons` (`['winter']`→cold, `['summer']`→hot, else temperate).
 
 ### Rollback
-`fitsfrom.state.v3` write failure leaves `lapel.state.v2` intact and the app boots on the legacy path. A `?legacy=1` query param forces the legacy path for support.
+`cosign.state.v3` write failure leaves `lapel.state.v2` intact and the app boots on the legacy path. A `?legacy=1` query param forces the legacy path for support.
 
 ---
 
@@ -1914,7 +1914,7 @@ Nine PR-sized stages, strict dependency order. Each stage is independently shipp
 - `src/lib/__tests__/topfits.test.ts`
 **Modified**
 - `src/styles.css` — `.fitcard__rank` into the fits section (~2653), `.toolbar--sticky` into the toolbar section (~857)
-- `src/views/FitsView.tsx` — fold `lapel.unlocks` / `lapel.react.*` / `lapel.chat.*` into `fitsfrom.social.v1`
+- `src/views/FitsView.tsx` — fold `lapel.unlocks` / `lapel.react.*` / `lapel.chat.*` into `cosign.social.v1`
 - `src/App.tsx` — nav entry
 **Visible:** the ranked "what do I wear today" surface.
 

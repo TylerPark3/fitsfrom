@@ -519,7 +519,7 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
       {!executed && (
         <section className="arrivals">
           <div className="arrivals__head">
-            <p className="catalog__kicker">THE FITS FROM EDIT</p>
+            <p className="catalog__kicker">THE COSIGN EDIT</p>
             <h2>New arrivals</h2>
             <p className="arrivals__sub">
               The latest independent labels, streetwear, sneakers and staples — ranked to your taste.

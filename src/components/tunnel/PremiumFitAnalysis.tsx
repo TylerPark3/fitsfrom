@@ -56,7 +56,7 @@ function PieceRow({ piece, onOpen }: { piece: IdentifiedPiece; onOpen: (id: stri
 
 /**
  * The paid layer. Everything above it — the post, the read, the pieces — stays
- * free, because a reader has to understand what Fits From is before being asked
+ * free, because a reader has to understand what Cosign is before being asked
  * to pay for it. What's behind the lock is the reasoning, not the links.
  */
 export function PremiumFitAnalysis({

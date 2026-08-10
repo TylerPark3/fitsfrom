@@ -46,6 +46,9 @@ export function SocialFitCard({
           {[post.person.team, post.context.location].filter(Boolean).join(' — ')}
         </p>
         <p className="sfit__time mono-line">{timeAgo(post.publishedAt)}</p>
+        {post.stylist && (
+          <p className="sfit__stylist tiny">Styled by {post.stylist.name}</p>
+        )}
       </header>
 
       <div className="sfit__body">

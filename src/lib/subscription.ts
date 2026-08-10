@@ -1,5 +1,5 @@
 /**
- * Fits From Pro — the one place the price lives.
+ * Cosign Pro — the one place the price lives.
  *
  * TODO: Replace prototype entitlement with server-verified Stripe/Supabase
  * subscription state before production billing. Nothing here is secure: the
@@ -8,7 +8,7 @@
  */
 export const PREMIUM_PRICE = 19.99
 export const PREMIUM_PRICE_LABEL = `$${PREMIUM_PRICE.toFixed(2)}/month`
-export const PREMIUM_NAME = 'Fits From Pro'
+export const PREMIUM_NAME = 'Cosign Pro'
 
 export interface SubscriptionStatus {
   active: boolean

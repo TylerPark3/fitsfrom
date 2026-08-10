@@ -41,7 +41,7 @@ Cloudflare Web Analytics: free, cookieless, no consent banner, already on the
 same platform.
 
 1. dash.cloudflare.com → Analytics → Web Analytics → Add a site
-2. Enter `fitsfrom.pages.dev`
+2. Enter `cosign.pages.dev`
 3. Copy the token into `data-cf-beacon` in `index.html` (replace `TOKEN`)
 
 Or enable it from the Pages project settings and Cloudflare injects the beacon
@@ -54,7 +54,7 @@ abandoned, whether anyone reaches the Tunnel.
 
 ## 4. Domain — NEEDS YOU
 
-Buy `fitsfrom.com` through **Cloudflare Registrar** (at cost, roughly $10/yr,
+Buy `cosign.com` through **Cloudflare Registrar** (at cost, roughly $10/yr,
 DNS wired automatically), then Pages → Custom domains → Add. TLS provisions
 itself.
 
@@ -68,11 +68,11 @@ Afterwards, update the absolute URLs in `index.html` (`og:url`, `og:image`,
 
 ## 5. Affiliate key — NEEDS YOU, CURRENTLY MISSING
 
-`npx wrangler pages secret list --project-name=fitsfrom` returns empty, so
+`npx wrangler pages secret list --project-name=cosign` returns empty, so
 `SOVRN_KEY` is not set and **every outbound click currently earns nothing**.
 
 1. Sign up at sovrn.com/commerce
-2. `npx wrangler pages secret put SOVRN_KEY --project-name=fitsfrom`
+2. `npx wrangler pages secret put SOVRN_KEY --project-name=cosign`
 
 `/go/:productId` degrades gracefully without it — the redirect still works, the
 commission just isn't attributed. With 2,046 products and a traffic spike

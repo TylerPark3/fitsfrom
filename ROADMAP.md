@@ -1,13 +1,13 @@
-# Fits From — Roadmap
+# Cosign — Roadmap
 
-Live: **fitsfrom.pages.dev** · Repo: `Desktop/Fashion` · Everything below is ordered by "do this next."
+Live: **cosign.pages.dev** · Repo: `Desktop/Fashion` · Everything below is ordered by "do this next."
 
 ---
 
 ## 0 · This week (launch blockers)
 
-- [ ] **Buy fitsfrom.com** (~$9/yr, Cloudflare registrar → wires straight to the Pages project). It was available Aug 6 — this can vanish any day.
-- [ ] **`gh auth login`** → push repo to `TylerPark3/fitsfrom`. Right now the only copy of this code is on this laptop.
+- [ ] **Buy cosign.com** (~$9/yr, Cloudflare registrar → wires straight to the Pages project). It was available Aug 6 — this can vanish any day.
+- [ ] **`gh auth login`** → push repo to `TylerPark3/cosign`. Right now the only copy of this code is on this laptop.
 - [ ] **Photo rights.** Tunnel photos are agency-owned (Getty/AP). Before promoting publicly: collect the players' own Instagram post URLs for each fit, paste into the `ig` field in `src/data/fits.ts` — the site already renders real IG embeds (licensed via Instagram's ToS). Keep local JPGs only for fits where the person posted it themselves.
 - [ ] **Sovrn key** — sign up at sovrn.com/commerce (free, 5 min), paste key into `src/lib/affiliate.ts`. Every Buy link starts earning ~5–15% immediately.
 - [ ] **OG / social cards** — add `og:image` (a fit collage), `og:title`, `twitter:card` to `index.html` so links look right when shared on Reddit/IG/Discord.
@@ -64,7 +64,7 @@ Everything is localStorage today. Supabase (free tier) turns on, in order of val
 
 ## 6 · Positioning (one paragraph, don't lose it)
 
-Pinterest's "Shop the Pin" answers "shorts?" with a $12 SHEIN lookalike. **Fits From answers with the actual piece, in your size, from the real store, inside the culture that made you want it.** Wardrobe apps (Whering/Alta/Indyx) have the closet tech but no culture and no young-men wedge; LeagueFits has the culture but sells nothing. The moat is speed + taste + the fit-file archive compounding in search.
+Pinterest's "Shop the Pin" answers "shorts?" with a $12 SHEIN lookalike. **Cosign answers with the actual piece, in your size, from the real store, inside the culture that made you want it.** Wardrobe apps (Whering/Alta/Indyx) have the closet tech but no culture and no young-men wedge; LeagueFits has the culture but sells nothing. The moat is speed + taste + the fit-file archive compounding in search.
 
 ---
 

@@ -114,7 +114,7 @@ export function WardrobeView({
         <div className="pagehead">
           <span className="eyebrow">THE CLOSET — CATALOGUED</span>
           <h2>Everything you own, in one place.</h2>
-          <p>Add what you have. Fits From fills the holes instead of the feed.</p>
+          <p>Add what you have. Cosign fills the holes instead of the feed.</p>
         </div>
         <div className="empty">
           <h3>Nothing in here yet.</h3>
@@ -830,7 +830,7 @@ function FitPlanner() {
   return (
     <div className="section">
       <div className="section__head">
-        <h3>Top fits from your closet</h3>
+        <h3>Top Cosign your closet</h3>
         <div className="row" style={{ gap: 8 }}>
           <span className="tiny">Scored on proportion, colour, layering, occasion</span>
           <button className="btn btn--ghost btn--sm" onClick={() => setSeed((n) => n + 3)}>

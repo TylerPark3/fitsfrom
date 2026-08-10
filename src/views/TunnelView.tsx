@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import {
   CONFIDENCE_LABEL,
-  LEAGUES,
+  leagueFilters,
   SOCIAL_FITS,
   findSocialFit,
   timeAgo,
@@ -44,6 +44,7 @@ export function TunnelView({
     return league === 'All' ? hot : hot.filter((p) => p.person.league === league)
   }, [league])
 
+  const filters = useMemo(() => leagueFilters(), [])
   const cosigned = useMemo(() => mostIdentified(saved, 8), [saved])
   const brands = useMemo(() => hotBrands(6), [])
 
@@ -62,7 +63,7 @@ export function TunnelView({
       </div>
 
       <div className="tunnel__filters" role="tablist" aria-label="Filter the tunnel">
-        {LEAGUES.map((l) => {
+        {filters.map((l) => {
           const n = l === 'All' ? SOCIAL_FITS.length : SOCIAL_FITS.filter((p) => p.person.league === l).length
           return (
             <button
@@ -172,6 +173,22 @@ function FitReport({
         <p className="report__where">
           {[post.person.team, post.context.event, post.context.location].filter(Boolean).join(' · ')}
         </p>
+        {post.stylist && (
+          <p className="report__stylist">
+            <span className="eyebrow">Styled by</span>{' '}
+            {post.stylist.handle ? (
+              <a
+                href={`https://instagram.com/${post.stylist.handle}`}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                {post.stylist.name}
+              </a>
+            ) : (
+              post.stylist.name
+            )}
+          </p>
+        )}
       </header>
 
       <div className="report__grid">

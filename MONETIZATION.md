@@ -1,10 +1,10 @@
-# Fits From Monetization Plan
+# Cosign Monetization Plan
 
 Updated: August 7, 2026
 
 ## Executive decision
 
-Fits From should monetize shopping intent without selling ranking priority or personal data.
+Cosign should monetize shopping intent without selling ranking priority or personal data.
 
 The recommended stack is:
 
@@ -26,7 +26,7 @@ Every catalogue Buy link now resolves through:
 
 The Cloudflare Pages Function:
 
-- validates the product ID against the Fits From catalogue;
+- validates the product ID against the Cosign catalogue;
 - rejects unsupported destinations;
 - keeps the affiliate credential out of the React bundle;
 - redirects through Sovrn when `SOVRN_KEY` is configured;
@@ -46,7 +46,7 @@ Implementation files:
 Create a publisher account and submit the production website:
 
 ```text
-https://fitsfrom.pages.dev
+https://cosign.pages.dev
 ```
 
 Sovrn says campaigns may need implemented links and real clicks before review. Keep the fallback redirect active while approval is pending.
@@ -79,7 +79,7 @@ Do not assume a wrapped link earns commission. Merchant participation and progra
 
 Place this directly above or beside shopping actions:
 
-> Fits From may earn a commission when you shop through our links, at no extra cost to you. Commission never changes your match score or our editorial ranking.
+> Cosign may earn a commission when you shop through our links, at no extra cost to you. Commission never changes your match score or our editorial ranking.
 
 Use this short label on compact product surfaces:
 
@@ -89,7 +89,7 @@ Affiliate link
 
 Use this at the beginning of social captions containing tracked links:
 
-> Affiliate links — Fits From may earn a commission from purchases.
+> Affiliate links — Cosign may earn a commission from purchases.
 
 An About page or footer disclosure alone is not sufficient. The FTC expects material relationships to be clear, conspicuous, and close to the recommendation.
 
@@ -99,7 +99,7 @@ Celebrity fit coverage is commercially valuable and legally sensitive.
 
 ### Allowed sources
 
-- photography commissioned or owned by Fits From;
+- photography commissioned or owned by Cosign;
 - photography licensed for the intended commercial/editorial use;
 - written permission from the photographer or rights holder;
 - media supplied by a brand, stylist, athlete, artist, or agency with permission to republish;
@@ -113,7 +113,7 @@ Celebrity fit coverage is commercially valuable and legally sensitive.
 - assuming a public account creates a commercial reuse license;
 - treating photographer credit as permission;
 - removing watermarks;
-- implying that a celebrity endorses Fits From;
+- implying that a celebrity endorses Cosign;
 - using a celebrity’s face in an advertisement without appropriate rights;
 - calling an alternative product the exact piece.
 
@@ -233,7 +233,7 @@ Exit condition: one repeatable acquisition channel and one monetization channel 
 - basic wardrobe;
 - affiliate-supported shopping links.
 
-### Fits From Plus: test $6.99–$9.99 monthly
+### Cosign Plus: test $6.99–$9.99 monthly
 
 - unlimited wardrobe items;
 - advanced outfit generation;
@@ -351,11 +351,11 @@ Evaluate routes using realized earnings per click after reversals, not advertise
 
 Use this when applying to publisher networks:
 
-> Fits From is a fashion discovery and wardrobe platform for Gen Z consumers. We publish original editorial outfit breakdowns, identify products worn by athletes and artists using documented sources, and provide clearly labeled exact matches and affordable alternatives. Users can search a curated multi-brand catalogue, save products, build a digital wardrobe, and visit retailers through intentional shopping links. We do not use cookie stuffing, trademark bidding, misleading product claims, or undisclosed paid placement. Affiliate relationships are clearly disclosed and do not influence personalized match scores or editorial rankings.
+> Cosign is a fashion discovery and wardrobe platform for Gen Z consumers. We publish original editorial outfit breakdowns, identify products worn by athletes and artists using documented sources, and provide clearly labeled exact matches and affordable alternatives. Users can search a curated multi-brand catalogue, save products, build a digital wardrobe, and visit retailers through intentional shopping links. We do not use cookie stuffing, trademark bidding, misleading product claims, or undisclosed paid placement. Affiliate relationships are clearly disclosed and do not influence personalized match scores or editorial rankings.
 
 ## Direct-brand pitch
 
-> Fits From helps high-intent young shoppers understand how a product fits into a complete wardrobe—not just see it in a feed. We would like to feature your products in documented fit breakdowns, personalized recommendations, and campus-focused editorial collections. We can track qualified outbound traffic using campaign IDs or an exclusive code while keeping sponsored status clearly disclosed. We are looking for accurate product feeds, reliable deep links, an exclusive shopper code where possible, and a commission structure tied to completed sales.
+> Cosign helps high-intent young shoppers understand how a product fits into a complete wardrobe—not just see it in a feed. We would like to feature your products in documented fit breakdowns, personalized recommendations, and campus-focused editorial collections. We can track qualified outbound traffic using campaign IDs or an exclusive code while keeping sponsored status clearly disclosed. We are looking for accurate product feeds, reliable deep links, an exclusive shopper code where possible, and a commission structure tied to completed sales.
 
 ## Authoritative references
 
