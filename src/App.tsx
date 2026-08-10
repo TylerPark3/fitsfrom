@@ -21,12 +21,13 @@ import { WardrobeView } from './views/WardrobeView'
 import { SavedView } from './views/SavedView'
 import { FitsView } from './views/FitsView'
 import { TunnelView } from './views/TunnelView'
+import { BrandView } from './views/BrandView'
 import { AuthView } from './views/AuthView'
 import { FaqView } from './views/FaqView'
 import { LegalView } from './views/LegalView'
 import { ProductDrawer } from './components/ProductDrawer'
 
-export type View = 'home' | 'auth' | 'onboarding' | 'discover' | 'tunnel' | 'fits' | 'avatar' | 'wardrobe' | 'saved' | 'faq' | 'legal'
+export type View = 'home' | 'auth' | 'onboarding' | 'discover' | 'tunnel' | 'brand' | 'fits' | 'avatar' | 'wardrobe' | 'saved' | 'faq' | 'legal'
 
 const TRIAL_DAYS = 15
 const GATED: View[] = ['discover', 'fits', 'wardrobe', 'saved', 'avatar']
@@ -44,6 +45,7 @@ export function App() {
   )
   const [openProduct, setOpenProduct] = useState<string | null>(null)
   const [tunnelSlug, setTunnelSlug] = useState<string | null>(() => readSlug())
+  const [brand, setBrand] = useState<string | null>(null)
   const [toastMsg, setToastMsg] = useState<string | null>(null)
   const toastTimer = useRef<number>()
 
@@ -338,10 +340,24 @@ export function App() {
           ) : (
             <>
           {view === 'home' && <Home go={go} onTunnel={(s) => { setTunnelSlug(s); setView('tunnel') }} onOpen={setOpenProduct} />}
+          {view === 'brand' && (
+            <BrandView
+              brand={brand}
+              onOpen={setOpenProduct}
+              onBrand={(b) => {
+                setBrand(b)
+                setView('brand')
+              }}
+            />
+          )}
           {view === 'tunnel' && (
             <TunnelView
               slug={tunnelSlug}
               onOpen={setOpenProduct}
+              onBrand={(b) => {
+                setBrand(b)
+                setView('brand')
+              }}
               onSlug={(s) => {
                 setTunnelSlug(s)
                 const path = s ? `/tunnel/${s}` : '/tunnel'

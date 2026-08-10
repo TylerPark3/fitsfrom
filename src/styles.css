@@ -8534,3 +8534,297 @@ input.seg__control::placeholder {
   margin: 4px 0 0;
   color: var(--ink-4);
 }
+
+/* ══ QUIETER ══════════════════════════════════════════════════════════════
+   A late pass toward the ALD/SSENSE register: more air, smaller type, and
+   colour reserved for the one thing on screen that has earned it.
+
+   Kept as an override layer rather than edits scattered through the file, so
+   the whole shift can be read, tuned or reversed in one place. */
+:root {
+  /* narrower measure, more margin — a page that isn't fighting for room */
+  --max: 1180px;
+  --gut: 40px;
+  /* the accent stops being decoration and becomes a signal */
+  --red: #9a3f2c;
+}
+
+body {
+  font-size: 15px;
+  line-height: 1.58;
+}
+
+/* ── air ──────────────────────────────────────────────────────────────────*/
+.section {
+  margin-top: 88px;
+}
+
+.section__head {
+  margin-bottom: 26px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.pagehead {
+  padding-top: 68px;
+  padding-bottom: 46px;
+}
+
+.tunnel__feed {
+  gap: 104px;
+}
+
+/* ── type: smaller, tighter, calmer ───────────────────────────────────────*/
+.pagehead h2 {
+  font-size: clamp(30px, 4vw, 46px);
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+}
+
+.pagehead p {
+  font-size: 15px;
+  color: var(--ink-3);
+  max-width: 54ch;
+}
+
+.section__head h3 {
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: -0.012em;
+}
+
+.sfit__who {
+  font-size: clamp(24px, 3.4vw, 36px);
+  letter-spacing: -0.035em;
+}
+
+.report__who {
+  font-size: clamp(28px, 4.6vw, 50px);
+  letter-spacing: -0.04em;
+}
+
+.sfit__take,
+.report__take {
+  font-size: 15px;
+  line-height: 1.72;
+}
+
+/* ── colour, withheld ─────────────────────────────────────────────────────
+   The kicker, the eyebrow and the section labels were all red at once, which
+   spends the accent before anything important happens. Only live state and
+   genuine warnings keep it. */
+.sfit__kicker,
+.tunnelband .eyebrow,
+.fotd2 .eyebrow {
+  color: var(--ink-4);
+}
+
+.conf--community {
+  color: var(--ink-3);
+}
+
+/* ── edges: hairlines, not boxes ──────────────────────────────────────────*/
+.sfit {
+  border-top-width: 1px;
+}
+
+.lock__cta {
+  border-width: 1px;
+  border-radius: 4px;
+}
+
+.panel,
+.plan,
+.mqrail,
+.term,
+.artist {
+  border-radius: 4px;
+}
+
+.card__frame,
+.stackpiece__img,
+.rpiece__shot,
+.seenfit__piece img,
+.mqpick {
+  border-radius: 3px;
+}
+
+/* shadows are the loudest thing in a quiet layout */
+.card,
+.panel,
+.sfit {
+  box-shadow: none;
+}
+
+.grid {
+  gap: 40px 26px;
+}
+
+.card__frame {
+  border-color: var(--line);
+  background: var(--paper);
+}
+
+.card__brand {
+  color: var(--ink-4);
+  letter-spacing: 0.1em;
+}
+
+.card__name {
+  font-size: 14px;
+}
+
+/* the diamond marker was shouting; at 90+ it can afford to whisper */
+.card--elite .card__frame::after {
+  background: transparent;
+  color: var(--ink-3);
+  border: 1px solid var(--line);
+  font-size: 8px;
+}
+
+.card__shine {
+  opacity: 0.55;
+}
+
+@media (max-width: 860px) {
+  :root {
+    --gut: 20px;
+  }
+  .section {
+    margin-top: 64px;
+  }
+  .tunnel__feed {
+    gap: 72px;
+  }
+}
+
+/* ── brands ───────────────────────────────────────────────────────────────
+   Typeset tiles, not logo images. A brand's logo is its trademark, and a wall
+   of scraped marks is the same rights problem as a wall of scraped photos. */
+.btiles {
+  /* Borders per tile rather than a background showing through gaps — with a
+     short list the empty grid tracks were rendering as a grey slab. */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: -1px;
+  gap: 0;
+  background: transparent;
+}
+
+.btile {
+  display: grid;
+  gap: 5px;
+  align-content: center;
+  justify-items: start;
+  text-align: left;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  margin: -1px 0 0 -1px;
+  padding: 22px 18px;
+  min-height: 92px;
+  transition: background var(--fast);
+}
+
+.btile:hover {
+  background: var(--tile);
+}
+
+.btile__name {
+  font-size: 16px;
+  letter-spacing: -0.015em;
+}
+
+.btile__meta {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.btiles--quiet .btile {
+  min-height: 74px;
+  padding: 16px 18px;
+}
+
+.btiles--quiet .btile__name {
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+.brandhead {
+  padding: 56px 0 26px;
+  border-bottom: 1px solid var(--line);
+}
+
+.brandhead__name {
+  font-size: clamp(32px, 6vw, 60px);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin: 0 0 26px;
+  font-weight: 800;
+}
+
+.brandhead__stats {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.brandstat {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.brandstat b {
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-weight: 650;
+  margin-bottom: 3px;
+}
+
+.bwear {
+  display: grid;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.bwear__row {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  background: var(--paper);
+  padding: 14px;
+}
+
+.bwear__row b {
+  font-size: 15px;
+}
+
+/* the brand rows in the tunnel are now a way in */
+.brandheat__row {
+  width: 100%;
+  text-align: left;
+  transition: background var(--fast);
+}
+
+.brandheat__row:hover {
+  background: var(--tile);
+}
+
+@media (max-width: 560px) {
+  .bwear__row {
+    grid-template-columns: 68px minmax(0, 1fr);
+  }
+  .brandhead__stats {
+    gap: 26px;
+  }
+}

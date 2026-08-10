@@ -128,3 +128,39 @@ use case, so it reads as contribution rather than spam.
 
 **Lead with:** Pinterest shows you the fit and never tells you what it is.
 Not with the subscription.
+
+---
+
+## 6b. Turning Supabase on
+
+Everything is written and inert. `isCloudEnabled()` is false until the env vars
+exist, so the app runs exactly as it does now — launch traffic never depends on
+a backend that isn't finished.
+
+1. Create a project at supabase.com (free tier)
+2. Run `supabase/schema.sql` — profiles, takes, likes, saves, community IDs and
+   searches, all with row-level security already written
+3. Add to `.env` **and** the Pages project:
+   ```
+   VITE_SUPABASE_URL=…
+   VITE_SUPABASE_ANON_KEY=…
+   ```
+4. Flip the export in `src/lib/socialRepository.ts`:
+   ```ts
+   export { supabaseSocial as socialRepository } from './supabase'
+   ```
+5. On sign-in, call `setSession({ userId, token, handle })` and
+   `cloudProfile.load()`; on state change, `cloudProfile.save()`
+
+Two decisions worth knowing:
+
+**The photo never leaves the device.** `cloudProfile.save()` strips it before
+upload. It's a multi-megabyte data URL and it's the most personal thing in the
+state — there is no reason for it to be on a server.
+
+**Takes are readable by everyone, writable only by their author.** A
+conversation nobody can read isn't a conversation. Community IDs carry a
+`verified` column defaulting to false, so a guess can never render as a finding.
+
+**Searches are stored with no user id.** We want to know what people look for,
+not who looked. The client reads the aggregate view, never the raw rows.

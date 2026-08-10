@@ -29,10 +29,12 @@ export function TunnelView({
   slug,
   onOpen,
   onSlug,
+  onBrand,
 }: {
   slug: string | null
   onOpen: (id: string) => void
   onSlug: (slug: string | null) => void
+  onBrand: (brand: string | null) => void
 }) {
   const { toast, saved } = useStore()
   const [league, setLeague] = useState<LeagueFilter>('All')
@@ -124,18 +126,18 @@ export function TunnelView({
         <section className="section">
           <div className="section__head">
             <h3>Brands with reach</h3>
-            <span className="tiny">
-              Counted by how many different people wear them — one is a preference, six is a movement
-            </span>
+            <button className="linkish" onClick={() => onBrand(null)}>
+              All brands
+            </button>
           </div>
           <div className="brandheat">
             {brands.map((b, i) => (
-              <div className="brandheat__row" key={b.brand}>
+              <button className="brandheat__row" key={b.brand} onClick={() => onBrand(b.brand)}>
                 <span className="board__n">{String(i + 1).padStart(2, '0')}</span>
                 <b>{b.brand}</b>
                 <span className="brandheat__people">{b.people.join(' · ')}</span>
                 <span className="brandheat__n">{b.people.length}</span>
-              </div>
+              </button>
             ))}
           </div>
         </section>
