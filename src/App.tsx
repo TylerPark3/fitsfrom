@@ -309,7 +309,7 @@ export function App() {
           {trialOver && GATED.includes(view) ? (
             <div className="wrap" style={{ paddingBottom: 110 }}>
               <div className="pagehead" style={{ textAlign: 'center', paddingTop: 80 }}>
-                <span className="eyebrow" style={{ color: 'var(--red)' }}>
+                <span className="eyebrow">
                   Day {TRIAL_DAYS} of {TRIAL_DAYS} — trial complete
                 </span>
                 <h2 className="fitcheck" style={{ margin: '12px 0 8px' }}>

@@ -7919,7 +7919,7 @@ input.seg__control::placeholder {
    photograph in half, which is the one thing that must never happen. It runs
    at its natural height; the read beside it simply sits at the top. */
 .sfit__media .igembed {
-  border-radius: 12px;
+  border-radius: 4px;
 }
 
 .sfit__read {
@@ -8853,4 +8853,134 @@ body {
 .frontpage ~ section,
 .frontpage ~ .interstitial {
   opacity: 0.94;
+}
+
+/* ══ ENFORCEMENT ══════════════════════════════════════════════════════════
+   An audit against DESIGN.md found the site breaking its own rules in five
+   places. The earlier "quieter" pass added overrides while the components
+   underneath stayed loud, so this closes the gap properly.
+
+   Measured before: red on 27 elements, serif on 10, twelve containers above
+   4px radius (one at 42px), two shadows on content, eleven mono classes
+   neither uppercase nor letterspaced. */
+
+/* ── 1. red is withheld ───────────────────────────────────────────────────
+   Reserved for live state and genuine warning. Cosign metadata, CTAs and
+   kickers are information, not alarm — they go neutral. */
+.card__cosign,
+.cosignline,
+.lead__cta,
+.phone__kicker,
+.interstitial em,
+.strip__n,
+.fotd2__stamp {
+  color: var(--ink-3);
+}
+
+.interstitial em,
+.strip__n {
+  color: var(--ink-4);
+}
+
+/* what keeps it: a liked post, an unverified community guess, the trial pill */
+.engage__btn.is-on,
+.cid,
+.trialpill {
+  color: var(--red);
+}
+
+/* ── 2. the serif is punctuation, not a voice ─────────────────────────────
+   It earns one appearance per screen: the headline of a read. Everywhere else
+   was decoration. */
+.strip__n.serif,
+.board__n.serif,
+.fotd2__fallback .serif,
+.interstitial .serif {
+  font-family: var(--disp), sans-serif;
+  font-style: normal;
+}
+
+/* ── 3. rules, not boxes ──────────────────────────────────────────────────*/
+.card,
+.fotd2,
+.homefeat__card,
+.demo__step,
+.phone__mock,
+.igembed,
+.igembed__skeleton {
+  border-radius: 4px;
+}
+
+.phone {
+  border-radius: 18px; /* a phone is a phone; it keeps its shape */
+}
+
+.phone__row,
+.fotd2 img,
+.homefeat__card img {
+  border-radius: 3px;
+}
+
+/* ── 4. shadows are for things that float ─────────────────────────────────*/
+.phone {
+  box-shadow: 0 24px 48px -28px rgba(28, 42, 32, 0.22);
+}
+
+.phone__scan {
+  box-shadow: none;
+}
+
+/* ── 5. mono is the machine talking ───────────────────────────────────────
+   Always uppercase, always letterspaced, always small. If a string needs
+   sentence case it isn't mono — it's body copy. */
+.engage__btn,
+.board__n,
+.brandheat__n,
+.card__size,
+.phone__row,
+.seenfit__total,
+.mono-line {
+  letter-spacing: 0.08em;
+}
+
+.engage__btn,
+.board__n,
+.brandheat__n {
+  text-transform: uppercase;
+}
+
+/* `.tiny` and `.cosignline` are sentence-case prose — they were never mono */
+.tiny,
+.cosignline {
+  font-family: 'Manrope', 'Inter', sans-serif;
+  letter-spacing: -0.008em;
+}
+
+/* The explainer sections below the feed predate the front page being the
+   publication. They were written to sell the product; now they only have to
+   explain it to someone who has already started reading. So they give up the
+   serif and the accent — on this page those belong to the read. */
+.strip__n,
+.fotd2__who,
+.interstitial em,
+.interstitial .serif,
+.phone__kicker,
+.demo__step .serif {
+  font-family: var(--disp), 'Manrope', sans-serif;
+  font-style: normal;
+  color: inherit;
+}
+
+.interstitial,
+.interstitial em {
+  color: var(--ink-4);
+}
+
+.lead__cta,
+.homefeat__card .lead__cta {
+  color: var(--ink-2);
+}
+
+.strip__n {
+  color: var(--ink-4);
 }

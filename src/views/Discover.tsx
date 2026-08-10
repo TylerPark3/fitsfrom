@@ -308,7 +308,7 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
     return (
       <div className="wrap" style={{ paddingBottom: 110 }}>
         <div className="pagehead" style={{ textAlign: 'center', paddingTop: 64 }}>
-          <span className="eyebrow" style={{ color: 'var(--red)' }}>
+          <span className="eyebrow">
             Restricted — members only
           </span>
           <h2 className="fitcheck" style={{ margin: '10px 0 6px' }}>

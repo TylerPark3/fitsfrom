@@ -161,7 +161,7 @@ export function Home({
           </button>
 
           <div className="fotd2__body">
-            <span className="eyebrow" style={{ color: 'var(--red)' }}>
+            <span className="eyebrow">
               Fit of the day — {date}
             </span>
             <h2 className="fotd2__who serif">{today.who}</h2>
@@ -220,17 +220,17 @@ export function Home({
       <section className="wrap">
         <div className="strip">
           <div className="strip__cell">
-            <div className="strip__n serif">01</div>
+            <div className="strip__n">01</div>
             <h3>A new fit every day</h3>
             <p>NBA tunnels today. NFL, music, film next. Come back tomorrow.</p>
           </div>
           <div className="strip__cell">
-            <div className="strip__n serif">02</div>
+            <div className="strip__n">02</div>
             <h3>Catalogue everything you own</h3>
             <p>Snap it or type it — your whole closet, on shelves, sized.</p>
           </div>
           <div className="strip__cell">
-            <div className="strip__n serif">03</div>
+            <div className="strip__n">03</div>
             <h3>New pieces from your favorite artists</h3>
             <p>
               Proven fits, not algorithm slop — {BRANDS.length} brands, {CATALOG.length} live pieces, straight from the source.
