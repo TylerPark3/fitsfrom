@@ -8828,3 +8828,29 @@ body {
     gap: 26px;
   }
 }
+
+/* ── the front page ───────────────────────────────────────────────────────
+   The publication starts immediately under the cover. No hero pointing at it,
+   no band advertising that it exists — a magazine opens on stories. */
+.frontpage {
+  padding-top: 72px;
+}
+
+.frontpage__head {
+  margin-bottom: 34px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.frontpage__head h2 {
+  font-size: clamp(28px, 3.6vw, 42px);
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+  margin: 8px 0 0;
+}
+
+/* what follows the feed is context for a first-time reader, so it steps back */
+.frontpage ~ section,
+.frontpage ~ .interstitial {
+  opacity: 0.94;
+}

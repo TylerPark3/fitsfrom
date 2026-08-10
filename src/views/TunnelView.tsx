@@ -36,6 +36,38 @@ export function TunnelView({
   onSlug: (slug: string | null) => void
   onBrand: (brand: string | null) => void
 }) {
+  const post = slug ? findSocialFit(slug) : null
+  if (slug && post) return <FitReport post={post} onOpen={onOpen} onBack={() => onSlug(null)} />
+  return (
+    <div className="wrap tunnel">
+      <div className="pagehead">
+        <span className="eyebrow">The tunnel</span>
+        <h2>What they’re wearing before the game.</h2>
+        <p>
+          Instagram finds the fit. We identify the pieces, explain the proportion and translate it to
+          your body.
+        </p>
+      </div>
+      <TunnelFeed onOpen={onOpen} onSlug={onSlug} onBrand={onBrand} />
+    </div>
+  )
+}
+
+/**
+ * The publication itself: filters, the feed, and the two aggregate views.
+ *
+ * Lives apart from the page wrapper because the front page *is* this — a
+ * publication's home should be the publication, not a hero pointing at it.
+ */
+export function TunnelFeed({
+  onOpen,
+  onSlug,
+  onBrand,
+}: {
+  onOpen: (id: string) => void
+  onSlug: (slug: string | null) => void
+  onBrand: (brand: string | null) => void
+}) {
   const { toast, saved } = useStore()
   const [league, setLeague] = useState<LeagueFilter>('All')
 
@@ -50,20 +82,8 @@ export function TunnelView({
   const cosigned = useMemo(() => mostIdentified(saved, 8), [saved])
   const brands = useMemo(() => hotBrands(6), [])
 
-  const post = slug ? findSocialFit(slug) : null
-  if (slug && post) return <FitReport post={post} onOpen={onOpen} onBack={() => onSlug(null)} />
-
   return (
-    <div className="wrap tunnel">
-      <div className="pagehead">
-        <span className="eyebrow">The tunnel</span>
-        <h2>What they’re wearing before the game.</h2>
-        <p>
-          Instagram finds the fit. We identify the pieces, explain the proportion and translate it to
-          your body.
-        </p>
-      </div>
-
+    <>
       <div className="tunnel__filters" role="tablist" aria-label="Filter the tunnel">
         {filters.map((l) => {
           const n = l === 'All' ? SOCIAL_FITS.length : SOCIAL_FITS.filter((p) => p.person.league === l).length
@@ -142,7 +162,7 @@ export function TunnelView({
           </div>
         </section>
       )}
-    </div>
+    </>
   )
 }
 

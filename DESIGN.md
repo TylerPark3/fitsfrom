@@ -152,6 +152,9 @@ a bit of everyone's design and none of its own.
 ## Open
 
 - **The mark.** Wordmark only until one is designed. Safest place for it.
-- **Whether the Tunnel becomes the home page.** If a publication leads, the
-  front page should be the front page of the publication — not a hero that
-  points at it.
+~~Whether the Tunnel becomes the home page.~~ **Done.** The front page is the
+publication. The cover still gates the first visit; underneath it the feed
+starts immediately, and the explainer sections sit below it for a first-time
+reader rather than in front of one. "Home" and "Tunnel" were the same
+destination, so the nav collapsed to five: The Tunnel · Fits · Explore ·
+Wardrobe · FAQ.
