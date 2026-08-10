@@ -32,7 +32,7 @@ export function SocialFitCard({
     setTakes(post.engagement.comments + socialRepository.getTakes(post.id).filter((t) => !t.seeded).length)
   }, [post])
 
-  const identified = post.pieces.filter((p) => resolve(p))
+  const identified = post.pieces.filter((p) => p.confidence !== 'pending' && resolve(p))
   const shareUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}/tunnel/${post.slug}`
 
   return (

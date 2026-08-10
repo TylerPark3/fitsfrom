@@ -495,3 +495,52 @@ export const FITS: Fit[] = [
     ],
   },
 ]
+
+/**
+ * Icons grouped by where people know them from, with the best-known name first.
+ *
+ * The picker shows one name per lane rather than all twenty-two at once: a wall
+ * of names asks you to read everything before choosing anything, and most of it
+ * is irrelevant to whichever world you actually care about. Pick a lane and the
+ * rest of that lane opens up.
+ */
+export const ICON_LANES: { id: string; label: string; lead: string; rest: string[] }[] = [
+  {
+    id: 'nba',
+    label: 'NBA',
+    lead: 'SGA',
+    rest: ['Poole Party', 'JC', 'Rookie LeBron', 'Bron', 'Jalen Green', 'J-Dub', 'Book', 'Air Jordan', 'Dame Time'],
+  },
+  {
+    id: 'music',
+    label: 'Music',
+    lead: 'Tyler, the Creator',
+    rest: ['Pretty Flacko', 'Iceman', 'Ye', 'Carti', 'Cole World', 'Bieber', 'V (BTS)'],
+  },
+  { id: 'football', label: 'Football', lead: 'Messi', rest: ['Lamine Yamal'] },
+  { id: 'film', label: 'Film', lead: 'Rob Pattinson', rest: [] },
+]
+
+/** Official accounts, for linking out. Handles only — nothing is scraped. */
+export const ICON_HANDLES: Record<string, string> = {
+  SGA: 'shaigilgeousalexander',
+  'Poole Party': 'jordanpoole',
+  JC: 'jordanclarksons',
+  'Rookie LeBron': 'kingjames',
+  Bron: 'kingjames',
+  'Jalen Green': 'jalengreen',
+  'J-Dub': 'jaylenwiggins',
+  Book: 'dbook',
+  'Dame Time': 'damianlillard',
+  'Tyler, the Creator': 'feliciathegoat',
+  'Pretty Flacko': 'asaprocky',
+  Iceman: 'champagnepapi',
+  Ye: 'kanyewest',
+  Carti: 'playboicarti',
+  'Cole World': 'realcoleworld',
+  Bieber: 'justinbieber',
+  'V (BTS)': 'thv',
+  Messi: 'leomessi',
+  'Lamine Yamal': 'lamineyamal',
+  'Rob Pattinson': '',
+}

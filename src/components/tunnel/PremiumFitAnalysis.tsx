@@ -23,7 +23,7 @@ const CHAPTERS = [
 
 /** A row per identified garment: what it is, how sure we are, what to buy. */
 function PieceRow({ piece, onOpen }: { piece: IdentifiedPiece; onOpen: (id: string) => void }) {
-  const product = resolve(piece)
+  const product = piece.confidence === 'pending' ? null : resolve(piece)
   const sure = piece.confidence === 'exact' || piece.confidence === 'strong'
   return (
     <div className="pcrow">

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useStore } from '../lib/store'
 import { STYLES, TIERS, SEASONS, type Gender, type Season, type StyleId, type Tier } from '../data/taxonomy'
 import { estimateFromBody } from '../lib/sizing'
-import { FITS } from '../data/fits'
+import { ICON_LANES } from '../data/fits'
 import { CATALOG } from '../data/catalog'
 
 /** Example image per style: a real fit photo where we have one, else a catalog piece. */
@@ -99,24 +99,16 @@ export function Onboarding({ onDone }: { onDone: () => void }) {
             <div className="panel" style={{ marginTop: 22 }}>
               <h3>Who do you want to dress like?</h3>
               <p>Pick your icons — your wardrobe gets scored against them.</p>
-              <div className="chips">
-                {Array.from(new Set(FITS.map((f) => f.who))).map((who) => (
-                  <button
-                    key={who}
-                    className="chip"
-                    aria-pressed={profile.icons.includes(who)}
-                    onClick={() =>
-                      setProfile({
-                        icons: profile.icons.includes(who)
-                          ? profile.icons.filter((x) => x !== who)
-                          : [...profile.icons, who],
-                      })
-                    }
-                  >
-                    {who}
-                  </button>
-                ))}
-              </div>
+              <IconLanes
+                picked={profile.icons}
+                onToggle={(who) =>
+                  setProfile({
+                    icons: profile.icons.includes(who)
+                      ? profile.icons.filter((x) => x !== who)
+                      : [...profile.icons, who],
+                  })
+                }
+              />
             </div>
             {profile.styles.length > 0 && (() => {
               const suggested = Array.from(
@@ -423,6 +415,59 @@ export function Slider({
         aria-label={label}
       />
       {hint && <p className="field__hint">{hint}</p>}
+    </div>
+  )
+}
+
+/**
+ * Icons, one lane at a time.
+ *
+ * Twenty-two names at once asks you to read the whole list before choosing
+ * anything, and most of it belongs to a world you don't care about. So each
+ * lane shows its best-known name, and picking it opens the rest of that lane
+ * inline — the names that matter to you appear next to the one you just chose.
+ */
+function IconLanes({ picked, onToggle }: { picked: string[]; onToggle: (who: string) => void }) {
+  const [open, setOpen] = useState<string[]>([])
+
+  return (
+    <div className="lanes">
+      {ICON_LANES.map((lane) => {
+        const isOpen = open.includes(lane.id) || lane.rest.some((r) => picked.includes(r))
+        const shown = isOpen ? [lane.lead, ...lane.rest] : [lane.lead]
+        return (
+          <div className="lane" key={lane.id}>
+            <span className="lane__label">{lane.label}</span>
+            <div className="lane__row">
+              {shown.map((who) => (
+                <button
+                  key={who}
+                  className="chip"
+                  aria-pressed={picked.includes(who)}
+                  onClick={() => {
+                    onToggle(who)
+                    // choosing the lead is also how you ask to see the rest
+                    if (who === lane.lead && !isOpen) setOpen((o) => [...o, lane.id])
+                  }}
+                >
+                  {who}
+                </button>
+              ))}
+              {lane.rest.length > 0 && (
+                <button
+                  className="lane__more"
+                  aria-expanded={isOpen}
+                  onClick={() =>
+                    setOpen((o) => (o.includes(lane.id) ? o.filter((x) => x !== lane.id) : [...o, lane.id]))
+                  }
+                >
+                  {isOpen ? '− less' : `+${lane.rest.length} more`}
+                </button>
+              )}
+            </div>
+          </div>
+        )
+      })}
     </div>
   )
 }

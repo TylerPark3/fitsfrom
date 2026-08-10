@@ -140,22 +140,32 @@ function FitReport({
           <div className="report__pieces">
             <span className="eyebrow">Pieces</span>
             {post.pieces.map((p) => {
-              const prod = resolve(p)
+              // A piece we haven't identified doesn't get a product or a price
+              // attached to it — that would be presenting a guess as a finding.
+              const prod = p.confidence === 'pending' ? null : resolve(p)
               return (
                 <div className="rpiece" key={p.slot}>
-                  <div>
-                    <b>{p.slot}</b>
-                    <span className="tiny">{p.worn}</span>
-                  </div>
-                  <span className={`conf conf--${p.confidence}`}>
-                    <i />
-                    {CONFIDENCE_LABEL[p.confidence]}
-                  </span>
-                  {prod && (
-                    <button className="linkish" onClick={() => onOpen(prod.id)}>
-                      View piece
+                  {prod ? (
+                    <button className="rpiece__shot" onClick={() => onOpen(prod.id)} aria-label={prod.name}>
+                      <img src={prod.image} alt="" loading="lazy" />
                     </button>
+                  ) : (
+                    <span className="rpiece__shot rpiece__shot--none">{p.slot[0]}</span>
                   )}
+
+                  <div className="rpiece__body">
+                    <span className="eyebrow">{p.slot}</span>
+                    <p className="rpiece__worn">{p.worn}</p>
+                    <span className={`conf conf--${p.confidence}`}>
+                      <i />
+                      {CONFIDENCE_LABEL[p.confidence]}
+                    </span>
+                    {prod && (
+                      <button className="rpiece__buy" onClick={() => onOpen(prod.id)}>
+                        {prod.brand} · ${prod.price.toFixed(prod.price % 1 ? 2 : 0)}
+                      </button>
+                    )}
+                  </div>
                 </div>
               )
             })}
