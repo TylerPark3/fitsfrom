@@ -79,7 +79,7 @@ export function TunnelFeed({
   }, [league])
 
   const filters = useMemo(() => leagueFilters(), [])
-  const cosigned = useMemo(() => mostIdentified(saved, 8), [saved])
+  const cosigned = useMemo(() => mostIdentified(saved, 4), [saved])
   const brands = useMemo(() => hotBrands(6), [])
 
   return (
@@ -125,9 +125,7 @@ export function TunnelFeed({
         <section className="section">
           <div className="section__head">
             <h3>Cosigned</h3>
-            <span className="tiny">
-              Pieces that turn up across the most documented fits — proof nobody self-reported
-            </span>
+            <span className="tiny">The pieces that turn up in the most documented fits</span>
           </div>
           <div className="grid">
             {cosigned.map((c) => (
@@ -135,7 +133,15 @@ export function TunnelFeed({
                 key={c.product.id}
                 product={c.product}
                 onOpen={onOpen}
-                footer={<p className="cosignline tiny">✦ {c.cosigns.join(', ')}</p>}
+                footer={
+                  // Three names and a count. The card already carries a cosign
+                  // line above; twelve names underneath it was the same fact
+                  // told twice, at length.
+                  <p className="cosignline tiny">
+                    {c.cosigns.slice(0, 3).join(', ')}
+                    {c.cosigns.length > 3 && ` +${c.cosigns.length - 3}`}
+                  </p>
+                }
               />
             ))}
           </div>

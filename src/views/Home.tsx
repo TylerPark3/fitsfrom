@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import type { View } from '../App'
 import { CATALOG, BRANDS } from '../data/catalog'
-import { TunnelFeed } from './TunnelView'
+import { useStore } from '../lib/store'
+import { SOCIAL_FITS } from '../data/socialFits'
+import { SocialFitCard } from '../components/tunnel/SocialFitCard'
 import { FITS } from '../data/fits'
 import { resolve } from '../lib/fitmatch'
 import { Arrow } from '../components/Icons'
@@ -76,24 +78,24 @@ function HeroVideo() {
 }
 
 /**
- * The front page is the publication.
+ * The front page.
  *
- * It used to be a hero that pointed at the Tunnel; if a publication leads the
- * product, the front page should just be the front page — the way a magazine
- * opens on stories, not on a splash advertising that it has stories. The cover
- * still sits over the top on a first visit.
+ * Tried making this the Tunnel feed itself — a publication opening on stories
+ * rather than a splash. Reverted: the landing has a different job from the
+ * feed. It has to say what this is to someone who has never heard of it, and a
+ * feed can't do that in three seconds. So the Tunnel gets one featured post
+ * here and lives on its own page.
  */
 export function Home({
   go,
   onTunnel,
   onOpen,
-  onBrand,
 }: {
   go: (v: View) => void
   onTunnel: (slug: string | null) => void
   onOpen: (id: string) => void
-  onBrand: (brand: string | null) => void
 }) {
+  const { toast } = useStore()
   const today = fitOfTheDay()
   const date = new Date().toLocaleDateString('en-US', {
     weekday: 'long',
@@ -123,14 +125,27 @@ export function Home({
         </div>
       </section>
 
-      {/* the publication */}
-      <section className="wrap frontpage">
-        <div className="frontpage__head">
-          <span className="eyebrow">The tunnel</span>
-          <h2>What they’re wearing before the game.</h2>
-        </div>
-        <TunnelFeed onOpen={onOpen} onSlug={onTunnel} onBrand={onBrand} />
-      </section>
+      {/* FROM THE TUNNEL — one post as proof of what this actually is */}
+      {SOCIAL_FITS[0] && (
+        <section className="wrap tunnelband">
+          <div className="section__head">
+            <div>
+              <span className="eyebrow">From the tunnel</span>
+              <h3>Instagram found it. We explain it.</h3>
+            </div>
+            <button className="btn btn--ghost btn--sm" onClick={() => onTunnel(null)}>
+              Explore the tunnel <Arrow />
+            </button>
+          </div>
+          <SocialFitCard
+            post={SOCIAL_FITS[0]}
+            variant="home"
+            onOpen={onOpen}
+            onFull={(slug) => onTunnel(slug)}
+            onToast={toast}
+          />
+        </section>
+      )}
 
       {/* fit of the day — editorial split */}
       <section className="wrap" style={{ paddingTop: 56 }}>

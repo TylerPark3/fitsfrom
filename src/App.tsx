@@ -343,10 +343,6 @@ export function App() {
             <Home
               go={go}
               onOpen={setOpenProduct}
-              onBrand={(b) => {
-                setBrand(b)
-                setView('brand')
-              }}
               onTunnel={(s) => {
                 setTunnelSlug(s)
                 setView('tunnel')
@@ -467,12 +463,11 @@ function Nav({
         </button>
 
         <div className="nav__links">
-          <button
-            className="nav__link"
-            aria-current={view === 'home' || view === 'tunnel'}
-            onClick={() => go('home')}
-          >
-            The Tunnel
+          <button className="nav__link" aria-current={view === 'home'} onClick={() => go('home')}>
+            Home
+          </button>
+          <button className="nav__link" aria-current={view === 'tunnel'} onClick={() => go('tunnel')}>
+            Tunnel
           </button>
           <button className="nav__link" aria-current={view === 'fits'} onClick={() => go('fits')}>
             Fits

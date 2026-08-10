@@ -88,7 +88,7 @@ export function ProductCard({
       >
         <div className="card__brand">{product.brand}</div>
         <div className="card__name">{product.name}</div>
-        {worn.length > 0 && (
+        {worn.length > 0 && !footer && (
           <div className="card__cosign">✦ in the {worn[0]} file{worn.length > 1 ? ` +${worn.length - 1}` : ''}</div>
         )}
         <div className="card__line">

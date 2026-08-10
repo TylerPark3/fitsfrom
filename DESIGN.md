@@ -152,9 +152,13 @@ a bit of everyone's design and none of its own.
 ## Open
 
 - **The mark.** Wordmark only until one is designed. Safest place for it.
-~~Whether the Tunnel becomes the home page.~~ **Done.** The front page is the
-publication. The cover still gates the first visit; underneath it the feed
-starts immediately, and the explainer sections sit below it for a first-time
-reader rather than in front of one. "Home" and "Tunnel" were the same
-destination, so the nav collapsed to five: The Tunnel · Fits · Explore ·
-Wardrobe · FAQ.
+- **Should the Tunnel be the home page?** Tried it, reverted it.
+
+  The reasoning was sound — if a publication leads, the front page should be
+  the publication. In practice the landing has a different job from the feed:
+  it has to tell someone who has never heard of Cosign what this is, and a feed
+  can't do that in three seconds. The Tunnel gets one featured post on the
+  front page and lives on its own.
+
+  Worth recording rather than deleting: "publication leads" is about tone and
+  hierarchy, not about literally putting the feed first.

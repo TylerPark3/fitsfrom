@@ -81,9 +81,12 @@ export interface HotPiece {
   saved: boolean
 }
 
-export function mostIdentified(savedIds: string[], limit = 8): HotPiece[] {
+export function mostIdentified(savedIds: string[], limit = 4): HotPiece[] {
   const out: HotPiece[] = []
   for (const product of CATALOG) {
+    // A model shot in a row of flat lays looks like a mistake. The picker
+    // already tells us which images are product-on-white — use it.
+    if (product.flat === false) continue
     const who = cosigns(product.id)
     if (who.length === 0) continue
     out.push({ product, cosigns: who, proof: who.length, saved: savedIds.includes(product.id) })
