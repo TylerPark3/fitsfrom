@@ -8153,3 +8153,94 @@ input.seg__control::placeholder {
   color: var(--red);
   border-color: var(--red);
 }
+
+/* ══ THE HEAT ═════════════════════════════════════════════════════════════
+   A ranking board. Numbers on the right, names on the left, one rule between
+   rows — a chart, not a set of cards. */
+.fotw { margin-bottom: 56px; }
+.fotw__rule { height: 2px; background: var(--ink); margin-bottom: 20px; }
+.fotw__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 34px;
+  margin-top: 14px;
+  align-items: start;
+}
+.fotw__who {
+  font-size: clamp(26px, 4vw, 40px);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  margin: 0 0 4px;
+}
+.fotw__headline { font-size: clamp(19px, 2.4vw, 26px); margin: 18px 0 10px; line-height: 1.2; }
+.fotw__take { font-size: 15px; line-height: 1.68; color: var(--ink-2); margin: 0 0 20px; }
+
+.heatbar { display: flex; gap: 22px; padding: 14px 0; border-block: 1px solid var(--line); margin-bottom: 20px; }
+.heatstat { display: flex; flex-direction: column; font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-4); }
+.heatstat b { font-size: 20px; letter-spacing: -0.01em; color: var(--ink); font-weight: 700; margin-bottom: 2px; }
+
+.board { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.board li { border-bottom: 1px solid var(--line); }
+.board__row {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto 62px;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+  padding: 16px 4px;
+  text-align: left;
+  transition: background var(--fast);
+}
+.board__row:hover { background: var(--tile); }
+.board__n { font-family: var(--mono); font-size: 12px; color: var(--ink-4); }
+.board__who { min-width: 0; }
+.board__who b { display: block; font-size: 16px; }
+.board__who em { display: block; font-style: normal; font-size: 13px; color: var(--ink-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.board__meta { font-size: 10px; color: var(--ink-4); white-space: nowrap; }
+.board__score { font-family: var(--mono); font-size: 17px; text-align: right; color: var(--ink); }
+
+.brandheat { border-top: 1px solid var(--line); }
+.brandheat__row {
+  display: grid;
+  grid-template-columns: 42px 150px minmax(0, 1fr) 42px;
+  gap: 14px;
+  align-items: baseline;
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--line);
+}
+.brandheat__row b { font-size: 15px; }
+.brandheat__people { font-size: 13px; color: var(--ink-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.brandheat__n { font-family: var(--mono); font-size: 16px; text-align: right; }
+
+.terms { display: flex; flex-wrap: wrap; gap: 8px; }
+.term {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 14px; padding: 8px 14px;
+  border: 1px solid var(--line); border-radius: 999px; background: var(--tile);
+}
+.term i { font-style: normal; font-family: var(--mono); font-size: 10px; color: var(--ink-4); }
+
+.cosignline { margin: 6px 0 0; color: var(--red); }
+.heat__note { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--ink-4); }
+
+@media (max-width: 860px) {
+  .fotw__grid { grid-template-columns: minmax(0, 1fr); }
+  .board__row { grid-template-columns: 32px minmax(0, 1fr) 52px; }
+  .board__meta { display: none; }
+  .brandheat__row { grid-template-columns: 32px minmax(0, 1fr) 38px; }
+  .brandheat__people { display: none; }
+}
+
+
+/* The cover carries a date, a word and a line. The dateline sits high the way
+   a masthead does, rather than floating just above the headline.
+   `align-content` — this is a grid, so `justify-content` would move it sideways. */
+.app--covered .mast__overlay {
+  align-content: start;
+  padding-top: 20vh;
+}
+
+.app--covered .mast__date {
+  margin-bottom: 7vh;
+}

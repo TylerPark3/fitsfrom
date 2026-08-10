@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#12100d"/>
+
+  <!-- the mark: two stacked bars, same construction as the nav logo -->
+  <g fill="#f5f2ec">
+    <rect x="90" y="86" width="86" height="17"/>
+    <rect x="90" y="118" width="58" height="17"/>
+    <rect x="196" y="86" width="86" height="17"/>
+    <rect x="196" y="118" width="58" height="17"/>
+  </g>
+
+  <text x="90" y="300" font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+        font-size="122" font-weight="800" letter-spacing="-5" fill="#f5f2ec">FITS FROM</text>
+
+  <text x="90" y="392" font-family="Helvetica Neue, Helvetica, Arial, sans-serif"
+        font-size="46" font-weight="400" fill="#b04a34">Every piece identified.</text>
+
+  <line x1="90" y1="452" x2="1110" y2="452" stroke="#3a3730" stroke-width="1"/>
+
+  <text x="90" y="512" font-family="ui-monospace, Menlo, monospace"
+        font-size="21" letter-spacing="3" fill="#8d8880">2,046 PIECES  ·  61 BRANDS  ·  LIVE PRICES</text>
+
+  <text x="90" y="556" font-family="ui-monospace, Menlo, monospace"
+        font-size="21" letter-spacing="3" fill="#8d8880">TUNNEL FITS, BROKEN DOWN AND MADE SHOPPABLE</text>
+</svg>

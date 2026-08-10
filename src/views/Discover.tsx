@@ -4,6 +4,7 @@ import { CATALOG, BRANDS, type Product } from '../data/catalog'
 import { FITS } from '../data/fits'
 import { cosigns, resolve } from '../lib/fitmatch'
 import { useStore } from '../lib/store'
+import { searchLog } from '../lib/heat'
 import { rank } from '../lib/match'
 import { learnTaste } from '../lib/learned'
 import { ProductCard } from '../components/ProductCard'
@@ -400,6 +401,7 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
                   }
                   setAcOpen(false)
                   setExecuted(true)
+                  searchLog.record(q)
                 }
               }}
               placeholder="Brand, piece, fabric..."
@@ -433,7 +435,13 @@ export function Discover({ onOpen, go }: { onOpen: (id: string) => void; go: (v:
               </ul>
             )}
           </label>
-          <button className="deck__go" onClick={() => setExecuted(true)}>
+          <button
+            className="deck__go"
+            onClick={() => {
+              setExecuted(true)
+              searchLog.record(q)
+            }}
+          >
             <Search size={16} /> Search
           </button>
         </div>

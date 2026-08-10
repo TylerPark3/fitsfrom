@@ -86,7 +86,7 @@ export function Home({
   onTunnel: (slug: string | null) => void
   onOpen: (id: string) => void
 }) {
-  const { profile, toast } = useStore()
+  const { toast } = useStore()
   const today = fitOfTheDay()
   const date = new Date().toLocaleDateString('en-US', {
     weekday: 'long',
@@ -106,21 +106,13 @@ export function Home({
         </div>
         <HeroVideo />
         <div className="mast__overlay">
-          <p className="mast__date">Queens, NY | {date}</p>
+          <p className="mast__date">{date}</p>
           <h1 className="mast__head">
             <em className="serif">culture.</em>
           </h1>
           <p className="mast__for">
             For people who take their fashion seriously — and keep it organised.
           </p>
-          <div className="row" style={{ gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
-            <button className="btn btn--invert btn--lg" onClick={() => go('fits')}>
-              Today’s fit <Arrow />
-            </button>
-            <button className="btn btn--outline btn--lg" onClick={() => go('onboarding')}>
-              {profile.onboarded ? 'My profile' : 'Get sized'}
-            </button>
-          </div>
         </div>
       </section>
 

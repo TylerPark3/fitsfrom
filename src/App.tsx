@@ -21,12 +21,13 @@ import { WardrobeView } from './views/WardrobeView'
 import { SavedView } from './views/SavedView'
 import { FitsView } from './views/FitsView'
 import { TunnelView } from './views/TunnelView'
+import { HeatView } from './views/HeatView'
 import { AuthView } from './views/AuthView'
 import { FaqView } from './views/FaqView'
 import { LegalView } from './views/LegalView'
 import { ProductDrawer } from './components/ProductDrawer'
 
-export type View = 'home' | 'auth' | 'onboarding' | 'discover' | 'tunnel' | 'fits' | 'avatar' | 'wardrobe' | 'saved' | 'faq' | 'legal'
+export type View = 'home' | 'auth' | 'onboarding' | 'discover' | 'tunnel' | 'heat' | 'fits' | 'avatar' | 'wardrobe' | 'saved' | 'faq' | 'legal'
 
 const TRIAL_DAYS = 15
 const GATED: View[] = ['discover', 'fits', 'wardrobe', 'saved', 'avatar']
@@ -338,6 +339,16 @@ export function App() {
           ) : (
             <>
           {view === 'home' && <Home go={go} onTunnel={(s) => { setTunnelSlug(s); setView('tunnel') }} onOpen={setOpenProduct} />}
+          {view === 'heat' && (
+            <HeatView
+              onOpen={setOpenProduct}
+              onTunnel={(s) => {
+                setTunnelSlug(s)
+                setView('tunnel')
+                window.history.pushState({}, '', s ? `/tunnel/${s}` : '/tunnel')
+              }}
+            />
+          )}
           {view === 'tunnel' && (
             <TunnelView
               slug={tunnelSlug}
@@ -446,6 +457,9 @@ function Nav({
           </button>
           <button className="nav__link" aria-current={view === 'tunnel'} onClick={() => go('tunnel')}>
             Tunnel
+          </button>
+          <button className="nav__link" aria-current={view === 'heat'} onClick={() => go('heat')}>
+            Heat
           </button>
           <button className="nav__link" aria-current={view === 'discover'} onClick={() => go('discover')}>
             Explore

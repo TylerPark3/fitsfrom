@@ -1,12 +1,12 @@
 /**
- * UI click. Synthesized, so there is no asset to load and no autoplay audio.
+ * UI sound. Synthesized, so there is no asset to load and no autoplay audio.
  *
- * This used to be an 808 — a sine sub swept 90→60 Hz. It read as a kick drum
- * rather than a button, and on laptop speakers, which roll off below ~150 Hz,
- * it was mostly felt as a thud with no attack. A click is the opposite shape:
- * a very short bandpassed noise transient up in the 1.5–3 kHz range where a
- * fingernail on plastic lives, with a tiny bit of mid body under it so it has
- * weight without being bass.
+ * Two families, on purpose:
+ *
+ *   808  — sine sub swept 90→60 Hz with a noise transient on top. This is the
+ *          house sound: every tap, select, back and add uses it.
+ *   click — a dry mechanical tick, no pitch at all. Used only where a sub would
+ *          be wrong, which right now is the fit check cards.
  */
 let ctx: AudioContext | null = null
 let muted = false
@@ -30,31 +30,63 @@ export function setMuted(v: boolean) {
   }
 }
 
-export type Variant = 'tap' | 'select' | 'back' | 'unlock' | 'add'
+export type Variant = 'tap' | 'select' | 'back' | 'unlock' | 'add' | 'click'
 
-interface Click {
-  /** Centre of the transient, in Hz — this is what gives it its character. */
+/** The 808: sub sine, fast downward sweep, short noise transient on top. */
+interface Sub {
   f: number
-  /** How long the transient rings. Everything here is under 30 ms. */
+  f2: number
   dur: number
   gain: number
-  /** Resonance. Higher is tighter and more "plastic". */
-  q: number
-  /** Optional pitched body under the click, for confirmations. */
-  body?: { from: number; to: number; gain: number }
+  snap: number
 }
 
-const CLICKS: Record<Variant, Click> = {
-  // the everyday tick
-  tap: { f: 2000, dur: 0.014, gain: 0.3, q: 5 },
-  // slightly brighter and firmer for a real choice
-  select: { f: 2600, dur: 0.018, gain: 0.36, q: 6 },
-  // duller and lower — closing something shouldn't sound like opening it
-  back: { f: 1300, dur: 0.016, gain: 0.24, q: 4 },
-  // two-stage: click, then a short rising note
-  unlock: { f: 2800, dur: 0.02, gain: 0.34, q: 6, body: { from: 520, to: 780, gain: 0.1 } },
-  // adding gains you something, so the body rises
-  add: { f: 2400, dur: 0.016, gain: 0.3, q: 5, body: { from: 440, to: 660, gain: 0.09 } },
+const SUBS: Record<Exclude<Variant, 'click'>, Sub> = {
+  tap: { f: 90, f2: 64, dur: 0.026, gain: 0.46, snap: 0.05 },
+  select: { f: 90, f2: 70, dur: 0.03, gain: 0.52, snap: 0.06 },
+  back: { f: 78, f2: 60, dur: 0.024, gain: 0.4, snap: 0.035 },
+  unlock: { f: 90, f2: 62, dur: 0.034, gain: 0.56, snap: 0.07 },
+  add: { f: 84, f2: 96, dur: 0.03, gain: 0.5, snap: 0.055 },
+}
+
+/**
+ * A dry mechanical tick — a switch bottoming out, not a pop.
+ *
+ * The trick is that there is no oscillator anywhere in it. Any pitched tone,
+ * however short, reads as a "boop"; what makes a click satisfying is a very
+ * narrow band of noise that stops almost immediately. Two layers: a hard 3.4 kHz
+ * top for the attack, and a 900 Hz thump underneath for the weight of the key.
+ */
+function playTick() {
+  if (!ctx) return
+  const t = ctx.currentTime
+
+  const layer = (freq: number, q: number, dur: number, gain: number, delay = 0) => {
+    const len = Math.max(1, Math.floor(ctx!.sampleRate * dur))
+    const buf = ctx!.createBuffer(1, len, ctx!.sampleRate)
+    const data = buf.getChannelData(0)
+    // quartic decay — steep enough that it ticks rather than hisses
+    for (let i = 0; i < len; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / len) ** 4
+    const src = ctx!.createBufferSource()
+    src.buffer = buf
+
+    const bp = ctx!.createBiquadFilter()
+    bp.type = 'bandpass'
+    bp.frequency.value = freq
+    bp.Q.value = q
+
+    const env = ctx!.createGain()
+    env.gain.setValueAtTime(gain, t + delay)
+    env.gain.exponentialRampToValueAtTime(0.0001, t + delay + dur)
+
+    src.connect(bp)
+    bp.connect(env)
+    env.connect(ctx!.destination)
+    src.start(t + delay)
+  }
+
+  layer(3400, 9, 0.009, 0.34)      // the attack
+  layer(900, 4, 0.016, 0.2, 0.001) // the body of the switch
 }
 
 export function playClick(variant: Variant = 'tap') {
@@ -62,55 +94,52 @@ export function playClick(variant: Variant = 'tap') {
   try {
     ctx ??= new AudioContext()
     if (ctx.state === 'suspended') void ctx.resume()
+
+    if (variant === 'click') return playTick()
+
     const t = ctx.currentTime
-    const { f, dur, gain, q, body } = CLICKS[variant]
+    const { f, f2, dur, gain, snap } = SUBS[variant]
 
-    // The click itself: a burst of noise, bandpassed tight and cut off fast.
-    const len = Math.max(1, Math.floor(ctx.sampleRate * dur))
-    const buf = ctx.createBuffer(1, len, ctx.sampleRate)
-    const data = buf.getChannelData(0)
-    for (let i = 0; i < len; i++) {
-      // steep decay across the burst — this is what makes it a tick and not a hiss
-      data[i] = (Math.random() * 2 - 1) * (1 - i / len) ** 3
-    }
-    const noise = ctx.createBufferSource()
-    noise.buffer = buf
+    // 808: sine sub with a fast downward pitch envelope, 90 Hz → 60 Hz.
+    const osc = ctx.createOscillator()
+    osc.type = 'sine'
+    osc.frequency.setValueAtTime(f, t)
+    osc.frequency.exponentialRampToValueAtTime(f2, t + dur * 0.7)
 
-    const bp = ctx.createBiquadFilter()
-    bp.type = 'bandpass'
-    bp.frequency.value = f
-    bp.Q.value = q
-
-    // Roll off the very top so it's crisp rather than harsh.
+    // Keep it strictly sub — nothing above 120 Hz survives.
     const lp = ctx.createBiquadFilter()
     lp.type = 'lowpass'
-    lp.frequency.value = 7000
+    lp.frequency.value = 120
+    lp.Q.value = 0.5
 
     const env = ctx.createGain()
-    env.gain.setValueAtTime(gain, t)
+    env.gain.setValueAtTime(0.0001, t)
+    env.gain.exponentialRampToValueAtTime(gain, t + 0.003)
     env.gain.exponentialRampToValueAtTime(0.0001, t + dur)
 
-    noise.connect(bp)
-    bp.connect(lp)
+    osc.connect(lp)
     lp.connect(env)
     env.connect(ctx.destination)
-    noise.start(t)
+    osc.start(t)
+    osc.stop(t + dur)
 
-    // Optional body: a short triangle note so confirmations feel earned.
-    if (body) {
-      const osc = ctx.createOscillator()
-      osc.type = 'triangle'
-      osc.frequency.setValueAtTime(body.from, t)
-      osc.frequency.exponentialRampToValueAtTime(body.to, t + 0.05)
-      const og = ctx.createGain()
-      og.gain.setValueAtTime(0.0001, t)
-      og.gain.exponentialRampToValueAtTime(body.gain, t + 0.006)
-      og.gain.exponentialRampToValueAtTime(0.0001, t + 0.07)
-      osc.connect(og)
-      og.connect(ctx.destination)
-      osc.start(t)
-      osc.stop(t + 0.08)
-    }
+    // A hair of filtered noise so the sub reads as a physical hit.
+    const n = ctx.createBuffer(1, Math.floor(ctx.sampleRate * 0.008), ctx.sampleRate)
+    const data = n.getChannelData(0)
+    for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / data.length)
+    const noise = ctx.createBufferSource()
+    noise.buffer = n
+    const bp = ctx.createBiquadFilter()
+    bp.type = 'bandpass'
+    bp.frequency.value = 4000
+    bp.Q.value = 1.4
+    const ng = ctx.createGain()
+    ng.gain.setValueAtTime(snap, t)
+    ng.gain.exponentialRampToValueAtTime(0.0001, t + 0.02)
+    noise.connect(bp)
+    bp.connect(ng)
+    ng.connect(ctx.destination)
+    noise.start(t)
   } catch {
     /* audio blocked — silence is fine */
   }
@@ -140,7 +169,7 @@ export function installClickSounds() {
       if (!el || el.hasAttribute('disabled')) return
 
       const explicit = el.getAttribute('data-sound') as Variant | null
-      if (explicit && explicit in CLICKS) return playClick(explicit)
+      if (explicit) return playClick(explicit)
 
       const label = `${el.className} ${el.getAttribute('aria-label') ?? ''}`
       if (/close|back|cancel|remove|trash|delete/i.test(label)) return playClick('back')
