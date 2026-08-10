@@ -5,6 +5,16 @@
  * Supabase is a matter of writing a second implementation of `SocialRepository`
  * and exporting that instead. Nothing in a component knows about localStorage.
  */
+/** A one-tap verdict. Lets someone weigh in without writing anything. */
+export type Verdict = 'heater' | 'solid' | 'mid' | 'nah'
+
+export const VERDICTS: { id: Verdict; emoji: string; label: string }[] = [
+  { id: 'heater', emoji: '🔥', label: 'Heater' },
+  { id: 'solid', emoji: '✅', label: 'Solid' },
+  { id: 'mid', emoji: '😐', label: 'Mid' },
+  { id: 'nah', emoji: '💀', label: 'Nah' },
+]
+
 export interface Take {
   id: string
   postId: string
@@ -12,6 +22,8 @@ export interface Take {
   body: string
   at: number
   likes: number
+  /** Optional — a take can be a verdict, a sentence, or both. */
+  verdict?: Verdict
   /** Seeded demo takes are labelled so they're never mistaken for real users. */
   seeded?: boolean
 }
@@ -30,7 +42,9 @@ export interface CommunityId {
 
 export interface SocialRepository {
   getTakes(postId: string): Take[]
-  addTake(postId: string, author: string, body: string): Take
+  addTake(postId: string, author: string, body: string, verdict?: Verdict): Take
+  /** Tally of verdicts for a post, including the seeded ones. */
+  verdicts(postId: string): Record<Verdict, number>
   likeTake(takeId: string): void
   isTakeLiked(takeId: string): boolean
 
@@ -83,6 +97,7 @@ const SEED: Record<string, Omit<Take, 'postId'>[]> = {
       body: 'leaving the shirt open is the entire fit. buttoned it\u2019s nothing',
       at: Date.parse('2026-08-07T17:10:00Z'),
       likes: 24,
+      verdict: 'heater',
       seeded: true,
     },
     {
@@ -99,6 +114,7 @@ const SEED: Record<string, Omit<Take, 'postId'>[]> = {
       body: 'four pieces and he wins fit of the year. that\u2019s the flex',
       at: Date.parse('2026-08-07T18:02:00Z'),
       likes: 8,
+      verdict: 'solid',
       seeded: true,
     },
   ],
@@ -114,7 +130,7 @@ export const socialRepository: SocialRepository = {
     return [...mine, ...seeded].sort((a, b) => b.at - a.at)
   },
 
-  addTake(postId, author, body) {
+  addTake(postId, author, body, verdict) {
     const bag = read()
     const take: Take = {
       id: uid('take'),
@@ -123,10 +139,17 @@ export const socialRepository: SocialRepository = {
       body,
       at: Date.now(),
       likes: 0,
+      verdict,
     }
     bag.takes = [take, ...bag.takes]
     write(bag)
     return take
+  },
+
+  verdicts(postId) {
+    const out: Record<Verdict, number> = { heater: 0, solid: 0, mid: 0, nah: 0 }
+    for (const t of socialRepository.getTakes(postId)) if (t.verdict) out[t.verdict] += 1
+    return out
   },
 
   likeTake(takeId) {

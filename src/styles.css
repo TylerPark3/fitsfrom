@@ -8403,3 +8403,115 @@ input.seg__control::placeholder {
   font-variant-numeric: tabular-nums;
   color: var(--ink-2);
 }
+
+/* ── the composer ─────────────────────────────────────────────────────────
+   Writing a paragraph about someone's trousers is a lot to ask cold. A verdict
+   is one tap and counts as a real contribution; the quick chips fill the box
+   for you; the prompt changes every time so it's never a blank page. */
+.composer {
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+  padding-bottom: max(0px, env(safe-area-inset-bottom));
+}
+
+.verdicts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  padding: 14px 20px 8px;
+}
+
+.verdict {
+  display: grid;
+  gap: 3px;
+  justify-items: center;
+  padding: 10px 4px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--tile);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  transition: transform var(--fast), border-color var(--fast), background var(--fast);
+}
+
+.verdict span {
+  font-size: 20px;
+  line-height: 1;
+  transition: transform var(--fast);
+}
+
+.verdict:hover { border-color: var(--ink-4); }
+.verdict:hover span { transform: scale(1.15); }
+.verdict:active span { transform: scale(0.9); }
+.verdict.is-on { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+.quick {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 4px 20px 10px;
+  scrollbar-width: none;
+}
+.quick::-webkit-scrollbar { display: none; }
+
+.quick__chip {
+  flex: none;
+  font-size: 12px;
+  color: var(--ink-3);
+  padding: 7px 12px;
+  border: 1px dashed var(--line);
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: color var(--fast), border-color var(--fast);
+}
+.quick__chip:hover { color: var(--ink); border-color: var(--ink-4); border-style: solid; }
+
+.composer .takes__compose { border-top: 0; }
+
+/* verdict tag on a posted take */
+.vtag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 999px;
+  margin: 4px 0;
+  background: var(--tile);
+  border: 1px solid var(--line);
+  color: var(--ink-3);
+}
+
+/* ── the tally ────────────────────────────────────────────────────────────*/
+.tally { padding: 14px 20px 0; }
+
+.tally__bar {
+  display: flex;
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--mist-2);
+}
+
+.tally__seg { display: block; transition: width 320ms var(--ease); }
+.tally__seg--heater { background: #d2593a; }
+.tally__seg--solid { background: #3f7a58; }
+.tally__seg--mid { background: #b9b3a5; }
+.tally__seg--nah { background: #6b6660; }
+
+.tally__key {
+  display: flex;
+  gap: 12px;
+  margin-top: 7px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .verdict, .verdict span, .tally__seg { transition: none; }
+}

@@ -9,7 +9,7 @@ import {
   type Profile,
   type Store,
 } from './lib/store'
-import { Grid, Hanger, Person, CheckInk, Mark } from './components/Icons'
+import { Grid, Hanger, Person, CheckInk } from './components/Icons'
 import { installClickSounds, isMuted, setMuted } from './lib/click'
 import { PRO, halfOf } from './lib/plan'
 import { CATALOG } from './data/catalog'
@@ -21,13 +21,12 @@ import { WardrobeView } from './views/WardrobeView'
 import { SavedView } from './views/SavedView'
 import { FitsView } from './views/FitsView'
 import { TunnelView } from './views/TunnelView'
-import { HeatView } from './views/HeatView'
 import { AuthView } from './views/AuthView'
 import { FaqView } from './views/FaqView'
 import { LegalView } from './views/LegalView'
 import { ProductDrawer } from './components/ProductDrawer'
 
-export type View = 'home' | 'auth' | 'onboarding' | 'discover' | 'tunnel' | 'heat' | 'fits' | 'avatar' | 'wardrobe' | 'saved' | 'faq' | 'legal'
+export type View = 'home' | 'auth' | 'onboarding' | 'discover' | 'tunnel' | 'fits' | 'avatar' | 'wardrobe' | 'saved' | 'faq' | 'legal'
 
 const TRIAL_DAYS = 15
 const GATED: View[] = ['discover', 'fits', 'wardrobe', 'saved', 'avatar']
@@ -339,16 +338,6 @@ export function App() {
           ) : (
             <>
           {view === 'home' && <Home go={go} onTunnel={(s) => { setTunnelSlug(s); setView('tunnel') }} onOpen={setOpenProduct} />}
-          {view === 'heat' && (
-            <HeatView
-              onOpen={setOpenProduct}
-              onTunnel={(s) => {
-                setTunnelSlug(s)
-                setView('tunnel')
-                window.history.pushState({}, '', s ? `/tunnel/${s}` : '/tunnel')
-              }}
-            />
-          )}
           {view === 'tunnel' && (
             <TunnelView
               slug={tunnelSlug}
@@ -379,7 +368,6 @@ export function App() {
         <footer className="foot">
           <div className="wrap foot__in">
             <div className="logo" style={{ fontSize: 16 }}>
-              <Mark size={22} />
               <span className="logo__word">FITS FROM</span>
             </div>
             <p>
@@ -445,7 +433,6 @@ function Nav({
     <header className="nav">
       <div className="wrap nav__inner">
         <button className="logo" onClick={() => go('home')}>
-          <Mark size={22} />
           <span className="logo__word">FITS FROM</span>
         </button>
 
@@ -456,14 +443,8 @@ function Nav({
           <button className="nav__link" aria-current={view === 'fits'} onClick={() => go('fits')}>
             Fits
           </button>
-          <button className="nav__link" aria-current={view === 'avatar'} onClick={() => go('avatar')}>
-            Avatar
-          </button>
           <button className="nav__link" aria-current={view === 'tunnel'} onClick={() => go('tunnel')}>
             Tunnel
-          </button>
-          <button className="nav__link" aria-current={view === 'heat'} onClick={() => go('heat')}>
-            Heat
           </button>
           <button className="nav__link" aria-current={view === 'discover'} onClick={() => go('discover')}>
             Explore
@@ -503,7 +484,9 @@ function Nav({
 
         <button
           className="nav__me"
-          onClick={() => go(signedIn ? 'avatar' : 'auth')}
+          aria-current={view === 'avatar'}
+          title="Your build"
+          onClick={() => go('avatar')}
         >
           <span
             className="nav__avatar"

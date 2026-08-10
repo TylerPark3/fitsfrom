@@ -1,6 +1,34 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { socialRepository, type CommunityId, type Take } from '../../lib/socialRepository'
+import {
+  socialRepository,
+  VERDICTS,
+  type CommunityId,
+  type Take,
+  type Verdict,
+} from '../../lib/socialRepository'
 import { Close } from '../Icons'
+
+/**
+ * Writing a paragraph about someone's trousers is a lot to ask cold. So the
+ * cheapest possible contribution is one tap — a verdict — and the text box is
+ * never a blank page: it asks you something different every time you open it.
+ */
+const PROMPTS = [
+  'What’s carrying this fit?',
+  'One thing you’d swap?',
+  'Cook or nah?',
+  'What would ruin this?',
+  'Who wears this better?',
+  'Would you wear it out?',
+]
+
+const QUICK = [
+  'the shoes carry it',
+  'proportions are off',
+  'ID on the jacket?',
+  'wouldn’t work on me',
+  'stealing this',
+]
 
 const ago = (at: number) => {
   const m = Math.floor((Date.now() - at) / 60000)
@@ -31,6 +59,9 @@ export function FitTakesDrawer({
   const [sort, setSort] = useState<'top' | 'new'>('top')
   const [body, setBody] = useState('')
   const [tab, setTab] = useState<'takes' | 'id'>('takes')
+  const [verdict, setVerdict] = useState<Verdict | null>(null)
+  // one prompt per opening, so it feels like a question rather than a form
+  const [prompt] = useState(() => PROMPTS[Math.floor(Math.random() * PROMPTS.length)])
   const panel = useRef<HTMLDivElement>(null)
   const firstField = useRef<HTMLTextAreaElement>(null)
 
@@ -78,6 +109,8 @@ export function FitTakesDrawer({
 
         {tab === 'takes' ? (
           <>
+            <Tally postId={postId} />
+
             <div className="takes__sort">
               <button className={sort === 'top' ? 'is-on' : ''} onClick={() => setSort('top')}>
                 Top
@@ -96,7 +129,13 @@ export function FitTakesDrawer({
                     <span className="tiny">{ago(t.at)}</span>
                     {t.seeded && <span className="take__demo">demo</span>}
                   </div>
-                  <p>{t.body}</p>
+                  {t.verdict && (
+                    <span className={`vtag vtag--${t.verdict}`}>
+                      {VERDICTS.find((v) => v.id === t.verdict)?.emoji}{' '}
+                      {VERDICTS.find((v) => v.id === t.verdict)?.label}
+                    </span>
+                  )}
+                  {t.body && <p>{t.body}</p>}
                   <button
                     className="take__like"
                     onClick={() => {
@@ -111,29 +150,66 @@ export function FitTakesDrawer({
               ))}
             </div>
 
-            <form
-              className="takes__compose"
-              onSubmit={(e) => {
-                e.preventDefault()
-                const text = body.trim()
-                if (!text) return
-                socialRepository.addTake(postId, 'you', text)
-                setBody('')
-                refresh()
-              }}
-            >
-              <textarea
-                ref={firstField}
-                value={body}
-                onChange={(e) => setBody(e.target.value)}
-                placeholder="What do you make of it?"
-                rows={2}
-                aria-label="Add a take"
-              />
-              <button className="btn btn--primary btn--sm" type="submit" disabled={!body.trim()}>
-                Post
-              </button>
-            </form>
+            <div className="composer">
+              {/* one tap is a whole contribution — no typing required */}
+              <div className="verdicts">
+                {VERDICTS.map((v) => (
+                  <button
+                    key={v.id}
+                    className={`verdict${verdict === v.id ? ' is-on' : ''}`}
+                    aria-pressed={verdict === v.id}
+                    onClick={() => {
+                      if (body.trim()) {
+                        setVerdict(verdict === v.id ? null : v.id)
+                        return
+                      }
+                      socialRepository.addTake(postId, 'you', '', v.id)
+                      refresh()
+                    }}
+                  >
+                    <span aria-hidden="true">{v.emoji}</span>
+                    {v.label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="quick">
+                {QUICK.map((q) => (
+                  <button key={q} className="quick__chip" onClick={() => setBody(q)}>
+                    {q}
+                  </button>
+                ))}
+              </div>
+
+              <form
+                className="takes__compose"
+                onSubmit={(e) => {
+                  e.preventDefault()
+                  const text = body.trim()
+                  if (!text && !verdict) return
+                  socialRepository.addTake(postId, 'you', text, verdict ?? undefined)
+                  setBody('')
+                  setVerdict(null)
+                  refresh()
+                }}
+              >
+                <textarea
+                  ref={firstField}
+                  value={body}
+                  onChange={(e) => setBody(e.target.value)}
+                  placeholder={prompt}
+                  rows={2}
+                  aria-label="Add a take"
+                />
+                <button
+                  className="btn btn--primary btn--sm"
+                  type="submit"
+                  disabled={!body.trim() && !verdict}
+                >
+                  Post
+                </button>
+              </form>
+            </div>
           </>
         ) : (
           <>
@@ -222,6 +298,37 @@ export function FitTakesDrawer({
             )}
           </>
         )}
+      </div>
+    </div>
+  )
+}
+
+
+/** What the room thinks, as a single bar. */
+function Tally({ postId }: { postId: string }) {
+  const counts = socialRepository.verdicts(postId)
+  const total = Object.values(counts).reduce((a, b) => a + b, 0)
+  if (total === 0) return null
+  return (
+    <div className="tally">
+      <div className="tally__bar">
+        {VERDICTS.map((v) =>
+          counts[v.id] ? (
+            <span
+              key={v.id}
+              className={`tally__seg tally__seg--${v.id}`}
+              style={{ width: `${(counts[v.id] / total) * 100}%` }}
+              title={`${v.label} ${counts[v.id]}`}
+            />
+          ) : null,
+        )}
+      </div>
+      <div className="tally__key">
+        {VERDICTS.filter((v) => counts[v.id]).map((v) => (
+          <span key={v.id}>
+            {v.emoji} {Math.round((counts[v.id] / total) * 100)}%
+          </span>
+        ))}
       </div>
     </div>
   )

@@ -8,7 +8,9 @@ import {
   type LeagueFilter,
 } from '../data/socialFits'
 import { resolve } from '../lib/fitmatch'
+import { hotBrands, mostIdentified, rankedFits } from '../lib/heat'
 import { useStore } from '../lib/store'
+import { ProductCard } from '../components/ProductCard'
 import { InstagramFitEmbed } from '../components/InstagramFitEmbed'
 import { SocialFitCard } from '../components/tunnel/SocialFitCard'
 import { FitEngagementBar } from '../components/tunnel/FitEngagementBar'
@@ -32,13 +34,18 @@ export function TunnelView({
   onOpen: (id: string) => void
   onSlug: (slug: string | null) => void
 }) {
-  const { toast } = useStore()
+  const { toast, saved } = useStore()
   const [league, setLeague] = useState<LeagueFilter>('All')
 
-  const posts = useMemo(
-    () => (league === 'All' ? SOCIAL_FITS : SOCIAL_FITS.filter((p) => p.person.league === league)),
-    [league],
-  )
+  // Hottest first — engagement decayed over time, so a post has to earn its
+  // place rather than just outlive the others.
+  const posts = useMemo(() => {
+    const hot = rankedFits().map((f) => f.post)
+    return league === 'All' ? hot : hot.filter((p) => p.person.league === league)
+  }, [league])
+
+  const cosigned = useMemo(() => mostIdentified(saved, 8), [saved])
+  const brands = useMemo(() => hotBrands(6), [])
 
   const post = slug ? findSocialFit(slug) : null
   if (slug && post) return <FitReport post={post} onOpen={onOpen} onBack={() => onSlug(null)} />
@@ -86,6 +93,51 @@ export function TunnelView({
             <SocialFitCard key={p.id} post={p} onOpen={onOpen} onFull={onSlug} onToast={toast} />
           ))}
         </div>
+      )}
+
+      {/* ── cosigned ──────────────────────────────────────────────────────
+          The pieces themselves, ranked by how many documented fits they turn
+          up in. It's the one signal here that nobody self-reports. */}
+      {cosigned.length > 0 && (
+        <section className="section">
+          <div className="section__head">
+            <h3>Cosigned</h3>
+            <span className="tiny">
+              Pieces that turn up across the most documented fits — proof nobody self-reported
+            </span>
+          </div>
+          <div className="grid">
+            {cosigned.map((c) => (
+              <ProductCard
+                key={c.product.id}
+                product={c.product}
+                onOpen={onOpen}
+                footer={<p className="cosignline tiny">✦ {c.cosigns.join(', ')}</p>}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {brands.length > 0 && (
+        <section className="section">
+          <div className="section__head">
+            <h3>Brands with reach</h3>
+            <span className="tiny">
+              Counted by how many different people wear them — one is a preference, six is a movement
+            </span>
+          </div>
+          <div className="brandheat">
+            {brands.map((b, i) => (
+              <div className="brandheat__row" key={b.brand}>
+                <span className="board__n">{String(i + 1).padStart(2, '0')}</span>
+                <b>{b.brand}</b>
+                <span className="brandheat__people">{b.people.join(' · ')}</span>
+                <span className="brandheat__n">{b.people.length}</span>
+              </div>
+            ))}
+          </div>
+        </section>
       )}
     </div>
   )
