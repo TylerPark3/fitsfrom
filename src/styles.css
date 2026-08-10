@@ -8315,3 +8315,91 @@ input.seg__control::placeholder {
   .rpiece { grid-template-columns: 68px minmax(0, 1fr); }
   .rpiece__shot { width: 68px; height: 68px; }
 }
+
+/* ── seen on ──────────────────────────────────────────────────────────────
+   A piece is worth more when you can see what it was worn with. Every
+   documented fit this piece appears in, with the rest of that outfit beside
+   it and the total for the whole look. */
+.seenon {
+  margin: 22px 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.seenon__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.seenfit + .seenfit {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.seenfit__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.seenfit__top b {
+  display: block;
+  font-size: 15px;
+}
+
+.seenfit__total {
+  font-size: 10px;
+  color: var(--ink-4);
+  white-space: nowrap;
+}
+
+.seenfit__rail {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+
+.seenfit__piece {
+  flex: none;
+  width: 82px;
+  display: grid;
+  gap: 3px;
+  justify-items: center;
+  text-align: center;
+}
+
+.seenfit__piece img {
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 6px;
+  transition: border-color var(--fast);
+}
+
+.seenfit__piece:hover img {
+  border-color: var(--ink-4);
+}
+
+.seenfit__slot {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.seenfit__price {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+}

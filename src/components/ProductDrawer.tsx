@@ -14,9 +14,12 @@ import { AffiliateDisclosure } from './AffiliateDisclosure'
 export function ProductDrawer({
   productId,
   onClose,
+  onOpenProduct,
 }: {
   productId: string
   onClose: () => void
+  /** Jump to another piece from the same fit without leaving the drawer. */
+  onOpenProduct?: (id: string) => void
 }) {
   const store = useStore()
   const { profile, saved, wardrobe, collections } = store
@@ -71,9 +74,53 @@ export function ProductDrawer({
           )}
 
           {seenIn.length > 0 && (
-            <p className="pdp__cosign">
-              ✦ Worn by {seenIn.map((f) => f.who).join(', ')}
-            </p>
+            <section className="seenon">
+              <div className="seenon__head">
+                <span className="eyebrow">Seen on</span>
+                <span className="tiny">
+                  {seenIn.length} documented {seenIn.length === 1 ? 'fit' : 'fits'}
+                </span>
+              </div>
+
+              {seenIn.map((fit) => {
+                // The rest of that outfit — a piece is worth more when you can
+                // see what it was worn with, and buy the whole thing.
+                const rest = fit.pieces
+                  .map((pc) => ({ pc, prod: resolve(pc) }))
+                  .filter((x) => x.prod && x.prod.id !== product.id)
+                const total = rest.reduce((n, x) => n + (x.prod?.price ?? 0), product.price)
+                return (
+                  <article className="seenfit" key={fit.id}>
+                    <div className="seenfit__top">
+                      <div>
+                        <b>{fit.who}</b>
+                        <span className="tiny">{fit.where} · {fit.when}</span>
+                      </div>
+                      <span className="seenfit__total mono-line">
+                        FIT ${Math.round(total).toLocaleString()}
+                      </span>
+                    </div>
+
+                    <div className="seenfit__rail">
+                      {rest.map(({ pc, prod }) => (
+                        <button
+                          key={pc.slot}
+                          className="seenfit__piece"
+                          onClick={() => onOpenProduct?.(prod!.id)}
+                          title={`${prod!.brand} — ${prod!.name}`}
+                        >
+                          <img src={prod!.image} alt="" loading="lazy" />
+                          <span className="seenfit__slot">{pc.slot}</span>
+                          <span className="seenfit__price">
+                            ${prod!.price.toFixed(prod!.price % 1 ? 2 : 0)}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  </article>
+                )
+              })}
+            </section>
           )}
 
           {product.sizeSystem !== 'one' && (

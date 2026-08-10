@@ -407,7 +407,11 @@ export function App() {
         </nav>
 
         {openProduct && (
-          <ProductDrawer productId={openProduct} onClose={() => setOpenProduct(null)} />
+          <ProductDrawer
+            productId={openProduct}
+            onClose={() => setOpenProduct(null)}
+            onOpenProduct={setOpenProduct}
+          />
         )}
 
         {toastMsg && (
