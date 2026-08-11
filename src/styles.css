@@ -8984,3 +8984,83 @@ body {
 .strip__n {
   color: var(--ink-4);
 }
+
+
+/* ══ THE FLAT LAY ═════════════════════════════════════════════════════════
+   Replaces the vertical stack.
+
+   Three things make a flat lay cohere, and none of them are decoration:
+
+   1. A soft neutral ground rather than white. Product shots come from sixty
+      different brands with sixty different backgrounds; putting them all on
+      one tone is what stops the arrangement reading as a pile of cut-outs.
+   2. Asymmetry. Garments left and large, accessories right and small. A
+      centred column has no entry point — your eye doesn't know where to start.
+   3. Scale as hierarchy. The trouser is the biggest object on the canvas and
+      the watch is the smallest, which is the whole reading order, done without
+      a single label. */
+.stack {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    'top   acc'
+    'bot   acc2'
+    'bot   shoes';
+  /* Tight. A flat lay is arranged, not scattered — the objects sit close
+     enough to read as one composition rather than five photographs. */
+  gap: 0 10px;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  padding: 28px 26px;
+  background: #f1efeb;
+  border-radius: 4px;
+}
+
+/* margins that pulled the old column together would fight the grid */
+.stackpiece + .stackpiece {
+  margin-top: 0;
+}
+
+.stackpiece--shoes {
+  margin-top: 0;
+}
+
+.stackpiece--top { grid-area: top; }
+.stackpiece--bottom { grid-area: bot; }
+.stackpiece--hat { grid-area: acc; }
+.stackpiece--acc { grid-area: acc2; }
+.stackpiece--shoes { grid-area: shoes; }
+
+/* the garments carry the composition; the accessories punctuate it */
+.stack .stackpiece--top .stackpiece__img { height: 210px; }
+.stack .stackpiece--bottom .stackpiece__img { height: 268px; }
+.stack .stackpiece--hat .stackpiece__img { height: 112px; }
+.stack .stackpiece--acc .stackpiece__img { height: 104px; }
+.stack .stackpiece--shoes .stackpiece__img { height: 124px; }
+
+/* a lifted object, not a pasted one */
+.stack .stackpiece__img {
+  filter: drop-shadow(0 14px 22px rgba(28, 24, 18, 0.13));
+  max-width: 100%;
+}
+
+.stack__empty {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  margin: 60px 0;
+}
+
+@media (max-width: 620px) {
+  .stack {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    padding: 26px 18px;
+    gap: 8px 14px;
+  }
+  .stack .stackpiece--top .stackpiece__img { height: 150px; }
+  .stack .stackpiece--bottom .stackpiece__img { height: 208px; }
+  .stack .stackpiece--hat .stackpiece__img { height: 66px; }
+  .stack .stackpiece--acc .stackpiece__img { height: 62px; }
+  .stack .stackpiece--shoes .stackpiece__img { height: 74px; }
+}
